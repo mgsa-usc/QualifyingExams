@@ -1,0 +1,84 @@
+\documentclass{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amsthm,amssymb}
+\usepackage{bbm, enumerate}
+
+\newenvironment{problem}[2][Problem]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{note}[1][Note.]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+
+\begin{document}
+
+\title{Fall 2015: Real Analysis Graduate Exam}
+\author{Peter Kagey}
+
+\maketitle
+
+% -----------------------------------------------------
+% First problem
+% -----------------------------------------------------
+\begin{problem}{1}
+  Prove that for almost all $x \in [0, 1]$, there are at more finitely many
+  rational numbers with reduced form $p/q$ such that $q \geq 2$ and
+  $|x - p/q| < 1/(q \log q)^2$.
+  (Hint: consider intervals of length $2/(q log q)^2$ centered at rational points $p/q$.)
+\end{problem}
+
+\begin{proof}
+\end{proof}
+
+% -----------------------------------------------------
+% Second problem
+% -----------------------------------------------------
+\pagebreak
+
+\begin{problem}{2}
+  Suppose that the real-valued function $f(x)$ is nondecreasing on the interval $[0, 1]$.
+  Prove that there exists a sequence of continuous functions $f_n(x)$ such that
+  $f_n \rightarrow f$ pointwise on this interval.
+\end{problem}
+
+\begin{proof}
+\end{proof}
+
+% -----------------------------------------------------
+% Third problem
+% -----------------------------------------------------
+\pagebreak
+
+\begin{problem}{3}
+  Let $(X, \mu)$ be a finite measure space. Assume that a sequence of integrable
+  functions $f_n$ satisfies $f_n \rightarrow f$ in measure, where $f$ is
+  measurable. Assume that $f_n$ satisfies the following property:
+  For every $\varepsilon > 0$ there exists $\delta > 0$ such that \[
+    \mu(E) \leq \delta \Longrightarrow \int_E |f_n| d\mu \leq \varepsilon.
+  \]
+  Prove that $f$ is integrable and that \[
+    \lim_n \int_X |f_n - f| d\mu = 0.
+  \]
+\end{problem}
+
+\begin{proof}
+\end{proof}
+
+% -----------------------------------------------------
+% Fourth problem
+% -----------------------------------------------------
+\pagebreak
+
+\begin{problem}{4}
+  Consider the following two statements about a function $f: [0, 1] \rightarrow \mathbb{R}$:
+  \begin{enumerate}[(i)]
+    \item $f$ is continuous almost everywhere
+    \item $f$ is equal to a continuous function $g$ almost everywhere.
+  \end{enumerate}
+  Does (i) imply (ii)? Prove or give a counterexample.
+  Does (ii) imply (i)? Prove or give a counterexample.
+\end{problem}
+
+\begin{proof}
+\end{proof}
+
+\end{document}

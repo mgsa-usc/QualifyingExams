@@ -1,0 +1,112 @@
+\documentclass{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amsthm,amssymb}
+\usepackage{bbm, enumerate}
+
+\newenvironment{problem}[2][Problem]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{note}[1][Note.]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+
+\begin{document}
+
+\title{Spring 2013: Real Analysis Graduate Exam}
+\author{Peter Kagey}
+
+\maketitle
+
+% -----------------------------------------------------
+% First problem
+% -----------------------------------------------------
+\begin{problem}{1}
+  Suppose that $\{ f_n \}$ is a sequence of real valued continuously
+  differentiable functions on $[0, 1]$ such that \[
+    \lim_{n \rightarrow \infty} \int_0^1 |f_n(x)| dx = 0
+    \text{ and }
+    \lim_{n \rightarrow \infty} \int_0^1 |f'_n(x)| dx = 0.
+  \]
+  Show that $\{ f_n \}$ converges to 0 uniformly on $[0, 1]$.
+\end{problem}
+
+\begin{proof}
+\end{proof}
+
+% -----------------------------------------------------
+% Second problem
+% -----------------------------------------------------
+\pagebreak
+
+\begin{problem}{2}
+  Investigate the convergence of $\sum_{n=0}^\infty a_n$, where \[
+    a_n = \int_0^1 \frac{x^n}{1 - x}\sin(\pi x) dx
+  \]
+\end{problem}
+
+\begin{proof}
+  Because the integrand $sin(\pi x)x^n/(1-x)$ is positive, Tonelli's theorem
+  gives \begin{align}
+    \sum_{n=0}^\infty \int_0^1 \frac{x^n}{1 - x}\sin(\pi x) dx &=
+    \int_0^1 \sum_{n=0}^\infty \frac{x^n}{1 - x}\sin(\pi x) dx \\ &=
+    \int_0^1 \frac{\sin(\pi x)}{1 - x} \sum_{n=0}^\infty x^n dx \\ &=
+    \int_0^1 \frac{\sin(\pi x)}{1 - x} \cdot \frac{1}{1 - x} dx \\ &=
+    \int_0^1 \frac{\sin(\pi x)}{(1 - x)^2} dx.
+  \end{align}
+  Notice that (2) implies (3) because the bounds of the integral ensure that $x$
+  is $m$-almost everwhere within the radius of convergece of the sum. \\
+
+  Because the integrand is non-negative, by elementary calculus \[
+    \int_0^1 \frac{\sin(\pi x)}{(1 - x)^2} dx \geq
+    \int_{1/2}^1 \frac{\sin(\pi x)}{(1 - x)^2} dx \geq
+    \int_{1/2}^1 \frac{1 - x}{(1 - x)^2} dx =
+    \int_{1/2}^1 (1 - x)^{-1} dx =
+    \infty.
+  \] Therefore $\sum_{n=0}^\infty a_n = \infty$.
+\end{proof}
+
+% -----------------------------------------------------
+% Third problem
+% -----------------------------------------------------
+\pagebreak
+
+\begin{problem}{3}
+  Let $(X, \mathcal{M}, \mu)$ be a measure space, $f_n,\ f \in L^1(\mu)$.
+  Show that $\int_X |f_n - f| d\mu \rightarrow 0$ as $n \rightarrow \infty$
+  if and only if \[
+    \sup_{A\in\mathcal{M}} \left|\int_A f_n d\mu - \int_A f d\mu \right| \rightarrow 0
+  \] as $n \rightarrow \infty$
+\end{problem}
+
+\begin{proof}
+  ($\Longrightarrow$)
+  Assume that $\int_X |f_n - f| d\mu \rightarrow 0$
+  as $n \rightarrow \infty$; in particular choose sufficiently large $n$ so that
+  $\int_X |f_n - f| d\mu < \varepsilon$. Then for any set $A \subset X$ \[
+    \varepsilon =
+    \int_X |f_n - f| d\mu =
+    \int_A |f_n - f| d\mu +
+    \int_{A^{\mathsf{c}}} |f_n - f| d\mu \geq
+    \int_A |f_n - f| d\mu \geq
+    \left| \int_A f_n - f\ d\mu \right|.
+  \]
+  Since this holds for all $A\in\mathcal{M}$, it also holds for the supremum.
+\end{proof}
+
+% -----------------------------------------------------
+% Fourth problem
+% -----------------------------------------------------
+\pagebreak
+
+\begin{problem}{4}
+  Let $\mu$ and $\nu$ be $\sigma$-finite positive meastures, $\mu \geq \nu$
+  and assume that $\nu \ll \mu - \nu$ ($\nu$ is absolutely continuous with
+  respect to $\mu - \nu$). \\
+  Prove that \[
+    \mu\left(\{\frac{d\nu}{d\mu} = 1\}\right) = 0.
+  \]
+\end{problem}
+
+\begin{proof}
+\end{proof}
+
+\end{document}

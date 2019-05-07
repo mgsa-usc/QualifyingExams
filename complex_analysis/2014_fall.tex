@@ -1,0 +1,161 @@
+\documentclass{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amsthm,amssymb}
+\usepackage{bbm, enumerate, tikz}
+\usepackage{multicol}
+
+\newenvironment{problem}[2][Problem]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{note}[1][Note.]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+
+\begin{document}
+
+\title{Fall 2014: Complex Analysis Graduate Exam}
+\author{Peter Kagey}
+
+\maketitle
+
+% -----------------------------------------------------
+% First problem
+% -----------------------------------------------------
+\begin{problem}{1}
+  Let $a > 1$. Compute \[
+    \int_0^\pi \frac{d\theta}{a + \cos\theta}
+  \] being careful to justify your methods.
+\end{problem}
+
+\begin{proof}
+  First, call this integral $S$, and begin with the standard trigonometic substitution, \[
+    \cos(\theta) = \frac{1}{2}(e^{i\theta} + e^{-i\theta}),
+  \] yielding \[
+    S = \int_0^\pi \frac{d\theta}{a + \frac{1}{2}(e^{i\theta} + e^{-i\theta})}.
+  \]
+  By exploiting the evenness of $a + \cos(\theta)$, this integral is equal to \[
+    S = \frac{1}{2}\int_{-\pi}^\pi \frac{d\theta}{a + \frac{1}{2}(e^{i\theta} + e^{-i\theta})}.
+  \]
+  Then by substituting $z = e^{i\theta}$ where the contour is the unit circle
+  centered at the origin gives \[
+    S = \frac{1}{2}\int_{|z| = 1} \frac{1}{a + \frac{1}{2}\left(z + \frac{1}{z}\right)}\frac{dz}{iz}
+  \] where $dz/(iz)$ is the formal substitution for $d\theta$ because \begin{align*}
+    e^{i\theta} &= z \\
+    i\theta &= \log z \\
+    d\theta &= -i\frac{dz}{z}.
+  \end{align*}
+  Some simplification of the integral results in \[
+    S = -i\int_{|z| = 1} \frac{dz}{2az + \left(z^2 + 1\right)}.
+  \]
+  By the quadratic formula, this integrand has poles at \begin{align*}
+    \frac{-2a \pm \sqrt{4a^2-4}}{2} &= -a \pm \sqrt{a^2 - 1} \\
+    \alpha &= -a - \sqrt{a^2 - 1}\\
+    \beta &= -a + \sqrt{a^2 - 1}
+  \end{align*} which are real because $a > 1$ by hypothesis. In particular,
+  $\alpha = -a - \sqrt{a^2 - 1} < -a$, so clearly outside the contour.
+  On the other hand, \begin{alignat*}{2}
+    a^2 &> a^2 - 1      &&> a^2 - 2a + 1 \\
+    a &> \sqrt{a^2 - 1} &&> a - 1 \\
+    0 &> \underbrace{-a + \sqrt{a^2 - 1}}_\beta &&> -1 \\
+  \end{alignat*} so $\beta$ is inside the contour.
+
+  Next, naming the integrand $f$, the residue theorem gives \[
+    S = -i\int_{|z| = 1} \frac{dz}{2az + \left(z^2 + 1\right)} = -i(2\pi i \operatorname{Res}_\beta(f)) = 2\pi \operatorname{Res}_\beta(f).
+  \]
+
+  Now, the residue is straightforward to compute: \[
+    \operatorname{Res}_\beta(f)
+    = \lim_{z \rightarrow \beta} (z - \beta)\frac{1}{(z - \beta)(z - \alpha)}
+    = \frac{1}{\beta - \alpha}
+    = \frac{1}{2\sqrt{a^2 - 1}}.
+  \]
+
+  Therefore \[
+    \int_0^\pi \frac{d\theta}{a + \cos\theta} = \frac{\pi}{\sqrt{a^2 - 1}}.
+  \]
+\end{proof}
+
+% -----------------------------------------------------
+% Second problem
+% -----------------------------------------------------
+\pagebreak
+
+\begin{problem}{2}
+  Find the number of zeros, counting multiplicity, of $z^8 - z^3 + 10$ inside
+  the first quadrant
+  $\{ z \in \mathbb{C}: \operatorname{Re}z > 0,\ \operatorname{Im}z > 0 \}$.
+\end{problem}
+
+\begin{proof}
+  For convenience name the aforementioned function: $f(z) = z^8 - z^3 + 10$.
+  We'll repeatedly compare this function against $g(z) = z^8 + 10$.
+  \\
+  Notice that anywhere on the circle $|z| = 2$, we have the inequality \[
+    |f-g| = |-z^3| = 8 < |z^8| - |z^3| - |10| = 256-8-10 < |f|,
+  \] which follows by the triangle inequality.
+  By Rouch\'e's Theorem, since $g$ has all eight of its roots inside this
+  circle, $f$ also has all eight of its roots inside this circle.
+  So when counting the roots of $f$ inside the first quadrant, it is sufficient
+  to count the roots of $f$ inside the quarter circle of radius $2$ in the first
+  quadrant.
+  Now, we will establish that $|f-g| < |f|$ on the boundary of this region.
+  \\~\\
+  \textbf{Case 1: The arc.}\\
+  We have already established that $|f-g| < |f|$ when $|z| = 2$, and this
+  remains true when we restrict to the first quadrant.
+  \\~\\
+  \textbf{Case 2: The real part.}\\
+  We need to show that $|-x^3| < |10 + x^8 - x^3|$ for $x \in [0, 2]$, and
+  because the right hand side is positive, this is equivalent to showing that
+  $10 + x^8 - 2x^3 > 0$.
+  This follows because \begin{enumerate}[(a)]
+    \item $10 - 2x^3 > 0$ and $x^8 > 0$ for $x \in [0, \sqrt[3]5)$, and
+    \item $x^8 - 2x^3 > 0$ and $10 > 0$ for $x \in [\sqrt[3]5, 2]$.
+  \end{enumerate}
+  \textbf{Case 3: The purely imaginary part.}
+  We need to show that $|-i^3x^3| < |10 + i^8x^8 - i^3x^3|$ for $x \in [0, 2]$:
+  \begin{align*}
+    |f-g| = |-i^3x^3| = x^3 < \underbrace{|10 + x^8| - |i^3x^3|}_{10 + x^8 - x^3} \leq |f|,
+  \end{align*} and this follows by exactly the same argument as the second case.
+  \\~\\
+  Thus, by Rouch\'e's theorem, $f$ and $g$ have the same number of zeros in the
+  quarter circle (equivalently, the first quadrant). Since $g$ has roots at
+  $10^{1/8}e^{\pi i/8}\xi^k_8$ (where $\xi_8$ is an eigth root of unity), $g$
+  has exactly two roots in each quadrant.
+  \\~\\
+  Therefore $f$ has two roots in the first quadrant.
+\end{proof}
+
+% -----------------------------------------------------
+% Third problem
+% -----------------------------------------------------
+\pagebreak
+
+\begin{problem}{3}
+  Assume that $f$ and $g$ are holomorphic in a punctured neighborhood of
+  $z_0 \in \mathbb C$. Prove that if $f$ has an essential singularity at $z_0$
+  and $g$ has a pole at $z_0$, then $f(z)g(z)$ has an essential singularity at
+  $z_0$.
+\end{problem}
+
+\begin{proof}
+\end{proof}
+
+% -----------------------------------------------------
+% Fourth problem
+% -----------------------------------------------------
+\pagebreak
+
+\begin{problem}{4}$ $\\
+  \begin{enumerate}[(i)]
+    \item Suppose that $f$ is holomorphic on $\mathbb C$, and assume that the
+      imaginary part of $f$ is bounded. Prove that $f$ is constant.
+    \item Suppose that $f$ and $g$ are holomorphic on $\mathbb C$ and that
+    $|f(z)| \leq |g(z)|$ for all $z \in \mathbb C$. Prove that there exists
+    $\lambda \in \mathbb C$ such that $f = \lambda g$.
+  \end{enumerate}
+\end{problem}
+
+\begin{proof}
+\end{proof}
+
+\end{document}

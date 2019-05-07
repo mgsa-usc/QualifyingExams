@@ -1,0 +1,171 @@
+\documentclass{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amsthm,amssymb}
+\usepackage{bbm, enumerate}
+
+\newenvironment{problem}[2][Problem]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{note}[1][Note.]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+
+\begin{document}
+
+\title{Spring 2015: Real Analysis Graduate Exam}
+\author{Peter Kagey}
+
+\maketitle
+
+% -----------------------------------------------------
+% First problem
+% -----------------------------------------------------
+\begin{problem}{1}
+Consider the sequence \[
+  f_n(x)=
+      \left(1 + \frac{x}{n}\right)^{-n}
+        cos\left(\frac{x}{n}\right),
+  \hspace{10pt}
+  n = 1,2,...\ .
+\] Evaluate \[
+  \lim_{n}\int_{0}^{\infty}f_n(x)\ dx,
+\] being careful to justify your answer.
+\end{problem}
+
+\begin{proof}
+% Note: prove that (1+x/n)^-n < (1 + x/2)^-2.
+The boundedness of cosine and non-negativity of $1 + \frac{x}{n}$ imply that for $n > 2$ and $x > 0$ \[
+  \left|f_n(x)\right| \leq
+    \left(1 + \frac{x}{n}\right)^{-n} \leq
+    \left(1 + \frac{x}{2}\right)^{-2} =
+    g(x).
+\]
+
+The function $g$ is integrable on $[0, \infty)$ because by the $p$-test \[
+  \int_{0}^{\infty} g(x)\ dx =
+    \int_{0}^{\infty} \frac{dx}{1 + x + \frac{x^2}{4}} \leq
+    4\int_{0}^{\infty} \frac{dx}{x^2} <
+    \infty
+\]
+
+Thus the Dominated Convergence Theorem with $g$ allows the limit to be moved inside the integral:
+  \[
+      \lim_{n} \int_{0}^{\infty} f_n(x)\ dx =
+        \int_{0}^{\infty} \lim_{n} f_n(x)\ dx =
+        \int_{0}^{\infty} \frac{
+          \lim_{n} \cos\left(x/n\right)
+        }{
+          \lim_{n} \left(1 + x/n\right)^{n}
+        } dx =
+        \int_{0}^{\infty} \frac{\cos(0)}{e^x} dx =
+        \int_{0}^{\infty} e^{-x} dx =
+        1
+    \]
+\end{proof}
+
+% -----------------------------------------------------
+% Second problem
+% -----------------------------------------------------
+\pagebreak
+
+\begin{problem}{2} Suppose that $f: [0, \infty) \rightarrow \mathbb{R}$ is Lebesgue integrable.
+  \begin{enumerate}[(i)]
+      \item Show that there exists a sequence $x_n \rightarrow \infty$ such that $f(x_n) \rightarrow 0$.
+        \item Is it true that $f(x)$ must converge to $0$ as $x \rightarrow \infty$? Give a proof or counterexample.
+        \item Suppose additionally that $f$ is differentiable and $f'(x) \rightarrow 0$ as $x \rightarrow \infty$. Is it true that $f(x)$ must converge to $0$ as $x \rightarrow \infty$? Give a proof or counterexample.
+    \end{enumerate}
+\end{problem}
+
+\begin{proof}
+  \begin{enumerate}[(i)]
+      \item Suppose that there was no point $x_\varepsilon$ such that $|f(x_\varepsilon)| < \varepsilon$. Then $|f| \geq \varepsilon$ for all $\varepsilon > 0$. This means that \[
+          \int_{0}^{\infty} |f|\ dm \geq \int_{0}^{\infty} \varepsilon\ dm = \epsilon m((0, \infty)) = \infty,
+        \] which is a contradiction, because $f$ is integrable by hypothesis.
+        Therefore for each $\varepsilon > 0$, there exists some $x_\varepsilon$ such that $f(x_\varepsilon) < \varepsilon$. Take a sequence such that $|f(x_n)| < 1/n$ for all $n$. This sequence converges to 0.
+        \item Let $f = \mathbbm{1}_{\mathbb{Q}}$ be the indicator function for the rational numbers. Then $f$ does not converge to $0$, but it is integrable: \[
+          \int_0^\infty f\ dm =
+            m(\mathbb{Q}) =
+            0
+        \]
+        \item The idea is that if $f \not\rightarrow 0$, then there exists some $\varepsilon$ such that for any $M$, there exists $x_0 > M$ such that $f(x_0) > \varepsilon$. Choose $M$ large enough that $|f'(x)| < 2$, then the area from $x_0$ to the next $x$-intercept must be greater than $\varepsilon$. But this means that the integral $\int_0^\infty |f|\ dm = \sum_{i = 1}^{\infty} \varepsilon = \infty$.
+    \end{enumerate}
+\end{proof}
+
+% -----------------------------------------------------
+% Third problem
+% -----------------------------------------------------
+\pagebreak
+
+\begin{problem}{3} Define $f_n(x) = a\exp(-nax)-b\exp(-nbx)$ where $0 < a < b$.
+  \begin{enumerate}[(i)]
+      \item Show that \[
+          \sum_{n = 1}^{\infty} \int_{0}^{\infty} f_n(x)\ dx = 0
+        \] and \[
+          \int_{0}^{\infty} \sum_{n = 1}^{\infty} f_n(x)\ dx = \log(b/a).
+        \]
+        \item What can you deduce about the value of \[
+          \int_{0}^{\infty} \sum_{n = 1}^{\infty} \left|f_n(x)\right| dx?
+        \]
+    \end{enumerate}
+\end{problem}
+
+\begin{proof}
+  \begin{enumerate}[(i)]
+      \item Notice that \[
+          \int_0^\infty f_n(x)\ dx =
+            \frac{\exp(-nbx)}{n} - \frac{\exp(-nax)}{n} \Big|_{0}^{\infty} =
+            0 - \left(\frac{-1}{n} + \frac{1}{n}\right) =
+            0
+        \] because $exp(-kx) \rightarrow 0$ as $x \rightarrow \infty$ for
+        $k > 0$, and $\exp(0) = 1$. \\
+
+        (idea from Daniel Douglas's solution) \\
+        By the identity \[
+          \sum_{n = 1}^{\infty} x^n = \frac{x}{1 - x}
+        \] we can see that \[
+          \sum_{n = 1}^{\infty} a\exp(-nax) - b\exp(-nbx) =
+          a\sum_{n = 1}^{\infty} \exp(-ax)^n - b\sum_{n = 1}^{\infty}\exp(-bx)^n =
+          \frac{a}{1 - e^{-ax}} - \frac{b}{1 - e^{-bx}}
+        \] so integrating this value gives \[
+          \int_{0}^{\infty} \sum_{n = 1}^{\infty} f_n(x) dx =
+          \int_{0}^{\infty} \frac{ae^{-ax}}{1 - e^{-ax}} - \frac{be^{-bx}}{1 - e^{-bx}}\ dx
+        \] doing substition with $u = 1 - e^{-ax}$ and $v = 1 - e^{-bx}$ gives \[
+          \int_{0}^{1} \frac{dv}{v} - \int_{0}^{1} \frac{du}{u} =
+          \log(v) - \log(u) \Big|_0^1 =
+          \log(1 - e^{-a}) - \log(1 - e^{-b}) =
+          \log\left(\frac{1 - e^{-a}}{1 - e^{-b}}\right)
+        \]
+
+        \item Let $g_n = \sum_{k = 1}^{n} f_k(x)$. Fubini's theorem says that when $g_n$ is integrable, \[
+          \lim_{n \rightarrow \infty} \int_0^\infty g_n dm =
+          \int_0^\infty \lim_{n \rightarrow \infty} g_n dm
+        \]
+
+        Thus $g_n $ is not integrable and by the triangle inequality \[
+          \int_{0}^{\infty} \sum_{n = 1}^{\infty} \left|f_n(x)\right| dx \geq
+          \int_{0}^{\infty} \left|\sum_{n = 1}^{\infty} f_n(x)\right| dx =
+          \int_{0}^{\infty} \left|\lim_{n \rightarrow \infty} g_n\right| dm =
+          \infty.
+        \]
+    \end{enumerate}
+\end{proof}
+
+% -----------------------------------------------------
+% Fourth problem
+% -----------------------------------------------------
+\pagebreak
+
+\begin{problem}{4} Assume that $f$ is integrable on $[0, 1]$ with respect to the Lebesgue measure $m$, and let $F(x) = \int_{0}^{x}f(t) dt$. Assume that $\phi: \mathbb{R} \rightarrow \mathbb{R}$ is Lipschitz, i.e., there exists a constant $C \geq 0$ such that \[
+  \phi(x_1) - \phi(x_2) \leq C(x_1 - x_2),
+    \hspace{10pt} x_1, x_2 \in \mathbb{R}.
+\]
+Prove that there exists a function $g$ which is integrable on $[0, 1]$ such that $\phi(F(x)) = \int_{0}^{x} g(t) \ dt$ for $x \in [0, 1]$.
+\end{problem}
+
+\begin{note} This is similar to problem \# from the Spring 20\#\# Real Analysis Exam.
+\end{note}
+
+\begin{proof}
+Replace this text with the details of your proof or solution.
+\end{proof}
+
+\end{document}

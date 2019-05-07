@@ -1,0 +1,126 @@
+\documentclass{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amsthm,amssymb}
+\usepackage{bbm, enumerate, tikz}
+\usepackage{multicol}
+
+\newenvironment{problem}[2][Problem]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{note}[1][Note.]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+
+\begin{document}
+
+\title{Fall 2015: Complex Analysis Graduate Exam}
+\author{Peter Kagey}
+
+\maketitle
+
+% -----------------------------------------------------
+% First problems
+% -----------------------------------------------------
+\begin{problem}{1}
+  Evaluate the integral \[
+    \int_0^\infty \frac{\sin^2 x}{x^2}\, dx,
+  \] being careful to justify your answer.
+\end{problem}
+
+\begin{proof}
+\end{proof}
+
+% -----------------------------------------------------
+% Second problem
+% -----------------------------------------------------
+\pagebreak
+
+\begin{problem}{2}
+  Determine the number of roots of $f(z) = z^9 + z^6 + z^5 + 8z^3 + 1$ inside the annulus $1 < |z| < 2$.
+\end{problem}
+
+\begin{proof}
+  By Rouch\'e's Theorem, if $g$ is analytic and $|f - g| < |f|$ along a simple
+  curve, then both $f$ and $g$ have the same number of zeros inside this region.
+\\~\\
+  \textbf{Case 1: $|z| = 2$} First, consider the curve $|z| = 2$, and the
+  function $g = z^9$. Now along this curve, by the triangle inequality \begin{align*}
+    |f(z) - g(z)| &= |z^6 + z^5 + 8z^3 + 1| \\
+    &\leq |z^6| + |z^5| + |8z^3| + |1| \\
+    &= 2^6 + 2^5 + 8(2^3) + 1 \\
+    &= 161.
+\end{align*}
+Similarly by the triangle inequality \begin{align*}
+  |f(z)| &= |z^9 + z^6 + z^5 + 8z^3 + 1| \\
+  &\geq |z^9| - |z^6| - |z^5| - |8z^3| - |1| \\
+  &= 2^9 - 161 \\
+  &= 351.
+\end{align*}
+Thus $|f-g| \leq 161 < 351 \leq |f|$, and $f$ has the same number of zeros as
+$g$ when $|z| < 2$. Clearly $g$ has all nine zeros inside this region at $z = 0$,
+so $f$ has nine zeros in $|z| < 2$
+\\~\\
+\textbf{Case 2: $|z| = 1$} Now, consider the curve $|z| = 1$, and the
+function $g = 8z^3$. Along this curve, by the triangle inequality \begin{align*}
+  |f(z) - g(z)| &= |z^9 + z^6 + z^5 + 1| \\
+  &\leq |z^9| + |z^6| + |z^5| + |1| \\
+  &= 4.
+\end{align*}
+Similarly by the triangle inequality \begin{align*}
+|f(z)| &= |z^9 + z^6 + z^5 + 8z^3 + 1| \\
+&> |8z^3| - |z^9| - |z^6| - |z^5| - |1| \\
+&= 4.
+\end{align*} ($^*$ I'm not sure of a nice way to show that this inequality is strict.)\\
+Thus $|f-g| \leq 4 < |f|$, and $f$ has the same number of zeros as
+$g$ when $|z| < 1$. Clearly $g$ has three zeros inside this region at $z = 0$,
+so $f$ has three zeros in $|z| < 1$, and by the inclusion-exclusion principle,
+$f$ has $9 - 3 = 6$ zeros inside the annulus $1 < |z| < 2$.
+\end{proof}
+% -----------------------------------------------------
+% Third problem
+% -----------------------------------------------------
+\pagebreak
+
+\begin{problem}{3}
+  Suppose that $f$ is holomorphic on the open unit disk
+  $\mathbb{D}=\{ z \in \mathbb{C} : |z| < 1 \}$
+  and suppose that for $z \in \mathbb{D}$, one has $\mathfrak{R}(f(z)) > 0$ and
+  $f(0) = 1$. Prove that \[
+    |f(z)| \leq \frac{1 + |z|}{1 - |z|}
+  \]  for all $z \in \mathbb{D}$.
+\end{problem}
+
+\begin{proof}
+\end{proof}
+
+% -----------------------------------------------------
+% Fourth problem
+% -----------------------------------------------------
+\pagebreak
+
+\begin{problem}{4}
+  For $a_n = 1 - \frac{1}{n^2}$, let \[
+    f(z) = \prod_{n=1}^\infty \frac{a_n - z}{1 - a_n z}.
+  \]
+  \begin{enumerate}[(a)]
+    \item Show that $f$ defines a holomorphic function on the unit disk
+      $\mathbb{D} = \{ z \in \mathbb{C} : |z| < 1 \}$.
+    \item Prove that $f$ does not have an analytic continuation to any larger
+      disk $\{ z \in \mathbb{C} : |z| < r \}$ for some $r > 1$.
+  \end{enumerate}
+\end{problem}
+
+\begin{proof} $ $
+  \begin{enumerate}[(a)]
+    \item
+    \item Suppose that $f$ did have an analytic continuation on
+      $B_{1 + \varepsilon}(0)$. Then by continuity, \[
+        f(1) = \lim_{z \rightarrow 1} f(z) = \lim_{n \rightarrow \infty} f(1 - 1/n^2) = 0,
+      \] because $f$ has zeros at $a_n$.
+      However, $f$ has poles at $n^2/(n^2 - 1)$, so taking the limit from the
+      right along the real axis cannot equal zero because there are arbitrarily
+      large values to the right of $1$. This is a contradition, so $f$ cannot
+      have an analytic continuation on $B_{1+\varepsilon}(0)$.
+  \end{enumerate}
+\end{proof}
+
+\end{document}
