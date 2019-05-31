@@ -10,6 +10,9 @@
 \newenvironment{note}[1][Note.]{\begin{trivlist}
 \item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
 
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\normalsubgroup}{\trianglelefteq}
+
 \begin{document}
 
 \title{Fall 2012: Algebra Graduate Exam}
@@ -21,11 +24,36 @@
 % First problem
 % -----------------------------------------------------
 \begin{problem}{1}
-  Use Sylow's theorems directly to find, up to isomorphism, all possible structures of groups of order $5\cdot7\cdot23$.
+  Use Sylow's theorems directly to find, up to isomorphism, all possible structures of groups of order $5 \cdot 7 \cdot 23$.
 \end{problem}
 
 \begin{proof}
-\end{proof}
+  Sylow's theorems tell us that any group $G$ must have \begin{align*}
+    r_5 &\text{ Sylow } 5\text{-subgroups,} \\
+    r_7 &\text{ Sylow } 7\text{-subgroups, and} \\
+    r_{23} &\text{ Sylow } 23\text{-subgroups}
+  \end{align*} where $r_5, r_7$, and $r_{23}$ divide $5 \cdot 7 \cdot 23$, and $r_p \equiv 1 \bmod p$. \[
+    r_p = 1, 5, 7, 5 \cdot 7, 23, 5 \cdot 23, 7 \cdot 23, \text{ or } 5 \cdot 7 \cdot 23
+  \] considering the restriction on modulus,
+    $r_5 \in \{1, 7 \cdot 23\}$,
+    $r_7 = 1$, and
+    $r_{23} = 1$.
+\end{proof} Let $P$ and $Q$ be the unique Sylow $23$-subgroup and Sylow
+$7$-subgroup respectively.
+Since $P \cap Q = 1$, $PQ \cong P \times Q$. Let $R$ be a Sylow $5$-subgroup.
+\\
+Since $R \normalsubgroup G$ (why?), and $R$ has a complement $P \times Q$, $G$ is a
+semidirect product of $R$ by $P \times Q$, that is $G = R \ltimes (P \times Q)$.
+\\
+% This can be done by counting homomorphisms from $\Z_5 \rightarrow \operatorname{Aut}(\Z_{23} \times \Z_7)$
+By Rotman Lemma 7.21, there is a homomorphism \[
+  \theta\colon \underbrace{R \rightarrow \operatorname{Aut}(P \times Q)}_{\Z_5 \rightarrow \Z_{22} \times \Z_6}.
+\]
+But since $\gcd(5, 22) = \gcd(5, 6) = 1$, the only homomorphism is trivial.
+Therefore there is only one group of order $5 \cdot 7 \cdot 23$, the abelian
+group \[
+  G \cong \Z_5 \oplus \Z_7 \oplus \Z_{23}.
+\]
 % -----------------------------------------------------
 % Second problem
 % -----------------------------------------------------
