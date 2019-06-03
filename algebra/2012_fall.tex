@@ -11,7 +11,11 @@
 \item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
 
 \newcommand{\Z}{\mathbb Z}
+\newcommand{\Q}{\mathbb Q}
+\newcommand{\C}{\mathbb C}
+\newcommand{\set}[1]{\{#1\}}
 \newcommand{\normalsubgroup}{\trianglelefteq}
+\newcommand{\Gal}{\operatorname{Gal}}
 
 \begin{document}
 
@@ -47,24 +51,95 @@ semidirect product of $R$ by $P \times Q$, that is $G = R \ltimes (P \times Q)$.
 \\
 % This can be done by counting homomorphisms from $\Z_5 \rightarrow \operatorname{Aut}(\Z_{23} \times \Z_7)$
 By Rotman Lemma 7.21, there is a homomorphism \[
-  \theta\colon \underbrace{R \rightarrow \operatorname{Aut}(P \times Q)}_{\Z_5 \rightarrow \Z_{22} \times \Z_6}.
+  \theta\colon \underbrace{
+    R \rightarrow \operatorname{Aut}(P \times Q)
+  }_{\Z_5 \rightarrow \Z_{22} \times \Z_6}.
 \]
 But since $\gcd(5, 22) = \gcd(5, 6) = 1$, the only homomorphism is trivial.
 Therefore there is only one group of order $5 \cdot 7 \cdot 23$, the abelian
 group \[
   G \cong \Z_5 \oplus \Z_7 \oplus \Z_{23}.
 \]
+\pagebreak
+
 % -----------------------------------------------------
 % Second problem
 % -----------------------------------------------------
-\pagebreak
-
 \begin{problem}{2}
-  Let $A$, $B$, and $C$ be finitely generated $F[x] = R$ modules for $F$ a field with $C$ torsion free. Show that $A \otimes_R C \cong B \otimes_R C$ implies that $A \cong B$.
+  Let $A$, $B$, and $C$ be finitely generated $F[x] = R$ modules for $F$ a field
+  with $C$ torsion free. Show that $A \otimes_R C \cong B \otimes_R C$ implies
+  that $A \cong B$.
   Show by example that this conclusion can fail when $C$ is not torsion free.
 \end{problem}
 
 \begin{proof}
 \end{proof}
+\pagebreak
 
+% -----------------------------------------------------
+% Third problem
+% -----------------------------------------------------
+\begin{problem}{3}
+  Let $F$ be a finite field and $G$ a finite group with
+  $\gcd\set{\operatorname{char} F, |G|} = 1.$ The group algebra $F[G]$ is an
+  algebra over $F$ with $G$ as an $F$-basis, elements $\alpha = \sum_G a_gg$ for
+  $g \in F$, and multiplication that extends $ag \cdot bh = ab \cdot gh$.
+  Show that any $x \in F[G]$ that is not a zero left divisor must be invertible
+  in $F[G]$.
+  \\~\\
+  \textbf{Note:} Since $x$ is not a zero left divisor, if $xy = 0$ for
+  $y \in F[G]$ then $y=0$.
+\end{problem}
+
+\begin{proof}
+\end{proof}
+\pagebreak
+
+% -----------------------------------------------------
+% Fourth problem
+% -----------------------------------------------------
+\begin{problem}{4}
+  If $p(x) = x^8 + 2x^6 + 3x^4 + 2x^2 + 1 \in \Q[x]$ and if
+  $\Q \subseteq M \subseteq \C$ is a splitting field for $p(x)$ over $\Q$,
+  argue that $\Gal(M/\Q)$ is solvable.
+\end{problem}
+
+\begin{proof}
+\end{proof}
+\pagebreak
+
+% -----------------------------------------------------
+% Fifth problem
+% -----------------------------------------------------
+\begin{problem}{5}
+  Let $R$ be a commutative ring with $1$ and let $x_1, \hdots, x_n \in R$
+  so that $x_1y_1 + \hdots + x_ny_n = 1$ for some $y_j \in R$. Let
+  $A = \set{(r_1, r_2, \hdots, r_n) \in R^n \mid x_1r_1 + \hdots + x_nr_n = 0}.$
+  Show that \begin{enumerate}[(i)]
+    \item $R^n \cong_R A \oplus R$,
+    \item $A$ has $n$ generators, and
+    \item when $R = F[x]$ for $F$ a field, then $A_R$ is free of rank $n-1$.
+  \end{enumerate}
+\end{problem}
+
+\begin{proof}
+\end{proof}
+\pagebreak
+
+% -----------------------------------------------------
+% Sixth problem
+% -----------------------------------------------------
+\begin{problem}{6}
+  For $p$ a prime, let $F_p$ be the field of $p$ elements and $K$ and extension
+  field of $F_p$ of dimension $72$. \begin{enumerate}[(i)]
+    \item Describe the possible structures of $\Gal(K/F_p)$.
+    \item If $g(x) \in F_p[x]$ is irreducible of degree $72$, argue that $K$ is
+      a splitting field of $g(x)$ over $F_p$
+    \item Which integers $d > 0$ have irreducibles in $F_p[x]$ of degree $d$
+      that split in $K$?
+  \end{enumerate}
+\end{problem}
+
+\begin{proof}
+\end{proof}
 \end{document}
