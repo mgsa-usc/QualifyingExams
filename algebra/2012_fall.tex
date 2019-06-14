@@ -39,27 +39,27 @@
   \end{align*} where $r_5, r_7$, and $r_{23}$ divide $5 \cdot 7 \cdot 23$, and $r_p \equiv 1 \bmod p$. \[
     r_p = 1, 5, 7, 5 \cdot 7, 23, 5 \cdot 23, 7 \cdot 23, \text{ or } 5 \cdot 7 \cdot 23
   \] considering the restriction on modulus,
-    $r_5 \in \{1, 7 \cdot 23\}$,
-    $r_7 = 1$, and
-    $r_{23} = 1$.
-\end{proof} Let $P$ and $Q$ be the unique Sylow $23$-subgroup and Sylow
-$7$-subgroup respectively.
-Since $P \cap Q = 1$, $PQ \cong P \times Q$. Let $R$ be a Sylow $5$-subgroup.
-\\
-Since $R \normalsubgroup G$ (why?), and $R$ has a complement $P \times Q$, $G$ is a
-semidirect product of $R$ by $P \times Q$, that is $G = R \ltimes (P \times Q)$.
-\\
-% This can be done by counting homomorphisms from $\Z_5 \rightarrow \operatorname{Aut}(\Z_{23} \times \Z_7)$
-By Rotman Lemma 7.21, there is a homomorphism \[
-  \theta\colon \underbrace{
-    R \rightarrow \operatorname{Aut}(P \times Q)
-  }_{\Z_5 \rightarrow \Z_{22} \times \Z_6}.
-\]
-But since $\gcd(5, 22) = \gcd(5, 6) = 1$, the only homomorphism is trivial.
-Therefore there is only one group of order $5 \cdot 7 \cdot 23$, the abelian
-group \[
-  G \cong \Z_5 \oplus \Z_7 \oplus \Z_{23}.
-\]
+  $r_5 \in \{1, 7 \cdot 23\}$, $r_7 = 1$, and $r_{23} = 1$.
+  %
+  Let $P$ and $Q$ be the unique Sylow $23$-subgroup and Sylow
+  $7$-subgroup respectively.
+  Since $P \cap Q = 1$, $PQ \cong P \times Q$. Let $R$ be a Sylow $5$-subgroup.
+  \\
+  Since $R \normalsubgroup G$ (why?), and $R$ has a complement $P \times Q$, $G$ is a
+  semidirect product of $R$ by $P \times Q$, that is $G = R \ltimes (P \times Q)$.
+  \\
+  % This can be done by counting homomorphisms from $\Z_5 \rightarrow \operatorname{Aut}(\Z_{23} \times \Z_7)$
+  By Rotman Lemma 7.21, there is a homomorphism \[
+    \theta\colon \underbrace{
+      R \rightarrow \operatorname{Aut}(P \times Q)
+    }_{\Z_5 \rightarrow \Z_{22} \times \Z_6}.
+  \]
+  But since $\gcd(5, 22) = \gcd(5, 6) = 1$, the only homomorphism is trivial.
+  Therefore there is only one group of order $5 \cdot 7 \cdot 23$, the abelian
+  group \[
+    G \cong \Z_5 \oplus \Z_7 \oplus \Z_{23}.
+  \]
+\end{proof}
 \pagebreak
 
 % -----------------------------------------------------
@@ -80,15 +80,7 @@ group \[
 % Third problem
 % -----------------------------------------------------
 \begin{problem}{3}
-  Let $F$ be a finite field and $G$ a finite group with
-  $\gcd\set{\operatorname{char} F, |G|} = 1.$ The group algebra $F[G]$ is an
-  algebra over $F$ with $G$ as an $F$-basis, elements $\alpha = \sum_G a_gg$ for
-  $g \in F$, and multiplication that extends $ag \cdot bh = ab \cdot gh$.
-  Show that any $x \in F[G]$ that is not a zero left divisor must be invertible
-  in $F[G]$.
-  \\~\\
-  \textbf{Note:} Since $x$ is not a zero left divisor, if $xy = 0$ for
-  $y \in F[G]$ then $y=0$.
+  Working in the polynomial ring $\C[x, y]$, show that some power of $(x + y)(x^2 + y^4 -2)$ is in $(x^3 + y^2, y^3 + xy)$.
 \end{problem}
 
 \begin{proof}
@@ -99,9 +91,7 @@ group \[
 % Fourth problem
 % -----------------------------------------------------
 \begin{problem}{4}
-  If $p(x) = x^8 + 2x^6 + 3x^4 + 2x^2 + 1 \in \Q[x]$ and if
-  $\Q \subseteq M \subseteq \C$ is a splitting field for $p(x)$ over $\Q$,
-  argue that $\Gal(M/\Q)$ is solvable.
+  For integers $n ,m > 1$, let $A \subseteq M_n(\mathbb Z_m)$ be a subring with the property that if $x \in A$ with $x^2 = 0$ then $x = 0$. Show that $A$ is commutative. Is the converse true?
 \end{problem}
 
 \begin{proof}
@@ -112,14 +102,7 @@ group \[
 % Fifth problem
 % -----------------------------------------------------
 \begin{problem}{5}
-  Let $R$ be a commutative ring with $1$ and let $x_1, \hdots, x_n \in R$
-  so that $x_1y_1 + \hdots + x_ny_n = 1$ for some $y_j \in R$. Let
-  $A = \set{(r_1, r_2, \hdots, r_n) \in R^n \mid x_1r_1 + \hdots + x_nr_n = 0}.$
-  Show that \begin{enumerate}[(i)]
-    \item $R^n \cong_R A \oplus R$,
-    \item $A$ has $n$ generators, and
-    \item when $R = F[x]$ for $F$ a field, then $A_R$ is free of rank $n-1$.
-  \end{enumerate}
+  Let $F$ be the splitting field of $f(x) = x^6 - 2$ over $\Q$. Show that $\Gal(F/\Q)$ is isomorphic to the dihedral group of order $12$.
 \end{problem}
 
 \begin{proof}
@@ -130,14 +113,7 @@ group \[
 % Sixth problem
 % -----------------------------------------------------
 \begin{problem}{6}
-  For $p$ a prime, let $F_p$ be the field of $p$ elements and $K$ and extension
-  field of $F_p$ of dimension $72$. \begin{enumerate}[(i)]
-    \item Describe the possible structures of $\Gal(K/F_p)$.
-    \item If $g(x) \in F_p[x]$ is irreducible of degree $72$, argue that $K$ is
-      a splitting field of $g(x)$ over $F_p$
-    \item Which integers $d > 0$ have irreducibles in $F_p[x]$ of degree $d$
-      that split in $K$?
-  \end{enumerate}
+  Given that all groups of order $12$ are solvable, show that any group of order $2^2 \cdot 3 \cdot 7^2$ is solvable.
 \end{problem}
 
 \begin{proof}
