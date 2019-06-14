@@ -14,8 +14,10 @@
 \newtheorem{definition}[paragraph]{Definition}
 \setcounter{secnumdepth}{4}
 
+\newcommand{\Gal}{\operatorname{Gal}}
+\newcommand{\Q}{\mathbb Q}
 \newcommand{\set}[1]{\{#1\}}
-\newcommand{\fn}[3]{#1 \colon #2 \rightarrow #3}
+\newcommand{\fn}[3]{{#1 \colon #2 \rightarrow #3}}
 
 \begin{document}
 
@@ -157,6 +159,107 @@
     \begin{theorem}[Fundamental Theorem of Abelian Groups] ~ % Rotman, page 132
       If $G$ and $H$ are finite abelian groups, then $G \cong H$ if and only if,
       for all primes $p$, they have the same elementary divisors.
+    \end{theorem}
+    \begin{theorem} % https://groupprops.subwiki.org/wiki/Subgroup_of_index_equal_to_least_prime_divisor_of_group_order_is_normal
+      Let $G$ be a finite group and $p$ be the least prime divisor of $|G|$.
+      Then if $H$ is a subgroup of $G$ such that $[G: H] = p$,
+      then $H \trianglelefteq G$.
+    \end{theorem}
+  \end{subsection}
+\end{section}
+\pagebreak
+%
+% Fields
+%
+\begin{section}{Fields}
+  \begin{subsection}{Notation and definitions}
+    \begin{subsubsection}{Basic definitions}
+      \begin{definition}[Degree of a field extension]
+        Suppose that $E/k$ is a field extension. Then $E$ may be considered as a
+        vector space over $k$. The dimension of this vector space is called
+        the degree of the field extension and is denoted by $[E:k]$.
+      \end{definition}
+      \begin{definition}[Field automorphism]
+        A field automorphism of a field $K$ is an isomorphism $\fn \phi K K$.
+        In particular, \begin{align*}
+          \phi(a + b) &= \phi(a) + \phi(b) \text{ and}\\
+          \phi(ab) &= \phi(a)\phi(b).
+        \end{align*}
+      \end{definition}
+      \begin{definition}[Splitting field]
+        A splitting field of a polynomial $p$ over a field $K$ is a field
+        extension $L \supseteq K$ over which $p$ factors into linear factors.
+      \end{definition}
+      \begin{definition}[Separable polynomial]
+        A polynomial $p$ is called separable if if factors into distinct linear
+        factors in its splitting field.
+      \end{definition}
+      \begin{definition}[Separable extension]
+        A separable extension is an field extension $E \supseteq F$ such that
+        for every $\alpha \in E$, the minimal polynomial of $\alpha$ over $F$ is
+        a separable polynomial.
+      \end{definition}
+      \begin{definition}[Normal extension]
+        A normal extension $K \supseteq L$ is one for which every polynomial that
+        is irreducible over $K$ either has no root in $L$ or splits into linear
+        factors in $L$.
+      \end{definition}
+      \begin{definition}[Galois extension]
+        A Galois extension is an algebraic field extension $E/F$ that is normal
+        and separable.
+      \end{definition}
+      \begin{definition}[Galois group]
+        Let $E \supseteq F$ be a field extension. The Galois group $\Gal(E/F)$
+        is the set of automorphisms of $E$ that fix $F$ under function
+        composition.
+      \end{definition}
+      \begin{definition}[Galois correspondence]
+        Let $E \supseteq F$ be a finite, Galois extension.
+        The Galois correspondence is the bijection between intermediate fields
+        $F \supseteq K \supset E$ and subgroups of the Galois group $E/F$.
+      \end{definition}
+      \begin{definition}[Trace]
+        ???
+      \end{definition}
+      \begin{definition}[Norm]
+        ???
+      \end{definition}
+      \begin{definition}[Radical extension]
+        A radical extension of a field $K$ is an extension that is obtained by
+        adjoining a sequence of $n$th roots of elements of $K$.
+      \end{definition}
+      \begin{definition}[Finite field]
+        A finite field is a field with a finite number of elements.
+        Note: any finite field has $p^k$ elements for some prime $p$ and
+        $k \in \mathbb N$.
+      \end{definition}
+      \begin{definition}[Cyclotomic extension]
+        A cyclotomic extension $\Q(\xi_n)$ of $\Q$ is an extension formed by
+        adjoining a primitive $n$th root of unity.
+      \end{definition}
+      \begin{definition}[Algebraic closure]
+        An algebraic closure of a field $K$ is an algebraic extension $F/K$
+        such that $F$ contains a root for every non-constant polynomial in
+        $F[x]$.
+      \end{definition}
+    \end{subsubsection}
+  \end{subsection}
+  \begin{subsection}{Theorems}
+    \begin{theorem}[Isomorphism extension theorem]
+      Let $F$ be a field and $\fn \phi F {F'}$ an isomorphism. Then if $E$ is an
+      extension field of $F$, $\phi$ can be extended into an isomorphism
+      $\fn \tau E E'$.
+    \end{theorem}
+    \begin{theorem}[Fundamental theorem of Galois theory] % Rotman, p. 201
+      Let $E/k$ be a finite Galois extension with Galois group $G = \Gal(E/k)$.
+      The function \[
+        \fn \gamma {\operatorname{Sub}(\Gal(E/k))} {\operatorname{Int}(E/k)},
+      \]
+      defined by $H \mapsto E^H$, is an order reversing bijection whose
+      inverse maps ${B \mapsto \Gal(E/B)}$.
+    \end{theorem}
+    \begin{theorem}[Primitive element theorem]
+      Finite separable extensions are simple.
     \end{theorem}
   \end{subsection}
 \end{section}
