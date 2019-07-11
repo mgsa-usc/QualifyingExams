@@ -16,6 +16,7 @@
 \newcommand{\set}[1]{\{#1\}}
 \newcommand{\normalsubgroup}{\trianglelefteq}
 \newcommand{\Gal}{\operatorname{Gal}}
+\newcommand{\Ann}{\operatorname{Ann}}
 
 \begin{document}
 
@@ -71,8 +72,34 @@
   that $A \cong B$.
   Show by example that this conclusion can fail when $C$ is not torsion free.
 \end{problem}
+\begin{proof}(From Nicolle)\\
+  $R$ is a PID since $F$ is a field, so by the
+  \textit{structure theorem for finitely generated modules over a PID},
+  \begin{align*}
+    A &\cong T(A) \oplus R^n \\
+    B &\cong T(B) \oplus R^m \\
+    C &\cong R^t,
+  \end{align*} were $T(M)$ denotes the torsion submodule of $M$.
+  Since $A \otimes_R C \cong B \otimes_R C$, it follows that \begin{align*}
+    (T(A) \oplus R^n) \otimes_R R^t &\cong (T(B) \oplus R^m) \otimes_R R^t \\
+    (T(A) \otimes_R R^t) \oplus (R^n \otimes_R R^t) &\cong (T(B) \otimes_R R^t) \oplus (R^m \otimes_R R^t)
+  \end{align*}
+  Thus the free part of $A \otimes_R C$ is isomorphic to the free part of
+  $B \otimes_R C$: \[
+    R^n \otimes_R R^t \cong R^m \otimes_R R^t,
+  \] so $n = m$. Similarly, the torsion submodules of $A \otimes_R C$ and
+  $B \otimes_R C$ are isomorphic: \[
+    (T(A) \otimes_R R^t) \cong (T(B) \otimes_R R^t),
+  \] so $T(A) = T(B)$. Therefore, \[
+    A \cong T(A) \oplus R^n \cong T(B) \oplus R^m \cong B,
+  \] as desired.
+  \\
 
-\begin{proof}
+  As a counterexample, consider $A = B \oplus \Ann(C)$. Then \[
+    A \otimes_R C
+    \cong B \otimes_R C \oplus \underbrace{\Ann(C) \otimes_R C}_0
+    \cong B \otimes_R C,
+  \] but $A \not\cong B$.
 \end{proof}
 \pagebreak
 
