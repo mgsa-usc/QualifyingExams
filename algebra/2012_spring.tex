@@ -16,6 +16,8 @@
 \newcommand{\set}[1]{\{#1\}}
 \newcommand{\normalsubgroup}{\trianglelefteq}
 \newcommand{\Gal}{\operatorname{Gal}}
+\newcommand{\Aut}{\operatorname{Aut}}
+\newcommand{\fn}[3]{{#1 \colon #2 \rightarrow #3}}
 
 \begin{document}
 
@@ -39,10 +41,69 @@
 % Second problem
 % -----------------------------------------------------
 \begin{problem}{2}
-  If $G$ is a group with $|G| = 7^2 \cdot 11^2 \cdot 19$, show that $G$ must be abelian and describe the possible structures of $G$.
+  If $G$ is a group with $|G| = 7^2 \cdot 11^2 \cdot 19$, show that $G$ must be
+  abelian and describe the possible structures of $G$.
 \end{problem}
 
 \begin{proof}
+  We'll start by using Sylow's theorems.
+  Firstly, let $r_p$ denote the number of Sylow $p$-subgroups.
+  Since $p$ divides $|G|$, \begin{align*}
+    r_{19} &\in \set{1, 7, 7^2, 11, 11\cdot7, 11\cdot7^2, 11^2, 11^2\cdot7,  11^2\cdot7^2}, \\
+    r_{11} &\in \set{1, 7, 7^2, 19, 19\cdot7, 19\cdot7^2}, \\
+    r_7  &\in \set{1, 11, 11^2, 19, 19\cdot11, 19\cdot11^2}.
+  \end{align*}
+  Since $r_p \cong 1 \bmod p$, we can further refine this to \begin{align*}
+    r_{19} &= 1, \\
+    r_{11} &\in \set{1, 19\cdot7}, \\
+    r_7  &= 1.
+  \end{align*}
+  This means that we have unique subgroups $H_{19}$ and $H_7$ of orders
+  $19$ and $7$ respectively. Since $H_7$ and $H_{19}$ are unique and thus normal,
+  the product of $H_7$ and $H_{19}$ forms a normal subgroup, call it $N$.
+  Since $H_7 \cap H_{19} = \set{e}$, $H_7H_{19} \cong H_7 \times H_{19}$,
+  where $H_{19}$ is abelian because it is cyclic, and $H_7$ is abelian because all
+  groups of order $p^2$ are abelian. Thus
+  $N \cong \Z_7 \times \Z_7 \times \Z_{19}$ or $N \cong \Z_{49} \times \Z_{19}$.
+
+  Since $N$ and $H_{11}$ are complementary,
+  that is $N \cap H_{11} = \set{e}$ and $|N||H_{11}| = |G|$,
+  $G$ can be realized as the semidirect product of $N$ and $H_{11}$ \[
+    G = N \rtimes H_{11}.
+  \]
+  Thus it is enough to consider the possible structures of the semidirect
+  product.
+  \\~\\
+  \textbf{Case 1.} Assume $N \cong \Z_7 \times \Z_7 \times \Z_{19}$.
+  Consider homomorphisms $\fn \varphi {H_{11}} {\Aut(N)}$, noting that \[
+    \Aut(N)
+    \cong \Aut(\Z_7 \times \Z_7 \times \Z_{19})
+    \cong \Aut(\Z_7 \times \Z_7) \times \Aut(\Z_{19})
+    \cong \underbrace{\Aut(\Z_7 \times \Z_7)}_{\text{order } 48 \cdot 42} \times \Z_{18}.
+  \]
+  Since $\gcd(11, 48\cdot42\cdot18) = 1$, the only homomorphism is trivial.
+  So the semidirect product is direct \[
+    G \cong \Z_{7} \times \Z_7 \times \Z_{19} \times H_{11}
+  \]
+  \\~\\
+  \textbf{Case 2.} Assume $N \cong \Z_{49} \times \Z_{19}$.
+  Consider homomorphisms $\fn \varphi {H_{11}} {\Aut(N)}$, noting that \[
+    \Aut(N)
+    \cong \Aut(\Z_{49} \times \Z_{19})
+    \cong \Aut(\Z_{49}) \times \Aut(\Z_{19})
+    \cong \underbrace{\Aut(\Z_7 \times \Z_7)}_{\text{order } 7 \cdot 6} \times \Z_{18}.
+  \]
+  Since $\gcd(11, 7\cdot6\cdot18) = 1$, the only homomorphism is trivial.
+  So the semidirect product is direct \[
+    G \cong \Z_{49} \times \Z_{19} \times H_{11}
+  \]
+  Since $|H_{11}| = 11^2$, it is abelian, so by the fundamental theorem
+  of abelian groups, $G$ is isomorphic to \begin{alignat*}{5}
+    \Z_{7} &\times \Z_{7} &&\times \Z_{11} &&\times \Z_{11} &&\times \Z_{19},&& \\
+    \Z_{7} &\times \Z_{7} &&\times \Z_{121} &&\times \Z_{19}, && &&\\
+    \Z_{49} &\times \Z_{11} &&\times \Z_{11} &&\times \Z_{19},&& && \text{ or}\\
+    \Z_{49} &\times \Z_{121} &&\times \Z_{19}.  && && &&
+  \end{alignat*}
 \end{proof}
 \pagebreak
 
