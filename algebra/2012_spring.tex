@@ -15,6 +15,8 @@
 \newcommand{\C}{\mathbb C}
 \newcommand{\set}[1]{\{#1\}}
 \newcommand{\normalsubgroup}{\trianglelefteq}
+\newcommand{\chr}{\operatorname{char}}
+\newcommand{\rank}{\operatorname{rank}}
 \newcommand{\Gal}{\operatorname{Gal}}
 \newcommand{\Aut}{\operatorname{Aut}}
 \newcommand{\fn}[3]{{#1 \colon #2 \rightarrow #3}}
@@ -112,7 +114,7 @@
 % -----------------------------------------------------
 \begin{problem}{3}
   Let $F$ be a finite field and $G$ a finite group with
-  $\gcd\set{\operatorname{char} F, |G|} = 1.$ The group algebra $F[G]$ is an
+  $\gcd\set{\chr F, |G|} = 1.$ The group algebra $F[G]$ is an
   algebra over $F$ with $G$ as an $F$-basis, elements $\alpha = \sum_G a_gg$ for
   $g \in F$, and multiplication that extends $ag \cdot bh = ab \cdot gh$.
   Show that any $x \in F[G]$ that is not a zero left divisor must be invertible
@@ -123,6 +125,23 @@
 \end{problem}
 
 \begin{proof}
+  Since $\chr F$ does not divide $|G|$, by Mashke's Theorem, $F[G]$ is semisimple, so by the Artin-Wedderburn theorem, \[
+    F[G] \cong M_{n_1}(D_1) \times M_{n_2}(D_2) \times \hdots \times M_{n_k}(D_k)
+  \] where $M_{n_i}(D_i)$ is an $n_i$-by-$n_i$ matrix ring over a division ring
+  $D_i$.
+  \\~\\
+  Thus any $\alpha = \sum_{g \in G} a_gg \in F[G]$ maps under the isomorphism to \[
+    \varphi(\alpha) = (a_1, a_2, \hdots, a_k) \in M_{n_1}(D_1) \times \hdots \times M_{n_k}(D_k).
+  \]
+  Now suppose for the sake of contradiction that some $a_i$ is not invertible for
+  some $i$; without loss of generality, say that $i=1$.
+  Then there exists some $b \neq 0 \in M_{n_1}(D_1)$ such that $a_1b = 0$ (why?),
+  and \[
+    (a_1, a_2, \hdots, a_k)\cdot(b, 0, 0, \hdots, 0) = (\underbrace{a_1b}_0, 0, 0, \hdots, 0).
+  \] Therefore $\varphi^{-1}(a_1, a_2, \hdots, a_k) = x$ is a left divisor.
+
+  Thus in order for $x$ not to be a left divisor, all $a_i$ must be invertible.
+  Thus $x^{-1} = \varphi^{-1}(a_1^{-1}, a_2^{-1}, \hdots, a_k^{-1})$.
 \end{proof}
 \pagebreak
 
@@ -136,6 +155,11 @@
 \end{problem}
 
 \begin{proof}
+  Let $q(y) = y^4 + 2y^3 + 3y^2 + 2y + 1$ so that $q(x^2) = p(x)$. Since
+  $\deg(q) = 4$, $q$ is solvable by radicals with roots
+  $\set{a_1, a_2, a_3, a_4}$ expressible as radicals. Thus $p$ is also solvable
+  by radicals with roots
+  $\set{\pm\sqrt{a_1}, \pm\sqrt{a_2}, \pm\sqrt{a_3}, \pm\sqrt{a_4}}$.
 \end{proof}
 \pagebreak
 
@@ -154,6 +178,24 @@
 \end{problem}
 
 \begin{proof}
+  First consider the map $\fn \varphi {R^n} R$ that sends
+  $(r_1, \hdots, r_n) \mapsto x_1r_1 + \hdots + x_nr_n$ so that
+  $\varphi(y_1, \hdots, y_n) = 1$ and thus is surjective.
+  Notice also that $\ker(\varphi) = A$. So the short exact sequence splits:
+  \[
+    0 \rightarrow A \hookrightarrow R^n \twoheadrightarrow R \rightarrow 0
+  \]
+  \begin{enumerate}[(i)]
+    \item Since $R$, as a module over itself, is free and thus projective,
+      so $R^n \cong_R A \oplus R$.
+    \item (?)
+    \item If $R = F[x]$, then $R$ is a PID. Thus by the
+    structure theorem for finitely generated modules over a PID, \[
+      A \cong T(A) \oplus R^k
+    \] and since $R^n \cong A \oplus R = T(A) \oplus R^{k+1}$, $T(A) \cong 0$
+    and $k = n - 1$, so $\rank(A) = \rank(R^{n-1}) = n - 1$.
+  \end{enumerate}
+
 \end{proof}
 \pagebreak
 
