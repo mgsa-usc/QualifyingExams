@@ -1,0 +1,192 @@
+\documentclass{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amsthm,amssymb}
+\usepackage{bbm, enumerate, tikz}
+\usepackage{multicol}
+
+\newenvironment{problem}[2][Problem]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{hint}[2][Hint]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{note}[1][Note.]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+
+\newcommand{\C}{\mathbb C}
+\newcommand{\N}{\mathbb N}
+\newcommand{\Q}{\mathbb Q}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\set}[1]{\{#1\}}
+\newcommand{\normalsubgroup}{\trianglelefteq}
+\newcommand{\chr}{\operatorname{char}}
+\newcommand{\rank}{\operatorname{rank}}
+\newcommand{\Aut}{\operatorname{Aut}}
+\newcommand{\Gal}{\operatorname{Gal}}
+\newcommand{\Var}{\operatorname{Var}}
+\newcommand{\fn}[3]{{#1 \colon #2 \rightarrow #3}}
+
+\begin{document}
+
+\title{Spring 2013: Algebra Graduate Exam}
+\author{Peter Kagey}
+
+\maketitle
+
+% -----------------------------------------------------
+% First problem
+% -----------------------------------------------------
+\begin{problem}{1}
+  Let $p > 2$ be a prime. Describe, up to isomorphism, all groups of order $2p^2$.
+\end{problem}
+
+\begin{proof}
+  Next, note that the number of Sylow $p$ groups must divide the order of the
+  group, and be congruent to $1 \bmod p$. Therefore there must be exactly one
+  Sylow $p$ group, and since it is unique it is normal. Call the Sylow
+  $p$-subgroup $N$ and the Sylow $2$-subgroup $K$.
+  Thus $G \cong N \rtimes_\varphi K$ where $\fn \varphi K {\Aut(N)}$ is a homomorphism.
+  \\
+  Note that all groups of order $p^2$ are abelian, so in particular
+  $N \cong \Z_p \oplus \Z_p$ or $N \cong \Z_{p^2}$.
+  \\~\\
+  \textbf{Case 1.} Assume $N \cong \Z_p \oplus \Z_p$, so that
+  $\Aut(N) \cong GL_2(p)$, the general linear group over the field of integers
+  modulo $p$. Then there are four homomorphisms which give three distinct groups
+  up to isomorphism: the identity, the map $(x, y) \mapsto (x^{-1}, y)$,
+  and the map $(x, y) \mapsto (x^{-1}, y^{-1})$.
+  (Note: I'm not sure what these are the only homomorphisms)
+  \begin{enumerate}
+    \item[(i)] $G \cong \Z_p \oplus \Z_p \oplus \Z_2$,
+    \item [(ii)] $G \cong (\Z_p \oplus \Z_p) \times \Z_2$ with operation $
+      ((x_1, y_1), a) \cdot ((x_2, y_2), b) = \begin{cases}
+        ((x_1x_2, y_1y_2), a + b) & a = 0 \\
+        ((x_1x_2^{-1}, y_1y_2), a + b) & a = 1 \\
+      \end{cases}
+    $, or
+    \item [(iii)] $G \cong (\Z_p \oplus \Z_p) \times \Z_2$ with operation $
+      ((x_1, y_1), a) \cdot ((x_2, y_2), b) = \begin{cases}
+        ((x_1x_2, y_1y_2), a + b) & a = 0 \\
+        ((x_1x_2^{-1}, y_1y_2^{-1}), a + b) & a = 1 \\
+      \end{cases}
+    $.
+  \end{enumerate}
+  \textbf{Case 2.} Assume $N \cong \Z_{p^2}$ so that $\Aut(N)$ is of order
+  $\phi(p^2) = p(p-1)$.
+  Since $p^2$ is a power of a prime, $\Aut(N) \cong \Z_{p(p-1)}$. Since
+  $\varphi$ is a homomorphism, it must map $\overline 0 \mapsto \mathrm{id}$, and
+  $\overline 1$ to an automorphism of order $1$ or $2$. The only two such
+  automorphisms are the identity and the map $1 \mapsto -1$.
+  \begin{enumerate}
+    \item[(iv)] $G \cong \Z_{p^2} \oplus \Z_2$, or
+    \item [(v)] $G \cong \Z_{p^2} \times \Z_2$ with operation $
+      (x_1, a) \cdot (x_2, b) = \begin{cases}
+        (x_1x_2, a + b) & a = 0 \\
+        (x_1x_2^{-1}, a + b) & a = 1
+      \end{cases}.
+    $ \\
+    This is the dihedral group of order $2p^2$.
+  \end{enumerate}
+\end{proof}
+\pagebreak
+
+% -----------------------------------------------------
+% Second problem
+% -----------------------------------------------------
+\begin{problem}{2}
+  Let $R$ be a commutative Noetherian ring with $1$. Show that every proper ideal of $R$ is the product of finitely many (not necessarily distinct) prime ideals of $R$.
+\end{problem}
+\begin{hint}{}
+  Consider the set of ideals that are not products of finitely many prime ideals. Also note that if $R$ is not a prime ring Then $IJ=(0)$ for some non-zero ideals $I$ and $J$ of $R$
+\end{hint}
+
+\begin{proof}
+\end{proof}
+\pagebreak
+
+% -----------------------------------------------------
+% Third problem
+% -----------------------------------------------------
+\begin{problem}{3}
+  In the polynomial ring $R = \C[x,y,z]$ show that there is a positive integer $m$ and polynomials $f,g,h \in R$ such that \[
+    (\underbrace{x^{16}y^{25}z^{81} - x^{7}z^{15} - yz^{9} + x^5}_{p(x,y,z)})^m =
+    (x - y)^3f +
+    (y - z)^5g +
+    (x + y + z - 3)^7h.
+  \]
+\end{problem}
+
+\begin{proof}
+  Firstly, let \[
+    I = ((x - y)^3, (y - z)^5, (x + y + z - 3)^7).
+  \] It is sufficient to show that $p(x,y,z)$ vanishes on $\Var(I)$; by
+  Hilbert's Nullstellensatz,
+  this implies that $p(x,y,z)^m \in I$ for some $m \in \N$.
+  \\~\\
+  By definition the variety of $I$ is the points where all polynomials vanish: \[
+    \Var(I) = \set{(x,y,z) : (x - y)^3 = (y - z)^5 = (x + y + z - 3)^7 = 0}
+  \]
+  Ignoring multiplicity and looking the system of equations \begin{alignat*}{3}
+    x - & y &&         && = 0 \\
+        & y && - z     && = 0 \\
+    x + & y && + z - 3 && = 0
+  \end{alignat*} yields $x = y = z = 1$.
+  \\~\\
+  Evaluating $p(x,y,z)$ at $(1,1,1)$ yields \[
+    p(1,1,1) =
+      \underbrace{1^{16}1^{25}1^{81}}_1
+      \underbrace{- 1^{7}1^{15}}_{-1}
+      \underbrace{- 1\cdot1^{9}}_{-1}
+      \underbrace{+ 1^5}_{+1} = 0,
+  \] so $p(x,y,z)$ vanishes on $\Var(I)$ and
+  $p(x,y,z)^m \in I$ for some $m \in \N$ by Nullstellensatz.
+\end{proof}
+\pagebreak
+
+% -----------------------------------------------------
+% Fourth problem
+% -----------------------------------------------------
+\begin{problem}{4}
+  Let $R \neq (0)$ be a finite ring such that for any element $x \in R$ there is $y \in R$ with $xyx = x$. Show that $R$ contains an identity element and that for $a, b \in R$ if $ab = 1$ then $ba = 1$.
+\end{problem}
+
+\begin{proof}
+\end{proof}
+\pagebreak
+
+% -----------------------------------------------------
+% Fifth problem
+% -----------------------------------------------------
+\begin{problem}{5}
+  Let $f(x) = x^{15} - 2$, and let $L$ be the splitting field of $f(x)$ over $\Q$. \begin{enumerate}[(a)]
+    \item What is $[L:\Q]$?
+    \item Show there exists a subfield $F$ of degree $8$ that is Galois over $\Q$.
+    \item What is $\Gal(F/\Q)$
+    \item Show that there is a subgroup of $\Gal(L/\Q)$ that is isomorphic to $\Gal(F/Q)$.
+  \end{enumerate}
+\end{problem}
+
+\begin{proof}
+\end{proof}
+\pagebreak
+
+% -----------------------------------------------------
+% Sixth problem
+% -----------------------------------------------------
+\begin{problem}{6}
+  Let $F/\Q$ be a Galois extension of degree $60$, and suppose $F$ contains a primitive ninth root of unity. Show $\Gal(F/\Q)$ is solvable.
+\end{problem}
+
+\begin{proof}
+\end{proof}
+\pagebreak
+
+% -----------------------------------------------------
+% Sixth problem
+% -----------------------------------------------------
+\begin{problem}{7}
+  Let $n$ be a positive integer. Show that $f(x,y) = x^n + y^n + 1$ is irreducible in $\C[x,y]$.
+\end{problem}
+
+\begin{proof}
+\end{proof}
+\end{document}
