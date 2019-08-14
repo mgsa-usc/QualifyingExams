@@ -335,7 +335,7 @@
       \end{definition}
       \begin{remark}
         For any two ideals of polynomials $I$ and $J$, \begin{enumerate}
-          \item $V(I) \cup V(J) = V(IJ) = Var(I \cap J)$, and
+          \item $V(I) \cup V(J) = V(IJ) = \Var(I \cap J)$, and
           \item $V(I) \cap V(J) = V(I + J)$.
         \end{enumerate}
       \end{remark}
@@ -356,7 +356,8 @@
       A polynomial ring $R[x]$ over a Noetherian ring $R$ is Noetherian.
     \end{theorem}
     \begin{theorem}[Hilbert's Nullstellensatz]
-      Let $k$ be a field and $\overline k$be an algebraically closed field
+      \textit{F12.3, S13.3.} \\
+      Let $k$ be a field and $\overline k$ be an algebraically closed field
       extension. Consider the polynomial ring $k[x_1, \hdots, x_n]$, and let
       $I$ be an ideal in this ring.
       Hilbert's Nullstellensatz states that if $p \in k[x_1, \hdots, x_n]$
@@ -394,7 +395,8 @@
       \end{definition}
       \begin{definition}[Projective module]
         A left $R$-module $P$ is projective if whenever $\fn p A {A''}$ is
-        surjective and $\fn h P {A''}$ is any map, then there exists $\fn g P A$
+        a surjective module homomorphism and $\fn h P {A''}$ is any module
+        homomorphism, then there exists a homomorphism $\fn g P A$
         with $h = p \circ g$. \[
           \begin{tikzcd}
             & P \arrow[dl, dashrightarrow, "g", swap] \arrow[d, "h"] \\
@@ -477,20 +479,25 @@
     \end{subsubsection}
   \end{subsection}
   \begin{subsection}{Theorems}
-    \begin{definition}[Artin-Wedderburn theorem]
+    \begin{theorem}[Artin-Wedderburn theorem]
+      \textit{Spring 2012, problem 3.} \\
       Every semisimple ring $R$ is a direct product, \[
         R \cong \Mat_{n_1}(\Delta_1) \times \cdots \times \Mat_{n_m}(\Delta_m)
       \]
-    \end{definition}
-    \begin{definition}[Skolem-Noether theorem]
+    \end{theorem}
+    \begin{theorem}[Skolem-Noether theorem]
       Let $A$ be a central simple $k$-algebra over a field $k$ and let $B$ and
       $B'$ be isomorphic simple $k$-subalgebras of $A$.
       If $\fn \psi B {B'}$ is an isomorphism, then there exists a unit $u \in A$
       with $\psi(b) = ubu^{-1}$ for all $b \in B$.
-    \end{definition}
-    \begin{definition}[Wedderburn's theorem on finite division rings]
+    \end{theorem}
+    \begin{theorem}[Wedderburn's theorem on finite division rings]
       Every finite division ring $D$ is a field.
-    \end{definition}
+    \end{theorem}
+    \begin{theorem}[Maschke's theorem]
+      \textit{Spring 2012, problem 3.} \\
+       Let $G$ be a finite group and K a field whose characteristic does not divide the order of $G$. Then $K[G]$, the group algebra of $G$, is semisimple.
+    \end{theorem}
   \end{subsection}
 \end{section}
 \end{document}
