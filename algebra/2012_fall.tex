@@ -1,44 +1,18 @@
 \documentclass{article}
-
-\usepackage[margin=1in]{geometry}
-\usepackage{amsmath,amsthm,amssymb}
-\usepackage{bbm, enumerate, tikz}
-\usepackage{multicol}
-
-\newenvironment{problem}[2][Problem]{\begin{trivlist}
-\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
-\newenvironment{note}[1][Note.]{\begin{trivlist}
-\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
-
-\newcommand{\C}{\mathbb C}
-\newcommand{\N}{\mathbb N}
-\newcommand{\Q}{\mathbb Q}
-\newcommand{\Z}{\mathbb Z}
-\newcommand{\set}[1]{\{#1\}}
-\newcommand{\normalsubgroup}{\trianglelefteq}
-\newcommand{\chr}{\operatorname{char}}
-\newcommand{\rank}{\operatorname{rank}}
-\newcommand{\Ann}{\operatorname{Ann}}
-\newcommand{\Aut}{\operatorname{Aut}}
-\newcommand{\Gal}{\operatorname{Gal}}
-\newcommand{\Var}{\operatorname{Var}}
-\newcommand{\fn}[3]{{#1 \colon #2 \rightarrow #3}}
+\include{header}
 
 \begin{document}
 
-\title{Fall 2012: Algebra Graduate Exam}
-\author{Peter Kagey}
-
-\maketitle
+\section{Fall 2012: Algebra Graduate Exam}
+\label{sec:fall2012}
 
 % -----------------------------------------------------
 % First problem
 % -----------------------------------------------------
-\begin{problem}{1}
+\subsection{Problem 1.} {
   Use Sylow's theorems directly to find, up to isomorphism, all possible
   structures of groups of order $5 \cdot 7 \cdot 23$.
-\end{problem}
-
+}
 \begin{proof}
   Sylow's theorems tell us that any group $G$ must have \begin{align*}
     r_5 &\text{ Sylow } 5\text{-subgroups,} \\
@@ -73,12 +47,12 @@
 % -----------------------------------------------------
 % Second problem
 % -----------------------------------------------------
-\begin{problem}{2}
+\begin{subsection}{Problem 2.}
   Let $A$, $B$, and $C$ be finitely generated $F[x] = R$ modules for $F$ a field
   with $C$ torsion free. Show that $A \otimes_R C \cong B \otimes_R C$ implies
   that $A \cong B$.
   Show by example that this conclusion can fail when $C$ is not torsion free.
-\end{problem}
+\end{subsection}
 \begin{proof}(From Nicolle)\\
   $R$ is a PID since $F$ is a field, so by the
   \textit{structure theorem for finitely generated modules over a PID},
@@ -113,10 +87,10 @@
 % -----------------------------------------------------
 % Third problem
 % -----------------------------------------------------
-\begin{problem}{3}
+\begin{subsection}{Problem 3.}
   Working in the polynomial ring $\C[x, y]$, show that some power of
   $f(x,y) = (x + y)(x^2 + y^4 -2)$ is in $I = (x^3 + y^2, y^3 + xy)$.
-\end{problem}
+\end{subsection}
 \begin{note}
   This is identical to the Problem 5 in the 2014 fall exam.
 \end{note}
@@ -159,9 +133,9 @@
 % -----------------------------------------------------
 % Fourth problem
 % -----------------------------------------------------
-\begin{problem}{4}
+\begin{subsection}{Problem 4.}
   For integers $n ,m > 1$, let $A \subseteq M_n(\mathbb Z_m)$ be a subring with the property that if $x \in A$ with $x^2 = 0$ then $x = 0$. Show that $A$ is commutative. Is the converse true?
-\end{problem}
+\end{subsection}
 
 \begin{proof}
   % First, $A$ is a subring because if $A^2 \neq 0$ and $B^2 \neq 0$, then $(AB)^2 = ABAB \neq 0$.
@@ -180,10 +154,10 @@
 % -----------------------------------------------------
 % Fifth problem
 % -----------------------------------------------------
-\begin{problem}{5}
+\begin{subsection}{Problem 5.}
   Let $F$ be the splitting field of $f(x) = x^6 - 2$ over $\Q$.
   Show that $\Gal(F/\Q)$ is isomorphic to the dihedral group of order $12$.
-\end{problem}
+\end{subsection}
 
 \begin{proof}
   Firstly, $F = \Q[\sqrt[3]2, \omega]$ where $\omega$ is a sixth root of unity.
@@ -214,9 +188,9 @@
 % -----------------------------------------------------
 % Sixth problem
 % -----------------------------------------------------
-\begin{problem}{6}
+\begin{subsection}{Problem 6.}
   Given that all groups of order $12$ are solvable, show that any group of order $2^2 \cdot 3 \cdot 7^2$ is solvable.
-\end{problem}
+\end{subsection}
 
 \begin{proof}
   Let $r_p$ denote the number of Sylow $p$-subgroups of $G$. Sylows theorems

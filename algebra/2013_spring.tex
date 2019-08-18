@@ -1,43 +1,18 @@
 \documentclass{article}
-
-\usepackage[margin=1in]{geometry}
-\usepackage{amsmath,amsthm,amssymb}
-\usepackage{bbm, enumerate, tikz}
-\usepackage{multicol}
-
-\newenvironment{problem}[2][Problem]{\begin{trivlist}
-\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
-\newenvironment{hint}[2][Hint]{\begin{trivlist}
-\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
-\newenvironment{note}[1][Note.]{\begin{trivlist}
-\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
-
-\newcommand{\C}{\mathbb C}
-\newcommand{\N}{\mathbb N}
-\newcommand{\Q}{\mathbb Q}
-\newcommand{\Z}{\mathbb Z}
-\newcommand{\set}[1]{\{#1\}}
-\newcommand{\normalsubgroup}{\trianglelefteq}
-\newcommand{\chr}{\operatorname{char}}
-\newcommand{\rank}{\operatorname{rank}}
-\newcommand{\Aut}{\operatorname{Aut}}
-\newcommand{\Gal}{\operatorname{Gal}}
-\newcommand{\Var}{\operatorname{Var}}
-\newcommand{\fn}[3]{{#1 \colon #2 \rightarrow #3}}
+\include{header}
 
 \begin{document}
 
-\title{Spring 2013: Algebra Graduate Exam}
-\author{Peter Kagey}
+\section{Spring 2013: Algebra Graduate Exam}
+\label{sec:spring2013}
 
-\maketitle
 
 % -----------------------------------------------------
 % First problem
 % -----------------------------------------------------
-\begin{problem}{1}
+\begin{subsection}{Problem 1.}
   Let $p > 2$ be a prime. Describe, up to isomorphism, all groups of order $2p^2$.
-\end{problem}
+\end{subsection}
 
 \begin{proof}
   Next, note that the number of Sylow $p$ groups must divide the order of the
@@ -92,9 +67,9 @@
 % -----------------------------------------------------
 % Second problem
 % -----------------------------------------------------
-\begin{problem}{2}
+\begin{subsection}{Problem 2.}
   Let $R$ be a commutative Noetherian ring with $1$. Show that every proper ideal of $R$ is the product of finitely many (not necessarily distinct) prime ideals of $R$.
-\end{problem}
+\end{subsection}
 \begin{hint}{}
   Consider the set of ideals that are not products of finitely many prime ideals. Also note that if $R$ is not a prime ring Then $IJ=(0)$ for some non-zero ideals $I$ and $J$ of $R$
 \end{hint}
@@ -106,14 +81,14 @@
 % -----------------------------------------------------
 % Third problem
 % -----------------------------------------------------
-\begin{problem}{3}
+\begin{subsection}{Problem 3.}
   In the polynomial ring $R = \C[x,y,z]$ show that there is a positive integer $m$ and polynomials $f,g,h \in R$ such that \[
     (\underbrace{x^{16}y^{25}z^{81} - x^{7}z^{15} - yz^{9} + x^5}_{p(x,y,z)})^m =
     (x - y)^3f +
     (y - z)^5g +
     (x + y + z - 3)^7h.
   \]
-\end{problem}
+\end{subsection}
 
 \begin{proof}
   Firstly, let \[
@@ -145,9 +120,9 @@
 % -----------------------------------------------------
 % Fourth problem
 % -----------------------------------------------------
-\begin{problem}{4}
+\begin{subsection}{Problem 4.}
   Let $R \neq (0)$ be a finite ring such that for any element $x \in R$ there is $y \in R$ with $xyx = x$. Show that $R$ contains an identity element and that for $a, b \in R$ if $ab = 1$ then $ba = 1$.
-\end{problem}
+\end{subsection}
 
 \begin{proof}
 \end{proof}
@@ -156,36 +131,78 @@
 % -----------------------------------------------------
 % Fifth problem
 % -----------------------------------------------------
-\begin{problem}{5}
-  Let $f(x) = x^{15} - 2$, and let $L$ be the splitting field of $f(x)$ over $\Q$. \begin{enumerate}[(a)]
+\begin{subsection}{Problem 5.}
+  Let $f(x) = x^{15} - 2$, and let $L$ be the splitting field of $f(x)$ over $\Q$.
+  \begin{enumerate}[(a)]
     \item What is $[L:\Q]$?
     \item Show there exists a subfield $F$ of degree $8$ that is Galois over $\Q$.
     \item What is $\Gal(F/\Q)$
-    \item Show that there is a subgroup of $\Gal(L/\Q)$ that is isomorphic to $\Gal(F/Q)$.
+    \item Show that there is a subgroup of $\Gal(L/\Q)$ that is isomorphic to $\Gal(F/\Q)$.
   \end{enumerate}
-\end{problem}
+\end{subsection}
 
 \begin{proof}
+  Let $\omega$ be a fifteenth root of unity. Then $L = \Q[\omega, \sqrt[15]2]$.
+  \begin{enumerate}[(a)]
+    \item Since the extension of $\Q[\sqrt[15]2]]$ by a fifteenth root of unity
+    is degree $\phi(15) = 8$, \[
+      [L:\Q] =
+      \underbrace{[L:\Q[\omega]]}_{15}
+      \underbrace{[\Q[\omega]:\Q]}_{\varphi(15)=8}
+      = 8 \cdot 15 = 120.
+    \]
+    \item Let $F = \Q[\omega]$. As shown above, $[F:\Q] = \phi(15) = 8$.
+    Note that $F$ is Galois because every extension of $\Q$ by a root of unity
+    is normal and thus Galois.
+    \item An automorphism of $F$ which fixes $\Q$ is of the form
+    $\omega \mapsto \omega^k$ where $k \in \Z_{15}^\times$, the multiplicative
+    group of $\Z_{15}$, which as a set consists of $
+      \set{
+        \overline 1,\overline 2,\overline 4,\overline 7,
+        \overline 8,\overline{11},\overline{13},\overline{14}
+      }.
+    $ and is isomorphic to $\Z_2 \oplus \Z_4$.
+    \item This follows from the fundamental theorem of Galois theory.
+    Since $\Q[\sqrt[15]2]$ is an intermediate field
+    (${\Q \subset \Q[\sqrt[15]2] \subset L}$), then there
+    exists an (order reversing) bijection which sends intermediate fields to
+    subgroups of $\Gal(L/\Q)$. In particular, this map sends
+    $\Q[\sqrt[15]2] \mapsto \Gal(L/\Q[\sqrt[15]2])$, the group of automorphisms
+    of $L$ that fix $\Q[\sqrt[15]2]$. This is isomorphic to $\Gal(F/\Q)$, the
+    group of automorphisms of $F$ that fix $\Q$.
+  \end{enumerate}
 \end{proof}
 \pagebreak
 
 % -----------------------------------------------------
 % Sixth problem
 % -----------------------------------------------------
-\begin{problem}{6}
+\begin{subsection}{Problem 6.}
   Let $F/\Q$ be a Galois extension of degree $60$, and suppose $F$ contains a primitive ninth root of unity. Show $\Gal(F/\Q)$ is solvable.
-\end{problem}
+\end{subsection}
 
 \begin{proof}
+  First, let $\omega$ denote the ninth root of unity. Then \[
+    \underbrace{[F : \Q]}_{60} = [F : \Q[\omega]]\underbrace{[\Q[\omega] : \Q]}_{\varphi(9) = 6},
+  \] so $[F : \Q[\omega]] = 10$.
+  \\
+  Now the automorphism group of $\Q[\omega]$ is isomorphic to the cyclic group
+  of order $6$ with generator ${\varphi\colon \omega \mapsto \omega^2}$.
+  In particular, \[
+    \omega
+    \xmapsto{\varphi} \omega^2 \xmapsto{\varphi} \omega^4
+    \xmapsto{\varphi} \omega^8 \xmapsto{\varphi} \omega^7
+    \xmapsto{\varphi} \omega^5 \xmapsto{\varphi} \omega.
+  \]
 \end{proof}
 \pagebreak
 
 % -----------------------------------------------------
 % Sixth problem
 % -----------------------------------------------------
-\begin{problem}{7}
+\begin{subsection}{Problem 7.}
   Let $n$ be a positive integer. Show that $f(x,y) = x^n + y^n + 1$ is irreducible in $\C[x,y]$.
-\end{problem}
+\end{subsection}
 
 \begin{proof}
 \end{proof}
