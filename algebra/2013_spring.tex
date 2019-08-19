@@ -74,7 +74,26 @@
   Consider the set of ideals that are not products of finitely many prime ideals. Also note that if $R$ is not a prime ring Then $IJ=(0)$ for some non-zero ideals $I$ and $J$ of $R$
 \end{hint}
 
-\begin{proof}
+\begin{proof}(From Nicolle.)
+  Let $S$ be the set of ideals that are not the product of finitely many prime
+  ideals of $R$. We intend to show that $S$ is empty.
+  \\
+
+  First assume that $S$ is nonempty. Since $R$ is Noetherian, by Zorn's Lemma there must exist a
+  maximal element $M \in S$.
+  Now consider the quotient $R/M$. If $I + M \in R/M$, then $I \not\in S$
+  and so $I$ is the product of finitely many ideals.
+  \\
+
+  Notice that $R/M$ must be prime. If it is not prime, there exists
+    $I + M, J + M \neq 0$ such that $IJ + M = 0$ in $R/M$, that is $IJ = M$.
+    However, this is a contradiction. Since $I$ and $J$ are both finite products
+    of prime ideals, $IJ = M$ is too---a contradiction to the construction that
+    $M \in S$. Thus $R/M$ is prime.
+  \\
+  
+  Since $R$ is commutative, $R/M$ is commutative too. Recall that a commutative ring is prime if and only if its zero ideal is a prime ideal. Thus $M$ is a prime ideal in $R$. This is a contradiction since this means that $M$ is the product of a finite number of prime ideals (namely, one prime ideal, itself).
+  Since $M \in S$, by construction, $S$ must be empty.
 \end{proof}
 \pagebreak
 
