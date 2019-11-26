@@ -1,0 +1,212 @@
+\documentclass[12pt]{AlgebraQual}
+\usepackage{preamble}
+
+\name{Kayla Orlinsky}
+\course{Algebra Exam}
+\term{Spring 2016}
+\hwnum{Spring 2016}
+
+\begin{document}
+
+\begin{problem} $\,$
+Let $R$ be a Noetherian commutative ring with $1$ and $I\not=0$ an ideal of $R$. Show that there exist finitely many nonzero prime ideals $P_i$ of $R$ (not necessarily distinct) so that $\prod_iP_i\subset I$ (Hint: consider the set of ideals which are not of that form).
+\end{problem}
+
+
+\begin{solution}$\,$
+Let $$S=\{J\,|\, J\text{ does not contain a finite product of nonzero prime ideals}\}$$ the set of ideals of $R$ not of the form described.
+
+If $S$ is empty, then we are done, so assume not.
+
+Then $S$ is partially ordered by inclusion. Furthermore, any ordered chain of elements of $S$ contains a maximal element in $S$, namely the union of all ideals in the chain. Since a union (including infinite union) of ideals is an ideal, and since none of the ideals in the chain contain a finite product of primes, their union won't either.
+
+Therefore, by Zorn's Lemma, $S$ contains a maximal element $J$.
+
+Now, let $xy\in J$. If $x\notin J$, then $J+xR$ is an ideal strictly larger than $J$.
+
+If $J+xR=R$ then $$yR=yJ+yxR=J+xyR\subset J$$ since $xy\in J$ so $xyr\in J$ for all $r\in R$.
+
+However, then $y\in J$ and this implies $J$ is prime, clearly a contradiction.
+
+Assume $J+xR\not=R$. Similarly, $J+yR\not=R$. Now, because $J\subset J+xR$ and $J\subset J+yR$, $J+xR$ and $J+yR$ must both contain a finite product of nonzero prime ideals. If not, then this contradicts the maximality of $J$.
+
+Therefore, $$(J+xR)(J+yR)=J+xyR\subset J$$ and so $J$ again contains a finite product of nonzero prime ideals.
+
+This is again a contradiction, and so $J$ cannot exit. Namely, $S$ must be empty.
+\end{solution}
+\newpage
+
+
+\begin{problem} $\,$
+Describe all groups of order $130$: show that every such group is isomorphic to a direct sum of dihedral and cyclic groups of suitable orders.
+\end{problem}
+
+
+\begin{solution}$\,$
+Let $G$ be a group of order $130.$ Note that $130=2\cdot 5\cdot 13$. This gives one abelian group $$\mathbb{Z}_{130}.$$
+
+By the Sylow theorem, $n_{13}=1$ the number of Sylow $13$ subgroups. This is because $n_{13}|2\cdot 5$ and $n_{13}\equiv 1\mod 13$ by the Sylow Theorems and so $n_{13}\not=2,5,10.$ Thus, $n_{13}=1.$
+
+So $G$ has a normal Sylow $13$-subgroup, $P_{13}$.
+
+Therefore, $P_5P_{13}$ is a subgroup of $G$ and since it has index $2$, it is normal.
+
+However, by \textbf{Fall 2011: Problem 5 Claim 3}, $P_5$ is normal in $P_5P_{13}$ so $P_5$ is normal in $G$.
+
+\boxed{\varphi: P_2P_5\to\aut(P_{13})} $\varphi: P_2P_5\to\aut(P_{13})\cong \mathbb{Z}_{12}$. If $P_2\cong\langle a\rangle$, $P_5\cong\langle b\rangle$, and $P_{13}\cong\langle c\rangle$, then the only possible non-trivial homomorphism sends $(a,0)\mapsto 6$ since this is the only element of $\mathbb{Z}_{12}$ of order $2$, the inversion map. Namely, we get multiplication relation, $aca^{-1}=\varphi(a)(c)=c^{-1}$.
+
+This gives a possible group $$G\cong\langle a,b,c\,|\,a^2=b^5=c^{13}=1,ab=ba,bc=cb,ac=c^{-1}a\rangle.$$
+
+\boxed{\varphi: P_2P_{13}\to \aut(P_5)} $\varphi:P_2P{13}\to \mathbb{Z}_4$. This gives one possible homomorphisms, again, inversion $\varphi(a,0)=2$.
+
+This gives multiplication $aba^{-1}=\varphi(a)(b)=b^{-1}$ so we get $$\langle a,b,c\,|\,a^2=b^5=c^{13},ac=ca,bc=cb,ab=b^{-1}a\rangle.$$
+
+\boxed{\varphi: P_2\to \aut(P_5P_{13})} $\varphi:P_2\to \mathbb{Z}_4\times\mathbb{Z}_{12}$. Then there are now three possible homomorphisms, $\varphi(a)=(2,0),(0,6),(2,6)$. Clearly the first two we will have already seen before since they define the relations $aba^{-1}=b^{-1},$ $aca^{-1}=c$, and $aba^{-1}=b$, $aca^{-1}=c^{-1}$ respectively.
+
+Thus, the only new relation gives $$G\cong\langle a,b,c,\,|\,a^2=b^5=c^{13}=1,bc=cb,ab=b^{-1}a,ac=c^{-1}a\rangle.$$
+
+\boxed{\varphi:P_5\to \aut(P_2P_{13})} If $P_2P_{13}$ is normal in $G$ then we can examine $\varphi:P_5\to \mathbb{Z}_1\times\mathbb{Z}_{12}\cong\mathbb{Z}_{12}$. Clearly, all such homomorphisms are trivial.
+
+\boxed{\varphi:P_{13}\to \aut(P_2P_5)} If $P_2P_5$ is normal in $G$ then we can examine $\varphi:P_{13}\to \mathbb{Z}_1\times\mathbb{Z}_4\cong\mathbb{Z}_4$. Clearly, all such homomorphisms are trivial.
+
+This concludes all possible groups.
+
+Finally, we note that
+    $$\langle a,b,c\,|\,a^2=b^5=c^{13}=1,ab=ba,bc=cb,ac=c^{-1}a\rangle\cong\langle a,c\|\,a^2=c^{13}=1,ac=c^{-1}a\rangle\times\mathbb{Z}_5\cong D_{26}\times\mathbb{Z}_5.$$
+
+    Where $D_{26}$ is the dihedral group of $26$ elements. Similarly, we obtain   $$\langle a,b,c\,|\,a^2=b^5=c^{13},ac=ca,bc=cb,ab=b^{-1}a\rangle\cong D_{10}\times\mathbb{Z}_{13}.$$
+
+    Finally, if $bc=cb,ab=b^{-1}a,ac=c^{-1}a$ then $bc$ is an element of order $65$ since $bc=cb$ and $$abc=b^{-1}ac=b^{-1}c^{-1}a=c^{-1}b^{-1}a=(cb)^{-1}a.$$
+
+    Therefore, this exactly describes $$\langle a,b,c,\,|\,a^2=b^5=c^{13}=1,bc=cb,ab=b^{-1}a,ac=c^{-1}a\rangle\cong D_{130}.$$
+
+    Finally, we have
+
+\begin{center}
+    \begin{framed}
+
+    $$\mathbb{Z}_2\times\mathbb{Z}_5\times\mathbb{Z}_{13}$$
+
+    $$D_{26}\times\mathbb{Z}_5$$
+
+    $$D_{10}\times\mathbb{Z}_{13}$$
+
+    $$D_{130}$$
+
+    \end{framed}
+\end{center}
+
+\end{solution}
+\newpage
+
+
+
+\begin{problem} $\,$
+Let $f(x)=x^{12}+2x^6-2x^3+2\in\mathbb{Q}[x]$. Show that $f(x)$ is irreducible. Let $K$ be the splitting field of $f(x)$ over $\mathbb{Q}$. Determine whether $\gal(K/\mathbb{Q})$ is solvable.
+\end{problem}
+
+
+\begin{solution}$\,$
+This problem is very similar to \textbf{Fall 2015: Problem 7}.
+
+$f(x)$ is irreducible over $\mathbb{Q}$ by Eisenstein's criterion with $p=2$. Then $p$ does not divide the leading coefficient, $p$ divides all other coefficients, and $p^2$ does not divide the constant term.
+
+Since irreducible implies separable in fields of characteristic $0$, we have that $K$ is the splitting field of a separable polynomial so it is a Galois extension.
+
+Let $a,b,c,d$ be the roots of $u^4+2u^2-2u+2$. Then letting $u=x^3$ we see that the roots of $f(x)$ are the third roots of $a,b,c,d$.
+
+Namely, if $L$ is the splitting field of $u^4+2u^2-2u+2$, then $K/L$ is clearly a radical extension of $L$, so it suffices to check if $L$ is a radical extension of $\mathbb{Q}$.
+
+Now, since $4u^3+4u-2$ is negative for all $u<\alpha$ where $\alpha\in(0,1)$ and positive for all $u>\alpha$, we have that $u^4+2u^2-2u+2$ has a single minimum for some value between $0$ and $1$.
+
+Since $u^4+2u^2+2>2>2u$ for any value in $(0,1)$, we have that $u^4+2u^2-2u+2>0$ and so this polynomial has no real roots.
+
+Therefore, it has two sets of complex conjugate roots, $a,\overline{a}$ and $b,\overline{b}$.
+
+Since $u^4+2u^2-2u+2$ is irreducible by Eisenstein with $p=2,$ we have that $L=\mathbb{Q}(a,\overline{a},b,\overline{b})$ is also Galois over $\mathbb{Q}$. Thus, $H=\gal(K/L)$ is normal in $G=\gal(K/\mathbb{Q})$ and $\gal(L/\mathbb{Q})=G/H$.
+
+Now, each third rood in $K$ clearly has minimal polynomial $x^3-a$, $x^3-b$, $x^3-\overline{a}$, $x^3-\overline{b}$ over $L$. These are irreducible since factoring would force a linear term to appear over $L$, and $L$ does not contain any third roots of $a,b,\overline{a},\overline{b}$.
+
+So $[K:L]\le 3^{12}$. Specifically, since each of these is irreducible over $L$, $[K:L]=3^r$ for some $r\le12$.
+
+However, then clearly $H$ has order $3^r$ and so it must be solvable. This is because $p$-groups have non-trivial centers, and so recursively, we could obtain a chain by examining $H/Z(H)$, $H/Z(H)/Z(H/Z(H))$, etc.
+
+Finally, $a,b,\overline{a}, \overline{b}$ all have minimal polynomial of degree $4$ over $\mathbb{Q}$, so $[G:H]\le 4^4$, so $G/H$ is solvable.
+
+Therefore, since $H$ is normal in $G$, and $H$ is solvable and $G/H$ is solvable, then $G$ is solvable.
+\end{solution}
+\newpage
+
+
+
+
+\begin{problem} $\,$
+Determine up to isomorphism the algebra structure of $\mathbb{C}[G]$ where $G=S_3$ is the symmetric group of degree $3.$ (Recall that $\mathbb{C}[G]$ is the group algebra of $G$ which has basis $G$ and the multiplication comes from the multiplication on $G$).
+\end{problem}
+
+
+\begin{solution}$\,$
+By Artin Wedderburn, $\mathbb{C}[S_3]$ is semi-simple of dimension $6$ so $$\mathbb{C}[S_3]\cong\mathbb{C}^a\oplus (M_2(D))^b$$ where $D$ is a division ring over $\mathbb{C}$.
+
+Note that $M_n(D)$ cannot appear for $n>2$ since the dimension of the algebra is $6$ and $M_3(D)$ has dimension $3^2=9$. For the same reason, there can be only one copy of $M_2(D)$. Namely, $b=0,1$.
+
+Furthermore, by Frobenius, the only division ring over $\mathbb{C}$ is $\mathbb{H}$, and since $\mathbb{C}\subset Z(\mathbb{C}[S_3])$ is contained in the center of the algebra (definition of algebra), we have that $\mathbb{H}$ cannot appear in the decomposition. Also, $D=\mathbb{C}$ since any central division ring over an algebraically closed field is the base field.
+
+Finally, since $S_3$ is non commutative, $b=1$ and so $$\mathbb{C}[S_3]\cong\mathbb{C}^2\oplus M_2(D).$$
+
+\begin{mybox}
+Note that this follows, since $S_3$ has $3$ conjugacy classes and so it has $3$ simple components.
+\end{mybox}
+\end{solution}
+\newpage
+
+
+
+
+\begin{problem} $\,$
+If $F$ is a field and $n>1$ show that for any nonconstant $g\in F[x_1,...,x_n]$ the ideal $gF[x_1,...,x_n]$ is not a maximal ideal of $F[x_1,...,x_n]$.
+\end{problem}
+
+
+\begin{solution}$\,$
+Let $R=F[x_1,...,x_n]$ and $I=(g)=gR$. Then if $R/I$ is a field, we have that $f+I$ has an inverse in $R/I$ for all $f\in R$.
+
+Namely, there exists $h+I$ such that $(f+I)(h+I)=fh+I=1+I$. Thus, there exists $r\in R$ so $$fh+gr=1\in R.$$
+
+Thus, for all $f\in R$, there exists $h,r\in R$ so $fh+gr=1$ in $R.$
+
+However, then $I+fR=R$ for any $f\in R$.
+
+Let $K$ be the algebraic closure of $F$ and $J=I+fR$ be an ideal of $R$. Then by Nullsetellensatz, $1\in J$ if and only if $V(J)$ is empty as a subset of $K^n$.
+
+Since we have already seen that $I+fR=R$ for any $f\in R$, we have that $1\in J$ for any $f\in R$.
+
+However, then $V(J)=\varnothing$ in $K^n$ for any $f\in R$. That is, $g$ and $f$ share no zeros, where $f$ is any polynomial.
+
+This forces $g$ to be a nonzero constant.
+\end{solution}
+\newpage
+
+
+
+\begin{problem} $\,$
+Let $F$ be a field and let $P$ be a submodule of $F[x]^n.$ Suppose that the quotient module $M:F[x]^n/P$ is Artinian. Show that $M$ is finite dimensional over $F.$
+\end{problem}
+
+
+\begin{solution}$\,$
+Note that if $M$ is finite dimensional as a module over $F$, then $M$ is an $F$-vector space.
+
+Now, let $(0,...,0,x,0,...,0)+P$ be an element of $M$, where $x$ is in the $i^{th}$ position. Then we have a decreasing chain, $$(0,...,0,x,0,...,0)+P\supset(0,...,0,x^2,0,...,0)+P\supset(0,...,0,x^3,0,...,0)+P\supset\cdots$$ that, since $M$ is artinian, must terminate after a finite number of steps.
+
+Namely, $(0,...,0,x^{m_i},0,...,0)\in P$ for some $m_i$.
+
+Since this holds for every position of the tuple, we get that $$\bigcup_{i=1}^n\{(0,...,0,x,0,...,0),(0,...,0,x^2,0,...,0),...,(0,...,0,x^{m_i-1},0,...,0)\}$$ forms an $F$-basis for $M$. Since this set is clearly finite, we have that $M$ has a finite basis over $F$ and so $M$ is a finite dimensional $F$-vector space.
+\end{solution}
+\newpage
+
+
+
+
+
+\end{document}
