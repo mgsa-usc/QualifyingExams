@@ -86,12 +86,12 @@
   \\
 
   Notice that $R/M$ must be prime. If it is not prime, there exists
-    $I + M, J + M \neq 0$ such that $IJ + M = 0$ in $R/M$, that is $IJ = M$.
-    However, this is a contradiction. Since $I$ and $J$ are both finite products
-    of prime ideals, $IJ = M$ is too---a contradiction to the construction that
-    $M \in S$. Thus $R/M$ is prime.
+  $I + M, J + M \neq 0$ such that $IJ + M = 0$ in $R/M$, that is $IJ = M$.
+  However, this is a contradiction. Since $I$ and $J$ are both finite products
+  of prime ideals, $IJ = M$ is too---a contradiction to the construction that
+  $M \in S$. Thus $R/M$ is prime.
   \\
-  
+
   Since $R$ is commutative, $R/M$ is commutative too. Recall that a commutative ring is prime if and only if its zero ideal is a prime ideal. Thus $M$ is a prime ideal in $R$. This is a contradiction since this means that $M$ is the product of a finite number of prime ideals (namely, one prime ideal, itself).
   Since $M \in S$, by construction, $S$ must be empty.
 \end{proof}
@@ -139,11 +139,36 @@
 % -----------------------------------------------------
 % Fourth problem
 % -----------------------------------------------------
-\begin{subsection}{Problem 4.}
-  Let $R \neq (0)$ be a finite ring such that for any element $x \in R$ there is $y \in R$ with $xyx = x$. Show that $R$ contains an identity element and that for $a, b \in R$ if $ab = 1$ then $ba = 1$.
-\end{subsection}
+\subsection{Problem 4.}
+Let $R \neq (0)$ be a finite ring such that for any element $x \in R$ there is $y \in R$ with $xyx = x$. Show that \begin{enumerate}[(a)]
+  \item $R$ contains an identity element and
+  \item that for $a, b \in R$ if $ab = 1$ then $ba = 1$.
+\end{enumerate}
 
-\begin{proof}
+\begin{note}
+  It may be worth considering the counterexample to the claim that $xyx = x$
+  implies $xy = 1$. Let $x = 3 \in \Z_3$, then $x = 1, 3, 5$ and
+  $\underbrace{3 \cdot 3 \cdot 3 = 3}_{xyx = x}$, but $xy = 3 \neq 1$.
+\end{note}
+
+\begin{proof} ~
+  This question is answered here \url{https://math.stackexchange.com/q/1417859/121988}.
+  \begin{enumerate}[(a)]
+    \item
+    \item Consider the map (not necessarily a homomorphism) $\fn {f_y} R R$ which
+    sends $z \mapsto yz$. The function $f_y$ is an injection
+    (and thus a bijection) since \begin{align*}
+      f_y(t) = f_y(s)
+      &\Longrightarrow yt = ys  \\
+      &\Longrightarrow y(t-s) = 0 \\
+      &\Longrightarrow \underbrace{xy}_1(t-s) = x \cdot 0 \\
+      & t = s.
+    \end{align*}
+    Since $f_y$ is a bijection, $f_y^{-1}(1) = z$ is well-defined with
+    $f_y(z) = yz = 1$. Then \[
+      x = x(yz) = (xy)z = z
+    \] so $f_y(x) = yx = 1$, as desired.
+  \end{enumerate}
 \end{proof}
 \pagebreak
 
