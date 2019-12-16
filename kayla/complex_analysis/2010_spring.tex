@@ -1,44 +1,5 @@
-\documentclass[12pt]{Homework}
-
-% Changed from \usepackage{prelude}
+\documentclass[12pt]{Qual}
 \usepackage{preamble}
-\usepackage{amssymb}
-\usepackage{enumitem}
-\usepackage{mathrsfs}
-\def\upint{\mathchoice%
-    {\mkern13mu\overline{\vphantom{\intop}\mkern7mu}\mkern-20mu}%
-    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
-    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
-    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
-  \int}
-\def\lowint{\mkern3mu\underline{\vphantom{\intop}\mkern7mu}\mkern-10mu\int}
-\usepackage[mathscr]{euscript}
-\usepackage{comment}
-\usepackage{MnSymbol}
-\usepackage{tikz,float}
-\usepackage{tikz-cd}
-\usepackage{graphicx}
-\usepackage{bbding}
-\renewcommand\qedsymbol{\Peace}
-\newcommand\placeqed{\nobreak\enspace\Peace}
-\usepackage{mathtools}
-\usepackage{caption, threeparttable}
-\usepackage{halloweenmath}
-\newcommand{\contradiction}{\null\hfill\large{$\mathghost$}\normalsize}
-\newcommand{\im}{\mathscr{I}\text{m}}
-\newcommand{\re}{\mathscr{R}\text{e}}
-\begin{comment}
-\begin{tikzpicture}[thick,scale=0.4, every node/.style={scale=0.6}]
-\draw[help lines, color=gray!30, dashed] (-0.9,-4.9) grid (3.9,4.9);
- \fill[gray!40,even odd rule,rotate=-90]  (-4,4) parabola bend (0.25,0.25) (4,4);
-\draw[thick,rotate=-90,<->] (-4,4) parabola bend (0.25,0.25) (4,4) node[above,xshift=-1.5cm,yshift=5cm]{$x^2-y^2=a^2$};
-\draw[thick] (1.5,-0.3) -- (1.5,0.3) node[below,xshift=0.2cm,yshift=-0.5cm]{$\sqrt{2}a$};
-\draw[thick] (0.25,-0.3) -- (0.25,0.3) node[below,xshift=-0.1cm,yshift=-0.5cm]{$a$};
-\draw[->, thick] (-1,0)--(4,0) node[right]{$Re$};
-\draw[->, thick] (0,-5)--(0,5) node[above]{$Im$};
-\end{tikzpicture}
-\end{comment}
-
 
 \name{Kayla Orlinsky}
 \course{Complex Analysis Exam}
@@ -178,7 +139,7 @@ First, we check how many times $p$ wraps the imaginary axis (the boundary of the
     &=y^4-4y^2+7+i(2y-y^3)
 \end{align*}
 
-Since $\re(p(iy))'=4y^3-8y$, we can check that $\re(p(iy))$ has minimums at $\pm\sqrt{2}$. Since $y\in\mathbb{R}$ and $\re(p(i\sqrt{2}))=4-8+7>0$ we have that $p(iy)$ always has positive real part and so does not wrap around the origin. 
+Since $\re(p(iy))'=4y^3-8y$, we can check that $\re(p(iy))$ has minimums at $\pm\sqrt{2}$. Since $y\in\mathbb{R}$ and $\re(p(i\sqrt{2}))=4-8+7>0$ we have that $p(iy)$ always has positive real part and so does not wrap around the origin.
 
 Now, we check how many times $p$ wraps a large circle around the origin. Let $z=Re^{i\theta}$ for $\theta\in[-\frac{\pi}{2},\frac{\pi}{2}]$.
 
@@ -198,15 +159,15 @@ Let $f$ be analytic in the unit disk $D=\{|z|<1\}$ and continuous on its closure
 
 
 \begin{solution}$\,$
-Write $f=u+iv$. Since $v$ is harmonic, the maximum and minimum principle states that $v$ must attain both its maximum and minimum on the boundary of any simply connected set. 
+Write $f=u+iv$. Since $v$ is harmonic, the maximum and minimum principle states that $v$ must attain both its maximum and minimum on the boundary of any simply connected set.
 
 Therefore, since $f(z)\in\mathbb{R}$ for all $|z|=1$, $v$ is identically $0$ on the boundary of the $\mathbb{D}$ the unit disk.
 
-Thus, $v$ is identically $0$. 
+Thus, $v$ is identically $0$.
 
 Therefore, $f(z)=u(z)\in\mathbb{R}$.
 
-Since $f$ is analytic, Cauchy-Riemann states that $$u_x=v_y=0\qquad\text{ and }\qquad u_y=-v_x=0$$ so $f(z)=u(z)=c$ for some real constant $c$. 
+Since $f$ is analytic, Cauchy-Riemann states that $$u_x=v_y=0\qquad\text{ and }\qquad u_y=-v_x=0$$ so $f(z)=u(z)=c$ for some real constant $c$.
 \end{solution}
 \newpage
 
@@ -231,7 +192,7 @@ Therefore, \begin{align*}
   &=\sum_{n=0}^\infty\frac{1}{n!}\frac{1}{2\pi i}\int_{|z|=1}\frac{(z^2+1)^n}{z^n}dz\\
   &=\sum_{n=1}^\infty\frac{1}{n!}\frac{1}{(n-1)!}\frac{d^{n-1}}{dz^{n-1}}(z^2+1)^n\big|_{z=0}
 \end{align*}
-At this point, it is merely a matter of plugging in the first $8$ values of $n$ to obtain the final answer. 
+At this point, it is merely a matter of plugging in the first $8$ values of $n$ to obtain the final answer.
 
 It is helpful to note that $$(z^2+1)^n=\sum_{k=0}^n\binom{n}{k}(z^2)^k1^{n-k}=\sum_{k=0}^n\frac{n!}{k!(n-k)!}z^2k.$$
 
@@ -246,4 +207,3 @@ and so forth...
 
 
 \end{document}
- 

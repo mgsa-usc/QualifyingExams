@@ -1,33 +1,5 @@
-\documentclass[12pt]{Homework}
-
-% Changed from \usepackage{prelude}
+\documentclass[12pt]{Qual}
 \usepackage{preamble}
-\usepackage{amssymb}
-\usepackage{enumitem}
-\usepackage{mathrsfs}
-\def\upint{\mathchoice%
-    {\mkern13mu\overline{\vphantom{\intop}\mkern7mu}\mkern-20mu}%
-    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
-    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
-    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
-  \int}
-\def\lowint{\mkern3mu\underline{\vphantom{\intop}\mkern7mu}\mkern-10mu\int}
-\usepackage[mathscr]{euscript}
-\usepackage{comment}
-\usepackage{MnSymbol}
-\usepackage{tikz,float}
-\usepackage{tikz-cd}
-\usepackage{graphicx}
-\usepackage{mathtools}
-\usepackage{bbding}
-\renewcommand\qedsymbol{\Peace}
-\newcommand\placeqed{\nobreak\enspace\Peace}
-\usepackage{caption, threeparttable}
-\usepackage{halloweenmath}
-\newcommand{\contradiction}{\null\hfill\large{$\mathghost$}\normalsize}
-\newcommand{\im}{\mathscr{I}\text{m}}
-\newcommand{\re}{\mathscr{R}\text{e}}
-\newcommand{\res}{\text{Res}}
 
 \name{Kayla Orlinsky}
 \course{Complex Analysis Exam}
@@ -86,7 +58,7 @@ Now, \begin{align*}
     &=\frac{2\pi}{R^2}\to0\text{ as }R\to\infty
 \end{align*}
 
-since $\sin\theta$ is non-negative on the upper half circle and so $e^{-R\sin\theta}\le1$ for $R$ large.  
+since $\sin\theta$ is non-negative on the upper half circle and so $e^{-R\sin\theta}\le1$ for $R$ large.
 
 Now, for $I_\varepsilon,$ we note that $\frac{e^{iz}}{z(z^2+1)}$ has an isolated pole of order $1$ at $0$, and so, for $\varepsilon$ small, we have that $\frac{e^{iz}}{z(z^2+1)}=\frac{a}{z}+f(z)$ for $f(z)$ analytic at $0$ and $$a=\res_{z=0}\frac{e^{iz}}{z(z^2+1)}=\frac{e^{0}}{1}=1$$ is the reside of $\frac{e^{iz}}{z(z^2+1)}$ at $z=0.$
 
@@ -158,10 +130,10 @@ Let $f$ be a non-negative real valued harmonic function in the disc $D=\{z\in\ma
         \frac{R-|z|}{R+|z|}f(0)\le &f(z)\le \frac{R+|z|}{R-|z|} f(0)
     \end{align*}
     \item Since $$R-|z|\ge R-R/2=R/2$$ and $$R+|z|\le R+R/2=3R/2$$ we get that $$\frac{R-|z|}{R+|z|}\ge \frac{R/2}{3R/2}=\frac{1}{3}$$ and $$\frac{R+|z|}{R-|z|}\le \frac{3R/2}{R/2}=3$$
-    
+
     so applying (a), we obtain the result $$\frac{1}{3}f(0)\le f(z)\le 3f(0)\qquad\text{whenever }|z|\le R/2.$$
     \item Because $K\subset D=\{z\,|\,|z|<R\}$, we have that there exists an $r<R$ such that $K\subset E=\{z\,|\,  |z|\le r\}.$
-    
+
     Therefore, if $z_1,z_2\in K$, then $z_1,z_2\in E$ and so \begin{align*}
         \frac{R-|z_2|}{R+|z_2|}f(0)\le & f(z_2)\\
         & f(z_1)\le \frac{R+|z_1|}{R-|z_2|}f(0)\\
@@ -187,7 +159,7 @@ Let $f$ be a non-negative real valued harmonic function in the disc $D=\{z\in\ma
 \begin{solution}$\,$
 \begin{enumerate}[label=(\alph*)]
     \item Assume $f$ is entire and bounded. Say $|f(z)|\le M$ for all $z.$
-    
+
     Then, for any $R>0$, by Cauchy, \begin{align*}
         |f'(z)|&=\left|\frac{1}{2\pi i}\int_{|\zeta|=R}\frac{f(\zeta)}{(\zeta-z)^2}d\zeta\right|\\
         &\le \frac{1}{2\pi}\int_{|\zeta|=R}\frac{M}{|\zeta-z|^2}|d\zeta|\\
@@ -198,21 +170,20 @@ Let $f$ be a non-negative real valued harmonic function in the disc $D=\{z\in\ma
         &=\frac{M}{R}
     \end{align*} and since $R$ is arbitrary, taking $R\to\infty$ we get that $|f'(z)|=0$ for all $z$ and so $f$ is constant.
     \item Since $f$ is entire, it has a well defined Taylor series at $0$, namely, $$f(z)=\sum_{n=0}^\infty f^{(n)}(a)\frac{(z-a)^n}{n!}\qquad\text{ for all }z.$$
-    
+
     We will use a similar argument as before, namely, \begin{align*}
         |f^{(n+1)}(z)|&=\left|\frac{(n+1)!}{2\pi i}\int_{|\zeta|=R}\frac{f(\zeta)}{(\zeta-z)^{n+2}}d\zeta\right|\\
         &\le \frac{(n+1)!}{2\pi}\int_{|\zeta|=R}\frac{K(1+|z|^n)}{|\zeta-z|^2}|d\zeta|\\
         &=K\frac{(n+1)!}{2\pi}\int_0^{2\pi}\frac{1+|z|^n}{R^{n+1}}d\theta\\
         &=K(n+1)!\frac{1+|z|^n}{R^{n+1}}\\
-        &\le K(n+1)!\frac{1+R^n}{R^{n+1}}    
+        &\le K(n+1)!\frac{1+R^n}{R^{n+1}}
     \end{align*}
-    
+
     and since this tends to $0$ as $R\to\infty$, again we conclude that $f^{(n+1)}(z)=0$ for all $z$, and so every Taylor series for $f$ dies after at most $n$ terms.
-    
+
     Namely, $f$ is a polynomial of degree at most $n.$
 \end{enumerate}
 \end{solution}
 
 
 \end{document}
- 

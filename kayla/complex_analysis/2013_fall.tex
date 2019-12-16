@@ -1,33 +1,5 @@
-\documentclass[12pt]{Homework}
-
-% Changed from \usepackage{prelude}
+\documentclass[12pt]{Qual}
 \usepackage{preamble}
-\usepackage{amssymb}
-\usepackage{enumitem}
-\usepackage{mathrsfs}
-\def\upint{\mathchoice%
-    {\mkern13mu\overline{\vphantom{\intop}\mkern7mu}\mkern-20mu}%
-    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
-    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
-    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
-  \int}
-\def\lowint{\mkern3mu\underline{\vphantom{\intop}\mkern7mu}\mkern-10mu\int}
-\usepackage[mathscr]{euscript}
-\usepackage{comment}
-\usepackage{MnSymbol}
-\usepackage{tikz,float}
-\usepackage{tikz-cd}
-\usepackage{graphicx}
-\usepackage{mathtools}
-\usepackage{bbding}
-\renewcommand\qedsymbol{\Peace}
-\newcommand\placeqed{\nobreak\enspace\Peace}
-\usepackage{caption, threeparttable}
-\usepackage{halloweenmath}
-\newcommand{\contradiction}{\null\hfill\large{$\mathghost$}\normalsize}
-\newcommand{\im}{\mathscr{I}\text{m}}
-\newcommand{\re}{\mathscr{R}\text{e}}
-\newcommand{\res}{\text{Res}}
 
 \name{Kayla Orlinsky}
 \course{Complex Analysis Exam}
@@ -83,12 +55,12 @@ Now, \begin{align*}
     &\le \pi\frac{R\log^2 R+2R\pi\log R+R\pi^2}{R^2-1}\to0\qquad R\to\infty
 \end{align*}
  since $$\lim_{R\to\infty}\frac{\log^2R}{R}=\lim_{R\to\infty}\frac{2\log R}{R}=\lim_{R\to\infty}\frac{2}{R}=0$$ by L'Hopital's Rule and similarly, $\frac{\log R}{R}\to0$.
- 
+
  Similarly, \begin{align*}
      |I_\varepsilon|&\le \int_\pi^0\frac{\varepsilon|\log\varepsilon+i\theta|^2}{\varepsilon^2-1}d\theta\\
      &\le \pi\frac{\varepsilon\log^2 \varepsilon+2\varepsilon\pi\log \varepsilon+\varepsilon\pi^2}{\varepsilon^2-1}\to0\qquad \varepsilon\to0
  \end{align*} since $$\lim_{\varepsilon\to0}\varepsilon\log^2\varepsilon=\lim_{\varepsilon\to0}\frac{2\log \varepsilon}{\frac{-1}{\varepsilon}}=\lim_{\varepsilon\to0}\frac{2}{\frac{1}{\varepsilon}}=0$$ by L'Hopital's Rule.
- 
+
  Thus, by the Residue Theorem, \begin{align*}
      2\pi i\res_{z=i}\frac{\log^2 z}{z^2+1}&=2\pi i\frac{\log^2(i)}{i+i}\\
      &=\pi\left(i\frac{\pi}{2}\right)^2\\
@@ -97,7 +69,7 @@ Now, \begin{align*}
      &=2\int_0^\infty\frac{\log^2 x}{1+x^2}dx-\frac{\pi^3}{2}\\
      \implies \int_0^\infty\frac{\log^2 x}{1+x^2}dx&=\frac{\pi^3}{8}
  \end{align*}
- 
+
 Note that since the residue is real this forces $\displaystyle \int_0^\infty\frac{\log x}{1+x^2}dx=0$.
 \end{solution}
 \newpage
@@ -183,7 +155,7 @@ Determine whether either of the statements implies the other one. In each case j
 
 Thus, $f'(a)=0$.
 
-\boxed{(i)\impliedby (ii)} Since $f'(a)=0$ WLOG we may take $f(a)=0$ (else we look at $g(z)=f(z)-f(a)$). 
+\boxed{(i)\impliedby (ii)} Since $f'(a)=0$ WLOG we may take $f(a)=0$ (else we look at $g(z)=f(z)-f(a)$).
 
 Then we can write $f(z)=(z-a)^nh(z)$ where $n\ge 2$ $h(z)$ is analytic in $U$ and nonzero in a neighborhood of $a.$
 
@@ -193,7 +165,7 @@ Now, by the open mapping theorem, $f(U)$ is open in $\mathbb{C}$ and $0\in f(U).
 
 Namely, $(g(U))^{1/n}$ contains a neighborhood of $0$ and so $re^{2k\pi i/n}\in (g(U))^{1/n}$ for some $r>0$ and $1\le k\le n$.
 
-Namely, $g$ cannot be injective since it wraps some neighborhood of $a$ around the origin $n$-times. Thus, $f$ is also not injective in a neighborhood of $a$ and so (i) is true. 
+Namely, $g$ cannot be injective since it wraps some neighborhood of $a$ around the origin $n$-times. Thus, $f$ is also not injective in a neighborhood of $a$ and so (i) is true.
 \end{solution}
 \newpage
 
@@ -222,4 +194,3 @@ Let $\{B_r(z)\}_{z\in K}$ be an open cover of $K$. Then by the Lebesgue number l
 
 
 \end{document}
- 

@@ -1,33 +1,5 @@
-\documentclass[12pt]{Homework}
-
-% Changed from \usepackage{prelude}
+\documentclass[12pt]{Qual}
 \usepackage{preamble}
-\usepackage{amssymb}
-\usepackage{enumitem}
-\usepackage{mathrsfs}
-\def\upint{\mathchoice%
-    {\mkern13mu\overline{\vphantom{\intop}\mkern7mu}\mkern-20mu}%
-    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
-    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
-    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
-  \int}
-\def\lowint{\mkern3mu\underline{\vphantom{\intop}\mkern7mu}\mkern-10mu\int}
-\usepackage[mathscr]{euscript}
-\usepackage{comment}
-\usepackage{MnSymbol}
-\usepackage{tikz,float}
-\usepackage{tikz-cd}
-\usepackage{bbding}
-\renewcommand\qedsymbol{\Peace}
-\newcommand\placeqed{\nobreak\enspace\Peace}
-\usepackage{graphicx}
-\usepackage{mathtools}
-\usepackage{caption, threeparttable}
-\usepackage{halloweenmath}
-\newcommand{\contradiction}{\null\hfill\large{$\mathghost$}\normalsize}
-\newcommand{\im}{\mathscr{I}\text{m}}
-\newcommand{\re}{\mathscr{R}\text{e}}
-\newcommand{\res}{\text{Res}}
 
 \name{Kayla Orlinsky}
 \course{Complex Analysis Exam}
@@ -89,7 +61,7 @@ Then $$\frac{1}{R}f(Re^{i\theta})=e^{i\theta}-\frac{2}{R}-\frac{e^{-Re^{i\theta}
 
 Namely, $f$ can have at most one zero in the right half plane.
 
-Since $f(0)<0$ and $f(10)=8-\frac{1}{e^{10}}>7>0$ by the intermediate value theorem, $f$ has a zero on the positive real axis. 
+Since $f(0)<0$ and $f(10)=8-\frac{1}{e^{10}}>7>0$ by the intermediate value theorem, $f$ has a zero on the positive real axis.
 
 Namely, $f$ has exactly one zero in the right-half plane.
 
@@ -112,9 +84,9 @@ Let $a,b\in\Omega$ be distinct and let \begin{align*}
     z&\mapsto\frac{z-\varphi_a(b)}{1-\overline{\varphi_a(b)}z}
 \end{align*} Then $T$ is a conformal map and isomorphism of the unit disk.
 
-Note that $\varphi_c$ being conformal for all $c$, implies that $\varphi_c$ is locally invertible by the inverse function theorem. 
+Note that $\varphi_c$ being conformal for all $c$, implies that $\varphi_c$ is locally invertible by the inverse function theorem.
 
- Now, we examine $f(z)=(T\circ\varphi_a\circ\varphi_b^{-1})(z)$. 
+ Now, we examine $f(z)=(T\circ\varphi_a\circ\varphi_b^{-1})(z)$.
 
 Then $f:\mathbb{D}\to\mathbb{D}$ with $$f(0)=T(\varphi_a(\varphi_b^{-1}(0)))=T(\varphi_a(b))=0.$$
 
@@ -142,11 +114,10 @@ Let $a\in\mathbb{D}=\{z\in\mathbb{C}:|z|<1\},$ and $$f_a(z)=\frac{a-z}{1-\overli
 \begin{solution}$\,$
 $f$ is a Mobius Transform, and so namely it is bijective with inverse $$f_a^{-1}(z)=\frac{z-a}{\overline{a}z-1}=\frac{a-z}{1-\overline{a}z}=f_a(z).$$
 
-Note that being able to write the inverse directly implies that $f$ is bijective. 
+Note that being able to write the inverse directly implies that $f$ is bijective.
 
 Since $|a|<1$, $\left|\frac{1}{\overline{a}}\right|=\frac{1}{|a|}>1$ and so $f_a$ does not have any poles inside the unit disk. Namely, $f_a$ is holomorphic, bijective, and analytic in the unit disk.
 \end{solution}
 
 
 \end{document}
- 

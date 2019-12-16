@@ -1,33 +1,5 @@
-\documentclass[12pt]{Homework}
-
-% Changed from \usepackage{prelude}
+\documentclass[12pt]{Qual}
 \usepackage{preamble}
-\usepackage{amssymb}
-\usepackage{enumitem}
-\usepackage{mathrsfs}
-\def\upint{\mathchoice%
-    {\mkern13mu\overline{\vphantom{\intop}\mkern7mu}\mkern-20mu}%
-    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
-    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
-    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
-  \int}
-\def\lowint{\mkern3mu\underline{\vphantom{\intop}\mkern7mu}\mkern-10mu\int}
-\usepackage[mathscr]{euscript}
-\usepackage{comment}
-\usepackage{MnSymbol}
-\usepackage{tikz,float}
-\usepackage{tikz-cd}
-\usepackage{graphicx}
-\usepackage{mathtools}
-\usepackage{bbding}
-\renewcommand\qedsymbol{\Peace}
-\newcommand\placeqed{\nobreak\enspace\Peace}
-\usepackage{caption, threeparttable}
-\usepackage{halloweenmath}
-\newcommand{\contradiction}{\null\hfill\large{$\mathghost$}\normalsize}
-\newcommand{\im}{\mathscr{I}\text{m}}
-\newcommand{\re}{\mathscr{R}\text{e}}
-\newcommand{\res}{\text{Res}}
 
 \name{Kayla Orlinsky}
 \course{Complex Analysis Exam}
@@ -120,14 +92,14 @@ Let $$f(z)=\sum_{n=0}^\infty z^{n!}.$$
 \begin{solution}$\,$
 \begin{enumerate}[label=(\alph*)]
     \item $f$ is holormophic if and only if the sum converges uniformly. For $|z|<r<1$, we have that $|z|^{n!}\le r^{n!}\le r^n$ since $r<1$, and so $f$ converges uniformly by Weierstrass M-test on $\{|z|<r\}.$ Since this holds for all $r<1$, we have that $f$ converges uniformly and is therefore analytic on $D.$
-    \item Let $D\subsetneq U$ open. Since $U\not=D$ and $U$ is open, $U$ must contain some $z_0$ with $|z_0|=1.$ 
-    
+    \item Let $D\subsetneq U$ open. Since $U\not=D$ and $U$ is open, $U$ must contain some $z_0$ with $|z_0|=1.$
+
     Again, since $U$ is open, any neighborhood of $z_0$ must contain some $z=e^{i\pi/m}$ for $m\in\mathbb{Z}$ since $|z|=1.$
-    
-    However, then $$f(z)=\sum_{n=0}^{m-1}e^{in!\pi/m}+\sum_{n=m}^\infty e^{i\pi n!/m}=\sum_{n=0}^{m-1}e^{in!\pi/m}+\sum_{n=m}^\infty 1=\infty$$ since $n!/m\in\mathbb{Z}$ for $n\ge m.$ 
-    
+
+    However, then $$f(z)=\sum_{n=0}^{m-1}e^{in!\pi/m}+\sum_{n=m}^\infty e^{i\pi n!/m}=\sum_{n=0}^{m-1}e^{in!\pi/m}+\sum_{n=m}^\infty 1=\infty$$ since $n!/m\in\mathbb{Z}$ for $n\ge m.$
+
     Now, $f$ has a non-removable singularity in every neighborhood of $z_0$.
-    
+
     Namely, $f$ cannot be extended to a neighborhood to $z_0$ since it will not converge in any punctured neighborhood of $z_0.$
 \end{enumerate}
 \end{solution}
@@ -156,20 +128,20 @@ Let $A$ be an open subset of $\mathbb{C}$, and suppose $u(x,y)$ is twice continu
         \implies -u_y(x,y_0)&=g'(x)\\
         \implies \int_{x_0}^x-u_y(s,y_0)dx&=g(x)-g(x_0)
     \end{align*}
-    
+
     with (1) since $u$ is harmonic so $u_{xx}+u_{yy}=0$.
-    
+
     Therefore, $$v(x,y)=\int_{y_0}^yu_x(x,t)dt-\int_{x_0}^xu_y(s,y_0)dx.$$
-    
+
     Then \begin{align*}
         v_x(x,y)&=\int_{y_0}^yu_{xx}(x,t)dt-u_y(x,y_0)\\
         &=\int_{y_0}^y-u_{yy}(x,t)dt-u_y(x,y_0)\\
         &=-u_y(x,y)+u_y(x,y_0)-u_y(x,y_0)\\\
         &=-u_y(x,y)
     \end{align*}
-    
+
     and $v_y(x,y)=u_x(x,y)$ since $u_y(x,y_0)$ is constant in $y$.
-    
+
     Therefore, $f=u+iv$ is analytic by the Cauchy Riemann with $\re(f)=u$.
     \item Let $u(x,y)=e^x\cos(y)+xy$. Then $$u_y=-e^x\sin(y)+x$$ and so \begin{align*}
         v(x,y)&=-\int u_y(x,y)dx\\
@@ -177,21 +149,21 @@ Let $A$ be an open subset of $\mathbb{C}$, and suppose $u(x,y)$ is twice continu
         &=-\left(-e^x\sin(y)+\frac{x^2}{2}+h(y)\right)\\
         &=e^x\sin(y)-\frac{x^2}{2}+h(y)
     \end{align*}
-    
+
     Since $$u_x=e^x\cos(y)+y=v_y=e^x\cos(y)+h'(y)\implies h'(y)=y$$ and so $h=\frac{y^2}{2}$ so $$v(x,y)=e^x\sin(y)-\frac{x^2}{2}+\frac{y^2}{2}$$ and $$f(x,y)=e^x\sin(y)+xy+i(e^x\sin(y)-\frac{x^2}{2}+\frac{y^2}{2}).$$
-    
+
     Once can verify that $$u_y=-e^x\sin(y)+x=-(e^x\sin(y)+x)=-v_x$$ and so indeed $f$ is analytic by Cauchy-Riemann.
     \item Let $A=\mathbb{C}\backslash\{0\}$. Then $A$ is not simply connected. Let $u(x,y)=\frac{1}{2}\log(x^2+y^2).$
-    
+
     Then $$u_x=\frac{2x}{2(x^2+y^2)}=\frac{x}{x^2+y^2}$$ and $$u_y=\frac{y}{x^2+y^2}$$
-    
+
     so \begin{align*}
         u_{xx}&=\frac{x^2+y^2-2x^2}{(x^2+y^2)^2}\\
         &=\frac{y^2-x^2}{(x^2+y^2)^2}\\
         &=-\frac{x^2-y^2}{(x^2+y^2)^2}\\
         &=-u_{yy}
     \end{align*} so $u$ is harmonic in $A$.
-    
+
     However, $u$ cannot be the real part of an analytic function, since it is the real part of the complex $\log|z|+iarg(z)$ which is not well defined on $A$. Namely, there is not analytic continuation of $\log z$ (any branch cut) to $A$ and so $u$ cannot be the real part of an analytic function.
 \end{enumerate}
 \end{solution}
@@ -221,4 +193,3 @@ Thus, $f$ cannot exist.
 
 
 \end{document}
- 

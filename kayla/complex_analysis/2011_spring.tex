@@ -1,33 +1,5 @@
-\documentclass[12pt]{Homework}
-
-% Changed from \usepackage{prelude}
+\documentclass[12pt]{Qual}
 \usepackage{preamble}
-\usepackage{amssymb}
-\usepackage{enumitem}
-\usepackage{mathrsfs}
-\def\upint{\mathchoice%
-    {\mkern13mu\overline{\vphantom{\intop}\mkern7mu}\mkern-20mu}%
-    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
-    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
-    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
-  \int}
-\def\lowint{\mkern3mu\underline{\vphantom{\intop}\mkern7mu}\mkern-10mu\int}
-\usepackage[mathscr]{euscript}
-\usepackage{comment}
-\usepackage{MnSymbol}
-\usepackage{tikz,float}
-\usepackage{tikz-cd}
-\usepackage{graphicx}
-\usepackage{bbding}
-\renewcommand\qedsymbol{\Peace}
-\newcommand\placeqed{\nobreak\enspace\Peace}
-\usepackage{mathtools}
-\usepackage{caption, threeparttable}
-\usepackage{halloweenmath}
-\newcommand{\contradiction}{\null\hfill\large{$\mathghost$}\normalsize}
-\newcommand{\im}{\mathscr{I}\text{m}}
-\newcommand{\re}{\mathscr{R}\text{e}}
-\newcommand{\res}{\text{Res}}
 
 \name{Kayla Orlinsky}
 \course{Complex Analysis Exam}
@@ -141,8 +113,8 @@ Therefore, by the residue theorem, \begin{align*}
 \begin{problem} $\,$
 \begin{enumerate}[label=(\alph*)]
     \item Suppose that $u_1,u_2,...,u_n$ and $u_1^2+\cdots+u_n^2$ are harmonic functions on a connected open set $D$. Show that each function $u_r$ ($1\le r\le n$) is constant.
-    \item A function $f:D\to\mathbb{C}$ with $f(x+iy)=u(x,y)+iv(x,y)$ is said to be complex harmonic if the real valued functions $u$ and $v$ are harmonic. Show that if $f(x+iy)$ and $(x+y)f(x+iy)$ are both complex harmonic then $f$ is analytic. 
-    
+    \item A function $f:D\to\mathbb{C}$ with $f(x+iy)=u(x,y)+iv(x,y)$ is said to be complex harmonic if the real valued functions $u$ and $v$ are harmonic. Show that if $f(x+iy)$ and $(x+y)f(x+iy)$ are both complex harmonic then $f$ is analytic.
+
     \boxed{\textbf{TYPO}:}\textit{ This question does not make sense unless we assume that $(x+iy)f(x+iy)$ is complex harmonic.}
 \end{enumerate}
 \end{problem}
@@ -157,38 +129,38 @@ Therefore, by the residue theorem, \begin{align*}
          \frac{\partial^2}{\partial x^2}u^2+ \frac{\partial^2}{\partial y^2}u^2&=2\left(\frac{\partial u}{\partial x}\right)^2+2u\frac{\partial^2 u}{\partial x^2}+2\left(\frac{\partial u}{\partial y}\right)^2+2u\frac{\partial^2 u}{\partial y^2}\\
          &=2\left[2\left(\frac{\partial u}{\partial x}\right)^2+2\left(\frac{\partial u}{\partial y}\right)^2\right]
     \end{align*} which is $0$ if and only if $\frac{\partial u}{\partial x}=\frac{\partial u}{\partial y}=0$.
-    
+
     Therefore, since differentiation is a linear operation, $u_1^2+\cdots+u_n^2$ is harmonic if and only if $$\frac{\partial u_k}{\partial x}=\frac{\partial u_k}{\partial y}\qquad\text{ for all }k.$$ Namely, $u_k=c_k$ for some $c_k$ constant for all $k.$
-    
-    \item We will write $u_x=\frac{\partial}{\partial x}u.$ 
-    
+
+    \item We will write $u_x=\frac{\partial}{\partial x}u.$
+
     \boxed{\text{Original Hypothesis}} Now, because $(x+y)f(x+iy)$ is complex harmonic, \begin{align*}
         0&=\frac{\partial^2}{\partial x^2}(x+y)u+\frac{\partial^2}{\partial y^2}(x+y)u\\
         &=\frac{\partial}{\partial x}\left[u+(x+y)u_x\right]+\frac{\partial}{\partial y}\left[u+(x+y)u_y\right]\\
         &=u_x+u_x+(x+y)u_{xx}+u_y+u_y+(x+y)u_{yy}\\
         &=2u_x+2u_y
     \end{align*} since $f(x+iy)$ is complex harmonic so $u_{xx}=-u_{yy}.$
-    
+
     Therefore, $u_x=-u_y$ and similarly, $v_x=-v_y$.
-    
+
     However, to obtain the final solution, it is necessary to assume that $(x+iy)f(x+iy)$ is complex harmonic, instead of $(x+y)f(x+iy)$.
-    
+
     \boxed{\text{Assuming }(x+iy)f(x+iy)\text{ is complex harmonic}} Now, $$(x+iy)f(x+iy)=(x+iy)(u+iv)=xu-yv+i(yu+xv)$$ and so the real part being harmonic now implies that \begin{align*}
         0&=\frac{\partial^2}{\partial x^2}(xu-yv)+\frac{\partial^2}{\partial y^2}(xu-yv)\\
         &=\frac{\partial}{\partial x}\left[u+xu_x-yv_x\right]+\frac{\partial}{\partial y}\left[xu_y-v-yv_y\right]\\
         &=u_x+u_x+xu_{xx}-yv_{xx}+xu_{yy}-v_y-v_y-yv_{yy}\\
         &=2u_x-2v_y
     \end{align*}
-    
+
     since $f(x+iy)$ is complex harmonic so $xu_{xx}+xu_{yy}=0$ and similarly, $-yv_{xx}-yv_{yy}=0.$
-    
+
     Now finally, the complex part of $f(x+iy)$ is harmonic and so \begin{align*}
         0&=\frac{\partial^2}{\partial x^2}(yu+xv)+\frac{\partial^2}{\partial y^2}(yu+xv)\\
         &=\frac{\partial}{\partial x}\left[yu_x+v+xv_x\right]+\frac{\partial}{\partial y}\left[u+yu_y+xv_y\right]\\
         &=yu_{xx}+v_x+v_x+xv_{xx}+u_y+u_y+yu_{yy}+xv_{yy}\\
         &=2v_x+2u_y
     \end{align*}
-    
+
     and so $u_x=v_y$ and $u_y=-v_x$. Therefore, by Cauchy-Riemann, $f(x+iy)$ is analytic.
 \end{enumerate}
 \end{solution}
@@ -235,11 +207,11 @@ Namely, $F_n\to0$ uniformly on $K$
 
 
 \begin{problem} $\,$
-Starting with the definition 
+Starting with the definition
 
-``$f$ is analytic on a set $G$ if $\lim_{z\to z_0}\frac{f(z)-f(z_0)}{z-z_0}$ exists for all $z_0\in G.$'' 
+``$f$ is analytic on a set $G$ if $\lim_{z\to z_0}\frac{f(z)-f(z_0)}{z-z_0}$ exists for all $z_0\in G.$''
 
-describe the sequence of intermediate results required to obtain the following theorem: 
+describe the sequence of intermediate results required to obtain the following theorem:
 
 ``Suppose $f$ and $g$ are both analytic on a connected open set $G$ and there is a convergent sequence $z_n$ with limit $z_\infty\in G$ such that $f(z_n)=g(z_n)$ for all $n.$ Then $f=g$ on $G.$''
 
@@ -255,23 +227,22 @@ You do not need to prove any of the intermediate results, but you should give a 
     \item Since $f$ and $g$ are analytic, $f-g$ is analytic by Cauchy-Riemann.
     \item The zeros of analytic functions are isolated. Although we used this freely in \textbf{Problem 3}, for the sake of understanding we prove this as a claim.
     \begin{claim} The zeros of an analytic function are isolated.
-    \begin{proof} Let $h$ be an analytic function and let $z_0$ be a zero of $h.$ Then, because $h$ is analytic, we can develop its Taylor series about $z_0$ in $B_R(z_0)$ for some $R>0$. Namely, $$h(z)=\sum_{n=0}^\infty a_n(z-z_0)^n.$$ 
-    
+    \begin{proof} Let $h$ be an analytic function and let $z_0$ be a zero of $h.$ Then, because $h$ is analytic, we can develop its Taylor series about $z_0$ in $B_R(z_0)$ for some $R>0$. Namely, $$h(z)=\sum_{n=0}^\infty a_n(z-z_0)^n.$$
+
     Now, since $z_0$ is a zero of $h$, $a_0=0$, and so WLOG, we can take $N$ to be the largest integer such that $a_n=0$ for all $0\le n<N$ and $a_N\not=0$. Then, $$h(z)=\sum_{n=N}^\infty a_n(z-z_0)^n=\sum_{n=0}^\infty a_{n+N}(z-z_0)^{n+N}=(z-z_0)^N\sum_{n=0}^\infty a_{n+N}(z-z_0)^n$$
-    
+
     Therefore, $h(z)=(z-z_0)^Nk(z)$ with $k(z)=\sum_{n=0}^\infty a_{n+N}(z-z_0)^n$ also an analytic function on $B_R(z_0)$. Furthermore, $k(z_0)=a_N\not=0$ by assumption.
-    
+
     Thus, because $k$ is analytic, it is continuous, and because $k(z_0)$ non-zero, there exists a $\delta>0$ such that $$|k(z)-a_N|<\frac{|a_N|}{2}\qquad |z-z_0|<\delta$$ and so $k(z)\not0$ on $B_\delta(z_0)$.
-    
+
     Namely, $z_0$ must be an isolated singularity of $h$.
     \end{proof}
     \end{claim}
-    \item Because $f-g$ is analytic (by 1.) and $f-g=0$ on a sequence in $G$, the zeros of $f-g$ cannot be isolated. This is because limit points are not isolated by definition. 
-    
+    \item Because $f-g$ is analytic (by 1.) and $f-g=0$ on a sequence in $G$, the zeros of $f-g$ cannot be isolated. This is because limit points are not isolated by definition.
+
     Therefore, assuming that $f-g$ is not identically $0$ contradicts 2. and so $f-g\equiv 0$ on $G$. Thus, $f=g$ on $G.$
 \end{enumerate}
 \end{solution}
 
 
 \end{document}
- 

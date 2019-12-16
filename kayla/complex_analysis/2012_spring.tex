@@ -1,33 +1,5 @@
-\documentclass[12pt]{Homework}
-
-% Changed from \usepackage{prelude}
+\documentclass[12pt]{Qual}
 \usepackage{preamble}
-\usepackage{amssymb}
-\usepackage{enumitem}
-\usepackage{mathrsfs}
-\def\upint{\mathchoice%
-    {\mkern13mu\overline{\vphantom{\intop}\mkern7mu}\mkern-20mu}%
-    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
-    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
-    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
-  \int}
-\def\lowint{\mkern3mu\underline{\vphantom{\intop}\mkern7mu}\mkern-10mu\int}
-\usepackage[mathscr]{euscript}
-\usepackage{comment}
-\usepackage{MnSymbol}
-\usepackage{tikz,float}
-\usepackage{tikz-cd}
-\usepackage{graphicx}
-\usepackage{bbding}
-\renewcommand\qedsymbol{\Peace}
-\newcommand\placeqed{\nobreak\enspace\Peace}
-\usepackage{mathtools}
-\usepackage{caption, threeparttable}
-\usepackage{halloweenmath}
-\newcommand{\contradiction}{\null\hfill\large{$\mathghost$}\normalsize}
-\newcommand{\im}{\mathscr{I}\text{m}}
-\newcommand{\re}{\mathscr{R}\text{e}}
-\newcommand{\res}{\text{Res}}
 
 \name{Kayla Orlinsky}
 \course{Complex Analysis Exam}
@@ -37,7 +9,7 @@
 \begin{document}
 
 \begin{problem} $\,$
-Suppose $a>0$. Evaluate the integral $$\int_{-\infty}^\infty\frac{\sin(ax)}{x(x^2+1)}dx$$ be careful to justify your methods. 
+Suppose $a>0$. Evaluate the integral $$\int_{-\infty}^\infty\frac{\sin(ax)}{x(x^2+1)}dx$$ be careful to justify your methods.
 \end{problem}
 
 
@@ -95,7 +67,7 @@ Now, \begin{align*}
     &=\frac{\pi}{R^2-1}\to0\qquad R\to\infty
 \end{align*}
 
-With (1) because $\sin\theta\ge0$ on $[0,\pi]$ so $-aR\sin\theta\le 0$ on this circle. 
+With (1) because $\sin\theta\ge0$ on $[0,\pi]$ so $-aR\sin\theta\le 0$ on this circle.
 
 Therefore, by the Residue Theorem, we get \begin{align*}
     2\pi i\res_{z=i}\frac{e^{iaz}}{z(z^2+1)}&=2\pi i\frac{e^{iai}}{i(i+i)}\\
@@ -269,4 +241,3 @@ Let \begin{align*}
 
 
 \end{document}
- 

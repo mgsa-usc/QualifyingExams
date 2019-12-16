@@ -1,33 +1,5 @@
-\documentclass[12pt]{Homework}
-
-% Changed from \usepackage{prelude}
+\documentclass[12pt]{Qual}
 \usepackage{preamble}
-\usepackage{amssymb}
-\usepackage{enumitem}
-\usepackage{mathrsfs}
-\def\upint{\mathchoice%
-    {\mkern13mu\overline{\vphantom{\intop}\mkern7mu}\mkern-20mu}%
-    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
-    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
-    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
-  \int}
-\def\lowint{\mkern3mu\underline{\vphantom{\intop}\mkern7mu}\mkern-10mu\int}
-\usepackage[mathscr]{euscript}
-\usepackage{comment}
-\usepackage{MnSymbol}
-\usepackage{tikz,float}
-\usepackage{tikz-cd}
-\usepackage{graphicx}
-\usepackage{bbding}
-\renewcommand\qedsymbol{\Peace}
-\newcommand\placeqed{\nobreak\enspace\Peace}
-\usepackage{mathtools}
-\usepackage{caption, threeparttable}
-\usepackage{halloweenmath}
-\newcommand{\contradiction}{\null\hfill\large{$\mathghost$}\normalsize}
-\newcommand{\im}{\mathscr{I}\text{m}}
-\newcommand{\re}{\mathscr{R}\text{e}}
-\newcommand{\res}{\text{Res}}
 
 \name{Kayla Orlinsky}
 \course{Complex Analysis Exam}
@@ -42,9 +14,9 @@ For $a>0$, evaluate the integral $$\int_0^\infty\frac{\log x}{(a+x)^3},$$ being 
 
 
 \begin{solution}$\,$
-Note that since $x=-a$ on the negative real axis is pole of the function. Namely, ``Ol Faithful'' will intersect a pole in this case. 
+Note that since $x=-a$ on the negative real axis is pole of the function. Namely, ``Ol Faithful'' will intersect a pole in this case.
 
-Thus, we will use the dreaded ``pac man'' contour around the whole plane with the branch cut on the real axis. 
+Thus, we will use the dreaded ``pac man'' contour around the whole plane with the branch cut on the real axis.
 
 \begin{center}
 \begin{tikzpicture}
@@ -63,7 +35,7 @@ Thus, we will use the dreaded ``pac man'' contour around the whole plane with th
 \end{tikzpicture}
 \end{center}
 
-Now, we examine $\frac{\log^2z}{(a+z)^3}$ simply because \textbf{Fall 2013: Problem 1} showed that integrating $\log^2z$ inadvertently gave us the value of $\log z$. 
+Now, we examine $\frac{\log^2z}{(a+z)^3}$ simply because \textbf{Fall 2013: Problem 1} showed that integrating $\log^2z$ inadvertently gave us the value of $\log z$.
 
 Let \begin{align*}
     I_1&=\int_{\Gamma_1}\frac{\log^2 z}{(a+z)^3}dz\\
@@ -91,7 +63,7 @@ Now, \begin{align*}
 Similarly, \begin{align*}
     |I_\varepsilon|&\le\int_0^{2\pi}\frac{\varepsilon|\log \varepsilon+i\theta|^2}{a^3-\varepsilon^3}d\theta\\
     &\le 2\pi\frac{\varepsilon\log^2\varepsilon}{a^3-\varepsilon^3}+2\pi\frac{2\pi \varepsilon}{a^3-\varepsilon^3}\to0\qquad \varepsilon\to0
-\end{align*} 
+\end{align*}
 
 Thus, by the Residue Theorem, \begin{align*}
     2\pi i\res_{z=-a}\frac{\log^2 z}{(a+z)^3}&=2\pi i \frac{1}{2!}\frac{d^2}{dz^2}\log^2z\Big|_{-a}\\
@@ -245,11 +217,11 @@ Suppose that $f_n$ are analytic functions on a connected open set $U\subset\math
 
 \begin{enumerate}[label=(\alph*)]
     \item Let $\varepsilon>0$. Then, there exists an $N$ such that $|f_n(z)-f(z)|<\varepsilon$ for all $n\ge N$ and all $z\in K\text{ compact }\subset U$.
-    
+
     Clearly this forces any singularities of $f$ to be isolated. Else uniform convergene via analytic functions is not possible.
-    
+
     Furthermore, if $f$ has a removable singularity at $z_0\in K$, then $f(z_0)=w$ but $\lim_{z\to z_0}f(z)=w'=\lim_{n\to\infty}f_n(z_0)$, so uniform convergence is not possible unless $w'=w$, namely $f$ cannot have a removable singularity.
-    
+
     Similarly, if $f$ has a pole or essential singularity in $K$, then again this will contradict uniform convergence. So $f$ is analytic in all compact subsets of $U$. Namely, $f$ is analytic in $U.$
     \item Let $K\subset U$ be compact. Let $z\in K$ and $\rho$ such that $B_\rho(z)\subset K$. Then let $\varepsilon>0$ and $N$ such that $|f_n(z)-f(z)|<\varepsilon$ for all $n\ge N$ and all $z\in K$. Then \begin{align*}
         \left|f_n'(z)-f'(z)\right|&=\left|\int_{|\xi-z|=\rho}\frac{f_n(\xi)}{(\xi-z)^2}d\xi-\int_{|\xi-z|=\rho}\frac{f(\xi)}{(\xi-z)^2}d\xi\right|\\
@@ -258,7 +230,7 @@ Suppose that $f_n$ are analytic functions on a connected open set $U\subset\math
         &\le\int_0^{2\pi}\frac{\varepsilon}{\rho}d\theta\\
         &=\frac{2\pi\varepsilon}{\rho}
     \end{align*}
-    
+
     for all $n\ge N$ and so $f_n'\to f$ for all $z\in K$.
 
     \item Let $f(z)=0$ for some $z$. Let $\rho>0$ be such that $B_\rho(z)$ contains only one zero of $f$, namely $z$ itself. Then from (b), $f_n'\to f'$, so \begin{align*}
@@ -285,41 +257,40 @@ Suppose that $f_n$ are analytic functions on a connected open set $U\subset\math
 
 \begin{solution}$\,$
 \begin{enumerate}[label=(\alph*)]
-    \item Note that this forces $f(0)=0$ and so the statement as written, makes no sense since $f^k(0)=0$ for all $k.$ 
-    
+    \item Note that this forces $f(0)=0$ and so the statement as written, makes no sense since $f^k(0)=0$ for all $k.$
+
     Thus, $|f^{(k)}(0)|\le k^4M^k$ for all $k\ge0.$
-    
-    We can write a Taylor Series for $f$ inside the disk. 
-    
+
+    We can write a Taylor Series for $f$ inside the disk.
+
     $$f(z)=\sum_{n=0}^\infty\frac{f^{(n)}(0)}{n!}z^n.$$ Now, for arbitrary $z\in\mathbb{C}$, \begin{align*}
         |f(z)|&\le\sum_{n=0}^\infty\frac{|f^{(n)}(0)|}{n!}|z|^n\\
         &\le\sum_{n=0}^\infty\frac{n^4M^n}{n!}|z|^n\\
         &=\sum_{n=0}^\infty\frac{n^4 R^n}{n!}\qquad R=M|z|
     \end{align*}
-    
+
     This is a real sum, and we can check that it converges by ratio test. Namely, $\sum_{n=0}^\infty a_n$ converges absolutely if $$\lim_{n\to\infty}\frac{|a_{n+1}|}{|a_n|}<1$$ \begin{align*}
         \lim_{n\to\infty}\frac{a_{n+1}}{a_n}&=\lim_{n\to\infty}\frac{\frac{(n+1)^4 R^{n+1}}{(n+1)!}}{\frac{n^4 R^n}{n!}}\\
         &=\lim_{n\to\infty}\frac{(n+1)^4 R^{n+1} n!}{(n+1)!n^4 R^n}\\
         &=\lim_{n\to\infty}\frac{(n+1)^4 R}{n^4(n+1)}\\
         &=\lim_{n\to\infty}\frac{(n+1)^3 R}{n^4}=0
     \end{align*}
-    
-    Thus, the series absolutely converges. Furthermore, for all $|z|<\frac{R}{M}$, convergence is clearly uniform and since $R$ is arbitrary, we get that $f$ can be extended analytically to all of $\mathbb{C}$. 
 
-    \item Suppose that $f$ is analytic on the open unit disk $\{z:|z|<1\}$ and that there exists a constant $M>1$ such that $|f(1/k)|\le M^{-k}$ for all $k\ge1$. 
+    Thus, the series absolutely converges. Furthermore, for all $|z|<\frac{R}{M}$, convergence is clearly uniform and since $R$ is arbitrary, we get that $f$ can be extended analytically to all of $\mathbb{C}$.
+
+    \item Suppose that $f$ is analytic on the open unit disk $\{z:|z|<1\}$ and that there exists a constant $M>1$ such that $|f(1/k)|\le M^{-k}$ for all $k\ge1$.
 
     This gives that $f(0)=0$. Assume $f$ is non-constant. Then we can write $f(z)=z^ng(z)$ where $g$ is analytic and nonzero at $0$.
-    
+
     Then $$|f(1/k)|=\frac{|g(1/k)|}{k^n}\le\frac{1}{M^k}.$$
-    
-    Namely, $$\lim_{k\to\infty}|g(1/k)|\le\lim_{k\to\infty}\frac{k^n}{M^k}=0$$ by induction. 
-    
+
+    Namely, $$\lim_{k\to\infty}|g(1/k)|\le\lim_{k\to\infty}\frac{k^n}{M^k}=0$$ by induction.
+
     This contradicts that $g$ is nonzero at $0$ and so $g$ cannot exist. Namely, $f$ cannot exist and must therefore be constant.
-    
+
     Since $f(0)=0$, $f\equiv 0.$
 \end{enumerate}
 \end{solution}
 
 
 \end{document}
- 

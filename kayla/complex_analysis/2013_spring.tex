@@ -1,33 +1,5 @@
-\documentclass[12pt]{Homework}
-
-% Changed from \usepackage{prelude}
+\documentclass[12pt]{Qual}
 \usepackage{preamble}
-\usepackage{amssymb}
-\usepackage{enumitem}
-\usepackage{mathrsfs}
-\def\upint{\mathchoice%
-    {\mkern13mu\overline{\vphantom{\intop}\mkern7mu}\mkern-20mu}%
-    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
-    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
-    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
-  \int}
-\def\lowint{\mkern3mu\underline{\vphantom{\intop}\mkern7mu}\mkern-10mu\int}
-\usepackage[mathscr]{euscript}
-\usepackage{comment}
-\usepackage{MnSymbol}
-\usepackage{tikz,float}
-\usepackage{tikz-cd}
-\usepackage{graphicx}
-\usepackage{mathtools}
-\usepackage{bbding}
-\renewcommand\qedsymbol{\Peace}
-\newcommand\placeqed{\nobreak\enspace\Peace}
-\usepackage{caption, threeparttable}
-\usepackage{halloweenmath}
-\newcommand{\contradiction}{\null\hfill\large{$\mathghost$}\normalsize}
-\newcommand{\im}{\mathscr{I}\text{m}}
-\newcommand{\re}{\mathscr{R}\text{e}}
-\newcommand{\res}{\text{Res}}
 
 \name{Kayla Orlinsky}
 \course{Complex Analysis Exam}
@@ -37,7 +9,7 @@
 \begin{document}
 
 \begin{problem} $\,$
-Evaluate $$\int_0^\infty\frac{x^{1/3}}{1+x^4}dx$$ being careful to justify your answer. 
+Evaluate $$\int_0^\infty\frac{x^{1/3}}{1+x^4}dx$$ being careful to justify your answer.
 \end{problem}
 
 
@@ -120,11 +92,11 @@ Assume that $f$ is an entire function such that $$|f(z)|\ge\frac{1}{1+|z|}\qquad
 \end{problem}
 
 \begin{solution}$\,$
-First, we note that $f(z)\not=0$ for all $|z|<\infty$ since $\frac{1}{1+|z|}>0$. 
+First, we note that $f(z)\not=0$ for all $|z|<\infty$ since $\frac{1}{1+|z|}>0$.
 
 Thus, because $f$ is entire and non-zero, $g=\frac{1}{f}$ is entire and non-zero.
 
-Thus, $$|g(z)|\le 1+|z|.$$ Therefore, by Cauchy Estimate, on $\{|z|\le R\}$, $$|g(z)|\le 1+|z|\le 1+R$$ and so $$|g^{(2)}(z)|\le \frac{2!(1+R)}{R^2}\to0\qquad R\to\infty.$$ 
+Thus, $$|g(z)|\le 1+|z|.$$ Therefore, by Cauchy Estimate, on $\{|z|\le R\}$, $$|g(z)|\le 1+|z|\le 1+R$$ and so $$|g^{(2)}(z)|\le \frac{2!(1+R)}{R^2}\to0\qquad R\to\infty.$$
 
 Thus, $g(z)=az+b$, however, then $g(z)$ has a zero at $\frac{-b}{a}$ which is a contradiction unless $a=0.$
 
@@ -143,27 +115,27 @@ Show that if $A$ has an accumulation point in $D$, then there exists a holomoprh
 
 
 \begin{solution}$\,$
-Assume $A$ has an accumulation point in $z_0\in D.$ 
+Assume $A$ has an accumulation point in $z_0\in D.$
 
 By Montel's theorem, since the $f_n$ are all uniformly bounded on $D$, $\{f_n\}$ form a normal family on $D$.
 
 Thus, on every compact subset of $D$, there exists a holomorphic function $f$ such that there is a subsequence $\{f_{n_k}\}$ which converges uniformly to $f.$
 
-We would like to show that the entire sequence $f_n\to f$ on each compact subset. 
+We would like to show that the entire sequence $f_n\to f$ on each compact subset.
 
-Let $f_{n_k}\to f$ on a compact subset $K\subset D$ containing $z_0$ which is the accumulation point of $A$ in $D$. Let $g_n=f_n-f$. 
+Let $f_{n_k}\to f$ on a compact subset $K\subset D$ containing $z_0$ which is the accumulation point of $A$ in $D$. Let $g_n=f_n-f$.
 
 Then $g_{n-k}\to0$ uniformly on $K.$ Therefore, $g_n\to 0$ on $K\cap A$ since the limit exists and a subsequence converges to $0$.
 
-Now, since $A\cap K$ contains an accumulation point, there is a sequence $\{z_l\}\subset A\cap K$ such that $z_l\to z_0$ and $\lim_{n\to\infty}g_n(z_l)=0$ for all $l$. 
+Now, since $A\cap K$ contains an accumulation point, there is a sequence $\{z_l\}\subset A\cap K$ such that $z_l\to z_0$ and $\lim_{n\to\infty}g_n(z_l)=0$ for all $l$.
 
 Now, since $\{f_n\}$ is uniformly bounded and holomorphic, by Arzela-Ascoli it is equicontinuous and so $\{g_n\}$ is equicontinuous. Let $\varepsilon>0$ be given and $\delta>0$ be such that $|g_n(z)-g_n(w)|<\varepsilon$ whenever $|z-w|<\delta.$
 
 Therefore, if $\{B_{\delta/3}(z_l)\}$ is an open covering of some compact subset of $K$, then there exists a finite subcovering $B_{\delta/3}(z_{l_j})$. Now, since $g_n\to0$ pointwise on $K$, for each $z_{l_j}$ take $N_j$ such that $|g_n(z_{l_j})|<\varepsilon$ for all $n\ge N_j$.
 
-Let $N$ be the maximimum of the $N_j$. Then for $z$ in this finite subcovering, there is a $z_{l_j}$ such that $|z-z_{l_j}|<\delta$ and so $$|g_n(z)|\le|g_n(z)-g_n(z_{l_j})|+|g_n(z_{l_j})|<\varepsilon+\varepsilon$$ for all $n\ge N$. 
+Let $N$ be the maximimum of the $N_j$. Then for $z$ in this finite subcovering, there is a $z_{l_j}$ such that $|z-z_{l_j}|<\delta$ and so $$|g_n(z)|\le|g_n(z)-g_n(z_{l_j})|+|g_n(z_{l_j})|<\varepsilon+\varepsilon$$ for all $n\ge N$.
 
-Thus, $g_n\to0$ uniformly on some compact subset of $K.$ However, this can clearly be extended to all of $K$ and therefore to any compact subset of $D$ using similar open coverings.  
+Thus, $g_n\to0$ uniformly on some compact subset of $K.$ However, this can clearly be extended to all of $K$ and therefore to any compact subset of $D$ using similar open coverings.
 
 and so $g_n(z)\to0$ uniformly on compact subsets of $D$. Thus, $f_n\to f$ uniofmrly on compact subsets of $D.$
 \end{solution}
@@ -179,15 +151,14 @@ Let $f(z)$ be meromorphic on $\mathbb{C}$, holomoprhic for $Re z>0$ and such tha
 
 
 \begin{solution}$\,$
-$f(1)=f(0+1)=1$ implies that $$\lim_{z\to0}zf(z)=1.$$ Namely, that $f$ has a first order pole (else the limit would be $0$ or infinity) at $0$ of residue $1.$ 
+$f(1)=f(0+1)=1$ implies that $$\lim_{z\to0}zf(z)=1.$$ Namely, that $f$ has a first order pole (else the limit would be $0$ or infinity) at $0$ of residue $1.$
 
 Now, $$\lim_{z\to-1}(z+1)f(z)=\lim_{z\to-1}(z+1)\frac{f(z+1)}{z}=\lim_{w\to0}\frac{wf(w)}{w-1}=\frac{1}{-1}=-1$$ and so $f$ has a first order pole at $-1$ of residue $-1.$
 
-Similarly, since $$f(z)=\frac{f(z+1)}{z}=\frac{f(z+2)}{z(z+1)}=\frac{f(z+n)}{z(z+1)\cdots(z+n-1)}$$ we get that $$\lim_{z\to-n}(z+n)f(z)=\lim_{z\to-n}\frac{(z+n)f(z+n)}{z(z+1)\cdots(z+n-1)}=\lim_{w\to0}\frac{wf(w)}{(w-n)(w-n+1)\cdots(w-1)}=\frac{1}{(-n)(-n+1)\cdots(-1)}.$$ 
+Similarly, since $$f(z)=\frac{f(z+1)}{z}=\frac{f(z+2)}{z(z+1)}=\frac{f(z+n)}{z(z+1)\cdots(z+n-1)}$$ we get that $$\lim_{z\to-n}(z+n)f(z)=\lim_{z\to-n}\frac{(z+n)f(z+n)}{z(z+1)\cdots(z+n-1)}=\lim_{w\to0}\frac{wf(w)}{(w-n)(w-n+1)\cdots(w-1)}=\frac{1}{(-n)(-n+1)\cdots(-1)}.$$
 
 Since all these poles are first order (as evidenced by the limit), these limits correspond exactly to the residues and so $f$ has first order poles at $-n$ for all $n\in\mathbb{N}$ with residue $\frac{1}{(-n)(-n+1)\cdots(-1)}$ and a first order pole at $0$ with residue $1.$
 \end{solution}
 
 
 \end{document}
- 

@@ -1,33 +1,5 @@
-\documentclass[12pt]{Homework}
-
-% Changed from \usepackage{prelude}
+\documentclass[12pt]{Qual}
 \usepackage{preamble}
-\usepackage{amssymb}
-\usepackage{enumitem}
-\usepackage{mathrsfs}
-\def\upint{\mathchoice%
-    {\mkern13mu\overline{\vphantom{\intop}\mkern7mu}\mkern-20mu}%
-    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
-    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
-    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
-  \int}
-\def\lowint{\mkern3mu\underline{\vphantom{\intop}\mkern7mu}\mkern-10mu\int}
-\usepackage[mathscr]{euscript}
-\usepackage{comment}
-\usepackage{MnSymbol}
-\usepackage{tikz,float}
-\usepackage{tikz-cd}
-\usepackage{graphicx}
-\usepackage{mathtools}
-\usepackage{bbding}
-\renewcommand\qedsymbol{\Peace}
-\newcommand\placeqed{\nobreak\enspace\Peace}
-\usepackage{caption, threeparttable}
-\usepackage{halloweenmath}
-\newcommand{\contradiction}{\null\hfill\large{$\mathghost$}\normalsize}
-\newcommand{\im}{\mathscr{I}\text{m}}
-\newcommand{\re}{\mathscr{R}\text{e}}
-\newcommand{\res}{\text{Res}}
 
 \name{Kayla Orlinsky}
 \course{Complex Analysis Exam}
@@ -59,7 +31,7 @@ Thus, no such sequence can exist.
 
 
 \begin{problem} $\,$
-Let $D=\mathbb{C}\backslash[-1,1]$. Prove that $f(z)=z^2-1$, for $z\in D$, has an analytic square root but does not have an analytic logarithm. 
+Let $D=\mathbb{C}\backslash[-1,1]$. Prove that $f(z)=z^2-1$, for $z\in D$, has an analytic square root but does not have an analytic logarithm.
 \end{problem}
 
 \begin{solution}$\,$
@@ -99,7 +71,7 @@ Finally, since $f$ has no zeros in $\Omega$, then $\frac{f'}{f}$ is analytic in 
     &=0
 \end{align*}
 
-Therefore, $\frac{f(z)}{h^n(z)}=c$ some constant and so $f(z)=ch^n(z)=(c^{1/n}h(z))^n$. 
+Therefore, $\frac{f(z)}{h^n(z)}=c$ some constant and so $f(z)=ch^n(z)=(c^{1/n}h(z))^n$.
 
 Finally, then $f$ must have an $n^{th}$ root.
 \end{proof}
@@ -131,7 +103,7 @@ Therefore, using the same idea as \textbf{Claim 1}, we get that $f=e^{g(z)}$ whe
 Therefore, by \textbf{Claim 2}, $f$ cannot have an analytic logarithm, since $\gamma=|z|=2$ gives $$\frac{1}{2\pi i}\int_{|z|=2}\frac{f'(z)}{f(z)}dz=\frac{1}{2\pi i}\int_{|z|=2}\frac{2z}{z^2-1}dz=\res_{z=1}\frac{2z}{z^2-1}+\res_{z=-1}\frac{2z}{z^2-1}=\frac{2}{1+1}+\frac{-2}{-1-1}=2\not=0.$$
 
 \begin{framed}
-Note that to actually determine the value of $\displaystyle \int_\gamma\frac{f'}{f}dz$, we can view the integral in $\mathbb{C}$ and apply the argument principle or residue theorem there. 
+Note that to actually determine the value of $\displaystyle \int_\gamma\frac{f'}{f}dz$, we can view the integral in $\mathbb{C}$ and apply the argument principle or residue theorem there.
 
 Since the integral exists in $D$, the two values must be the same.
 \end{framed}
@@ -240,4 +212,3 @@ Thus, if $f$ is non-constant then it is dense in $\mathbb{C}$.
 
 
 \end{document}
- 

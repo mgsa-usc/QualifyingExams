@@ -1,33 +1,5 @@
-\documentclass[12pt]{Homework}
-
-% Changed from \usepackage{prelude}
+\documentclass[12pt]{Qual}
 \usepackage{preamble}
-\usepackage{amssymb}
-\usepackage{enumitem}
-\usepackage{mathrsfs}
-\def\upint{\mathchoice%
-    {\mkern13mu\overline{\vphantom{\intop}\mkern7mu}\mkern-20mu}%
-    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
-    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
-    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
-  \int}
-\def\lowint{\mkern3mu\underline{\vphantom{\intop}\mkern7mu}\mkern-10mu\int}
-\usepackage[mathscr]{euscript}
-\usepackage{comment}
-\usepackage{MnSymbol}
-\usepackage{tikz,float}
-\usepackage{tikz-cd}
-\usepackage{graphicx}
-\usepackage{mathtools}
-\usepackage{bbding}
-\renewcommand\qedsymbol{\Peace}
-\newcommand\placeqed{\nobreak\enspace\Peace}
-\usepackage{caption, threeparttable}
-\usepackage{halloweenmath}
-\newcommand{\contradiction}{\null\hfill\large{$\mathghost$}\normalsize}
-\newcommand{\im}{\mathscr{I}\text{m}}
-\newcommand{\re}{\mathscr{R}\text{e}}
-\newcommand{\res}{\text{Res}}
 
 \name{Kayla Orlinsky}
 \course{Complex Analysis Exam}
@@ -89,7 +61,7 @@ First, on $\re(z)=x>0$, $f(x)=x^8-x^3+10>0$.
 
 This is because if $0<x<1$ then $x^8<x^3$ so $x^8-x^3>-x^3>-1$ and so $f(x)>9$.
 
-And if $x>1$ then $x^8>x^3$ so $f(x)>0$. So $f$ maps the positive real axis to the positive real axis away from the origin. 
+And if $x>1$ then $x^8>x^3$ so $f(x)>0$. So $f$ maps the positive real axis to the positive real axis away from the origin.
 
 Similarly, $$f(iy)=(iy)^8-(iy)^3+10=y^8+10+iy^3$$ and so $\re(f(iy))>0$ and $\im(f(iy))>0$ for all $y>0$ so $f$ sends the positive imaginary axis to the first quadrant away from the origin.
 
@@ -125,7 +97,7 @@ However, then if $l<k$ \begin{align*}
 
 And if $l\ge k$, then $$\lim_{z\to z_0}\frac{h}{g}=\lim_{z\to z_0}(z-z_0)^{l-k}h'g'<\infty$$ and again we get a contradiction since $\frac{h}{g}=f$ which has an essential singuliarty at $z_0$ and so cannot possess a finite limit at that point.
 
-Therefore, $h$ has a singularity which not removable and not a pole. Namely, $h$ must have an essential singularity. 
+Therefore, $h$ has a singularity which not removable and not a pole. Namely, $h$ must have an essential singularity.
 \end{solution}
 \newpage
 
@@ -144,21 +116,21 @@ Therefore, $h$ has a singularity which not removable and not a pole. Namely, $h$
 \begin{solution}$\,$
 \begin{enumerate}[label=(\alph*)]
     \item Suppose that $f$ is holormophic on $\mathbb{C}$ and assume that the imaginary part of $f$ is bounded.
-    
+
     Let $f=u+iv$. Assume $|v(z)|< M$ for all $z\in\mathbb{C}$.
-    
+
     Thus, $f(\mathbb{C})\subset\Omega=\{x+iy:|y|<M\}$. Since $\Omega$ is an open simply connected strict subset of $\mathbb{C}$, by the Riemann Mapping Theorem, there exists a $g:\Omega\to\mathbb{D}=\{|z|<1\}$ which is analytic, bijective, and has an analytic inverse.
-    
+
     However, then $$g\circ f:\mathbb{C}\to\mathbb{D}$$ is an entire function which is bounded and so $g\circ f=c$ is constant. Namely, $f=g^{-1}(c)$ and is constant.
 
-    \item Suppose that $f$ and $g$ are holomorphic on $\mathbb{C}$ and that $|f(z)|\le|g(z)|$ for all $z\in\mathbb{C}$. 
-    
-    Assume $g$ has a zero of order $k$ at $z_0$. Then $g(z)=(z-z_0)^kg_0(z)$ with $g_0$ analytic and nonzero in a neighborhood of $z_0$. 
-    
+    \item Suppose that $f$ and $g$ are holomorphic on $\mathbb{C}$ and that $|f(z)|\le|g(z)|$ for all $z\in\mathbb{C}$.
+
+    Assume $g$ has a zero of order $k$ at $z_0$. Then $g(z)=(z-z_0)^kg_0(z)$ with $g_0$ analytic and nonzero in a neighborhood of $z_0$.
+
     However, then $$0=\lim_{z\to z_0}\frac{|g(z)|}{(z-z_0)^{k-1}}\ge\lim_{z\to z_0}\frac{|f(z)|}{(z-z_0)^{k-1}}$$ and so $f$ must have a zero of order at least $k$ at $z_0$.
-    
-    Namely, if $h=\frac{f}{g}$ then $h$ has removable singularities at the zeros of $g$, and so has an analytic continuation to the whole plane. 
-    
+
+    Namely, if $h=\frac{f}{g}$ then $h$ has removable singularities at the zeros of $g$, and so has an analytic continuation to the whole plane.
+
     Namely, WLOG, $h$ is entire, and since $$|h|=\frac{|f|}{|g|}\le 1$$ by Louiville's $h$ is consant. So there is some $\lambda\in\mathbb{C}$
     so $\frac{f}{g}=\lambda$ and namely, $f=\lambda g$.
 \end{enumerate}
@@ -166,4 +138,3 @@ Therefore, $h$ has a singularity which not removable and not a pole. Namely, $h$
 
 
 \end{document}
- 

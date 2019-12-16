@@ -1,33 +1,5 @@
-\documentclass[12pt]{Homework}
-
-% Changed from \usepackage{prelude}
+\documentclass[12pt]{Qual}
 \usepackage{preamble}
-\usepackage{amssymb}
-\usepackage{enumitem}
-\usepackage{mathrsfs}
-\def\upint{\mathchoice%
-    {\mkern13mu\overline{\vphantom{\intop}\mkern7mu}\mkern-20mu}%
-    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
-    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
-    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
-  \int}
-\def\lowint{\mkern3mu\underline{\vphantom{\intop}\mkern7mu}\mkern-10mu\int}
-\usepackage[mathscr]{euscript}
-\usepackage{comment}
-\usepackage{MnSymbol}
-\usepackage{tikz,float}
-\usepackage{tikz-cd}
-\usepackage{graphicx}
-\usepackage{mathtools}
-\usepackage{bbding}
-\renewcommand\qedsymbol{\Peace}
-\newcommand\placeqed{\nobreak\enspace\Peace}
-\usepackage{caption, threeparttable}
-\usepackage{halloweenmath}
-\newcommand{\contradiction}{\null\hfill\large{$\mathghost$}\normalsize}
-\newcommand{\im}{\mathscr{I}\text{m}}
-\newcommand{\re}{\mathscr{R}\text{e}}
-\newcommand{\res}{\text{Res}}
 
 \name{Kayla Orlinsky}
 \course{Complex Analysis Exam}
@@ -42,7 +14,7 @@ Let $f(z)=u(z)+iv(z)$ be an entire function and assume that $|u(z)|\ge|v(z)|$ fo
 
 
 \begin{solution}$\,$
-Clearly $f(\mathbb{C})\subset\{x+iy:|y|\le|x|\}.$ This set can be broken down into the four quadrants to get 
+Clearly $f(\mathbb{C})\subset\{x+iy:|y|\le|x|\}.$ This set can be broken down into the four quadrants to get
 
 \begin{center}
 \begin{tikzpicture}
@@ -64,7 +36,7 @@ Clearly $f(\mathbb{C})\subset\{x+iy:|y|\le|x|\}.$ This set can be broken down in
 \end{tikzpicture}
 \end{center}
 
-Now, since $\mathbb{C}$ is open, by the open mapping theorem, $f(\mathbb{C})$ must be open. Therefore, $f(\mathbb{C})$ cannot contain $0$. 
+Now, since $\mathbb{C}$ is open, by the open mapping theorem, $f(\mathbb{C})$ must be open. Therefore, $f(\mathbb{C})$ cannot contain $0$.
 
 Furthermore, $f(\mathbb{C})$ must be connected. Thus, $f(\mathbb{C})$ is either entirely in the left-half plane or entirely in the right-half plane.
 
@@ -72,7 +44,7 @@ WLOG, assume $\re(f(z))>0$ for all $z.$ Namely, that $f$ is contained in the rig
 
 Then, let $g(z)=iz$ and $T(z)=\frac{z-i}{z+i}$.
 
-Then $T\circ g\circ f$ is an entire map from $\mathbb{C}$ to the unit disk $\mathbb{D}$. Therefore, by Louiville's Theorem, $T\circ g\circ f$ is constant. 
+Then $T\circ g\circ f$ is an entire map from $\mathbb{C}$ to the unit disk $\mathbb{D}$. Therefore, by Louiville's Theorem, $T\circ g\circ f$ is constant.
 
 However, this forces $f$ to be constant since $g$ and $T$ certainly are not constant.
 \end{solution}
@@ -101,7 +73,7 @@ Then, in the circle $\{|z-1|\le 1\}$, $g$ has exactly $n$ roots (since multiplic
 
 Furthermore, on $\{|z-1|=1\}$, we have that $$|f(z)-g(z)|=|\alpha|<1=|z-1|\le|g(z)|$$ and so $f$ and $g$ have the same number of roots inside the circle $\{|z-1|<1\}$ which is $n.$
 
-Now, if $f$ has any non-simple roots (any repeated roots), then $f$ and $f'$ would have a root in common. 
+Now, if $f$ has any non-simple roots (any repeated roots), then $f$ and $f'$ would have a root in common.
 
 However, $$f'(z)=e^z(z-1)^n+ne^z(z-1)^{n-1}=e^z(z-1)^{n-1}[z-1+n]$$ and so if $f$ and $f'$ are simultaneously zero, then \begin{align*}
     f(z)&=0\\
@@ -157,13 +129,12 @@ Write an entire function which has the simple zeros $1,4,9,16,25,...$ and has no
 \begin{solution}$\,$
 The zeros are $1^2,2^2,3^2,4^2,5^2,...$. Namely, if such a function exists then it is of the form $$f(z)=\prod_{n=1}^\infty\frac{(z-n^2)}{n^2}=\prod_{n=1}^\infty\left(\frac{z}{n^2}-1\right)=-\prod_{n=1}^\infty\left(1-\frac{z}{n^2}\right)$$ If we can show that the product converges uniformly, then $f$ will be analytic everywhere.
 
-Since $\prod(1-a_n)$ converges absolutely and uniformly if and only if $\sum a_n$ converges absolutely and uniformly. 
+Since $\prod(1-a_n)$ converges absolutely and uniformly if and only if $\sum a_n$ converges absolutely and uniformly.
 
-However, clearly, $$\sum_{n=1}^\infty\frac{|z|}{n^2}<\infty$$ for all $z$, and since for $\{|z|<M\}$ we get that $\frac{|z|}{n^2}<\frac{M}{n^2}$ and so the sum converges uniformly. 
+However, clearly, $$\sum_{n=1}^\infty\frac{|z|}{n^2}<\infty$$ for all $z$, and since for $\{|z|<M\}$ we get that $\frac{|z|}{n^2}<\frac{M}{n^2}$ and so the sum converges uniformly.
 
 Since this holds for all $M,$ the sum converges uniforly everywhere and so $f$ defines an analytic function whose only zeros are $\{n^2\}_1^\infty$ as desired.
 \end{solution}
 
 
 \end{document}
- 

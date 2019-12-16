@@ -1,33 +1,5 @@
-\documentclass[12pt]{Homework}
-
-% Changed from \usepackage{prelude}
+\documentclass[12pt]{Qual}
 \usepackage{preamble}
-\usepackage{amssymb}
-\usepackage{enumitem}
-\usepackage{mathrsfs}
-\def\upint{\mathchoice%
-    {\mkern13mu\overline{\vphantom{\intop}\mkern7mu}\mkern-20mu}%
-    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
-    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
-    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
-  \int}
-\def\lowint{\mkern3mu\underline{\vphantom{\intop}\mkern7mu}\mkern-10mu\int}
-\usepackage[mathscr]{euscript}
-\usepackage{comment}
-\usepackage{MnSymbol}
-\usepackage{tikz,float}
-\usepackage{tikz-cd}
-\usepackage{graphicx}
-\usepackage{bbding}
-\renewcommand\qedsymbol{\Peace}
-\newcommand\placeqed{\nobreak\enspace\Peace}
-\usepackage{mathtools}
-\usepackage{caption, threeparttable}
-\usepackage{halloweenmath}
-\newcommand{\contradiction}{\null\hfill\large{$\mathghost$}\normalsize}
-\newcommand{\im}{\mathscr{I}\text{m}}
-\newcommand{\re}{\mathscr{R}\text{e}}
-\newcommand{\res}{\text{Res}}
 
 \name{Kayla Orlinsky}
 \course{Complex Analysis Exam}
@@ -73,7 +45,7 @@ and since $|-1-2i|>1$ and $\frac{1}{5}|1+2i|<1$, we have only one residue.
 \newpage
 
 \begin{problem} $\,$
-Suppose the series $f(z)=\sum_{n=0}^\infty c_nz^n$ converges for $|z|<R$. Show that for $r<R$, $$\int_{|z|=r}|f(z)|^2dz=2\pi\sum_{n=0}^\infty|c_n|^2r^{2n}.$$ \textit{TYPO: Should be} $$\int_{|z|=r}|f(z)|^2|dz|=2\pi r\sum_{n=0}^\infty|c_n|^2r^{2n}.$$ 
+Suppose the series $f(z)=\sum_{n=0}^\infty c_nz^n$ converges for $|z|<R$. Show that for $r<R$, $$\int_{|z|=r}|f(z)|^2dz=2\pi\sum_{n=0}^\infty|c_n|^2r^{2n}.$$ \textit{TYPO: Should be} $$\int_{|z|=r}|f(z)|^2|dz|=2\pi r\sum_{n=0}^\infty|c_n|^2r^{2n}.$$
 \end{problem}
 
 
@@ -89,17 +61,17 @@ Now, with this change in notation, we obtain that $$\int_{|z|=r}|f(z)|^2|dz|=\in
     &=\int_{|z|=r}\sum_{n=0}^\infty\sum_{k=0}^nc_kz^k\overline{c_{n-k}}\overline{z}^{n-k}|dz|\qquad\text{Cauchy Product}\\
     &=\sum_{n=0}^\infty\int_{|z|=r}\sum_{k=0}^nc_k\overline{c_{n-k}}z^k\overline{z}^{n-k}|dz|
     \end{align*}
-    
-Now, we examine the inner sum. 
+
+Now, we examine the inner sum.
 
 \begin{comment}
 At this point, it is exceptionally helpful to illustrate this problem with two examples.
 
 \boxed{n=3} Then, forgetting the $c_k,\overline{c_{n-k}}$ for a moment, we can look at $$\sum_{k=0}^3z^k\overline{z}^{3-k}=\overline{z}^3+z\overline{z}^2+z^2\overline{z}+z^3=\frac{z^3\overline{z}^3}{z^3}+\frac{z^2\overline{z}^2}{z}+z\cdot z\overline{z}+z^3=\frac{|z^3|^2}{z^3}+\frac{|z^2|^2}{z}+z|z|^2+z^3.$$
 
-Note that if we integrate over the circle $|z|=r,$ then using the substitution $z=re^{i\theta}$ and $dz=rie^{i\theta}d\theta$ so $|dz|=rd\theta$, we will get that each of these functions dies. For example, $$\int_{|z|=r}\frac{|z|^6}{z^3}|dz|=r^7\int_0^{2\pi}\frac{1}{r^3e^{3i\theta}}d\theta=\int_0^{2\pi}\frac{i}{r^2e^{2i\theta}}d\theta=\frac{i}{-2ir^2}e^{-2i\theta}\big|_0^{2\pi}=0.$$ Since each integral will contain 
+Note that if we integrate over the circle $|z|=r,$ then using the substitution $z=re^{i\theta}$ and $dz=rie^{i\theta}d\theta$ so $|dz|=rd\theta$, we will get that each of these functions dies. For example, $$\int_{|z|=r}\frac{|z|^6}{z^3}|dz|=r^7\int_0^{2\pi}\frac{1}{r^3e^{3i\theta}}d\theta=\int_0^{2\pi}\frac{i}{r^2e^{2i\theta}}d\theta=\frac{i}{-2ir^2}e^{-2i\theta}\big|_0^{2\pi}=0.$$ Since each integral will contain
 
-\boxed{n=4} We repeat the above, this time using an even $n.$ Then $$\sum_{k=0}^4z^k\overline{z}^{4-k}=\overline{z}^4+z\overline{z}^3+z^2\overline{z}^2+z^3\overline{z}+z^4=\frac{|z|^8}{z^4}+\frac{|z|^6}{z^2}+|z|^4+z^2|z|^2+z^4.$$ 
+\boxed{n=4} We repeat the above, this time using an even $n.$ Then $$\sum_{k=0}^4z^k\overline{z}^{4-k}=\overline{z}^4+z\overline{z}^3+z^2\overline{z}^2+z^3\overline{z}+z^4=\frac{|z|^8}{z^4}+\frac{|z|^6}{z^2}+|z|^4+z^2|z|^2+z^4.$$
 
 Note that all of these integrals will vanish as none of them have a $\frac{1}{z}$ term.
 
@@ -129,7 +101,7 @@ Note that if $n=0$, then $$\int_{|z|=r}z^n|dz|=\int_0^{2\pi}rd\theta=2\pi r.$$
     \end{cases}\\
 \end{align*}
 
-Now, we simply cite the claim. 
+Now, we simply cite the claim.
 
 If $j<k$ then $$c_j\overline{c_k}z^j\overline{z}^k=C|z|^k\frac{1}{z^{k-j}}\qquad k-j>0$$ and so these integrals will die since they contain a $z^l$ term with $l\not=0.$
 
@@ -194,13 +166,12 @@ Therefore, by the Riemann Mapping Theorem, since $\Omega$ is simply connected, t
 
 Therefore, $$g\circ f\circ g^{-1}:\mathbb{D}\to\mathbb{D}$$ is a map from the disk to the disk and $$(g\circ f\circ g^{-1})(0)=g(f(z_1))=g(z_1)=0.$$
 
-Furthermore, if $g(z_2)=z$ then $$(g\circ f\circ g^{-1})(z)=g(f(z_2))=g(z_2)=z$$ and so by Schwarz' Lemma, $g\circ f\circ g^{-1}=cz$ is a rotation for some $|c|=1$. 
+Furthermore, if $g(z_2)=z$ then $$(g\circ f\circ g^{-1})(z)=g(f(z_2))=g(z_2)=z$$ and so by Schwarz' Lemma, $g\circ f\circ g^{-1}=cz$ is a rotation for some $|c|=1$.
 
-However, clearly $c=1$ since we have already shown that $z\mapsto z$ through $g\circ f\circ g^{-1}$. 
+However, clearly $c=1$ since we have already shown that $z\mapsto z$ through $g\circ f\circ g^{-1}$.
 
 Therefore, $$f(z)=g^{-1}(g(z))=z$$ and so $f$ is the identity map.
 \end{solution}
 
 
 \end{document}
- 

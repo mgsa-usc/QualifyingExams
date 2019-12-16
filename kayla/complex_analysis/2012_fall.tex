@@ -1,33 +1,5 @@
-\documentclass[12pt]{Homework}
-
-% Changed from \usepackage{prelude}
+\documentclass[12pt]{Qual}
 \usepackage{preamble}
-\usepackage{amssymb}
-\usepackage{enumitem}
-\usepackage{mathrsfs}
-\def\upint{\mathchoice%
-    {\mkern13mu\overline{\vphantom{\intop}\mkern7mu}\mkern-20mu}%
-    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
-    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
-    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
-  \int}
-\def\lowint{\mkern3mu\underline{\vphantom{\intop}\mkern7mu}\mkern-10mu\int}
-\usepackage[mathscr]{euscript}
-\usepackage{comment}
-\usepackage{MnSymbol}
-\usepackage{tikz,float}
-\usepackage{tikz-cd}
-\usepackage{graphicx}
-\usepackage{mathtools}
-\usepackage{bbding}
-\renewcommand\qedsymbol{\Peace}
-\newcommand\placeqed{\nobreak\enspace\Peace}
-\usepackage{caption, threeparttable}
-\usepackage{halloweenmath}
-\newcommand{\contradiction}{\null\hfill\large{$\mathghost$}\normalsize}
-\newcommand{\im}{\mathscr{I}\text{m}}
-\newcommand{\re}{\mathscr{R}\text{e}}
-\newcommand{\res}{\text{Res}}
 
 \name{Kayla Orlinsky}
 \course{Complex Analysis Exam}
@@ -37,7 +9,7 @@
 \begin{document}
 
 \begin{problem} $\,$
-Evaluate the integral $$\int_0^\infty\frac{dx}{1+x^n},\qquad n\ge2$$ being careful to justify your methods. 
+Evaluate the integral $$\int_0^\infty\frac{dx}{1+x^n},\qquad n\ge2$$ being careful to justify your methods.
 \end{problem}
 
 
@@ -91,7 +63,7 @@ Suppose that $f$ is an entire function and that there is a bounded sequence of d
 
 
 \begin{solution}$\,$
-It suffices to show that $f(z)$ has a Taylor Expansion with only real coefficeints. 
+It suffices to show that $f(z)$ has a Taylor Expansion with only real coefficeints.
 
 First, note that since $a_k$ are bounded, they have a real limit point $a$. Therefore, because $f$ is entire (namely continuous), $$\lim_{k\to\infty}f(a_k)=f\left(\lim_{k\to\infty}a_k\right)=f(a)$$ and $f(a)\in\mathbb{R}$ since $f(a_k)\in\mathbb{R}$ for all $k$.
 
@@ -120,4 +92,3 @@ Namely, because $e^{1/z}$ has a lower bound on $|z|>\varepsilon$, so too must $f
 
 
 \end{document}
- 
