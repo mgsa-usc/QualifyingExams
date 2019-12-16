@@ -1,0 +1,169 @@
+\documentclass[12pt]{Homework}
+
+% Changed from \usepackage{prelude}
+\usepackage{preamble}
+\usepackage{amssymb}
+\usepackage{enumitem}
+\usepackage{mathrsfs}
+\def\upint{\mathchoice%
+    {\mkern13mu\overline{\vphantom{\intop}\mkern7mu}\mkern-20mu}%
+    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+  \int}
+\def\lowint{\mkern3mu\underline{\vphantom{\intop}\mkern7mu}\mkern-10mu\int}
+\usepackage[mathscr]{euscript}
+\usepackage{comment}
+\usepackage{MnSymbol}
+\usepackage{tikz,float}
+\usepackage{tikz-cd}
+\usepackage{graphicx}
+\usepackage{mathtools}
+\usepackage{bbding}
+\renewcommand\qedsymbol{\Peace}
+\newcommand\placeqed{\nobreak\enspace\Peace}
+\usepackage{caption, threeparttable}
+\usepackage{halloweenmath}
+\newcommand{\contradiction}{\null\hfill\large{$\mathghost$}\normalsize}
+\newcommand{\im}{\mathscr{I}\text{m}}
+\newcommand{\re}{\mathscr{R}\text{e}}
+\newcommand{\res}{\text{Res}}
+
+\name{Kayla Orlinsky}
+\course{Complex Analysis Exam}
+\term{Fall 2014}
+\hwnum{Fall 2014}
+
+\begin{document}
+
+\begin{problem} $\,$
+Let $a>1$. Compute $$\int_0^\pi\frac{d\theta}{a+\cos\theta}$$ being careful to justify your methods.
+\end{problem}
+
+
+\begin{solution}$\,$
+Note that $\cos(\theta)=\cos(\theta-2\pi)$ and $\cos(-\theta)=\cos(\theta)$ so \begin{align*}
+   \int_\pi^{2\pi}\frac{d\theta}{a+\cos(\theta)}&=\int_\pi^{3\pi/2}\frac{d\theta}{a+\cos(\theta)}+\int_{3\pi/2}^{2\pi}\frac{d\theta}{a+\cos(\theta)}\\
+   &=\int_{-\pi}^{-\pi/2}\frac{d\theta}{a+\cos(\theta)}+\int_{-\pi/2}^0\frac{d\theta}{a+\cos(\theta)}\\
+   &=\int_{\pi}^{\pi/2}\frac{-d\theta}{a+\cos(\theta)}+\int_{\pi/2}^0\frac{-d\theta}{a+\cos(\theta)}\\
+   &=\int_{\pi/2}^{\pi}\frac{d\theta}{a+\cos(\theta)}+\int_0^{\pi/2}\frac{d\theta}{a+\cos(\theta)}\\
+   &=\int_0^{\pi}\frac{d\theta}{a+\cos(\theta)}
+\end{align*}
+
+and so $$\int_0^{2\pi}\frac{d\theta}{a+\cos\theta}=2\int_0^\pi\frac{d\theta}{a+\cos(\theta)}.$$
+
+Thus, \begin{align*}
+    \int_0^\pi\frac{d\theta}{a+\cos\theta}&=\frac{1}{2}\int_0^{2\pi}\frac{d\theta}{a+\cos(\theta)}\\
+    &=\frac{1}{2}\int_0^{2\pi}\frac{d\theta}{a+\frac{e^{i\theta}+e^{-i\theta}}{2}}\\
+    &=\frac{1}{2}\int_0^{2\pi}\frac{2d\theta}{2a+e^{i\theta}+e^{-i\theta}}\\
+    &=\int_0^{2\pi}\frac{e^{i\theta}d\theta}{e^{2i\theta}+2ae^{i\theta}+1}\\
+    &=\int_{|z|=1}\frac{-idz}{z^2+2az+1}\qquad z=e^{i\theta}\\
+    &=\int_{|z|=1}\frac{-idz}{(z+a+\sqrt{a^2-1})(z+a-\sqrt{a^2-1})}\tag{1}\\
+    &=2\pi i\res_{z=-a+\sqrt{a^2-1}}\frac{-i}{(z+a+\sqrt{a^2-1})(z+a-\sqrt{a^2-1})}\qquad\text{ Residue Theorem }\tag{2}\\
+    &=2\pi\frac{1}{-a+\sqrt{a^2-1}+a+\sqrt{a^2-1}}\\
+    &=\frac{2\pi}{2\sqrt{a^2-1}}\\
+    &=\frac{\pi}{\sqrt{a^2-1}}
+\end{align*}
+
+with (1) since \begin{align*}
+    z^2+2az+1&=0\\
+    \implies z&=\frac{-2a\pm\sqrt{4a^2-4}}{2}\\
+    &=-a\pm\sqrt{a^2-1}
+\end{align*}
+
+and (2) since $a+\sqrt{a^2-1}>a>1$ this point is not in the circle $\{|z|<1\}$. Furthermore, $$0=a-a<a-\sqrt{a^2-1}\qquad\text{ since }a>1\implies \sqrt{a^2-1}<\sqrt{a^2}=a$$ and so if $h(a)=a-\sqrt{a^2-1}$ then $h'(a)=1-\frac{a}{\sqrt{a^2-1}}<0$ so $h$ is strictly decreasing and since $h(1)=1$, we have that $0<a-\sqrt{a^2-1}<1$ for all $a>1$, so this is in the disk $\{|z|<1\}.$
+
+\end{solution}
+\newpage
+
+
+
+\begin{problem} $\,$
+Find the number of zeros, counting multiplicity, of $z^8-z^3+10$ inside the first quadrant $\{z\in\mathbb{C}:\re(z)>0,\im(z)>0\}.$
+\end{problem}
+
+\begin{solution}$\,$
+Let $f(z)=z^8-z^3+10$.
+
+First, on $\re(z)=x>0$, $f(x)=x^8-x^3+10>0$.
+
+This is because if $0<x<1$ then $x^8<x^3$ so $x^8-x^3>-x^3>-1$ and so $f(x)>9$.
+
+And if $x>1$ then $x^8>x^3$ so $f(x)>0$. So $f$ maps the positive real axis to the positive real axis away from the origin. 
+
+Similarly, $$f(iy)=(iy)^8-(iy)^3+10=y^8+10+iy^3$$ and so $\re(f(iy))>0$ and $\im(f(iy))>0$ for all $y>0$ so $f$ sends the positive imaginary axis to the first quadrant away from the origin.
+
+Finally, for $R$ large, we can define a quarter circle arc in the first quadrant $\{z=Re^{i\theta}:0\le\theta\le\frac{\pi}{2}\}$. On this arc, $$\lim_{R\to\infty}\frac{f(Re^{i\theta})}{R^8}=\lim_{R\to\infty}\left(e^{8i\theta}-\frac{e^{3i\theta}}{R^5}+\frac{10}{R^8}\right)=e^{8i\theta}.$$
+
+Thus, $f$ has a total change in argument of $8\pi/2=4\pi.$ Namely, $f$ has $2$ roots in the first quadrant.
+\end{solution}
+\newpage
+
+
+
+
+\begin{problem} $\,$
+Assume that $f(z)$ and $g(z)$ are holomorphic in a puctured neighborhood of $z_0\in\mathbb{C}$. Prove that if $f$ has an essential singuliarty at $z_0$ and $g$ has a pole at $z_0,$ then $f(z)g(z)$ has an essential singulairty at $z_0.$
+\end{problem}
+
+
+\begin{solution}$\,$
+Let $h(z)=f(z)g(z)$. Then since $g(z)$ has a pole at $z_0$, $$\frac{1}{g}$$ has a zero at $z_0$. Thus, if $h$ is analytic at $z_0$ then $\frac{h}{g}$ has a zero at $z_0$. However, since $\frac{h}{g}=f$ which has an essential singularity at $z_0$, this is not possible.
+
+So $h$ has a singularity at $z_0.$
+
+Now, if $h$ has a removable singularity, then $\frac{1}{g}$ having a zero at $z_0$ implies $$\lim_{z\to z_0}\frac{h}{g}=0\not=\lim_{z\to z_0}f(z)$$ so this is a contradiction.
+
+If $h$ has a pole at $z_0$, then $h=\frac{h'}{(z-z_0)^k}$ and since $\frac{1}{g}$ has a zero at $z_0,$ $\frac{1}{g}=(z-z_0)^lg'$ for some $k,$ some $l$, some $h'$ which is non-zero at $z_0$ and some $g'$ which is nonzero at $z_0$.
+
+However, then if $l<k$ \begin{align*}
+    \lim_{z\to z_0}(z-z_0)^{k-l+1}\frac{h}{g}&=\lim_{z\to z_0}(z-z_0)^{k-l+1}\frac{h'(z-z_0)^lg'}{(z-z_0)^k}\\
+    &=\lim_{z\to z_0}(z-z_0)h'g'\\
+    &=0\\
+    &\not=\lim_{z\to z_0}(z-z_0)^{k-l+1}f(z)
+\end{align*} since $f$ has an essential singuliarty.
+
+And if $l\ge k$, then $$\lim_{z\to z_0}\frac{h}{g}=\lim_{z\to z_0}(z-z_0)^{l-k}h'g'<\infty$$ and again we get a contradiction since $\frac{h}{g}=f$ which has an essential singuliarty at $z_0$ and so cannot possess a finite limit at that point.
+
+Therefore, $h$ has a singularity which not removable and not a pole. Namely, $h$ must have an essential singularity. 
+\end{solution}
+\newpage
+
+
+
+
+
+\begin{problem} $\,$
+\begin{enumerate}[label=(\alph*)]
+    \item Suppose that $f$ is holormophic on $\mathbb{C}$ and assume that the imaginary part of $f$ is bounded. Prove that $f$ is constant.
+    \item Suppose that $f$ and $g$ are holomorphic on $\mathbb{C}$ and that $|f(z)|\le|g(z)|$ for all $z\in\mathbb{C}$. Prove that there exists $\lambda\in\mathbb{C}$ such that $f=\lambda g$.
+\end{enumerate}
+\end{problem}
+
+
+\begin{solution}$\,$
+\begin{enumerate}[label=(\alph*)]
+    \item Suppose that $f$ is holormophic on $\mathbb{C}$ and assume that the imaginary part of $f$ is bounded.
+    
+    Let $f=u+iv$. Assume $|v(z)|< M$ for all $z\in\mathbb{C}$.
+    
+    Thus, $f(\mathbb{C})\subset\Omega=\{x+iy:|y|<M\}$. Since $\Omega$ is an open simply connected strict subset of $\mathbb{C}$, by the Riemann Mapping Theorem, there exists a $g:\Omega\to\mathbb{D}=\{|z|<1\}$ which is analytic, bijective, and has an analytic inverse.
+    
+    However, then $$g\circ f:\mathbb{C}\to\mathbb{D}$$ is an entire function which is bounded and so $g\circ f=c$ is constant. Namely, $f=g^{-1}(c)$ and is constant.
+
+    \item Suppose that $f$ and $g$ are holomorphic on $\mathbb{C}$ and that $|f(z)|\le|g(z)|$ for all $z\in\mathbb{C}$. 
+    
+    Assume $g$ has a zero of order $k$ at $z_0$. Then $g(z)=(z-z_0)^kg_0(z)$ with $g_0$ analytic and nonzero in a neighborhood of $z_0$. 
+    
+    However, then $$0=\lim_{z\to z_0}\frac{|g(z)|}{(z-z_0)^{k-1}}\ge\lim_{z\to z_0}\frac{|f(z)|}{(z-z_0)^{k-1}}$$ and so $f$ must have a zero of order at least $k$ at $z_0$.
+    
+    Namely, if $h=\frac{f}{g}$ then $h$ has removable singularities at the zeros of $g$, and so has an analytic continuation to the whole plane. 
+    
+    Namely, WLOG, $h$ is entire, and since $$|h|=\frac{|f|}{|g|}\le 1$$ by Louiville's $h$ is consant. So there is some $\lambda\in\mathbb{C}$
+    so $\frac{f}{g}=\lambda$ and namely, $f=\lambda g$.
+\end{enumerate}
+\end{solution}
+
+
+\end{document}
+ 

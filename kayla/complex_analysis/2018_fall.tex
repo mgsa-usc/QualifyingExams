@@ -1,0 +1,152 @@
+\documentclass[12pt]{Homework}
+
+% Changed from \usepackage{prelude}
+\usepackage{preamble}
+\usepackage{amssymb}
+\usepackage{enumitem}
+\usepackage{mathrsfs}
+\def\upint{\mathchoice%
+    {\mkern13mu\overline{\vphantom{\intop}\mkern7mu}\mkern-20mu}%
+    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+  \int}
+\def\lowint{\mkern3mu\underline{\vphantom{\intop}\mkern7mu}\mkern-10mu\int}
+\usepackage[mathscr]{euscript}
+\usepackage{comment}
+\usepackage{MnSymbol}
+\usepackage{tikz,float}
+\usepackage{tikz-cd}
+\usepackage{bbding}
+\renewcommand\qedsymbol{\Peace}
+\newcommand\placeqed{\nobreak\enspace\Peace}
+\usepackage{graphicx}
+\usepackage{mathtools}
+\usepackage{caption, threeparttable}
+\usepackage{halloweenmath}
+\newcommand{\contradiction}{\null\hfill\large{$\mathghost$}\normalsize}
+\newcommand{\im}{\mathscr{I}\text{m}}
+\newcommand{\re}{\mathscr{R}\text{e}}
+\newcommand{\res}{\text{Res}}
+
+\name{Kayla Orlinsky}
+\course{Complex Analysis Exam}
+\term{Fall 2018}
+\hwnum{Fall 2018}
+
+\begin{document}
+
+\begin{problem} $\,$
+Let $a>0$. Compute $$\int_0^\pi\frac{d\theta}{a^2+\sin^2\theta}$$
+\end{problem}
+
+
+\begin{solution}$\,$
+Since $\sin^2\theta=\sin^2(\theta+\pi)$, we have that $$\int_0^{2\pi}\frac{d\theta}{a^2+\sin^2\theta}=2\int_0^\pi\frac{d\theta}{a^2+\sin^2\theta}$$ and so
+
+\begin{align*}
+    \int_0^\pi\frac{d\theta}{a^2+\sin^2\theta}&=\frac{1}{2}\int_0^{2\pi}\frac{d\theta}{a^2+\sin^2\theta}\\
+    &=\frac{1}{2}\int_0^{2\pi}\frac{d\theta}{a^2+\frac{1-\cos\theta}{2}}\\
+    &=\frac{1}{2}\int_0^{2\pi}\frac{2d\theta}{2a^2+1-\frac{e^{i\theta}+e^{-i\theta}}{2}}\\
+    &=\frac{1}{2}\int_0^{2\pi}\frac{4d\theta}{4a^2+2-e^{i\theta}-e^{-i\theta}}\\
+    &=\frac{1}{2}\int_0^{2\pi}\frac{-4e^{i\theta}d\theta}{e^{2i\theta}-(4a^2+2)e^{i\theta}+1}\\
+    &=\frac{1}{2}\int_{\{|z|=1\}}\frac{4idz}{z^2-(4a^2+2)z+1}\qquad z=e^{i\theta}\\
+    &=\frac{4i}{2}\int_{\{|z|=1\}}\frac{dz}{(z-\alpha)(z-\beta)}\tag{1}\\
+    &=2i\left(2\pi i\res_{z=\beta}\frac{1}{(z-\alpha)(z-\beta)}\right)\tag{2}\\
+    &=-4\pi\frac{1}{\beta-\alpha}\\
+    &=\frac{-4\pi}{-4a\sqrt{a^2+1}}\\
+    &=\frac{\pi}{a\sqrt{a^2+1}}\\
+\end{align*}
+
+with (1) since \begin{align*}
+    x^2-(4a^2+2)x+1=0\implies x&=\frac{4a^2+2\pm\sqrt{(4a^2+2)^2-4}}{2}\\
+    &=\frac{4a^2+2\pm\sqrt{16a^4+16a^2+4-4}}{2}\\
+    &=\frac{4a^2+2\pm\sqrt{16a^4+16a^2}}{2}\\
+    &=\frac{4a^2+2\pm4a\sqrt{a^2+1}}{2}\\
+    &=2a^2+1\pm2a\sqrt{a^2+1}\\
+    \alpha&=2a^2+1+2a\sqrt{a^2+1}\\
+    \beta&=2a^2+1-2a\sqrt{a^2+1}
+\end{align*}
+
+and (2) because $\alpha>1$ for all $a>0$.
+\end{solution}
+\newpage
+
+
+
+\begin{problem} $\,$
+Find the number of solutions of the equation $z-2-e^{-z}=0$ in $H=\{z\in\mathbb{C}:\re(z)>0\}.$
+\end{problem}
+
+\begin{solution}$\,$
+Let $f(z)=z-2-e^{-z}$. Then $$f(iy)=iy-2-e^{-iy}=iy-2-\cos(y)-i\sin(y)=-2-\cos(y)+i(y-\sin(y))$$ and so $\re(f(iy))\le -1<0$ for all $y\in\mathbb{R}$. Thus, $f$ sends the imaginary axis to the left-half plane, away from the origin.
+
+Now, if $z-2-e^{-z}=0$ then $$|e^{-z}|=e^{\re(-z)}=|z-2|\ge|z|-2>1\qquad\text{ for all }|z|>3$$ and so for if $z$ is a root of $f$ and $|z|>3$, then $\re(-z)=-\re(z)>0$ and so $\re(z)<0$ and $z$ lies in the left-half plane. Namely, the total change in argument is at most $\pi.$
+
+Now, let $z=Re^{i\theta}$ for $\theta\in(-\pi/2,\pi/2).$
+
+Then $$\frac{1}{R}f(Re^{i\theta})=e^{i\theta}-\frac{2}{R}-\frac{e^{-Re^{i\theta}}}{R}\to e^{i\theta}\qquad R\to\infty$$ and so by the argument principle, $f$ has a total change in argument of $\pi$.
+
+Namely, $f$ can have at most one zero in the right half plane.
+
+Since $f(0)<0$ and $f(10)=8-\frac{1}{e^{10}}>7>0$ by the intermediate value theorem, $f$ has a zero on the positive real axis. 
+
+Namely, $f$ has exactly one zero in the right-half plane.
+
+\end{solution}
+\newpage
+
+
+
+
+\begin{problem} $\,$
+Let $\Omega\not=\mathbb{C}$ be simply connected and let for any $c\in\Omega$, the mapping $\varphi_c:\Omega\to\mathbb{D}=\{z\in\mathbb{C}:|z|<1\}$ be conformal so that $\varphi_c(c)=0.$ Let $g_c(z)=\log|\varphi_c(z)|,$ $z\in\Omega\backslash\{c\}.$
+
+Show that $g_a(b)=g_b(a)$ for any distinct $a,b\in\Omega.$
+\end{problem}
+
+
+\begin{solution}$\,$
+Let $a,b\in\Omega$ be distinct and let \begin{align*}
+    T:\mathbb{D}&\to\mathbb{D}\\
+    z&\mapsto\frac{z-\varphi_a(b)}{1-\overline{\varphi_a(b)}z}
+\end{align*} Then $T$ is a conformal map and isomorphism of the unit disk.
+
+Note that $\varphi_c$ being conformal for all $c$, implies that $\varphi_c$ is locally invertible by the inverse function theorem. 
+
+ Now, we examine $f(z)=(T\circ\varphi_a\circ\varphi_b^{-1})(z)$. 
+
+Then $f:\mathbb{D}\to\mathbb{D}$ with $$f(0)=T(\varphi_a(\varphi_b^{-1}(0)))=T(\varphi_a(b))=0.$$
+
+Therefore, by Schwarz' Lemma, $$|f(z)|\le|z|\qquad z\in\mathbb{D}$$ and so namely, \begin{align*}
+    |f(\varphi_b(a))|&=|T(\varphi_a(\varphi_b^{-1}(\varphi_b(a))))|\\
+    &=|T(\varphi_a(a))|\\
+    &=|T(0)|\\
+    &=|\varphi_a(b)|\\
+    &\le|\varphi_b(a)|
+\end{align*}
+
+Similarly, we can show using a different isomorphism of the disk that $$|\varphi_b(a)|\le|\varphi_a(b)|$$ and so $$|\varphi_a(b)|=|\varphi_b(a)|\implies g_a(b)=g_b(a).$$
+\end{solution}
+\newpage
+
+
+
+
+
+\begin{problem} $\,$
+Let $a\in\mathbb{D}=\{z\in\mathbb{C}:|z|<1\},$ and $$f_a(z)=\frac{a-z}{1-\overline{a}z},\qquad z\in\overline{\mathbb{D}}.$$ Show that $f_a$ is a holomorphic bijective mapping of $\mathbb{D}$  onto $\mathbb{D}$ which is its own inverse.
+\end{problem}
+
+
+\begin{solution}$\,$
+$f$ is a Mobius Transform, and so namely it is bijective with inverse $$f_a^{-1}(z)=\frac{z-a}{\overline{a}z-1}=\frac{a-z}{1-\overline{a}z}=f_a(z).$$
+
+Note that being able to write the inverse directly implies that $f$ is bijective. 
+
+Since $|a|<1$, $\left|\frac{1}{\overline{a}}\right|=\frac{1}{|a|}>1$ and so $f_a$ does not have any poles inside the unit disk. Namely, $f_a$ is holomorphic, bijective, and analytic in the unit disk.
+\end{solution}
+
+
+\end{document}
+ 

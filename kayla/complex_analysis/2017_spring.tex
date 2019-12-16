@@ -1,0 +1,131 @@
+\documentclass[12pt]{Homework}
+
+% Changed from \usepackage{prelude}
+\usepackage{preamble}
+\usepackage{amssymb}
+\usepackage{enumitem}
+\usepackage{mathrsfs}
+\def\upint{\mathchoice%
+    {\mkern13mu\overline{\vphantom{\intop}\mkern7mu}\mkern-20mu}%
+    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+  \int}
+\def\lowint{\mkern3mu\underline{\vphantom{\intop}\mkern7mu}\mkern-10mu\int}
+\usepackage[mathscr]{euscript}
+\usepackage{comment}
+\usepackage{MnSymbol}
+\usepackage{tikz,float}
+\usepackage{tikz-cd}
+\usepackage{graphicx}
+\usepackage{mathtools}
+\usepackage{bbding}
+\usepackage[skins]{tcolorbox}
+\newtcolorbox{mybox}{enhanced,sharp corners=all,colback=white,colframe=gray,toprule=0pt,bottomrule=0pt,leftrule=1pt,rightrule=1pt,overlay={
+    \draw[gray,line width=1pt] (frame.north west) -- ++(2cm,0pt);
+    \draw[gray,line width=1pt] (frame.south east) -- ++(-2cm,0pt);
+}}
+\renewcommand\qedsymbol{\Peace}
+\newcommand\placeqed{\nobreak\enspace\Peace}
+\usepackage{caption, threeparttable}
+\usepackage{halloweenmath}
+\newcommand{\contradiction}{\null\hfill\large{$\mathghost$}\normalsize}
+\newcommand{\im}{\mathscr{I}\text{m}}
+\newcommand{\re}{\mathscr{R}\text{e}}
+\newcommand{\res}{\text{Res}}
+
+\name{Kayla Orlinsky}
+\course{Complex Analysis Exam}
+\term{Spring 2017}
+\hwnum{Spring 2017}
+
+\begin{document}
+
+\begin{problem} $\,$
+Let $\gamma$ be a circle with radius $1$ and center $0$ with positive direction of integration. Compute $$\int_\gamma e^{1/z}dz$$
+\end{problem}
+
+
+\begin{solution}$\,$
+\begin{align*}
+    \int_{|z|=1}e^{1/z}dz&=\int_\{|z|=1\}\sum_{n=0}^\infty\frac{1}{z^nn!}dz\\
+    &=\sum_{n=0}^\infty\int_{|z|=1}\frac{1}{z^nn!}dz\qquad\text{ since both the integral and sums exist}\\
+    &=\sum_{n=1}^\infty\int_{|z|=1}\frac{1}{z^nn!}dz\qquad\text{first integral is of an analytic function so it dies}\\
+    &=\sum_{n=1}^\infty\left(\frac{2\pi if^{(n-1)}(0)}{(n!)^2}\right)\qquad f(z)=1\\
+    &=2\pi i
+\end{align*}
+\end{solution}
+\newpage
+
+
+
+\begin{problem} $\,$
+Assume that $f$ is a holomorphic function on the unit disk $D=\{z\in\mathbb{C}:|z|<1\}$ satisfying $$f(z)^3=\overline{f(z)}\qquad z\in D.$$ Prove that $f$ is constant.
+\end{problem}
+
+\begin{solution}$\,$
+$$f^4(z)=\overline{f(z)}f(z)=|f(z)|^2\implies f^2(z)=|f(z)|\in\mathbb{R}\qquad z\in D.$$
+
+Thus, for each $z\in D$, $f(z)$ must be either purely real or purely imaginary. Namely, $$f(D)\subset\{x:x\in\mathbb{R}\}\bigcup\{iy:y\in\mathbb{R}\}.$$
+
+However, by the open mapping theorem, if $f$ is nonconstant, then $f(D)$ must be an open subset of the plane, since $f$ is holomorphic. Since subsets of the real and imaginary lines are not open in $\mathbb{C}$, $f$ must be constant. 
+
+\begin{mybox}
+Alternatively, $$|f(z)|^3=|\overline{f(z)}|=|f(z)|\implies |f(z)|^3=|f(z)|\implies |f(z)|=0\text{ or }1\forall z\in\mathbb{D}.$$
+
+Thus, $f$ is either identically $0$ (constant) or $f$ sends the open disk to the unit circle which contradicts the open mapping theorem.
+\end{mybox}
+\end{solution}
+\newpage
+
+
+
+
+\begin{problem} $\,$
+Let $f(z)=\sum_{n=1}^\infty z^{n!}$. 
+\begin{enumerate}[label=(\alph*)]
+    \item Show that $f(z)$ is holomorphic in the unit disk $D=\{z\in\mathbb{C}:|z|<1\}$.
+    \item Show that $f$ does not have any holomorphic extension, that is, there exists no $g$ holomorphic on some open set $U\supset D$ such that $U\not=D$ and $f=g|_D$. (Hint: Consider $e^{i\theta}$ where $\theta$ is rational.)
+\end{enumerate}
+\end{problem}
+
+
+\begin{solution}$\,$
+This question is nearly identical to \textbf{Spring 2015: Problem 2}. Thus, the proof here is the same as the one given there.
+\begin{enumerate}[label=(\alph*)]
+    \item $f$ is holormophic if and only if the sum converges uniformly. For $|z|<r<1$, we have that $|z|^{n!}\le r^{n!}\le r^n$ since $r<1$, and so $f$ converges uniformly by Weierstrass M-test on $\{|z|<r\}.$ Since this holds for all $r<1$, we have that $f$ converges uniformly and is therefore analytic on $D.$
+    \item Let $D\subsetneq U$ open. Since $U\not=D$ and $U$ is open, $U$ must contain some $z_0$ with $|z_0|=1.$ 
+    
+    Again, since $U$ is open, any neighborhood of $z_0$ must contain some $z=e^{i\pi/m}$ for $m\in\mathbb{Z}$ since $|z|=1.$
+    
+    However, then $$f(z)=\sum_{n=0}^{m-1}e^{in!\pi/m}+\sum_{n=m}^\infty e^{i\pi n!/m}=\sum_{n=0}^{m-1}e^{in!\pi/m}+\sum_{n=m}^\infty 1=\infty$$ since $n!/m\in\mathbb{Z}$ for $n\ge m.$ 
+    
+    Now, $f$ has a non-removable singularity in every neighborhood of $z_0$.
+    
+    Namely, $f$ cannot be extended to a neighborhood to $z_0$ since it will not converge in any punctured neighborhood of $z_0.$
+\end{enumerate}
+\end{solution}
+\newpage
+
+
+
+
+
+\begin{problem} $\,$
+Let $f$ be an entire function such that $$f(z+m+ni)=f(z),\qquad z\in\mathbb{C}\qquad m,n\in\mathbb{Z}.$$ Prove that $f$ is a constant function.
+\end{problem}
+
+
+\begin{solution}$\,$
+WLOG, let $f(0)=0$, else we can let $g(z)=f(z)-f(0)$. 
+
+Let $z\in\mathbb{C}$. Then let $m$ be the integer component of $\re(z)$ and $n$ be the integer part of $\im(z).$ Then for some $\alpha,\beta\in(0,1),$ we can write $$z=(m+\alpha)+(n+\beta)i\implies f(z)=f((\alpha+\beta i)+(m+ni))=f(\alpha+\beta i).$$
+
+Namely, $f$ is uniquely determined by the values in takes in $\mathbb{D}=\{|z|<1\}$. Since $f$ is entire, by the maximum modulus principle, $f$ must attain a maximum on $\partial\overline{\mathbb{D}}=\{|z|=1\}.$
+
+Now, because $f$ is entire, it has no poles, so $$M=\sup_{z\in\partial\overline{\mathbb{D}}}|f(z)|<\infty$$ and $$|f(z)|\le M\qquad\text{ for all }z\in\mathbb{C}$$ so by Louiville's $f$ is entire and bounded so it is constant.
+\end{solution}
+
+
+\end{document}
+ 

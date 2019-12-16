@@ -1,0 +1,206 @@
+\documentclass[12pt]{Homework}
+
+% Changed from \usepackage{prelude}
+\usepackage{preamble}
+\usepackage{amssymb}
+\usepackage{enumitem}
+\usepackage{mathrsfs}
+\def\upint{\mathchoice%
+    {\mkern13mu\overline{\vphantom{\intop}\mkern7mu}\mkern-20mu}%
+    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+  \int}
+\def\lowint{\mkern3mu\underline{\vphantom{\intop}\mkern7mu}\mkern-10mu\int}
+\usepackage[mathscr]{euscript}
+\usepackage{comment}
+\usepackage{MnSymbol}
+\usepackage{tikz,float}
+\usepackage{tikz-cd}
+\usepackage{graphicx}
+\usepackage{bbding}
+\renewcommand\qedsymbol{\Peace}
+\newcommand\placeqed{\nobreak\enspace\Peace}
+\usepackage{mathtools}
+\usepackage{caption, threeparttable}
+\usepackage{halloweenmath}
+\newcommand{\contradiction}{\null\hfill\large{$\mathghost$}\normalsize}
+\newcommand{\im}{\mathscr{I}\text{m}}
+\newcommand{\re}{\mathscr{R}\text{e}}
+\newcommand{\res}{\text{Res}}
+
+\name{Kayla Orlinsky}
+\course{Complex Analysis Exam}
+\term{Fall 2011}
+\hwnum{Fall 2011}
+
+\begin{document}
+
+\begin{problem} $\,$
+Evaluate $$\int_0^{2\pi}\frac{d\theta}{3+\cos\theta+2\sin\theta}.$$
+\end{problem}
+
+
+\begin{solution}$\,$
+\begin{align*}
+    \int_0^{2\pi}\frac{d\theta}{3+\cos\theta+2\sin\theta}&=\int_0^{2\pi}\frac{d\theta}{3+\frac{e^{i\theta}+e^{-i\theta}}{2}+\frac{e^{i\theta}-e^{-i\theta}}{i}}\\
+    &=\int_0^{2\pi}\frac{2ie^{i\theta}d\theta}{6ie^{i\theta}+ie^{2i\theta}+i+2e^{2i\theta}-2}\\
+    &=\int_{|z|=1}\frac{2dz}{6iz+iz^2+i+2z^2-2}\qquad z=e^{i\theta}\\
+    &=\int_{|z|=1}\frac{2dz}{(i+2)z^2+6iz+i-2}\\
+    &=\int_{|z|=1}\frac{2dz}{(i+2)\left(z+\frac{1}{5}(1+2i)\right)(z+1+2i)}\tag{1}\\
+    &=\left(2\pi i\res_{z=-\frac{1}{5}(1+2i)}\frac{2}{(i+2)\left(z+\frac{1}{5}(1+2i)\right)(z+1+2i)}\right)\\
+    &=2\pi i \frac{2}{(i+2)\left(-\frac{1}{5}(1+2i)+1+2i\right)}\\
+    &=4\pi i\frac{1}{(i+2)\frac{4}{5}(1+2i)}\\
+    &=5\pi i\frac{1}{(1+2i)(i+2)}\\
+    &=5\pi i\frac{1}{i+2-2+4i}\\
+    &=5\pi i\frac{1}{5i}\\
+    &=\pi
+\end{align*}
+
+With (1) from the quadratic formula where \begin{align*}
+    z&=\frac{-6i\pm\sqrt{-36-4(i+2)(i-2)}}{2(i+2)}\\
+    &=\frac{-6i\pm\sqrt{-36-4(-5)}}{2(i+2)}\\
+    &=\frac{-6i\pm\sqrt{-16}}{2(i+2)}\\
+    &=\frac{-6i\pm 4i}{2(i+2)}\\
+    &=\frac{-3i\pm 2i}{i+2}\\
+    &=\frac{-i}{i+2},\frac{-5i}{i+2}\\
+    &=-\frac{1}{5}(-i(i-2)),i(i-2)\\
+    &=-\frac{1}{5}(1+2i),-1-2i
+\end{align*}
+
+and since $|-1-2i|>1$ and $\frac{1}{5}|1+2i|<1$, we have only one residue.
+\end{solution}
+\newpage
+
+\begin{problem} $\,$
+Suppose the series $f(z)=\sum_{n=0}^\infty c_nz^n$ converges for $|z|<R$. Show that for $r<R$, $$\int_{|z|=r}|f(z)|^2dz=2\pi\sum_{n=0}^\infty|c_n|^2r^{2n}.$$ \textit{TYPO: Should be} $$\int_{|z|=r}|f(z)|^2|dz|=2\pi r\sum_{n=0}^\infty|c_n|^2r^{2n}.$$ 
+\end{problem}
+
+
+\begin{solution}$\,$
+We must interpret $$\int_{|z|=r}|f(z)|^2dz=\int_{|z|=r}|f(z)|^2|dz|$$ else this problem does not make sense. Specifically, if $f(z)=z$, which certainly has a well defined Taylor series ($c_n=0$ for all $n\not=1$), then $$\int_{|z|=r}|f(z)|^2dz=\int_{|z|=r}|z|^2dz=r^2\int_{|z|=r}dz=0\not=2\pi r^2.$$
+
+Now, with this change in notation, we obtain that $$\int_{|z|=r}|f(z)|^2|dz|=\int_{|z|=r}|z|^2|dz|=r^2\int_{|z|=r}|dz|=2\pi r^3=2\pi r( r^2)=2\pi r\sum_{n=0}^\infty|c_n|^2r^{2n}.$$
+
+\begin{align*}
+    \int_{|z|=r}|f(z)|^2|dz|&=\int_{|z|=r}f(z)\overline{f(z)}|dz|\\
+    &=\int_{|z|=r}\left(\sum_{n=0}^\infty c_nz^n\right)\left(\overline{\sum_{n=0}^\infty c_nz^n}\right)|dz|\\
+    &=\int_{|z|=r}\left(\sum_{n=0}^\infty c_nz^n\right)\left(\sum_{n=0}^\infty \overline{c_n}\overline{z}^n\right)|dz|\\
+    &=\int_{|z|=r}\sum_{n=0}^\infty\sum_{k=0}^nc_kz^k\overline{c_{n-k}}\overline{z}^{n-k}|dz|\qquad\text{Cauchy Product}\\
+    &=\sum_{n=0}^\infty\int_{|z|=r}\sum_{k=0}^nc_k\overline{c_{n-k}}z^k\overline{z}^{n-k}|dz|
+    \end{align*}
+    
+Now, we examine the inner sum. 
+
+\begin{comment}
+At this point, it is exceptionally helpful to illustrate this problem with two examples.
+
+\boxed{n=3} Then, forgetting the $c_k,\overline{c_{n-k}}$ for a moment, we can look at $$\sum_{k=0}^3z^k\overline{z}^{3-k}=\overline{z}^3+z\overline{z}^2+z^2\overline{z}+z^3=\frac{z^3\overline{z}^3}{z^3}+\frac{z^2\overline{z}^2}{z}+z\cdot z\overline{z}+z^3=\frac{|z^3|^2}{z^3}+\frac{|z^2|^2}{z}+z|z|^2+z^3.$$
+
+Note that if we integrate over the circle $|z|=r,$ then using the substitution $z=re^{i\theta}$ and $dz=rie^{i\theta}d\theta$ so $|dz|=rd\theta$, we will get that each of these functions dies. For example, $$\int_{|z|=r}\frac{|z|^6}{z^3}|dz|=r^7\int_0^{2\pi}\frac{1}{r^3e^{3i\theta}}d\theta=\int_0^{2\pi}\frac{i}{r^2e^{2i\theta}}d\theta=\frac{i}{-2ir^2}e^{-2i\theta}\big|_0^{2\pi}=0.$$ Since each integral will contain 
+
+\boxed{n=4} We repeat the above, this time using an even $n.$ Then $$\sum_{k=0}^4z^k\overline{z}^{4-k}=\overline{z}^4+z\overline{z}^3+z^2\overline{z}^2+z^3\overline{z}+z^4=\frac{|z|^8}{z^4}+\frac{|z|^6}{z^2}+|z|^4+z^2|z|^2+z^4.$$ 
+
+Note that all of these integrals will vanish as none of them have a $\frac{1}{z}$ term.
+
+Now, we generalize.
+\end{comment}
+
+\begin{claim} $$\int_{|z|=r}z^n|dz|=0\qquad\text{ for all }n\not=0,n\in\mathbb{N}.$$
+\begin{proof} Assume $n\not=0.$ Then let $z=re^{i\theta}$. Then $dz=ire^{i\theta}d\theta$ so $|dz|=rd\theta$.
+
+Therefore, \begin{align*}
+    \int_{|z|=r}z^n|dz|&=\int_0^{2\pi}(re^{i\theta})^nrd\theta\\
+    &=\int_0^{2\pi}r^{n+1}e^{ni\theta}d\theta\\
+    &=r^{n+1}\frac{e^{ni\theta}}{ni}\big|_0^{2\pi}\\
+    &=\frac{r^{n+1}}{ni}(e^{2ni\pi}-1)\\
+    &=\frac{r^{n+1}}{ni}(1-1)\\
+    &=0
+\end{align*} since $n$ is an integer, $e^{2ni\pi}=\cos(2n\pi)+i\sin(2n\pi)=1.$
+
+Note that if $n=0$, then $$\int_{|z|=r}z^n|dz|=\int_0^{2\pi}rd\theta=2\pi r.$$
+\end{proof}
+\end{claim}
+
+\begin{align*}
+    \sum_{k=0}^nc_k\overline{c_{n-k}}z^k\overline{z}^{n-k}&=\begin{cases}
+    \sum_{0\le j<k\le n}c_j\overline{c_k}z^j\overline{z}^k+\sum_{n\ge j>k\ge0}c_j\overline{c_k}z^j\overline{z}^k & \text{ if }n\text{ is odd }\\
+    \sum_{0\le j<k\le n}c_j\overline{c_k}z^j\overline{z}^k+\sum_{n\ge j>k\ge0}c_j\overline{c_k}z^j\overline{z}^k  +c_{n/2}\overline{c_{n/2}}z^{n/2}\overline{z^{n/2}}& \text{ if }n\text{ is even }\\
+    \end{cases}\\
+\end{align*}
+
+Now, we simply cite the claim. 
+
+If $j<k$ then $$c_j\overline{c_k}z^j\overline{z}^k=C|z|^k\frac{1}{z^{k-j}}\qquad k-j>0$$ and so these integrals will die since they contain a $z^l$ term with $l\not=0.$
+
+Similarly, if $j>k$ then $$c_j\overline{c_k}z^j\overline{z}^k=C|z|^kz^{j-k}\qquad j-k>0$$ so these integrals will also die.
+
+Therefore, if $n$ is odd, all terms die.
+
+If $n$ is even, then the only term which will not contain a power of $z$ is in fact $$c_{n/2}\overline{c_{n/2}}z^{n/2}\overline{z^{n/2}}=|c_n|^2|z^n|^2=|c_n|^2|z|^{2n}\qquad\text{ after reindexing}.$$
+
+In this case, $$\int_{|z|=r}|c_n|^2|z|^{2n}dz=|c_n|^2r^{2n}\int_{|z|=r}|dz|=|c_n|^2r^{2n+1}2\pi.$$
+
+Finally, we have that $$\int_{|z|=r}|f(z)|^2|dz|=\sum_{n=0}^\infty\int_{|z|=r}\sum_{k=0}^nc_k\overline{c_{n-k}}z^k\overline{z}^{n-k}|dz|=\sum_{n=0}^\infty|c_n|^2r^{2n}\int_{|z|=r}|dz|=2\pi r\sum_{n=0}^\infty|c_n|^2r^{2n}.$$
+\end{solution}
+\newpage
+
+\begin{problem} $\,$
+Let $f(z)$ be analytic on $\mathbb{C}$ and suppose that the line $\Gamma=\{t+it\,|\,t\in\mathbb{R}\}$ is mapped to itself, that is $f(z)\in\Gamma$ for all $z\in\Gamma$. If $f(\sqrt{2})=3,$ then what is $f(\sqrt{2}i)$
+\end{problem}
+
+
+\begin{solution}$\,$
+Let $$g(z)=e^{-\frac{\pi}{4}i}z=\frac{\sqrt{2}}{2}(1-i)z.$$ Note that $g$ is trivially a Mobius transform and so it is invertible.
+
+Then $$g(t+it)=e^{-\frac{\pi}{4}i}(t+it)=\frac{\sqrt{2}}{2}t(1-i)(1+i)=\frac{\sqrt{2}}{2}t2=\sqrt{2}t.$$
+
+Thus, $g$ sends $\Gamma$ to the real line.
+
+Thus, $g\circ f\circ g^{-1}$ fixes the real line. Since $g$ and $g^{-1}$ are analytic (clearly) and $f$ is analytic, their composition is analytic.
+
+Therefore, by Schwarz' Reflection Principle, $$(g\circ f\circ g^{-1})(z)=\overline{(g\circ f\circ g^{-1})(\overline{z})}.$$
+
+Now, $g(\sqrt{2})=1-i$ and $g(\sqrt{2}i)=1+i=\overline{1-i}$ so \begin{align*}
+    (g\circ f\circ g^{-1})(1-i)&=g(f(\sqrt{2}))\\
+    &=g(3)\\
+    &=\frac{3\sqrt{2}}{2}(1-i)\\
+    &=\overline{(g\circ f\circ g^{-1})(\overline{1-i})}\\
+    &=\overline{g(f(g^{-1}(1+i)))}\\
+    &=\overline{g(f(\sqrt{2}i))}\\
+    g(f(\sqrt{2}i))&=\overline{\frac{3\sqrt{2}}{2}(1-i)}\\
+    &=\frac{3\sqrt{2}}{2}(1+i)\\
+    f(\sqrt{2}i)&=g^{-1}(\frac{3\sqrt{2}}{2}(1+i))\\
+    &=g^{-1}(\frac{\sqrt{2}}{2}(1-i)(3i))\tag{1}\\
+    &=3i
+\end{align*} with (1) since $$\frac{3\sqrt{2}}{2}(1+i)=\frac{\sqrt{2}}{2}(1-i)z\implies z=3\frac{1+i}{1-i}=3\frac{(1+i)^2}{2}=\frac{3}{2}(1-1+2i)=3i.$$
+
+\end{solution}
+\newpage
+
+
+
+
+
+\begin{problem} $\,$
+Let $\Omega\subset\mathbb{C}$, with $\Omega\not=\mathbb{C},$ be simply connected, and let $f:\Omega\to\Omega$ be a conformal bijection. If $f$ has two distinct fixed points $z_1$, $z_2,$ (that is, $f(z_1)=z_1$, $f(z_2)=z_2$), show that $f$ is the identity map.
+\end{problem}
+
+
+\begin{solution}$\,$
+Since $\omega\not=\mathbb{C}$ and $\omega\subset\mathbb{C}$, we have that $\omega\subset\overline{\mathbb{C}}$ with at least two points in its compliment (namely, some point in $\mathbb{C}$ and $\infty$).
+
+Therefore, by the Riemann Mapping Theorem, since $\Omega$ is simply connected, there exists an analytic bijection $g:\omega\to\mathbb{D}$ from $\omega$ to the unit disk such that $g(z_1)=0$ and $g'(z_1)\in\mathbb{R}^+.$
+
+Therefore, $$g\circ f\circ g^{-1}:\mathbb{D}\to\mathbb{D}$$ is a map from the disk to the disk and $$(g\circ f\circ g^{-1})(0)=g(f(z_1))=g(z_1)=0.$$
+
+Furthermore, if $g(z_2)=z$ then $$(g\circ f\circ g^{-1})(z)=g(f(z_2))=g(z_2)=z$$ and so by Schwarz' Lemma, $g\circ f\circ g^{-1}=cz$ is a rotation for some $|c|=1$. 
+
+However, clearly $c=1$ since we have already shown that $z\mapsto z$ through $g\circ f\circ g^{-1}$. 
+
+Therefore, $$f(z)=g^{-1}(g(z))=z$$ and so $f$ is the identity map.
+\end{solution}
+
+
+\end{document}
+ 
