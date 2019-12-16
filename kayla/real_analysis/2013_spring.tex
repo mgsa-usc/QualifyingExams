@@ -1,29 +1,5 @@
-\documentclass[12pt]{Homework}
-
-% Changed from \usepackage{prelude}
+\documentclass[12pt]{Qual}
 \usepackage{preamble}
-\usepackage{amssymb}
-\usepackage{enumitem}
-\usepackage{mathrsfs}
-\def\upint{\mathchoice%
-    {\mkern13mu\overline{\vphantom{\intop}\mkern7mu}\mkern-20mu}%
-    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
-    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
-    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
-  \int}
-\def\lowint{\mkern3mu\underline{\vphantom{\intop}\mkern7mu}\mkern-10mu\int}
-\usepackage[mathscr]{euscript}
-\usepackage{comment}
-\usepackage{bbding}
-\renewcommand\qedsymbol{\Peace}
-\newcommand\placeqed{\nobreak\enspace\Peace}
-\usepackage{MnSymbol}
-\usepackage{tikz}
-\usepackage{halloweenmath}
-\newcommand{\contradiction}{\null\hfill\large{$\mathghost$}\normalsize}
-\renewenvironment{framed}[1][\hsize]
-   {\MakeFramed{\hsize#1\advance\hsize-\width \FrameRestore}}%
-   {\endMakeFramed}
 
 \name{Kayla Orlinsky}
 \course{Real Analysis Exam}
@@ -68,7 +44,7 @@ Investigate the convergence of $\sum_{n=0}^\infty a_n$ where $$a_n=\int_0^1\frac
 First, $\sin(\pi x)\ge 0$ for all $0\le x\le 1$. Now, using a quick sketch we see that $y=-2(x-1)$ seems to be below $\sin(\pi x)$. A quick check shows that $$\frac{d}{dx}(\sin(\pi x)+2(x-1))=\pi\cos(\pi x)+2\qquad\text{ changes sign once for }\frac{1}{2}\le x\le 1$$ which is verified since $$\frac{d}{dx}(\pi\cos(\pi x)+2)=-\pi^2\sin(\pi x)\le0\qquad\frac{1}{2}\le x\le 1.$$ Thus, since $$\sin(\pi x)+2x-2=0\qquad\text{ when }x=\frac{1}{2},1$$ and $$\frac{\sqrt{2}}{2}+\frac{3}{2}-2\ge 0\qquad\text{ for }x=\frac{3}{4}$$ so for all $\frac{1}{2}\le x\le 1$. Thus, $\sin(\pi x)\ge -2(x-1)$.
 
 Let $f_n(x)=\frac{x^n}{1-x}\sin(\pi x)$.
-Let $(\mathbb{N},\nu)$ be the counting measure. 
+Let $(\mathbb{N},\nu)$ be the counting measure.
 Then, $([0,1],m)$ and $(\mathbb{N},\nu)$ are $\sigma$-finite and $f_n(x)\in L^+(m\times \nu)$. Then by Tonelli, we can swap the order of integration, so \begin{align*}
     \sum_{n=0}^\infty a_n&=\int_0^1\sum_{n=0}^\infty\frac{x^n}{1-x}\sin(\pi x)dx\\
     &=\int_0^1\sum_{n=0}^\infty\frac{x^n}{1-x}\sin(\pi x)dx\\
@@ -118,7 +94,7 @@ Prove that $$\mu\left(\left\{\frac{d\nu}{d\mu}=1\right\}\right)=0.$$
 
 
 \begin{solution}$\,$
-We make several observations. Note, that in all facts used below, $\sigma$-finiteness as well as positivity of the measures is necessary. 
+We make several observations. Note, that in all facts used below, $\sigma$-finiteness as well as positivity of the measures is necessary.
 \begin{enumerate}
     \item From $\nu<<\mu-\nu$, $\displaystyle(\mu-\nu)(E)=0\implies\nu(E)=0\implies  \mu(E)-\nu(E)=0\implies \mu(E)=\nu(E)=0$. Thus, $\mu<<\nu$.
     \item Since $\mu\ge\nu$, $\nu<<\mu$.
@@ -131,7 +107,7 @@ Now, we claim that $\mu=\nu$ only on null sets.
 
 \boxed{\implies} Assume $\mu(E)\not=0$. Then $\nu(E)\not=0$, else, if $\nu(E)=0$ then $\mu(E)=0$ since $\mu<<\nu$.
 
-Now, if $\mu(E)=\nu(E)$ then $\mu(E)-\nu(E)=0$ and so $\nu(E)=0$ since $\nu<<\mu-\nu$. However, this is a contradiction. 
+Now, if $\mu(E)=\nu(E)$ then $\mu(E)-\nu(E)=0$ and so $\nu(E)=0$ since $\nu<<\mu-\nu$. However, this is a contradiction.
 
 Thus, $\mu(E)\not=\nu(E)$.
 
@@ -165,4 +141,3 @@ Thus, $$\frac{d\nu}{d\mu}=f<1\qquad\mu\text{-a.e.}$$ and so  $$\mu\left(\left\{\
 \vspace{0.5cm}
 
 \end{document}
- 

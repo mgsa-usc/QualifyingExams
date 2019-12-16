@@ -83,8 +83,16 @@
 }}
 \usepackage{bbding}
 \renewcommand\qedsymbol{\Peace}
+\renewenvironment{framed}[1][\hsize]
+   {\MakeFramed{\hsize#1\advance\hsize-\width \FrameRestore}}%
+   {\endMakeFramed}
 \newcommand\placeqed{\nobreak\enspace\Peace}
+\newcommand{\hhline}{\vspace{0.25cm}
+    \hrule
+    $\,$\vspace{-0.25cm}
+    \hrule
+    \vspace{0.25cm}}
 
-\newcommand{\im}{\mathscr{I}\text{m}}
-\newcommand{\re}{\mathscr{R}\text{e}}
-\newcommand{\res}{\text{Res}}
+% \newcommand{\im}{\mathscr{I}\text{m}}
+% \newcommand{\re}{\mathscr{R}\text{e}}
+% \newcommand{\res}{\text{Res}}

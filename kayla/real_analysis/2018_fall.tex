@@ -1,33 +1,5 @@
-\documentclass[12pt]{Homework}
-
-% Changed from \usepackage{prelude}
-
+\documentclass[12pt]{Qual}
 \usepackage{preamble}
-\usepackage{amsmath}
-\usepackage{amssymb}
-\usepackage{enumitem}
-\usepackage{mathrsfs}
-\usepackage[mathscr]{euscript}
-\usepackage{comment}
-%\usepackage{MnSymbol}
-\usepackage{tikz,float}
-\usepackage{tikz-cd}
-\usepackage{bbding}
-\renewcommand\qedsymbol{\Peace}
-\newcommand\placeqed{\nobreak\enspace\Peace}
-\usepackage{graphicx}
-\usepackage{caption, threeparttable}
-%\captionsetup{labelfont = sc, textfont = it}
-\usepackage{halloweenmath}
-\newcommand{\contradiction}{\null\hfill\large{$\mathghost$}\normalsize}
-\usepackage[skins]{tcolorbox}
-\newtcolorbox{mybox}{enhanced,sharp corners=all,colback=white,colframe=gray,toprule=0pt,bottomrule=0pt,leftrule=1pt,rightrule=1pt,overlay={
-    \draw[gray,line width=1pt] (frame.north west) -- ++(2cm,0pt);
-    \draw[gray,line width=1pt] (frame.south east) -- ++(-2cm,0pt);
-}}
-\newcommand{\im}{\mathscr{I}\text{m}}
-\newcommand{\re}{\mathscr{R}\text{e}}
-\newcommand{\res}{\text{Res}}
 
 \name{Kayla Orlinsky}
 \course{Real Analysis Exam}
@@ -37,7 +9,7 @@
 \begin{document}
 
 \begin{problem} $\,$
-Let $f:[0,1]\to\mathbb{R}$ be an absolutely continuous function. Let $$g(x)=\int_0^1f(xt)dt,\qquad x\in[0,1].$$ Show that $g$ is an absolutely continuous function. 
+Let $f:[0,1]\to\mathbb{R}$ be an absolutely continuous function. Let $$g(x)=\int_0^1f(xt)dt,\qquad x\in[0,1].$$ Show that $g$ is an absolutely continuous function.
 \end{problem}
 
 
@@ -65,7 +37,7 @@ Finally,
     &=Mm(E_k\cap F_M)+\int_{E_k\cap F_M^c}f(x)dx
 \end{align*}
 
-and since $\displaystyle \int_{E_k}f(x)dx\to0$ and $m(E_k\cap F_M^c)\to0$ as $k\to\infty$, and since $f(x)<\infty$ on $E_k\cap F_M^c$, $\displaystyle \int_{E_k\cap F_M^c}f(x)dx\to0$ as $k\to\infty$ and so at last, $m(E_k\cap F_M)\to0$ as $k\to\infty.$ 
+and since $\displaystyle \int_{E_k}f(x)dx\to0$ and $m(E_k\cap F_M^c)\to0$ as $k\to\infty$, and since $f(x)<\infty$ on $E_k\cap F_M^c$, $\displaystyle \int_{E_k\cap F_M^c}f(x)dx\to0$ as $k\to\infty$ and so at last, $m(E_k\cap F_M)\to0$ as $k\to\infty.$
 \end{solution}
 \newpage
 
@@ -82,7 +54,7 @@ Let $f\in L^1(\mathbb{R})$, and let $$S_n(x)=\frac{1}{n}\sum_{j=0}^{n-1}f\left(x
 
 
 \begin{solution}$\,$
-First, we note that $$\lim_{n\to\infty}S_n(x)=S(x)$$ as a Riemann integral. Now, since $f$ is Lebesgue integrable, it is bounded almost everywhere and since it is Lebesgue measurable, it is continuous almost everywhere. 
+First, we note that $$\lim_{n\to\infty}S_n(x)=S(x)$$ as a Riemann integral. Now, since $f$ is Lebesgue integrable, it is bounded almost everywhere and since it is Lebesgue measurable, it is continuous almost everywhere.
 
 Namely, we have that $S(x)$ the Riemann integral, will equal the Lebesgue integral for a.e. $x.$
 
@@ -96,7 +68,7 @@ We will apply DCC to $|S_n(x)-S(x)|$
         &=\int_0^1\int_\mathbb{R}|f(u-x)|dxdu\qquad\text{ Tonelli}\\
         &=\int_0^1Mdu\\
         &=M<\infty
-    \end{align*} 
+    \end{align*}
     Where $M=\int|f(x)|dx<\infty$ since $f\in L^1.$
 \end{enumerate}
 
@@ -132,7 +104,7 @@ Let $g(x)$ be a smoothed out characteristic function on $[-1,1]$ times some cons
 \end{tikzpicture}
 \end{center}
 
-Now, because $\int f_ngdx\to g(0)$ regardless of what $g$ is doing away from $0$, we claim that the $\int f_ndx$ is $1$ near $0$ and $0$ everywhere else. 
+Now, because $\int f_ngdx\to g(0)$ regardless of what $g$ is doing away from $0$, we claim that the $\int f_ndx$ is $1$ near $0$ and $0$ everywhere else.
 
 First, let $\varepsilon>0$ and let $a=1$. Then $$\lim_{n\to\infty}\int_{[-\varepsilon,\varepsilon]}f_n(x)dx=\lim_{n\to\infty}\int_{[-\varepsilon,\varepsilon]}f_n(x)g(x)dx=g(0)=1.$$
 
@@ -163,4 +135,3 @@ Thus, $f_n$ does not converge to any $L^1$ function in $L^1$, so it cannot be a 
 \vspace{0.5cm}
 
 \end{document}
- 

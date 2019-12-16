@@ -1,29 +1,5 @@
-\documentclass[12pt]{Homework}
-
-% Changed from \usepackage{prelude}
+\documentclass[12pt]{Qual}
 \usepackage{preamble}
-\usepackage{amssymb}
-\usepackage{enumitem}
-\usepackage{mathrsfs}
-\def\upint{\mathchoice%
-    {\mkern13mu\overline{\vphantom{\intop}\mkern7mu}\mkern-20mu}%
-    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
-    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
-    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
-  \int}
-\def\lowint{\mkern3mu\underline{\vphantom{\intop}\mkern7mu}\mkern-10mu\int}
-\usepackage[mathscr]{euscript}
-\usepackage{comment}
-\usepackage{bbding}
-\renewcommand\qedsymbol{\Peace}
-\newcommand\placeqed{\nobreak\enspace\Peace}
-\usepackage{MnSymbol}
-\usepackage{tikz}
-\usepackage{halloweenmath}
-\newcommand{\contradiction}{\null\hfill\large{$\mathghost$}\normalsize}
-\renewenvironment{framed}[1][\hsize]
-   {\MakeFramed{\hsize#1\advance\hsize-\width \FrameRestore}}%
-   {\endMakeFramed}
 
 \name{Kayla Orlinsky}
 \course{Real Analysis Exam}
@@ -76,7 +52,7 @@ Then, $$\int_{[0,1]}\frac{f^\varepsilon-1}{\varepsilon}dm=\int_{E}\frac{f^\varep
 
 Now, we let $\varepsilon=\frac{1}{n}$ and $$f_n(x)=\frac{f^{1/n}(x)-1}{\frac{1}{n}}=n(f^{1/n}(x)-1).$$
 
-\boxed{\text{ on }E} We would like to use Monotone Convergence Theorem. 
+\boxed{\text{ on }E} We would like to use Monotone Convergence Theorem.
 \begin{enumerate}
     \item $\{f_n\}\in L^+$. Since $f>1$ on $E$, $f^{1/n}>1$ and so $n(f^{1/n}-1)>0$ for all $n$. Furthermore, $f_n$ is measurable since $f$ is.
     \item \begin{align*}
@@ -84,7 +60,7 @@ Now, we let $\varepsilon=\frac{1}{n}$ and $$f_n(x)=\frac{f^{1/n}(x)-1}{\frac{1}{
         &=f^{1/n}-1-\frac{f^{1/n}\log f}{n}\\
         &=\frac{n(f^{1/n}-1)-f^{1/n}\log f}{n}
     \end{align*}
-    Since, $f>1$, $f^{1/n}>1$ for all $n$ and so for large enough $n$, the derivative is eventually positive and so, after perhaps removing the first $N$ terms, $f_n\le f_{n+1}$. 
+    Since, $f>1$, $f^{1/n}>1$ for all $n$ and so for large enough $n$, the derivative is eventually positive and so, after perhaps removing the first $N$ terms, $f_n\le f_{n+1}$.
     \item $f_n\to\log f$ for all $x\in E$.
 \end{enumerate}
 
@@ -99,7 +75,7 @@ Thus, by the monotone convergence theorem, we may bring the limit inside the int
 
 Thus, by the monotone convergence theorem we can bring the limit inside the intergral on $E$.
 
-Finally, 
+Finally,
 \begin{align*}
     \lim_{\varepsilon\to0^+}\int_{[0,1]}\frac{f^\varepsilon-1}{\varepsilon}dm&=\lim_{n\to\infty}\left[\int_Ef_n-\int_{E^c}-f_n\right]\\
     &=\int_E\lim_{n\to\infty}f_ndm-\int_{E^c}\lim_{n\to\infty}-f_ndm\\
@@ -120,9 +96,9 @@ Let $h=\frac{1}{n}$ and $f_n(x)=n(f(x+\frac{1}{n})-f(x))$.
 
 $$\lim_{n\to\infty}\int|f_n(x)|dx=0$$ implies that $|f_n(x)|\to0$ in $L^1$.
 
-Now, since $f$ is absolutely continuous, $f'$ exists a.e. and $f_n\to f'$ where it exists. 
+Now, since $f$ is absolutely continuous, $f'$ exists a.e. and $f_n\to f'$ where it exists.
 
-Thus, since $f_n\to0$ in $L^1$, there exists a subsequence $\{f_{n_k}\}$ which converges to $0$ a.e. However, since $f_{n_k}\to f'$ a.e., this implies that $f'=0$ a.e 
+Thus, since $f_n\to0$ in $L^1$, there exists a subsequence $\{f_{n_k}\}$ which converges to $0$ a.e. However, since $f_{n_k}\to f'$ a.e., this implies that $f'=0$ a.e
 
 Finally, since $f$ is absolutely continuous, by the Fundamental Theorem of Lebesgue Integrals, on any closed interval $[a,b]$, we have that $$f(x)-f(a)=\int_a^xf'(t)dt=0\implies f(x)=f(a)\text{ for all } x>a.$$
 
@@ -143,9 +119,9 @@ Since $f\in L^1$, and $$\int|c|dx=\infty\qquad\text{ for all }c\not=0$$ we have 
 \begin{solution}$\,$
 \begin{enumerate}[label=(\alph*)]
     \item Assume not. Then $$\sum_{i=1}^7\chi_{F_i}(x)\le3$$ for all $x\in X$. (Else there exists $x\in F_i$ for at least $4$ of the $F_i$).
-    
+
     Now, $$\int\sum_{i=1}^7\chi_{F_i}(x)d\mu\le\int 3=3\mu(X)=3$$ however, $$\int\sum_{i=1}^7\chi_{F_i}(x)d\mu=\sum_{i=1}^7\int_X\chi_{F_i}(x)d\mu=\sum_{i=1}^7\mu(F_i)\ge\sum_{i=1}^7\frac{1}{2}=\frac{7}{2}>3.$$
-    
+
     Thus, there exists some $x$ such that for some indices $i_1<i_2<i_3<i_4$, $x\in F_{i_1}\cap F_{i_2}\cap F_{i_3}\cap F_{i_4}$.
     \item Let $M>0$ be large and $$E=\left\{x\in\left[0,\frac{1}{n}\right]\,|\,f_n(x)>M\right\}.$$ Now, for all $n>2M$, we have that \begin{align*}
         \frac{1}{2}\le\int_{[1,\frac{1}{n}]}f_n(x)dm\\
@@ -154,13 +130,12 @@ Since $f\in L^1$, and $$\int|c|dx=\infty\qquad\text{ for all }c\not=0$$ we have 
         &\le \int_E f_n(x)dm+\frac{M}{n}\qquad m\left(\left[1,\frac{1}{n}\right]\right)=\frac{1}{n}\\
         &<\int_E f_n(x)dm+\frac{1}{2}\\
     \end{align*}
-    
-    Thus, $$\int_E f_n(x)dm>0$$ for all $n>2M$ so $f_n(x)>M$ on a set of positive measure for arbitrary $M$. 
-    
+
+    Thus, $$\int_E f_n(x)dm>0$$ for all $n>2M$ so $f_n(x)>M$ on a set of positive measure for arbitrary $M$.
+
     Thus, $$\int_{[0,1]}[\sup_nf_n(x)]m(dx)=\infty$$ since $f_n$ grow arbitrarily large near $0$.
 \end{enumerate}
 \end{solution}
 \vspace{0.5cm}
 
 \end{document}
- 

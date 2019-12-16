@@ -1,32 +1,5 @@
-\documentclass[12pt]{Homework}
-
-% Changed from \usepackage{prelude}
+\documentclass[12pt]{Qual}
 \usepackage{preamble}
-\usepackage{amsmath}
-\usepackage{amssymb}
-\usepackage{enumitem}
-\usepackage{mathrsfs}
-\usepackage[mathscr]{euscript}
-\usepackage{comment}
-%\usepackage{MnSymbol}
-\usepackage{tikz,float}
-\usepackage{tikz-cd}
-\usepackage{graphicx}
-\usepackage{bbding}
-\renewcommand\qedsymbol{\Peace}
-\newcommand\placeqed{\nobreak\enspace\Peace}
-\usepackage{caption, threeparttable}
-%\captionsetup{labelfont = sc, textfont = it}
-\usepackage{halloweenmath}
-\newcommand{\contradiction}{\null\hfill\large{$\mathghost$}\normalsize}
-\usepackage[skins]{tcolorbox}
-\newtcolorbox{mybox}{enhanced,sharp corners=all,colback=white,colframe=gray,toprule=0pt,bottomrule=0pt,leftrule=1pt,rightrule=1pt,overlay={
-    \draw[gray,line width=1pt] (frame.north west) -- ++(2cm,0pt);
-    \draw[gray,line width=1pt] (frame.south east) -- ++(-2cm,0pt);
-}}
-\newcommand{\im}{\mathscr{I}\text{m}}
-\newcommand{\re}{\mathscr{R}\text{e}}
-\newcommand{\res}{\text{Res}}
 
 \name{Kayla Orlinsky}
 \course{Real Analysis Exam}
@@ -85,15 +58,15 @@ Let $(X,\mathscr{F},\mu)$ be a \textit{finite} measure space, and let $\{A_n\}_{
 
 \begin{solution}$\,$
  We are looking for exactly the limit superior: the set of $x$ such that $x$ is in infinitely many $A_j.$
- 
+
  Let $$S=\bigcap_{n=1}^\infty\bigcup_{j=n}^\infty A_j.$$ The certainly, if $x\in S$, then $x$ is in infinitely many $A_j.$ Furthermore, $S\in\mathscr{F}$ since it is a countable intersection of countable unions  of elements of $\mathscr{F}$ which is a $\sigma$-algebra.
- 
+
  We would like to show that $\mu(S)>0.$
- 
+
  Now, we note that $$\int\sum_{n=1}^\infty\chi_{A_n}(x)d\mu=\sum_{n=1}^\infty\int\chi_{A_n}(x)d\mu=\sum_{n=1}^\infty\mu(A_n)\ge\sum_{n=1}^\infty\delta=\infty.$$
- 
+
  Therefore, since $\mu(X)<\infty,$ $$\left\{x\,|\,\sum_{n=1}^\infty\chi_{A_n}(x)=\infty\right\}$$ must have strictly positive measure. Namely, $\{x\,|\,x\in A_n$ for infinitely many $n\}$ has strictly positive measure and since this set is a subset of $S$, we have that $\mu(S)>0.$
- 
+
 \end{solution}
 \newpage
 
@@ -122,7 +95,7 @@ with (1) by DCT. \begin{enumerate}
     \item $f_n$ is measurable for all $n$.
     \item $f_n\to0$ a.e. $x\in[0,1]$.
     \item on $(E_n^T)^c$, $f_n\le T\in L^1([0,1])$.
-\end{enumerate} 
+\end{enumerate}
 
 Therefore, since $M$ was arbitrary, we have that $$\int_0^1f_n(x)dx\to0\qquad n\to\infty.$$
 \end{solution}
@@ -158,12 +131,11 @@ with (1) because $u$-sub is supported by Lebesgue integration because of the sca
 Namely, \begin{enumerate}
     \item $\frac{h(x/\varepsilon)}{x}$ is measurable since $h$ is continuous and so measurable, and $\frac{1}{x}$ is continuous on $[\alpha,\beta]$ and so measurable.
     \item The various limits exist, specifically, because $h$ is continuous $h(x/R)\to h(0)$ as $R\to\infty$ and since $h$ has compact support, $h(x/\varepsilon)=0$ for $\varepsilon$ small. Namely $$\lim_{\varepsilon\to0^+}\lim_{R\to\infty}\frac{h(x/\varepsilon)-h(x/R)}{x}=\frac{0-h(0)}{x}=\frac{-h(0)}{x}.$$
-    \item Because $h$ is continuous and has compact support, it has a maximum value on $[\alpha,\beta]$ which is a finite. Therefore, $$\frac{h(x/\varepsilon)-h(x/R)}{x}\le\frac{2M}{\alpha}\in L^1([\alpha,\beta])$$ for a.e. $x\in[\alpha,\beta]$ where $M$ is the maximum of $h$ on $[\alpha/R,\beta/\varepsilon].$ 
-\end{enumerate} 
+    \item Because $h$ is continuous and has compact support, it has a maximum value on $[\alpha,\beta]$ which is a finite. Therefore, $$\frac{h(x/\varepsilon)-h(x/R)}{x}\le\frac{2M}{\alpha}\in L^1([\alpha,\beta])$$ for a.e. $x\in[\alpha,\beta]$ where $M$ is the maximum of $h$ on $[\alpha/R,\beta/\varepsilon].$
+\end{enumerate}
 
-Therefore, by DCT, we can bring both limits inside the integral. 
+Therefore, by DCT, we can bring both limits inside the integral.
 \end{solution}
 \vspace{0.5cm}
 
 \end{document}
- 

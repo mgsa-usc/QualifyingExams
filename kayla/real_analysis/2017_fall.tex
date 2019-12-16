@@ -1,32 +1,5 @@
-\documentclass[12pt]{Homework}
-
-% Changed from \usepackage{prelude}
+\documentclass[12pt]{Qual}
 \usepackage{preamble}
-\usepackage{amsmath}
-\usepackage{amssymb}
-\usepackage{enumitem}
-\usepackage{mathrsfs}
-\usepackage[mathscr]{euscript}
-\usepackage{comment}
-%\usepackage{MnSymbol}
-\usepackage{tikz,float}
-\usepackage{tikz-cd}
-\usepackage{graphicx}
-\usepackage{bbding}
-\renewcommand\qedsymbol{\Peace}
-\newcommand\placeqed{\nobreak\enspace\Peace}
-\usepackage{caption, threeparttable}
-%\captionsetup{labelfont = sc, textfont = it}
-\usepackage{halloweenmath}
-\newcommand{\contradiction}{\null\hfill\large{$\mathghost$}\normalsize}
-\usepackage[skins]{tcolorbox}
-\newtcolorbox{mybox}{enhanced,sharp corners=all,colback=white,colframe=gray,toprule=0pt,bottomrule=0pt,leftrule=1pt,rightrule=1pt,overlay={
-    \draw[gray,line width=1pt] (frame.north west) -- ++(2cm,0pt);
-    \draw[gray,line width=1pt] (frame.south east) -- ++(-2cm,0pt);
-}}
-\newcommand{\im}{\mathscr{I}\text{m}}
-\newcommand{\re}{\mathscr{R}\text{e}}
-\newcommand{\res}{\text{Res}}
 
 \name{Kayla Orlinsky}
 \course{Real Analysis Exam}
@@ -47,7 +20,7 @@ In both cases prove the statement or provide a counter example.
 \begin{solution}$\,$
 \begin{enumerate}[label=(\alph*)]
     \item True. Since $|f_n^3+g_n-f^3-g|\le |f_n^3-f|+|g_n-g|=|f_n-f||f_n^2+f_nf+f^2|+|g_n-g|$, the finiteness of the measure guarentees that $\mu(\{x\,:\,|f_n^2+f_nf+f^2|\ge\varepsilon\})$ is bounded and since the other two measures are shrinking to zero, we can guarentee that the entire set shrinks to a null set.
-    
+
     Specifically, for $n$ large, $M>0$ large, and $\delta>0$ small, \begin{align*}
         \mu(\{x\,:\,&|f_n^3+g_n-f^3-g|\ge\varepsilon\})\le\mu(\{x\,:\,|f_n-f||f_n^2+f_nf+f^2|+|g_n-g|\ge\varepsilon\})\\
         &\le \mu(\{x\,:\,|f_n-f||f_n^2+f_nf+f^2|\ge\varepsilon\})+\mu(\{x\,:\,|g_n-g|\ge\varepsilon\}\\
@@ -60,9 +33,9 @@ In both cases prove the statement or provide a counter example.
         &\to 0\qquad n\to\infty, M\to\infty,\delta\to0
     \end{align*}
     \item False. Let $X=\mathbb{R}$ and $\mu=m$ the Lebesgue measure. Let $f_n(x)=x+\frac{1}{n}$. Then $f_n^3(x)=x^3+\frac{3}{n}x^2+\frac{3}{n^2}x+\frac{1}{n^3}$. Let $g_n(x)=0$. Then $g(x)=0$ and $f(x)=x.$
-    
+
     Then $$\mu(\{x\,|\,|f_n(x)-f(x)|\ge\varepsilon\})=\mu(\{x\,|\,|\frac{1}{n}|\ge\varepsilon\})=0$$ for all $n\ge N$ where $\frac{1}{N}<\varepsilon$.
-    
+
     However, $$\mu(\{x\,|\,|f_n(x)-f(x)|\ge\varepsilon\})=\mu(\{x\,|\,|\frac{3}{n}x^2+\frac{3}{n^2}x+\frac{1}{n^3}|\ge\varepsilon\})=\infty$$ since for all $n$, on the interval $[\varepsilon \frac{n^2}{3},\infty)$, $|f_n-f|\ge\varepsilon$.
 \end{enumerate}
 \end{solution}
@@ -84,7 +57,7 @@ Fix $k\in\mathbb{Z}$. Then,
      &=\int_k^\infty|f(u)|du<\infty\\
  \end{align*}
  With (1) because $|f(x+n)|\in L^+$ so the sum and integral can be swapped and (2) because linear $u$-sub preserves the Lebesgue integral thanks to the shifting and scaling properties of the Lebesgue measure.
- 
+
  Finally, since the integral is finite, the sum must be finite a.e. Namely, $\displaystyle\sum_{n=1}^\infty|f(x+n)|dx<\infty$ for a.e. $x\in[k,\infty)$. Since $k\in\mathbb{Z}$ was arbitrary, we have that the sum is finite for a.e. $x\in\mathbb{R}$ and so the sum converges absolutely.
 \end{solution}
 \newpage
@@ -139,7 +112,7 @@ Let $(X,\mathscr{A},\mu)$ be a measure space and $f_n$ a sequence of non-negativ
 
 
 \begin{solution}$\,$
-Let $$g_k(x)=\sup_{n\ge k}f_n(x)$$ and $g(x)=\sup_nf_n(x)$. 
+Let $$g_k(x)=\sup_{n\ge k}f_n(x)$$ and $g(x)=\sup_nf_n(x)$.
 
 Now, since for all $n,$ $f_n(x)\le\sup_nf_n(x)$, we have that $$\int_Xf_nd\mu\le\int_X\sup_nf_nd\mu.$$ Namely, $\displaystyle \int_X\sup_nf_nd\mu$ is an upper bound for $\displaystyle \int_Xf_nd\mu$ and so $$\sup_n\int_Xf_nd\mu\le \int_X\sup_nf_nd\mu.$$
 
@@ -160,22 +133,21 @@ Therefore, by DCT, $$\limsup_n\int_Xf_nd\mu\le\lim_{k\to\infty}\int_X\sup_{n\ge 
         f_3(x)&=\chi_{[\frac{1}{2},1]}\qquad 2^1=2\le 3\\
         &\vdots
     \end{align*}
-    
-    Now, by nature of the moving box, for each $x\in[0,1]$ there exists an infinite number of $n$ so that $f_n(x)=1$. Therefore, $$\limsup_nf_n(x)=1.$$ 
-    
+
+    Now, by nature of the moving box, for each $x\in[0,1]$ there exists an infinite number of $n$ so that $f_n(x)=1$. Therefore, $$\limsup_nf_n(x)=1.$$
+
     Namely, $$\int_{[0,1]}\limsup_nf_n(x)dx=\int_{[0,1]}1dx=1.$$
-    
+
     Now, $$\limsup_n\int_{[0,1]}f_n(x)dx=\limsup_n\frac{1}{2^k}=0$$ since $k$ grows with $n,$
-    
+
     Thus, the inequality may be strict.
     \item Let $X=(0,1]$ $\mu=m$ the Lebesgue measure and $f_n(x)=n\chi_{(0,\frac{1}{n}]}(x)$. Then for all $x,$ since for all $x\in(0,1]$, there exists $N$ so $\frac{1}{N+1}< x\le \frac{1}{N}$ so $\sup_nf_n(x)=N.$ $$\lim\sup_nf_n(x)=\lim_{k\to\infty}\sup_{n\ge k}f_n(x)=0.$$
-    
+
     Thus, $$\int_{(0,1]}\limsup_nf_n(x)dx=0$$ and $$\limsup_n\int_{(0,1]}f_n(x)dx=\limsup_nnm\left(\left(0,\frac{1}{n}\right]\right)=\limsup_n1=1.$$
-    
+
     Namely, the inequality does not hold. Note that $\sup_nf_n(x)\notin L^1$ since it explodes near $0$.
 \end{enumerate}
 \end{solution}
 \vspace{0.5cm}
 
 \end{document}
- 

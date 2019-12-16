@@ -1,29 +1,5 @@
-\documentclass[12pt]{Homework}
-
-% Changed from \usepackage{prelude}
+\documentclass[12pt]{Qual}
 \usepackage{preamble}
-\usepackage{amssymb}
-\usepackage{enumitem}
-\usepackage{mathrsfs}
-\def\upint{\mathchoice%
-    {\mkern13mu\overline{\vphantom{\intop}\mkern7mu}\mkern-20mu}%
-    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
-    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
-    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
-  \int}
-\def\lowint{\mkern3mu\underline{\vphantom{\intop}\mkern7mu}\mkern-10mu\int}
-\usepackage[mathscr]{euscript}
-\usepackage{comment}
-\usepackage{bbding}
-\renewcommand\qedsymbol{\Peace}
-\newcommand\placeqed{\nobreak\enspace\Peace}
-\usepackage{MnSymbol}
-\usepackage{tikz}
-\usepackage{halloweenmath}
-\newcommand{\contradiction}{\null\hfill\large{$\mathghost$}\normalsize}
-\renewenvironment{framed}[1][\hsize]
-   {\MakeFramed{\hsize#1\advance\hsize-\width \FrameRestore}}%
-   {\endMakeFramed}
 
 \name{Kayla Orlinsky}
 \course{Real Analysis Exam}
@@ -44,41 +20,41 @@ A function $f:\mathbb{R}\to\mathbb{R}$ is said to be \textit{upper semicontinuou
 \begin{solution}$\,$
 \begin{enumerate}[label=(\alph*)]
     \item Since $$f^{-1}((-\infty,a))=\{x\,|\,f(x)<a\}=A,$$ we check that $f^{-1}((-\infty,a))$ is open. Let $x\in A.$ Then since $f$ is usc, for all $\varepsilon>0$ there exists a $\delta$ such that $$f(y)-\varepsilon<f(x)<a\qquad\text{ whenever }|y-x|<\delta.$$
-    
+
     Now, for $\varepsilon=a-f(x)$, there is some $\delta$ where, for all $|y-x|<\delta$ we have that $$f(y)-f(x)<\varepsilon=a-f(x)\implies f(y)<a.$$ Thus, $B(\delta,x)\subset A$.
-    
+
     Thus, $A$ is open and since all open sets are Borel, we have that $A$ is Borel.
     \item Since $A$ is closed, $A^c$ is open and so $A$ is a Borel set. Thus, there exists some $E$, which is a union of finitely many open intervals such that $\mu(A\Delta E)<\varepsilon.$
-    
+
     Thus, it suffices to check the statement holds for $x\mapsto\mu(x+E).$
-    
+
     Let \begin{align*}
         f(x):&\mathbb{R}\to\mathbb{R}\\
         &x\mapsto\mu(x+E)
     \end{align*}
-    
+
     We would like to show that $f$ is usc. Let $\varepsilon>0$ be given and $x$ be fixed. WLOG, let $$E=\bigcup_{i=1}^N(a_i,b_i)\qquad x+E=\bigcup_{i=1}^N(a_i+x,b_i+x).$$
-    
+
     Now, fix $b\in\mathbb{R}$. Let $B_n=(b,b+\frac{1}{n})$. Then $B_1\supset B_2\supset \cdots$ and since $\mu(X)<\infty$, by continuity $$0=\mu(\bigcap^\infty B_n)=\lim_{n\to\infty}\mu(b,b+\frac{1}{n}).$$ Since, $b$ was arbitrary, this implies that for all $\varepsilon>0$ there exists some $\delta$ such that for all $x<y<x+\delta$, $\mu(b+x,b+y)<\varepsilon$.
-    
+
     Let $\delta_i$ be such that $\mu(a_i+x,b_i+x+\delta_i)<\varepsilon.$
-    
+
     Now, let $$\delta=\frac{1}{N}\max_i\{\mu(b_i+x,b_i+x+\delta_i)\}.$$
-    
+
     Then, for all $x<y<x+\delta$, we have that \begin{align*}
         f(y)=\mu(y+E)&\le m(x+E)+\mu(\cup_{i=1}^N\mu(b_i+x,b_i+y)\\
         &\le\mu(x+E)+\sum_{i=1}^N\mu(b_i+x,b_i+y)\\
         &<\mu(x+E)+\sum_{i=1}^N\delta\\
         &<\mu(x+E)+\varepsilon=f(x)+\varepsilon
     \end{align*}
-    
+
     Thus, $f$ is usc and so it is measurable by (a).
  \end{enumerate}
 \end{solution}
 \newpage
 
 \begin{problem} $\,$
-Suppose $\{f_n\}$ and $f$ are measurable functions on $(X,\mathscr{M},\mu)$ and $f_n\to f$ in measure. Is it necessarily true that $f_n^2\to f^2$ in measure if 
+Suppose $\{f_n\}$ and $f$ are measurable functions on $(X,\mathscr{M},\mu)$ and $f_n\to f$ in measure. Is it necessarily true that $f_n^2\to f^2$ in measure if
 \begin{enumerate}[label=(\alph*)]
     \item $\mu(X)<\infty$
     \item $\mu(X)=\infty$
@@ -89,24 +65,24 @@ Suppose $\{f_n\}$ and $f$ are measurable functions on $(X,\mathscr{M},\mu)$ and 
 \begin{solution}$\,$
 \begin{enumerate}[label=(\alph*)]
     \item Let $$E_n=\{x\,|\,|f_n^2(x)-f^2(x)|\ge\varepsilon\}$$
-    
+
     Then \begin{align*}
         \mu(E_n)&=\mu(\{x\,|\,|f_n(x)-f(x)||f_n(x)+f(x)|\ge\varepsilon\})\\
         &=\mu(\{x\,|\,|f_n(x)-f(x)||f_n(x)+f(x)|\ge\varepsilon\text{ and }|f_n(x)+f(x)|\ge k\})\\
         &+\mu(\{x\,|\,|f_n(x)-f(x)||f_n(x)+f(x)|\ge\varepsilon\text{ and }|f_n(x)+f(x)|<k\})\\
         &\le\mu(\{x\,|\,|f_n(x)+f(x)|\ge k\})+\mu(\{x\,|\,|f_n(x)-f(x)|\ge\frac{\varepsilon}{k})
     \end{align*}
-    
+
     Now, we assume that $f(x)<\infty$ a.e. which is safe it is not specified that $f$ is defined over the extended reals.
-    
+
     Thus, $$\mu(E_n)\le\lim_{k\to\infty}\lim_{n\to\infty}\mu(\{x\,|\,|f_n(x)+f(x)|\ge k\})+\mu(\{x\,|\,|f_n(x)-f(x)|\ge\frac{\varepsilon}{k})=0.$$
     \item Let $f_n(x)=x+\frac{1}{n}$ then $|f_n-x|=|\frac{1}{n}|$ and since for all $\varepsilon>0$, there exists an $N$ such that $$\frac{1}{n}\le\varepsilon$$ for all $n\ge N$, we have that $$\mu(\{x\,|\,|f_n(x)-x|\ge\varepsilon\})\to0\quad\text{ as }n\to\infty.$$
-    
+
     However, assuming $\mu=m$, and $X=[0,\infty)$, we have that $f_n^2=x^2+\frac{2x}{n}+\frac{1}{n^2}$ and $$|f_n^2-f^2|\ge\varepsilon\implies \left|\frac{2x}{n}+\frac{1}{n^2}\right|\ge\varepsilon\implies x\ge\frac{n\varepsilon}{2}-\frac{1}{2}.$$
-    
+
     Thus,
      $$m(\{x\,|\,|f_n-f|\ge\varepsilon\})=m\left(\{x\,|\,x\ge\frac{n\varepsilon}{2}-\frac{1}{2}\right)=m\left(\frac{n\varepsilon}{2}-\frac{1}{2},\infty\right)=\infty\quad\text{ for all }n.$$
-     
+
      Thus, $f_n^2\not\to f^2$ in measure.
 \end{enumerate}
 \end{solution}
@@ -148,11 +124,11 @@ Let $f(x)=\chi_E(x)$ with $E\subset[0,1]$. Then for fixed $n$, $h_n\in L^1([0,1]
 
 Let $$A_n=\bigcup_{\text{ even }j}^n\left(\frac{j-1}{n},\frac{j}{n}\right]\quad\text{ so }\quad A_n^c=\bigcup_{\text{ odd }j}^n\left(\frac{j-1}{n},\frac{j}{n}\right].$$
 
-Let $E=(a,b)\subset[0,1]$. Then for all $\varepsilon>0$ there exists $N$ such that for some $j,k$ $|j/N-a|<\varepsilon$ and $|k/n-b|<\varepsilon$. Then $E$ will be almost perfectly partitioned. Specifically, $$|m(A_n\cap E)-m(A^c\cap E)|\le\frac{1}{N}+2\varepsilon.$$ 
+Let $E=(a,b)\subset[0,1]$. Then for all $\varepsilon>0$ there exists $N$ such that for some $j,k$ $|j/N-a|<\varepsilon$ and $|k/n-b|<\varepsilon$. Then $E$ will be almost perfectly partitioned. Specifically, $$|m(A_n\cap E)-m(A^c\cap E)|\le\frac{1}{N}+2\varepsilon.$$
 
 Thus, $$m(A_n\cap E)-m(A^c\cap E)\to0\qquad\text{ as }n\to\infty.$$
 
-Therefore, the same is true for finite unions of open intervals. 
+Therefore, the same is true for finite unions of open intervals.
 
 Now, for all $E$, and for all $\varepsilon$ there exists $F$, a finite union of open intervals such that $$m(E\Delta F)<\varepsilon.$$
 
@@ -167,11 +143,10 @@ Thus, \begin{align*}
 
 And since we have already seen that $$|m(A_n\cap F)-m(A_n^c\cap F)|\to0$$ for $F$, we have that the same holds for $E$ and so $$\lim_{n\to\infty}\int_{[0,1]}\chi_Eh_ndm=0.$$
 
-Thus, the above holds for all simple functions $f$ by linearity of the integral. 
+Thus, the above holds for all simple functions $f$ by linearity of the integral.
 
 Finally, since for all $\varepsilon>0$ there exists a simple function $\phi$ such that $\int|f-\phi|dm<\varepsilon$, we have that $$\left|\int_{[0,1]}fh_ndm-\int_{[0,1]}\phi h_ndm\right|=\left|\int_{[0,1]}(f-\phi)h_ndm\right|\le\int_{[0,1]}|f-\phi||h_n|dm=\int_{[0,1]}|f-\phi|dm<\varepsilon$$ so, tending $\varepsilon$ to $0$ we have our result.
 \end{solution}
 \vspace{0.5cm}
 
 \end{document}
- 

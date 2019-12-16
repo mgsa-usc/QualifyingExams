@@ -1,29 +1,5 @@
-\documentclass[12pt]{Homework}
-
-% Changed from \usepackage{prelude}
+\documentclass[12pt]{Qual}
 \usepackage{preamble}
-\usepackage{amssymb}
-\usepackage{enumitem}
-\usepackage{mathrsfs}
-\def\upint{\mathchoice%
-    {\mkern13mu\overline{\vphantom{\intop}\mkern7mu}\mkern-20mu}%
-    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
-    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
-    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
-  \int}
-\def\lowint{\mkern3mu\underline{\vphantom{\intop}\mkern7mu}\mkern-10mu\int}
-\usepackage[mathscr]{euscript}
-\usepackage{comment}
-\usepackage{MnSymbol}
-\usepackage{bbding}
-\renewcommand\qedsymbol{\Peace}
-\newcommand\placeqed{\nobreak\enspace\Peace}
-\usepackage{tikz}
-\usepackage{halloweenmath}
-\newcommand{\contradiction}{\null\hfill\large{$\mathghost$}\normalsize}
-\renewenvironment{framed}[1][\hsize]
-   {\MakeFramed{\hsize#1\advance\hsize-\width \FrameRestore}}%
-   {\endMakeFramed}
 
 \name{Kayla Orlinsky}
 \course{Real Analysis Exam}
@@ -92,7 +68,7 @@ First, for all $n$, let $$E_n=\{x\,|\,f_n(x)>n\}.$$ Then \begin{align*}
     &=\int_{E_n}f_nd\mu+\int_{E_n^c}f_nd\mu\\
     &\ge\int_{E_n}nd\mu+\int_{E_n^c}f_nd\mu\\
     &\ge n\mu(E_n)+0\qquad\text{ since }f_n\ge0\\
-    \implies&\mu(E_n)\le\frac{1}{n} 
+    \implies&\mu(E_n)\le\frac{1}{n}
 \end{align*}
 
 Thus, except on a set of shrinking measure, $f_n(x)\le n$, and so (again except on a set of shrinking measure) $f_n(x)^{1/n}\le n^{1/n}$.
@@ -110,7 +86,7 @@ we have that $$\limsup_n(f_n(x))^{1/n}\le\limsup_n(n^{1/n})=\lim_{n\to\infty}n^{
 \begin{comment}
 Let $$g_n=\sup_{k\ge n}(f_k(x))^{1/k}<\infty$$ a.e. since if $f_k(x)$ grows arbitrarily large, this growth must occur on sets of increasingly small measure (since $f_k$ are integrable).  Then, by definition of $\sup$, for all $\varepsilon>0$, there exists some $f_k(x)^{1/k}$ such that $$f_k(x)^{1/k}\ge g_n(x)-\frac{1}{n}.$$
 
-Let $\varepsilon=\frac{1}{n}$ and call $f_{k_n}(x)^{1/k_n}$ the function satisfying the above. 
+Let $\varepsilon=\frac{1}{n}$ and call $f_{k_n}(x)^{1/k_n}$ the function satisfying the above.
 
 Now, $$\inf_{n}f_{k_n}(x)^{1/k_n}\ge\inf_n\left(g_n(x)-\frac{1}{n}\right)$$
 \end{comment}
@@ -119,7 +95,7 @@ Now, $$\inf_{n}f_{k_n}(x)^{1/k_n}\ge\inf_n\left(g_n(x)-\frac{1}{n}\right)$$
 \newpage
 
 \begin{problem} $\,$
-Let $-\infty<a<b<\infty$. Suppose $F:[a,b]\to\mathbb{C}$. 
+Let $-\infty<a<b<\infty$. Suppose $F:[a,b]\to\mathbb{C}$.
 \begin{enumerate}[label=(\alph*)]
     \item Define what it means for $F$ to be absolutely continuous on $[a,b]$.
     \item Give an example of a function which is uniformly continuous but not absolutely continuous. (Remember to justify your answer.)
@@ -131,33 +107,32 @@ Let $-\infty<a<b<\infty$. Suppose $F:[a,b]\to\mathbb{C}$.
 \begin{solution}$\,$
 \begin{enumerate}[label=(\alph*)]
     \item $\,$
-    
+
     \begin{framed}[.75\textwidth]
     $F(x)$ is absolutely continuous on [a,b] if for all $\varepsilon>0$ there exists a $\delta>0$ such that for any finite collection $\{(a_i,b_i)\}_1^n$ of disjoint subintervals of $[a,b]$ satisfying $\displaystyle\sum_{i=1}^n|b_i-a_i|<\delta$ implies that $\displaystyle\sum_{i=1}^n|F(b_i)-F(a_i)|<\varepsilon$
     \end{framed}
     \item Let $f(x)$ be the Cantor Function on $[0,1]$. Since $f(x)$ is continuous on a closed interval, it is uniformly continuous.
-    
-    Now, assume that $f(x)$ is absolutely continuous. We already know that $f'(x)=0$ a.e. since it is only non-constant on the Cantor set (which has Lebesgue Measure $0$). 
-    
+
+    Now, assume that $f(x)$ is absolutely continuous. We already know that $f'(x)=0$ a.e. since it is only non-constant on the Cantor set (which has Lebesgue Measure $0$).
+
     Thus, if $f(x)$ is absolutely continuous on $[0,1]$, then by the Fundamental Theorem of Lebesgue Integrals, $$1=f(1)-f(0)=\int_0^1f'(x)dx=\int_0^10dx=0.\qquad\qquad$$
-    
+
     Thus, $f(x)$ cannot be absolutely continuous on $[0,1]$.
-    \item Clearly if such an $M$ exists, it must be nonnegative. If $M=0$, then $F$ is constant on $[a,b]$ and so it is clearly absolutely continuous. 
-    
+    \item Clearly if such an $M$ exists, it must be nonnegative. If $M=0$, then $F$ is constant on $[a,b]$ and so it is clearly absolutely continuous.
+
     If $M>0$, then for all $\varepsilon>0$, we can let $\delta=\frac{\varepsilon}{M}$. Then, for any finite collection of disjoint intervals $\{(a_i,b_i)\}_1^n$ satisfying $$\sum_{i=1}^n(b_i-a_i)<\delta,$$ we have that $$\sum_{i=1}^n|F(b_i)-F(a_i)|\le\sum_{i=1}^nM|b_i-a_i|=M\sum_{i=1}^n|b_i-a_i|<M\delta=M\frac{\varepsilon}{M}=\varepsilon.$$
-    
+
     Thus, $F$ is absolutely continuous.
-    
+
     Now, let $F(x)=\sqrt{x}$ on $[0,1]$. Then $F'(x)=\frac{1}{2\sqrt{x}}$ exists except at $0$ (a null set) and since $$\lim_{b\to0}\int_b^1\frac{1}{2\sqrt{x}}dx=\lim_{b\to0}\sqrt{x}\bigg|_b^1=\lim_{b\to0}(1-\sqrt{b})=1$$ so $F'(x)\in L^1$ and by the same computation $$F(x)-F(0)=\int_0^xF'(x)dx.$$
-    
+
     Thus, again by the Fundamental Theorem of Lebesgue Integrals, $F$ is absolutely continuous on $[0,1]$.
-    
+
     However, for all $y>x$, we have $$|F(y)-F(x)|=\sqrt{y}-\sqrt{x}=\frac{y-x}{\sqrt{y}+\sqrt{x}}.$$
-    
+
     If there exists some $\infty>M>0$ such that $\frac{y-x}{\sqrt{y}+\sqrt{x}}\le M(y-x)$, then $M\ge\frac{1}{\sqrt{y}+\sqrt{x}}.$ However, for $x,y$ very small near $0$, we can force $M$ to grow as large as we like and so no such finite $M$ exists.
 \end{enumerate}
 \end{solution}
 \vspace{0.5cm}
 
 \end{document}
- 

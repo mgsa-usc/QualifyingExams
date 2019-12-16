@@ -1,26 +1,5 @@
-\documentclass[12pt]{Homework}
-
-% Changed from \usepackage{prelude}
+\documentclass[12pt]{Qual}
 \usepackage{preamble}
-\usepackage{amssymb}
-\usepackage{enumitem}
-\usepackage{mathrsfs}
-\def\upint{\mathchoice%
-    {\mkern13mu\overline{\vphantom{\intop}\mkern7mu}\mkern-20mu}%
-    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
-    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
-    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
-  \int}
-\def\lowint{\mkern3mu\underline{\vphantom{\intop}\mkern7mu}\mkern-10mu\int}
-\usepackage[mathscr]{euscript}
-\usepackage{bbding}
-\renewcommand\qedsymbol{\Peace}
-\newcommand\placeqed{\nobreak\enspace\Peace}
-\usepackage{comment}
-\usepackage{MnSymbol}
-\usepackage{tikz}
-\usepackage{halloweenmath}
-\newcommand{\contradiction}{\null\hfill\large{$\mathghost$}\normalsize}
 
 \name{Kayla Orlinsky}
 \course{Real Analysis Exam}
@@ -51,17 +30,17 @@ We would like to use Dominated Convergence Theorem.
     \end{align*}
     Thus, $$\lim_{n\to\infty}f_n(x)=\left(\lim_{n\to\infty}\left(1+\frac{x}{n}\right)^{-n}\right)\left(\lim_{n\to\infty}\cos\left(\frac{x}{n}\right)\right)=e^{-x}\cos(0)=e^{-x}$$ since both limits exist separately. Furthermore, this limit holds for all $x$.
     \item Now, for all $n>1$, $$\left(1+\frac{x}{n}\right)^{-n}\le\left(1+x\right)^{-n}\le(1+x)^{-2}\in L^1.$$
-    
-    Note that since $$\frac{1}{(1+x)^n}=\left(\frac{1}{1+x}\right)^n$$ and $\frac{1}{1+x}\le 1$ for all $x\ge0$, we have that $(1+x)^{-n}\le(1+x)^{-n+1}$ for all $n$. 
+
+    Note that since $$\frac{1}{(1+x)^n}=\left(\frac{1}{1+x}\right)^n$$ and $\frac{1}{1+x}\le 1$ for all $x\ge0$, we have that $(1+x)^{-n}\le(1+x)^{-n+1}$ for all $n$.
 \end{enumerate}
 
 Thus, by the Dominated Convergence Theorem, $$\lim_{n\to\infty}\int_0^\infty f_n(x)dx=\int_0^\infty\lim_{n\to\infty}f_n(x)dx=-e^{-x}\bigg|_0^\infty=1.$$
 \begin{comment}
 
     Now, using calculus, we let $g(x)=-n\ln\left(1+\frac{x}{n}\right)+x$. Since $x\ge0$, for all $n>1$, we have that $$\frac{d}{dx}g(x)=\frac{d}{dx}\left(-n\ln\left(1+\frac{x}{n}\right)+x\right)=\frac{-n}{n+x}+k=\frac{(k-1)n+x}{n+x}\ge0$$ and since $g(0)=0$, we have that $g(x)\ge0$ for all $x\ge0$ and so $$-n\ln\left(1+\frac{x}{n}\right)\ge -x\implies \left(1+\frac{x}{n}\right)^{-n}\ge e^{-x}.$$
-    
-    Finally, This implies that 
-    
+
+    Finally, This implies that
+
     $$f_n(x)\le \left(1+\frac{x}{n}\right)^{-n}\le e^{-x}\in L^1([0,\infty)).$$
     \begin{center}
     \includegraphics[scale=0.75]{hw/Qual1.jpg}
@@ -74,7 +53,7 @@ Thus, by the Dominated Convergence Theorem, $$\lim_{n\to\infty}\int_0^\infty f_n
 Suppose that $f:[0,\infty)\to\mathbb{R}$ is Lebesgue integrable.
 \begin{enumerate}[label=(\alph*)]
     \item Show that there exists a sequence $x_n\to\infty$ such that $f(x_n)\to0$.
-    \item Is it true that $f(x)$ must converge to $0$ as $x\to\infty$? Give a proof or a counter example. 
+    \item Is it true that $f(x)$ must converge to $0$ as $x\to\infty$? Give a proof or a counter example.
     \item Suppose additionally that $f$ is differentiable and $f'(x)\to0$ as $x\to\infty$. Is it true that $f(x)$ must converge to $0$ as $x\to\infty$? Give a proof or counter example.
 \end{enumerate}
 \end{problem}
@@ -83,21 +62,21 @@ Suppose that $f:[0,\infty)\to\mathbb{R}$ is Lebesgue integrable.
 \begin{solution}$\,$
 \begin{enumerate}[label=(\alph*)]
     \item Let $\{x_n\}$ be such that for all $n$, $x_n>n$ and $f(x_n)<\frac{1}{n}$.
-    
-    If no such sequence exists, then for all sequences with $x_n>n$, $f(x_n)\ge\frac{1}{n}$. However, then $$\int_n^\infty f(x)dx\ge\int_n^\infty\frac{1}{n}=\infty$$ which contradicts that $f\in L^1$. Thus, the sequence given exists. 
+
+    If no such sequence exists, then for all sequences with $x_n>n$, $f(x_n)\ge\frac{1}{n}$. However, then $$\int_n^\infty f(x)dx\ge\int_n^\infty\frac{1}{n}=\infty$$ which contradicts that $f\in L^1$. Thus, the sequence given exists.
     \item No. Let $f(x)=\chi_\mathbb{Q}$. Then $f\in L^1$ since $m(\mathbb{Q})=0$, however $\lim_{x\to\infty} f(x)$ does not exist.
     \item Assume that $f\not\to 0$ as $x\to\infty$. Then there exists some $\{x_n\}$ tending to infinity with $f(x_n)\ge\varepsilon$ for all $n$. (WLOG we take $f(x_n)\ge0$, however if $f$ is everywhere negative, then $-f(x_n)\ge\varepsilon$ and the rest of the proof is similar).
-    
+
     Since $|f'(x_n)|\le \frac{\varepsilon}{2}$ for large enough $n$, and since differentiability implies continuity, we may apply the Fundamental Theorem of Calculus. (Note that on any closed interval $[x_n,x_n+1]$, $f$ must be bounded) so for all $x_n\le x\le x_n+1$ $$|f(x)-f(x_n)|=\left|\int_{x}^{x_n+1}f'(t)dt\right|\le\left|\int_{x_n}^{x_n+1}f'(t)dt\right|\le\int_{x_n}^{x_n+1}\frac{\varepsilon}{2} dt=\frac{\varepsilon}{2}.$$
-    
+
     However, \begin{align*}
         |f(x)-f(x_n)|&\le\frac{\varepsilon}{2}\\
         -\frac{\varepsilon}{2}&\le f(x)-f(x_n)\\
       \varepsilon-\frac{\varepsilon}{2}&\le f(x_n)-\frac{\varepsilon}{2}\le f(x)
     \end{align*}
-    
+
     However, then $$\int f(t)dt\ge \sum_{n=N}^\infty\int_{x_n}^{x_n+1}f(t)dt\ge\sum_{n=N}^\infty\frac{\varepsilon}{2}=\infty\qquad\qquad\qquad\text{\contradiction}$$
-    
+
     Again, this contradicts $f\in L^1$ and so no such sequence can exist. Namely, $f\to0$ as $x\to\infty$.
 \end{enumerate}
 \end{solution}
@@ -119,11 +98,11 @@ Define $f_n(x)=ae^{-nax}-be^{-nbx}$ where $0<a<b$.
         &=\frac{ae^{-nax}}{-na}-\frac{be^{-nbx}}{-nb}\bigg|_0^\infty\\
         &=0-\left(\frac{-1}{n}+\frac{1}{n}\right)=0.
     \end{align*}
-    
-    Thus, $$\sum_{n=1}^\infty\int_0^\infty f_n(x)dx=0.$$ 
-    
+
+    Thus, $$\sum_{n=1}^\infty\int_0^\infty f_n(x)dx=0.$$
+
     Now, using the convergence of Geometric Series (because $e^{ax}\ge1$ for all $a>0$ and all $x\ge0$), we have that $$\sum_{n=1}^\infty f_n(x)=a\sum_{n=1}^\infty\left(\frac{1}{e^{ax}}\right)^n-b\sum_{n=1}^\infty\left(\frac{1}{e^{bx}}\right)^n=\frac{ae^{-ax}}{1-e^{-ax}}-\frac{be^{-bx}}{1-e^{-bx}}.$$
-    
+
     Thus, \begin{align*}
         \int_0^\infty\sum_{n=1}^\infty f_n(x)dx&=\int_0^\infty\frac{ae^{-ax}}{1-e^{-ax}}dx-\int_0^\infty\frac{be^{-bx}}{1-e^{-bx}}dx\\
         &=\int_0^1\frac{du}{u}-\int_0^1\frac{dw}{w}\qquad\qquad \begin{matrix}
@@ -138,12 +117,12 @@ Define $f_n(x)=ae^{-nax}-be^{-nbx}$ where $0<a<b$.
         &=\ln\left(\lim_{x\to0}\frac{be^{-bx}}{ae^{-ax}}\right)\qquad\text{L'Hopital's Rule}\\
         &=\ln\left(\frac{b}{a}\right).
     \end{align*}
-   
+
    Note that it was necessary for $b>a>0$.
-    \item $f_n(x)$ is certainly a continuous function for all $x$ and all $n$, thus $f_n$ is measurable. Furthermore, if $(\mathbb{N},\nu)$ is the counting measure space, then $f_n(x)$ will certainly be measurable with respect to $m\times\nu$. 
-    
-    Since both $([0,\infty),m)$ and $(\mathbb{N},\nu)$ are $\sigma$-finite measure spaces, and $|f_n(x)|\in L^+(m\times\nu)$, by Tonelli, the integral and summation of $|f_n(x)|$ can be swapped. 
-    
+    \item $f_n(x)$ is certainly a continuous function for all $x$ and all $n$, thus $f_n$ is measurable. Furthermore, if $(\mathbb{N},\nu)$ is the counting measure space, then $f_n(x)$ will certainly be measurable with respect to $m\times\nu$.
+
+    Since both $([0,\infty),m)$ and $(\mathbb{N},\nu)$ are $\sigma$-finite measure spaces, and $|f_n(x)|\in L^+(m\times\nu)$, by Tonelli, the integral and summation of $|f_n(x)|$ can be swapped.
+
     However, from (a), we saw that swapping the order for $f_n(x)$ gave different results. It must then be the case that Fubini does not apply to $f_n(x)$ and so $f_n(x)\notin L^1(m\times \nu)$. Thus, $$\int|f_n(x)|d(m\times\nu)=\int_0^\infty\sum_{n=1}^\infty|f_n(x)|dx=\infty$$
 \end{enumerate}
 \end{solution}
@@ -157,13 +136,13 @@ Prove that there exists a function $g$ which is integrable on $[0,1]$ such that 
 
 
 \begin{solution}$\,$
-First, since $F:[0,1]\to\mathbb{R}$ and $F(x)-F(0)=F(x)=\int_0^xf(t)dt$ with $f\in L^1([0,1])$, by the Fundamental Theorem of Lebesgue Integrals, $F$ is absolutely continuous. 
+First, since $F:[0,1]\to\mathbb{R}$ and $F(x)-F(0)=F(x)=\int_0^xf(t)dt$ with $f\in L^1([0,1])$, by the Fundamental Theorem of Lebesgue Integrals, $F$ is absolutely continuous.
 
-Furthermore, we may replace $f$ with $F'$ (as the two are equal a.e.). 
+Furthermore, we may replace $f$ with $F'$ (as the two are equal a.e.).
 
 Now, $\phi$ is certainly absolutely continuous. If $C=0$, then $\phi$ is contant and absolute continuity is immediate. If $C>0$, then for all $\varepsilon>0$, letting $\delta=\frac{\varepsilon}{C}$, for all finite disjoint collections of intervals $\{(a_i,b_i)\}_1^n$ satisfying that $$\sum_{i=1}^n(b_i-a_i)<\delta$$ we have that $$\sum_{i=1}^n|\phi(b_i)-\phi(a_i)|\le\sum_{i=1}^nC|b_i-a_i|=C\sum_{i=1}^n(b_i-a_i)<C\delta=C\frac{\varepsilon}{C}=\varepsilon.$$
 
-Thus, $\phi$ is absolutely continuous. Finally, let $\varepsilon>0$ be given. Let $\delta_F$ and $\delta_\phi$ be the associated constants for the definition of absolute continuity of $F$ and $\phi$ respectively. 
+Thus, $\phi$ is absolutely continuous. Finally, let $\varepsilon>0$ be given. Let $\delta_F$ and $\delta_\phi$ be the associated constants for the definition of absolute continuity of $F$ and $\phi$ respectively.
 
 Then let $$\delta=\min\left\{\delta_F,\delta_\phi\right\}.$$
 
@@ -171,9 +150,8 @@ Then, for any finite collection of disjoint intervals $\{(a_i,b_i)\}_1^n$ satisf
 
 Thus, $\phi(F(x))$ is absolutely continuous and since $\phi(F(x)):[0,1]\to\mathbb{R}$, by the Fundamental Theorem of Lebesgue Integrals, there must exist a function $g\in L^1([0,1])$ such that $$\phi(F(x))-\phi(F(0))=\phi(F(x))-\phi(0)=\int_0^xg(t)dt.$$
 
-With possibly shifting $g$ by a constant we obtain our result. 
+With possibly shifting $g$ by a constant we obtain our result.
 \end{solution}
 \vspace{0.5cm}
 
 \end{document}
- 

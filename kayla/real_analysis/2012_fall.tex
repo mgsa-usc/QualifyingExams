@@ -1,29 +1,5 @@
-\documentclass[12pt]{Homework}
-
-% Changed from \usepackage{prelude}
+\documentclass[12pt]{Qual}
 \usepackage{preamble}
-\usepackage{amssymb}
-\usepackage{enumitem}
-\usepackage{mathrsfs}
-\def\upint{\mathchoice%
-    {\mkern13mu\overline{\vphantom{\intop}\mkern7mu}\mkern-20mu}%
-    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
-    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
-    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
-  \int}
-\def\lowint{\mkern3mu\underline{\vphantom{\intop}\mkern7mu}\mkern-10mu\int}
-\usepackage[mathscr]{euscript}
-\usepackage{comment}
-\usepackage{MnSymbol}
-\usepackage{bbding}
-\renewcommand\qedsymbol{\Peace}
-\newcommand\placeqed{\nobreak\enspace\Peace}
-\usepackage{tikz}
-\usepackage{halloweenmath}
-\newcommand{\contradiction}{\null\hfill\large{$\mathghost$}\normalsize}
-\renewenvironment{framed}[1][\hsize]
-   {\MakeFramed{\hsize#1\advance\hsize-\width \FrameRestore}}%
-   {\endMakeFramed}
 
 \name{Kayla Orlinsky}
 \course{Real Analysis Exam}
@@ -58,7 +34,7 @@ Assume that $f:X\to[0,\infty)$ is measurable. Find $$\lim_n\int_X n\log\left[1+\
 \begin{solution}$\,$
 $$(n+1)\log\left(1+\frac{f}{n+1}\right)-n\log\left(1+\frac{f}{n}\right)=n\log\left(\frac{1+\frac{f}{n+1}}{1+\frac{f}{n}}\right)-\log\left(1+\frac{f}{n+1}\right)\le0\quad\text{ for all }n$$ since $$\frac{1+\frac{f}{n+1}}{1+\frac{f}{n}}\le 1\qquad\text{ and }\qquad1+\frac{f}{n+1}\ge 1.$$
 
-Thus, we have that $f_n=n\log\left(1+\frac{f}{n}\right)$ is decreasing in terms of $n$ so $f_{n+1}\le f_n$. Now, because $f$ is measurable, $f_n$ is measurable since the natural log is continuous. 
+Thus, we have that $f_n=n\log\left(1+\frac{f}{n}\right)$ is decreasing in terms of $n$ so $f_{n+1}\le f_n$. Now, because $f$ is measurable, $f_n$ is measurable since the natural log is continuous.
 
 \begin{align*}
     \lim_{n\to\infty}f_n(x)&=\lim_{n\to\infty}\frac{\log\left(1+\frac{f(x)}{n}\right)}{\frac{1}{n}}\\
@@ -125,27 +101,26 @@ If $E$ is Borel set in $\mathbb{R}^n$ the density $D_E(x)$ of $E$ at $x$ is defi
 \begin{solution}$\,$
 \begin{enumerate}[label=(\alph*)]
     \item $$m(E\cap B(x,r))=\int_{B(x,r)}\chi_E(x)dx$$ Since $\chi_E\in L_{loc}^1$ because $E$ is Borel measurable, and certainly $B(x,r)$ shrinks nicely to $x$, so by the Lebesgue Dominated Convergence Theorem $$\lim_{r\to0}\frac{m(E\cap B(x,r))}{m(B(x,r))}=\lim_{r\to0}\frac{1}{m(B(x,r))}\int_{B(x,r)}\chi_E(x)dx=\chi_E(x)\qquad\text{ a.e.}$$
-    
+
     Thus, $D_E(x)=0$ for a.e. $x\in E$ and $D_E(x)=0$ for a.e. $x\notin E$.
     \item We will work in $\mathbb{R}^2$. Fix $\alpha\in(0,1)$. For $x=0$ let $\theta=2\phi\alpha$. Let $E$ be the set of points in a $\theta$ sector of $x$. Specifically, $$E=\{(R\cos\gamma,R\sin\gamma)\,|\,R\ge0,0\le\gamma\le\theta\}.$$
-    
+
     Then $$B(0,r)\cap E=\{(R\cos\gamma,R\sin\gamma)\,|\,r>R\ge0,0\le\gamma\le\theta\}.$$
-    
+
     Thus, $$m(B(0,r)\cap E)=\frac{\theta}{2\pi}m(B(0,r)=\alpha m(B(0,r))$$ so $$\lim_{r\to 0}\frac{m(E\cap B(0,r))}{m(B(0,r))}=\lim_{r\to0}\alpha=\alpha.$$
     \item We will work in $\mathbb{R}^1$. Let $B_n(-\frac{1}{n},\frac{1}{n})$. Fix $x=0$.
-    
+
     Let $E=\bigcap_{n=1}^\infty(B_{(2n-1)!}\backslash B_{(2n)!}).$
-    
+
     If $n$ is odd then we note that $B_{n!}\backslash B_{(n+1)!}\subset E$ so $$\frac{m(E\cap B_{n!})}{m(B_{n!})}\ge\frac{m(B_{n!}\backslash B_{(n+1)!})}{m(B_{n!})}=\frac{\frac{2}{n!}-\frac{2}{(n+1)!}}{\frac{2}{n!}}=1-\frac{1}{n}\to1.$$
-    
+
     Thus $D_E(0)\ge1.$
-    
+
     If $n$ is even, then $E\cap B_{n!}\subset B_{(n+1)!}$ so $$\frac{m(E\cap B_{n!})}{m(B_{n!})}\le\frac{m(B_{(n+1)!})}{m(B_{n!})}=\frac{\frac{2}{(n+1)!}}{\frac{2}{n!}}=\frac{1}{n+1}\to0.$$
-    
+
     So $D_E(0)=0$. Thus, since there are infinitely many even and odd $n$, $D_E(0)$ does not exist.
 \end{enumerate}
 \end{solution}
 \vspace{0.5cm}
 
 \end{document}
- 

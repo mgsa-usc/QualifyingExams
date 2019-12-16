@@ -1,26 +1,5 @@
-\documentclass[12pt]{Homework}
-
-% Changed from \usepackage{prelude}
+\documentclass[12pt]{Qual}
 \usepackage{preamble}
-\usepackage{amssymb}
-\usepackage{enumitem}
-\usepackage{mathrsfs}
-\def\upint{\mathchoice%
-    {\mkern13mu\overline{\vphantom{\intop}\mkern7mu}\mkern-20mu}%
-    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
-    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
-    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
-  \int}
-\def\lowint{\mkern3mu\underline{\vphantom{\intop}\mkern7mu}\mkern-10mu\int}
-\usepackage[mathscr]{euscript}
-\usepackage{comment}
-\usepackage{bbding}
-\renewcommand\qedsymbol{\Peace}
-\newcommand\placeqed{\nobreak\enspace\Peace}
-\usepackage{MnSymbol}
-\usepackage{tikz}
-\usepackage{halloweenmath}
-\newcommand{\contradiction}{\null\hfill\large{$\mathghost$}\normalsize}
 
 \name{Kayla Orlinsky}
 \course{Real Analysis Exam}
@@ -37,7 +16,7 @@ Prove that for almost all $x\in[0,1]$, there are at most finitely many rational 
 \begin{solution}$\,$
 Let $Q(x)=\{p/q\in\mathbb{Q}\,|\,(p,q)=1,q\ge 2, |x-p/q|<1/(q\log q)^2\}$.
 
-Then $Q(x)$ counts the number of such rationals stated in the problem. 
+Then $Q(x)$ counts the number of such rationals stated in the problem.
 Note that if $\int_\mathbb{R}Q(x)dx<\infty$, then $Q(x)$ must be finite a.e.
 
 Now, since \begin{align*}
@@ -47,15 +26,15 @@ Now, since \begin{align*}
     &=2\sum_{q=2}^\infty\frac{1}{q\log^2q}-2\sum_{q=2}^\infty\frac{1}{q^2\log^2q}
 \end{align*}
 
-\boxed{(1)} Because the Lebesgue measure is translation invariant, we may take $p<q$. Since the number of rationals in an interval is also invariant under translation, if $p>q$, then $p$ is an integer shift of some $p'<q$. 
+\boxed{(1)} Because the Lebesgue measure is translation invariant, we may take $p<q$. Since the number of rationals in an interval is also invariant under translation, if $p>q$, then $p$ is an integer shift of some $p'<q$.
 
 The $(q-1)$ comes from the number of integers $1<p<q$.
 
-Now, we check the convergence of both sums. 
+Now, we check the convergence of both sums.
 
 \boxed{\sum_{q=2}^\infty\frac{1}{q^2\log^2q}} converges by limit comparison test. Specifically, $$\lim_{q\to\infty}\frac{1}{q^2\log^2q}/\frac{1}{q^2}=\lim_{q\to\infty}\frac{1}{\log^2q}=0\implies\text{ since }\sum_{q=2}^\infty\frac{1}{q^2}<\infty\text{ then }\sum_{q=2}^\infty\frac{1}{q^2\log^2q}<\infty.$$
 
-\boxed{\sum_{q=2}^\infty\frac{1}{q\log^2q}} converges by integral test. 
+\boxed{\sum_{q=2}^\infty\frac{1}{q\log^2q}} converges by integral test.
 
 $$\int_2^\infty\frac{1}{q\log^2q}dq=\int_{\log2}^\infty\frac{1}{u^2}du<\infty\qquad\text{ since }\log2>0$$
 \[
@@ -75,13 +54,13 @@ Suppose that the real-valued function $f(x)$ is nondecreasing on the interval $[
 
 
 \begin{solution}$\,$
-First, since $f$ is increasing, it has at most countably many discontinuities and so is measurable. Specifically, $f^{-1}((-\infty,a))=\{x\,|\,f(x)<a\}=[0,\inf f^{-1}(a))\backslash N$ for $N$ some null set. 
+First, since $f$ is increasing, it has at most countably many discontinuities and so is measurable. Specifically, $f^{-1}((-\infty,a))=\{x\,|\,f(x)<a\}=[0,\inf f^{-1}(a))\backslash N$ for $N$ some null set.
 
-Thus, because $f$ is measurable, there exists a sequence of simple functions $\phi_1\le\phi_2\le\cdots\le f$ with $\phi_n\to f$ pointwise. 
+Thus, because $f$ is measurable, there exists a sequence of simple functions $\phi_1\le\phi_2\le\cdots\le f$ with $\phi_n\to f$ pointwise.
 
 Thus, it suffices to show that there exists a sequence of continuous functions converging to $\phi$ a simple function. Furthermore, since the $\phi_n$ are an increasing sequence converging to an increasing function, we may take our $\phi$ to also be increasing.
 
-Then, let $\phi=\sum_{i=1}^ma_i\chi_{E_i}$ be the standard representation of $\phi$. Since $\phi$ is increasing, and by definition can have only a finite set as its range, $\phi$ can only have a finite number of discontinuities. Furthermore, $a_i\le a_{i+1}$ for all $1\le i\le m-1$. 
+Then, let $\phi=\sum_{i=1}^ma_i\chi_{E_i}$ be the standard representation of $\phi$. Since $\phi$ is increasing, and by definition can have only a finite set as its range, $\phi$ can only have a finite number of discontinuities. Furthermore, $a_i\le a_{i+1}$ for all $1\le i\le m-1$.
 
 Now, to construct a continuous approximation to $\phi$, we simply use a trapezoid approximation. Let $x_1,x_2,...,x_{m-1}$ be the points where the jump discontinuities of $\phi$ occur. Now,
 \[
@@ -143,9 +122,9 @@ Thus, \begin{align*}
     &\le \liminf_{n_k}\int_E|f_{n_k}d\mu+\liminf_{n_k}\int_{E^c}|f_{n_k}d\mu\qquad\text{ Fatou's Lemma }\\
     &\le \liminf_{n_k}\varepsilon+\liminf_{n_k}M\mu(X)<\infty \tag{1}
 \end{align*}
-\boxed{(1)} Since $\delta$ is from the problem, and $\mu(E)<\delta$, $\int_E|f_{n_k}d\mu\le \varepsilon$ and $\mu(X)<\infty$. 
+\boxed{(1)} Since $\delta$ is from the problem, and $\mu(E)<\delta$, $\int_E|f_{n_k}d\mu\le \varepsilon$ and $\mu(X)<\infty$.
 
-Therefore, $f\in L^1$. 
+Therefore, $f\in L^1$.
 
 \begin{claim} The above property for $f_n$ holds for $f$.
 \begin{proof} Since $f\in L^1$, for the subsequence $\{f_{n_k}\}$ converging to $f$ a.e., by Fatou's we have that, for all $\varepsilon>0$ and $\delta$ stated in the problem, if $\mu(E)<\delta$ then
@@ -180,22 +159,21 @@ f(x)=\begin{cases}
 \end{cases}
 \]
  then $f(x)$ is continuous a.e. since it is only discontinuous at $\frac{1}{2}$.
- 
+
  Now, assume there is some continuous function $g(x)=f(x)$ a.e.
- 
+
  Let $\frac{1}{2}>\varepsilon>0$ be given. Then, by continuity of $g$, there exists a $\delta$ such that for all $y\in(\frac{1}{2}-\delta,\frac{1}{2}+\delta)$, $|g(\frac{1}{2})-g(y)|<\varepsilon$.
- 
- However, because $f=g$ a.e., there exists a $x_0\in (\frac{1}{2}-\delta,\frac{1}{2})$ such that $f(x_0)=g(x_0)=0$ and there exists $y_0\in(\frac{1}{2},\frac{1}{2}+\delta)$ such that $f(y_0)=g(y_0)=1$. 
- 
+
+ However, because $f=g$ a.e., there exists a $x_0\in (\frac{1}{2}-\delta,\frac{1}{2})$ such that $f(x_0)=g(x_0)=0$ and there exists $y_0\in(\frac{1}{2},\frac{1}{2}+\delta)$ such that $f(y_0)=g(y_0)=1$.
+
  however, then $|x_0-y_0|<\delta$ and $|g(y_0)-g(x_0)|=1>\varepsilon$ which is a contradiction of the continuity of $g$. \contradiction
- 
+
  Therefore, $f$ is not equal to a continuous function a.e.
- 
-\boxed{(ii)\not\implies (i)} Let $f(x)=\chi_\mathbb{Q}$. Let $g(x)=0$. Then $f(x)=g(x)$ a.e. (since $f(x)\not=0$ only when $x\in\mathbb{Q}$ which is a Lebesgue-null set). 
+
+\boxed{(ii)\not\implies (i)} Let $f(x)=\chi_\mathbb{Q}$. Let $g(x)=0$. Then $f(x)=g(x)$ a.e. (since $f(x)\not=0$ only when $x\in\mathbb{Q}$ which is a Lebesgue-null set).
 
 However, $f(x)$ is discontinuous at every point and so $f(x)$ is not continuous a.e.
 \end{solution}
 \vspace{0.5cm}
 
 \end{document}
- 
