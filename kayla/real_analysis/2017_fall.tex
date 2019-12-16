@@ -1,0 +1,181 @@
+\documentclass[12pt]{Homework}
+
+% Changed from \usepackage{prelude}
+\usepackage{preamble}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{enumitem}
+\usepackage{mathrsfs}
+\usepackage[mathscr]{euscript}
+\usepackage{comment}
+%\usepackage{MnSymbol}
+\usepackage{tikz,float}
+\usepackage{tikz-cd}
+\usepackage{graphicx}
+\usepackage{bbding}
+\renewcommand\qedsymbol{\Peace}
+\newcommand\placeqed{\nobreak\enspace\Peace}
+\usepackage{caption, threeparttable}
+%\captionsetup{labelfont = sc, textfont = it}
+\usepackage{halloweenmath}
+\newcommand{\contradiction}{\null\hfill\large{$\mathghost$}\normalsize}
+\usepackage[skins]{tcolorbox}
+\newtcolorbox{mybox}{enhanced,sharp corners=all,colback=white,colframe=gray,toprule=0pt,bottomrule=0pt,leftrule=1pt,rightrule=1pt,overlay={
+    \draw[gray,line width=1pt] (frame.north west) -- ++(2cm,0pt);
+    \draw[gray,line width=1pt] (frame.south east) -- ++(-2cm,0pt);
+}}
+\newcommand{\im}{\mathscr{I}\text{m}}
+\newcommand{\re}{\mathscr{R}\text{e}}
+\newcommand{\res}{\text{Res}}
+
+\name{Kayla Orlinsky}
+\course{Real Analysis Exam}
+\term{Fall 2017}
+\hwnum{Fall 2017}
+
+\begin{document}
+
+\begin{problem} $\,$
+Let $(X,\mathscr{A},\mu)$ be a measure space and $f,g,f_n,g_n$ measurable so that $f_n\to f$ and $g_n\to g$ in measure. Is it true that $f_n^3+g_n\to f^3+g$ in measure if \begin{enumerate}[label=(\alph*)]
+    \item $\mu(X)=1$
+    \item $\mu(X)=\infty$
+\end{enumerate}
+In both cases prove the statement or provide a counter example.
+\end{problem}
+
+
+\begin{solution}$\,$
+\begin{enumerate}[label=(\alph*)]
+    \item True. Since $|f_n^3+g_n-f^3-g|\le |f_n^3-f|+|g_n-g|=|f_n-f||f_n^2+f_nf+f^2|+|g_n-g|$, the finiteness of the measure guarentees that $\mu(\{x\,:\,|f_n^2+f_nf+f^2|\ge\varepsilon\})$ is bounded and since the other two measures are shrinking to zero, we can guarentee that the entire set shrinks to a null set.
+    
+    Specifically, for $n$ large, $M>0$ large, and $\delta>0$ small, \begin{align*}
+        \mu(\{x\,:\,&|f_n^3+g_n-f^3-g|\ge\varepsilon\})\le\mu(\{x\,:\,|f_n-f||f_n^2+f_nf+f^2|+|g_n-g|\ge\varepsilon\})\\
+        &\le \mu(\{x\,:\,|f_n-f||f_n^2+f_nf+f^2|\ge\varepsilon\})+\mu(\{x\,:\,|g_n-g|\ge\varepsilon\}\\
+        &\le \mu(\{x\,:\,|f_n-f|\ge\frac{\varepsilon}{M}, |f_n^2+f_nf+f^2|\ge M\})\\
+        &\qquad\qquad+\mu(\{x\,:\,|f_n-f||f_n^2+f_nf+f^2|\ge\varepsilon,|f_n^2+f_nf+f^2|<M\})\\
+        &\qquad\qquad\qquad\qquad+\mu(\{x\,:\,|g_n-g|\ge\varepsilon\}\\
+        &=\mu(\{x\,:\,|f_n-f|\ge\frac{\varepsilon}{M},|f_n^2+f_nf+f^2|\ge M\})\\
+        &\qquad\qquad+\mu(\{x\,:\,|f_n-f|\ge\frac{\varepsilon}{\delta},\delta<|f_n^2+f_nf+f^2|<M\})\\
+        &\qquad\qquad\qquad\qquad+\mu(\{x\,:\,|g_n-g|\ge\varepsilon\}\\
+        &\to 0\qquad n\to\infty, M\to\infty,\delta\to0
+    \end{align*}
+    \item False. Let $X=\mathbb{R}$ and $\mu=m$ the Lebesgue measure. Let $f_n(x)=x+\frac{1}{n}$. Then $f_n^3(x)=x^3+\frac{3}{n}x^2+\frac{3}{n^2}x+\frac{1}{n^3}$. Let $g_n(x)=0$. Then $g(x)=0$ and $f(x)=x.$
+    
+    Then $$\mu(\{x\,|\,|f_n(x)-f(x)|\ge\varepsilon\})=\mu(\{x\,|\,|\frac{1}{n}|\ge\varepsilon\})=0$$ for all $n\ge N$ where $\frac{1}{N}<\varepsilon$.
+    
+    However, $$\mu(\{x\,|\,|f_n(x)-f(x)|\ge\varepsilon\})=\mu(\{x\,|\,|\frac{3}{n}x^2+\frac{3}{n^2}x+\frac{1}{n^3}|\ge\varepsilon\})=\infty$$ since for all $n$, on the interval $[\varepsilon \frac{n^2}{3},\infty)$, $|f_n-f|\ge\varepsilon$.
+\end{enumerate}
+\end{solution}
+\newpage
+
+
+
+
+\begin{problem} $\,$
+Let $f\in L^1(\mathbb{R})$. Show that the series $$\sum_{n=1}^\infty f(x+n)$$ converges absolutely for Lebesgue almost every $x\in \mathbb{R}.$
+\end{problem}
+
+
+\begin{solution}$\,$
+Fix $k\in\mathbb{Z}$. Then,
+ \begin{align*}
+     \int_k^{k+1}\sum_{n=1}^\infty|f(x+n)|dx&=\sum_{n=1}^\infty\int_k^{k+1}|f(x+n)|dx\tag{1}\\
+     &=\sum_{n=1}^\infty\int_{k+n}^{k+n+1}|f(u)|du\qquad u=x+n\tag{2}\\
+     &=\int_k^\infty|f(u)|du<\infty\\
+ \end{align*}
+ With (1) because $|f(x+n)|\in L^+$ so the sum and integral can be swapped and (2) because linear $u$-sub preserves the Lebesgue integral thanks to the shifting and scaling properties of the Lebesgue measure.
+ 
+ Finally, since the integral is finite, the sum must be finite a.e. Namely, $\displaystyle\sum_{n=1}^\infty|f(x+n)|dx<\infty$ for a.e. $x\in[k,\infty)$. Since $k\in\mathbb{Z}$ was arbitrary, we have that the sum is finite for a.e. $x\in\mathbb{R}$ and so the sum converges absolutely.
+\end{solution}
+\newpage
+
+
+
+
+\begin{problem} $\,$
+Assume that $E\subset\mathbb{R}$ is such that $m(E\cap (E+t))=0$ for all $t\not=0$, where $m$ is the Lebesgue measure on $\mathbb{R}.$ Prove that $m(E)=0.$
+\end{problem}
+
+
+\begin{solution}$\,$
+First, since $\mathbb{R}$ is $\sigma$-finite, $E$ is $\sigma$-finite so there exists $\{E_k\}_{k=1}^\infty$ such that $$E=\bigcup_{k=1}^\infty E_k\qquad m(E_k)<\infty.$$
+
+Furthermore, $$m(E_k\cap (E_k+t))\le m(E\cap (E_k+t))\le m(E\cap (E+t))=0$$ so it suffices to check that $m(E_k)=0$ for all $k.$
+
+If $m(E_k)<\infty,$ then for all $\varepsilon>0$, there exists $$A=\bigcup_{i=1}^n(a_i,b_i)$$ a finite union of disjoint open intervals such that $m(E_k\Delta A)<\varepsilon.$
+
+Now, for all $t\not=0$ \begin{align*}
+    m(A\cap(A+t))&=m(A\cap (A+t)\cap E)+m(A\cap( A+t)\cap E^c)\\
+    &=m(A\cap (A+t)\cap E\cap (E+t))+m(A\cap( A+t)\cap E^c\cap (E+t))\\
+    &\qquad\qquad +m(A\cap (A+t)\cap E\cap(E+t)^c)+m(A\cap( A+t)\cap E^c\cap(E+t)^c)\\
+    &=0+m([A\backslash E]\cap (A+t)\cap (E+t))+m(A\cap E\cap [(A+t)\backslash(E+t)])\\
+    &\qquad\qquad+m([A\backslash E]\cap(A+t)\cap (E+t)^c)\\
+    &<2\varepsilon+m(A\cap E\cap [(A\backslash E)+t])\\
+    &\le 2\varepsilon+m((A\backslash E)+t)\\
+    &=2\varepsilon+m(A\backslash E)\\
+    &<3\varepsilon
+\end{align*}
+
+Namely, $m(A\cap (A+t))<3\varepsilon$ for all $t.$ However, for $t>0$ $$m(A\cap (A+t))=m\left(\bigcup_{i=1}^n(a_i,b_i)\cap\bigcup_{i=1}^n(a_i+t,b_i+t)\right)=\sum_{i=1}^nb_i-(a_i+t)=m(A)-nt.$$
+
+Letting $t=\frac{\varepsilon}{n}$ we see that $$m(A)<4\varepsilon.$$
+
+Therefore, $$m(E_k)=m(E_k\cap A)+m(E_k\cap A^c)<4\varepsilon+\varepsilon=5\varepsilon.$$
+
+Since $\varepsilon$ was arbitrary, $m(E_k)=0$ for all $k.$
+
+Namely, $m(E)=0.$
+\end{solution}
+\newpage
+
+
+
+\begin{problem} $\,$
+Let $(X,\mathscr{A},\mu)$ be a measure space and $f_n$ a sequence of non-negative measurable functions. Prove that if $\sup_nf_n$ is integrable, then $$\limsup_n\int_Xf_nd\mu\le\int_X\limsup_nf_nd\mu.$$ Also show that \begin{enumerate}[label=(\alph*)]
+    \item the inequality may be strict and
+    \item that the inequality may fail unless $\sup_nf_n\in L^1.$
+\end{enumerate}
+\end{problem}
+
+
+\begin{solution}$\,$
+Let $$g_k(x)=\sup_{n\ge k}f_n(x)$$ and $g(x)=\sup_nf_n(x)$. 
+
+Now, since for all $n,$ $f_n(x)\le\sup_nf_n(x)$, we have that $$\int_Xf_nd\mu\le\int_X\sup_nf_nd\mu.$$ Namely, $\displaystyle \int_X\sup_nf_nd\mu$ is an upper bound for $\displaystyle \int_Xf_nd\mu$ and so $$\sup_n\int_Xf_nd\mu\le \int_X\sup_nf_nd\mu.$$
+
+Now, we claim that $$\lim_{k\to\infty}\int_Xg_k(x)d\mu=\int_X\lim_{k\to\infty}g_k(x)d\mu.$$
+
+We will use DCT. \begin{enumerate}
+    \item $g_k(x)$ is measurable for all $k.$
+    \item $$\lim_{k\to\infty}g_k(x)=\limsup_nf_n(x)$$ so the limit exists a.e..
+    \item $g_k(x)\le g(x)\in L^1$ for all $k$ and for a.e. $x$.
+\end{enumerate}
+
+Therefore, by DCT, $$\limsup_n\int_Xf_nd\mu\le\lim_{k\to\infty}\int_X\sup_{n\ge k}f_n(x)d\mu=\int_X\limsup_nf_n(x)d\mu.$$
+
+\begin{enumerate}[label=(\alph*)]
+    \item Let$X=[0,1]$ $\mu=m$ the Lebesgue measure and $f_n(x)$ be the moving box, or typewriter sequence. Namely, for each $n,$ there exists $k$ so $2^k\le n<2^{k+1}$, let $$f_n(x)=\chi_{[\frac{n}{2^k}-1,\frac{n+1}{2^k}-1]}(x).$$ Namely, \begin{align*}
+        f_1(x)&=\chi_{[0,1]}\qquad 2^0=1\le 1\\
+        f_2(x)&=\chi_{[0,\frac{1}{2}]}\qquad 2^1=2\le 2\\
+        f_3(x)&=\chi_{[\frac{1}{2},1]}\qquad 2^1=2\le 3\\
+        &\vdots
+    \end{align*}
+    
+    Now, by nature of the moving box, for each $x\in[0,1]$ there exists an infinite number of $n$ so that $f_n(x)=1$. Therefore, $$\limsup_nf_n(x)=1.$$ 
+    
+    Namely, $$\int_{[0,1]}\limsup_nf_n(x)dx=\int_{[0,1]}1dx=1.$$
+    
+    Now, $$\limsup_n\int_{[0,1]}f_n(x)dx=\limsup_n\frac{1}{2^k}=0$$ since $k$ grows with $n,$
+    
+    Thus, the inequality may be strict.
+    \item Let $X=(0,1]$ $\mu=m$ the Lebesgue measure and $f_n(x)=n\chi_{(0,\frac{1}{n}]}(x)$. Then for all $x,$ since for all $x\in(0,1]$, there exists $N$ so $\frac{1}{N+1}< x\le \frac{1}{N}$ so $\sup_nf_n(x)=N.$ $$\lim\sup_nf_n(x)=\lim_{k\to\infty}\sup_{n\ge k}f_n(x)=0.$$
+    
+    Thus, $$\int_{(0,1]}\limsup_nf_n(x)dx=0$$ and $$\limsup_n\int_{(0,1]}f_n(x)dx=\limsup_nnm\left(\left(0,\frac{1}{n}\right]\right)=\limsup_n1=1.$$
+    
+    Namely, the inequality does not hold. Note that $\sup_nf_n(x)\notin L^1$ since it explodes near $0$.
+\end{enumerate}
+\end{solution}
+\vspace{0.5cm}
+
+\end{document}
+ 

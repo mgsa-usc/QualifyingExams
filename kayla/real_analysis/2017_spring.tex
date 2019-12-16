@@ -1,0 +1,166 @@
+\documentclass[12pt]{Homework}
+
+% Changed from \usepackage{prelude}
+\usepackage{preamble}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{enumitem}
+\usepackage{mathrsfs}
+\usepackage[mathscr]{euscript}
+\usepackage{comment}
+%\usepackage{MnSymbol}
+\usepackage{tikz,float}
+\usepackage{tikz-cd}
+\usepackage{graphicx}
+\usepackage{caption, threeparttable}
+%\captionsetup{labelfont = sc, textfont = it}
+\usepackage{halloweenmath}
+\newcommand{\contradiction}{\null\hfill\large{$\mathghost$}\normalsize}
+\usepackage[skins]{tcolorbox}
+\newtcolorbox{mybox}{enhanced,sharp corners=all,colback=white,colframe=gray,toprule=0pt,bottomrule=0pt,leftrule=1pt,rightrule=1pt,overlay={
+    \draw[gray,line width=1pt] (frame.north west) -- ++(2cm,0pt);
+    \draw[gray,line width=1pt] (frame.south east) -- ++(-2cm,0pt);
+}}
+\usepackage{bbding}
+\renewcommand\qedsymbol{\Peace}
+\newcommand\placeqed{\nobreak\enspace\Peace}
+\newcommand{\im}{\mathscr{I}\text{m}}
+\newcommand{\re}{\mathscr{R}\text{e}}
+\newcommand{\res}{\text{Res}}
+
+\name{Kayla Orlinsky}
+\course{Real Analysis Exam}
+\term{Spring 2017}
+\hwnum{Spring 2017}
+
+\begin{document}
+
+\begin{problem} $\,$
+Assume that $f$ is a positive absolutely continuous function on $[0,1]$. Prove that $1/f$ is also absolutely continuous on $[0,1]$.
+\end{problem}
+
+
+\begin{solution}$\,$
+Since $f$ is absolutely continuous and strictly positive, it has a minimum $f(x_0)=\delta>0$ for some $x_0\in[0,1].$ Namely, for all $x\in[0,1]$, $$f(x)\ge\alpha\implies \frac{1}{f(x)}\le \frac{1}{\alpha}$$
+
+Now, let $\varepsilon>0$ and $\delta>0$ such that for all $\{(a_i,b_i)\}_{i=1}^n$ finite collections of disjoint subintervals of $[0,1]$, $$\sum_{i=1}^n(b_i-a_i)<\delta\implies \sum_{i=1}^n|f(b_i)-f(a_i)|<\alpha^2\varepsilon.$$
+
+Then, \begin{align*}
+    \sum_{i=1}^n\left|\frac{1}{f(b_i)}-\frac{1}{f(a_i)}\right|&=\sum_{i=1}^n\left|\frac{f(a_i)-f(b_i)}{f(b_i)f(a_i)}\right|\\
+    &\le\sum_{i=1}^n\frac{|f(b_i)-f(a_i)|}{\alpha^2}\\
+    &<\frac{1}{\alpha^2}\alpha^2\varepsilon=\varepsilon
+\end{align*}
+
+so $\frac{1}{f}$ is absolutely continuous on $[0,1].$
+\end{solution}
+\newpage
+
+
+
+
+\begin{problem} $\,$
+Assume that $E$ is Lebesgue measurable. 
+\begin{enumerate}[label=(\alph*)]
+    \item Suppose $m(E)<\infty$, where $m$ is the Lebesgue measure. Show that $$f(x)=\int\chi_E(y)\chi_E(y-x)dm(y)$$ is continuous. (Here, $\chi_A$ denotes the characteristic function of a set $A\subset\mathbb{R})$.
+    \item Suppose $0<m(E)\le\infty$. Show that $S=E-E=\{x-y:x,y\in E\}$ contains an open interval $(-\varepsilon,\varepsilon)$ for some $\varepsilon>0$.
+\end{enumerate}
+\end{problem}
+
+
+\begin{solution}$\,$
+ \begin{enumerate}[label=(\alph*)]
+    \item Suppose $m(E)<\infty$. First, we note that $y-x\in E$ if and only if $y\in E+x$. Therefore, \begin{align*}
+        f(x)&=\int\chi_E(y)\chi_E(y-x)dm(y)\\
+        &=\int\chi_E(y)\chi_{E+x}(y)dm(y)\\
+        &=m(E\cap (E+x)).
+    \end{align*}
+    
+    Now, since $m(E)<\infty,$ then for all $\varepsilon>0$, there exists $$A=\bigcup_{i=1}^n(a_i,b_i)$$ a finite union of disjoint open intervals such that $m(E\Delta A)<\varepsilon.$
+    
+    Thus, if $g(x)=m(A\cap(A+x))$ is continuous, then because \begin{align*}
+        |g(x)-f(x)|&=|m(A\cap(A+x))-m(E\cap (E+x))|\\
+        &=|m(A\cap(A+x)\cap E)+m(A\cap(A+x)\cap E^c)\\
+        &\qquad\qquad-m(E\cap(E+x)\cap A)-m(E\cap(E+x)\cap A^c)|\\
+        &<|m(A\cap(A+x)\cap E)-m(E\cap(E+x)\cap A)|+\varepsilon\\
+        &=|m(A\cap(A+x)\cap E\cap(E+x))+m(A\cap(A+x)\cap E\cap(E+x)^c)\\
+        &\qquad\qquad-m(E\cap(E+x)\cap A\cap(A+x))-m(E\cap(E+x)\cap A\cap(A+t)^c)|+\varepsilon\\
+        &<4\varepsilon
+    \end{align*} so $f(x)$ must also be continuous.
+    
+    Now, $g$ is clearly continuous since $A$ is a finite union of intervals so $$\lim_{x\to y}g(x)=g(y)$$ for all $x,y\in\mathbb{R}$ since we can make the difference $|g(x)-g(y)|$ as small as we like by making $|x-y|$ small.
+    
+    Namely, $f$ is continuous.
+    \item Suppose $0<m(E)\le\infty$. 
+    
+    If $m(E)<\infty$ then $g(x)=m(E\cap(E+x))$ is continuous by (a).
+    
+    Now, $g(0)=m(E)>0$ by assumption. Therefore, by continuity, there exists $\varepsilon>0$ small enough that $g(z)>0$ for all $z\in(-\varepsilon,\varepsilon)$.
+    
+    Let $z\in(-\varepsilon,\varepsilon)$ and $z\notin E-E$. Then there does not exist $x,y\in E$ such that $z=x-y.$
+    
+    Namely, for all $y\in E$, $x=z+y\notin E$. Therefore, $E\cap(E+z)=\varnothing$ so $m(E\cap (E+z))=0.$
+    
+    This is a contradiction of $g(z)>0$ so no such $z$ can exist. Namely, $(-\varepsilon,\varepsilon)\in E-E$.
+    
+    Now, if $m(E)=\infty$, because $\mathbb{R}$ is $\sigma$-finite, $E\subset\mathbb{R}$ is also $\sigma$-finite. Namely, there exists $\{E_k\}_{k=1}^\infty$ where $E_k$ are disjoint and $m(E_k)<\infty$ for all $k$ and $$E=\bigcup_{k=1}^\infty E_k.$$
+    
+    Therefore, $$(-\varepsilon,\varepsilon)\in E_k-E_k\subset E-E.$$
+\end{enumerate}
+\end{solution}
+\newpage
+
+
+
+
+\begin{problem} $\,$
+Assume that $f$ is a continuous function on $[0,1]$. Prove that $$\lim_{n\to\infty}\int_0^1nx^{n-1}f(x)dx=f(1).$$
+\end{problem}
+
+
+\begin{solution}$\,$
+Since $f$ is continuous on a closed interval, it is bounded and so the Lebesgue integral and Riemann integrals are the same.
+
+Therefore, letting $u=x^n$, we get that $du=nx^{n-1}dx$ and so $$\lim_{n\to\infty}\int_0^1nx^{n-1}f(x)dx=\lim_{n\to\infty}\int_0^1f(u^{1/n})du.$$
+
+Now, we apply DCT.
+\begin{enumerate}
+    \item $f(u^{1/n})$ is measurable.
+    \item $$\lim_{n\to\infty}f(u^{1/n})=f\left(\lim_{n\to\infty}u^{1/n}\right)=f(1)$$ for a.e. $u\in[0,1]$ since $f$ is continuous. 
+    \item $f(u^{1/n})\le M\in L^1([0,1])$ where $M=\max|f(x)|$ for a.e. $u\in[0,1].$
+\end{enumerate}
+
+Therefore, $$\lim_{n\to\infty}\int_0^1nx^{n-1}f(x)dx=\lim_{n\to\infty}\int_0^1f(u^{1/n})du=\int_0^1\lim_{n\to\infty}f(u^{1/n})du=\int_0^1f(1)du=f(1).$$
+\end{solution}
+\newpage
+
+
+
+\begin{problem} $\,$
+Let $(\Omega,\mathscr{F},\mu)$ be a $\sigma$-finite measure space. Let $f,g$ be measurable real valued functions. Show that $$\int|f-g|d\mu=\int_{-\infty}^\infty\int\left|\chi_{(t,\infty)}(f(x))-\chi_{(t,\infty)}(g(x))\right|d\mu(x)dt.$$
+\end{problem}
+
+
+\begin{solution}$\,$
+Note that for fixed $t$, $$f(x)>t,g(x)\le t\implies \chi_{(t,\infty)}(f(x))-\chi_{(t,\infty)}(g(x))=1$$ and $$f(x)\le t,g(x)>t\implies \chi_{(t,\infty)}(f(x))-\chi_{(t,\infty)}(g(x))=-1$$ all other cases make the integrand $0$.
+
+Let $$E=\{x\,|\, f(x)>t\ge g(x)\}.$$
+
+Therefore, by linearity of the integral we get that
+\begin{align*}
+    \int_{-\infty}^\infty\int&\left|\chi_{(t,\infty)}(f(x))-\chi_{(t,\infty)}(g(x))\right|d\mu(x)dt\\
+    &=\int_{-\infty}^\infty\int_E\chi_{(t,\infty)}(f(x))-\chi_{(t,\infty)}(g(x))d\mu(x)dt\\
+    &\qquad\qquad\qquad-\int_{-\infty}^\infty\int_{E^c}\chi_{(t,\infty)}(f(x))-\chi_{(t,\infty)}(g(x))d\mu(x)dt\\
+    &=\int_{-\infty}^\infty\int_E1d\mu(x)dt+\int_{-\infty}^\infty\int_{E^c}1d\mu(x)dt\\
+    &=\int_{-\infty}^\infty\int_E\chi_{(g(x),f(x))}(x)d\mu(x)dt+\int_{-\infty}^\infty\int_{E^c}\chi_{(f(x),g(x))}(x)d\mu(x)dt\\
+    &=\int_E\int_{-\infty}^\infty\chi_{(g(x),f(x))}(x)dtd\mu(x)+\int_{E^c}\int_{-\infty}^\infty\chi_{(f(x),g(x))}(x)dtd\mu(x)\\
+    &=\int_E\int_{g(x)}^{f(x)}dtd\mu(x)+\int_{E^c}\int_{f(x)}^{g(x)}dtd\mu(x)\\
+    &=\int_Ef(x)-g(x)d\mu(x)+\int_{E^c}g(x)-f(x)d\mu(x)\\
+    &=\int_X|f(x)-g(x)|\mu(x)
+\end{align*}
+
+with (1) since $\Omega$ is $\sigma$-finite and the integrand is clearly in $L^+(\mu\times m)$ so the integrals can be swapped. 
+\end{solution}
+\vspace{0.5cm}
+
+\end{document}
+ 

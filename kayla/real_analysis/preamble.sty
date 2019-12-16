@@ -1,0 +1,90 @@
+% This style file (.sty) loads packages to be used in the main document
+
+% Note: \RequirePackage is (almost) the same as \usepackage, but \RequirePackage is better (by convention) to use in .sty files.
+% For mote details, see http://tex.stackexchange.com/questions/19919
+
+
+% Set page formatting options
+
+% Set page margins to 1 inch. This one of the many uses of the ``geometry'' package.
+% Documentation:
+% https://www.ctan.org/pkg/geometry
+%\RequirePackage[vmargin=1in, hmargin=1in]{geometry}
+
+% Make every page show just the page number in the header/footer (no headings)
+\pagestyle{plain}
+
+% Set the input encoding to utf-8 (Unicode)
+% Documentation:
+% https://www.ctan.org/pkg/inputenc
+\RequirePackage[utf8]{inputenc}
+
+% Use "micro-typography" to make output look nicer
+% Documentation:
+% http://www.ctan.org/pkg/microtype
+\RequirePackage{microtype}
+
+
+% Math tools
+
+% Load two math packages from the AMS at once
+% amsmath - enhances LaTeX's math typesetting
+% amsthm - lets user define ``theorem-like'' environments
+% For more details, see http://tex.stackexchange.com/questions/32100
+% Documentation:
+% https://www.ctan.org/pkg/amsmath
+% https://www.ctan.org/pkg/amsthm
+\RequirePackage{amsmath, amsthm}
+
+% Load more mathematical typesetting tools
+% Documentation:
+% https://www.ctan.org/pkg/mathtools
+\RequirePackage{mathtools}
+
+% Define an environment for homework problem statements
+% Uses the ``amsthm'' package
+\theoremstyle{definition}
+%\newtheorem{problem}{Problem}
+
+% Define an environment for parts of a problem
+% Documentation:
+% https://ctan.org/pkg/enumerate
+%\RequirePackage{enumerate}
+%\newenvironment{parts}
+  %  {\begin{enumerate}[(a)]}
+  %  {\end{enumerate}}
+
+% Define an environment for homework problem solutions
+% Uses the ``amsthm'' package
+%\newenvironment{solution}
+ %   {\begin{proof}[Solution]}
+  %  {\end{proof}}
+
+
+% Math macros
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{enumitem}
+\usepackage{mathrsfs}
+\usepackage[mathscr]{euscript}
+\usepackage{comment}
+%\usepackage{MnSymbol}
+\usepackage{tikz,float}
+\usepackage{tikz-cd}
+\usepackage{graphicx}
+\usepackage{caption, threeparttable}
+%\captionsetup{labelfont = sc, textfont = it}
+\usepackage{halloweenmath}
+\newcommand{\contradiction}{\null\hfill\large{$\mathghost$}\normalsize}
+\usepackage[skins]{tcolorbox}
+\newtcolorbox{mybox}{enhanced,sharp corners=all,colback=white,colframe=gray,toprule=0pt,bottomrule=0pt,leftrule=1pt,rightrule=1pt,overlay={
+    \draw[gray,line width=1pt] (frame.north west) -- ++(2cm,0pt);
+    \draw[gray,line width=1pt] (frame.south east) -- ++(-2cm,0pt);
+}}
+\usepackage{bbding}
+\renewcommand\qedsymbol{\Peace}
+\newcommand\placeqed{\nobreak\enspace\Peace}
+
+\newcommand{\im}{\mathscr{I}\text{m}}
+\newcommand{\re}{\mathscr{R}\text{e}}
+\newcommand{\res}{\text{Res}}

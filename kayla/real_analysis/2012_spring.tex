@@ -1,0 +1,209 @@
+\documentclass[12pt]{Homework}
+
+% Changed from \usepackage{prelude}
+\usepackage{preamble}
+\usepackage{amssymb}
+\usepackage{enumitem}
+\usepackage{mathrsfs}
+\def\upint{\mathchoice%
+    {\mkern13mu\overline{\vphantom{\intop}\mkern7mu}\mkern-20mu}%
+    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+  \int}
+\def\lowint{\mkern3mu\underline{\vphantom{\intop}\mkern7mu}\mkern-10mu\int}
+\usepackage[mathscr]{euscript}
+\usepackage{comment}
+\usepackage{bbding}
+\renewcommand\qedsymbol{\Peace}
+\newcommand\placeqed{\nobreak\enspace\Peace}
+\usepackage{MnSymbol}
+\usepackage{tikz}
+\usepackage{halloweenmath}
+\newcommand{\contradiction}{\null\hfill\large{$\mathghost$}\normalsize}
+\renewenvironment{framed}[1][\hsize]
+   {\MakeFramed{\hsize#1\advance\hsize-\width \FrameRestore}}%
+   {\endMakeFramed}
+\newcommand{\hhline}{\vspace{0.25cm}
+    \hrule
+    $\,$\vspace{-0.25cm}
+    \hrule
+    \vspace{0.25cm}}
+
+\name{Kayla Orlinsky}
+\course{Real Analysis Exam}
+\term{Spring 2012}
+\hwnum{Spring 2012}
+
+\begin{document}
+\begin{framed}{\large{Note! There are a multitude of typos in the questions and hints for this exam (mainly in questions 3 and 4). To stay true to the exam, the typos in the question statements have not been rectified. My solutions are to what I perceived each question to mean.}}
+\end{framed}
+
+\begin{problem} $\,$
+Let $f$ and $g$ be real integrable functions on a $\sigma$-finite measure space $(X,\mathscr{M},\mu)$, and for $t\in\mathbb{R}$ let $$F_t=\{x\in E\,|\,f(x)>t\}\quad\text{ and }\quad G_t=\{x\in E\,|\,g(x)>t\}.$$
+
+Show that $$\int_X|f-g|d\mu=\int_{-\infty}^\infty\mu((F_t\backslash G_t)\cup(G_t\backslash F_t))dt.$$
+\end{problem}
+
+
+\begin{solution}$\,$
+Since $f,g$ are integrable, they are measurable and so $F_t$ and $G_t$ are $\mu$-measurable (because $F_t=f^{-1}(t,\infty)$ and $G_t=g^{-1}(t,\infty)$).
+
+Thus, $\chi_{F_t\Delta G_t}\in L^+(\mu\times m)$ and since $m$ and $\mu$ are $\sigma$-finite, by Tonelli,
+\begin{align*}
+    \int_\mathbb{R}\mu(F_t\Delta G_t)dt&=\int_\mathbb{R}\int_X\chi_{F_t\Delta G_t}d\mu dt\\
+    &=\int_X\int_\mathbb{R}\chi_{F_t\Delta G_t}dtd\mu\\
+    &=\int_X\int_\mathbb{R}\chi_{F_t\backslash G_t}+\chi_{G_t\backslash F_t}dtd\mu\\
+    &=\int_X\left[\int_{g(x)}^{f(x)}dt+\int_{f(x)}^{g(x)}dt\right]d\mu\qquad\text{ on }F_t\cap G_t^c, g(t)\le t<f(t)\\
+    &=\int_{\{x\,|\,f\ge g\}}f(x)-g(x)d\mu+\int_{\{x\,|\,f\le g\}}g(x)-f(x)d\mu\\
+    &=\int_X|f(x)-g(x)|d\mu
+\end{align*}
+\end{solution}
+\newpage
+
+\begin{problem} $\,$
+Show that $$\int_\pi^\infty\frac{dx}{x^2(\sin^2x)^{1/3}}$$ is finite.
+\end{problem}
+
+
+\begin{solution}$\,$
+Let $\varepsilon>0$. Then since $$\sin^{2/3}(k\pi+\varepsilon)=\sin^{2/3}(\varepsilon)\ge\varepsilon,$$ (and similarly for $\sin^{2/3}(k\pi-\varepsilon)=\sin^{2/3}(\varepsilon)$ since we are squaring $\sin$ which is an odd function) we have that $$\frac{1}{\sin^{2/3}x}\le\frac{1}{\varepsilon}$$ near $k\pi$. This is easily verified since $$\frac{d}{dx}(\sin^{2/3}x-x)=\frac{2}{3}\sin^{-1/3}x\cos x-1=\frac{2\cos x}{3\sin^{1/3}x}\ge0\qquad\text{ near }0^+$$ and since $$\sin^{2/3}x-x=0\qquad\text{ at }x=0$$ we have that $\sin^{2/3}x-x$ is increasing and positive near $0^+$ so in that region, $\sin^{2/3}x\ge x$.
+
+Now, since $$\int_\pi^\infty\frac{1}{x^2\sin^{2/3}x}dx=\sum_{k=1}^\infty\int_{k\pi}^{(k+1)\pi}\frac{1}{x^2\sin^{2/3}x}dx$$ it suffices to show that the integral near any $k\pi$ is small.
+
+However, using the above, we have that 
+\begin{align*}
+    \int_{k\pi-\varepsilon}^{k\pi+\varepsilon}\frac{1}{x^2\sin^{2/3}x}dx&\le\int_{k\pi-\varepsilon}^{k\pi+\varepsilon}\frac{1}{x^2\varepsilon}dx\\
+    &=\frac{-1}{x\varepsilon}\bigg|_{k\pi-\varepsilon}^{k\pi+\varepsilon}\\
+    &=\frac{1}{\varepsilon}\left(\frac{-1}{k\pi+\varepsilon}+\frac{1}{k\pi-\varepsilon}\right)\\
+    &=\frac{1}{\varepsilon}\left(\frac{-(k\pi-\varepsilon)}{(k\pi-\varepsilon)(k\pi+\varepsilon)}+\frac{k\pi+\varepsilon}{(k\pi+\varepsilon)(k\pi-\varepsilon)}\right)\\
+    &=\frac{1}{\varepsilon}\left(\frac{2\varepsilon}{k^2\pi^2-\varepsilon^2}\right)\\
+    &=\frac{2}{k^2\pi^2-\varepsilon^2}
+\end{align*} 
+
+Thus, \begin{align*}
+    \int_\pi^\infty\frac{1}{x^2\sin^{2/3}x}dx&=\sum_{k=1}^\infty\int_{k\pi}^{(k+1)\pi}\frac{1}{x^2\sin^{2/3}x}dx\\
+    &=\sum_{k=1}^\infty\int_{k\pi+\varepsilon}^{(k+1)\pi-\varepsilon}\frac{1}{x^2\sin^{2/3}x}dx+\sum_{k=1}^\infty\int_{k\pi-\varepsilon}^{k\pi+\varepsilon}\frac{1}{x^2\sin^{2/3}x}dx\\
+    &\le\int_\pi^\infty\frac{1}{x^2\varepsilon}dx+\sum_{k=1}^\infty\frac{2}{k^2\pi^2-\varepsilon^2}<\infty
+\end{align*}
+
+\end{solution}
+\newpage
+
+\begin{problem} $\,$
+A collection of functions $\{f_\alpha\}_{\alpha\in\mathscr{A}}\subset L^1$ on the measure space $(X,\mathscr{M},\mu)$ is said to be \textit{uniformly integrable} if $$\lim_{M\to\infty}\sup_{\alpha\in\mathscr{A}}\int_{\{x\,|\,|f_\alpha(x)>M\}}|f_\alpha|=0.$$
+\begin{enumerate}[label=(\alph*)]
+    \item Prove that if $f\in L^1$ then $\{f\}$ is uniformly integrable.
+    \item Prove that if $\{f_\alpha\}_{\alpha\in\mathscr{A}}$ and $\{f_\beta\}_{\beta\in\mathscr{B}}$ are two collections of uniformly integrable functions then $\{f_\gamma\}_{\gamma\in\mathscr{A}\cup\mathscr{B}}$ is uniformly integrable.
+    \item Show that if $\mu(X)<\infty$, and $\{f_\alpha\}_{\alpha\in\mathscr{A}}\subset L^1$ is uniformly integrable then $$\sup_{\alpha\in\mathscr{A}}\int|f|d\mu<\infty.$$
+    
+    Give an example to show that the conclusion fails without the condition $\mu(X)<\infty.$
+    \item Again, let $\mu(X)<\infty$ and suppose $\{f_n\}_{n=0}^\infty\subset L^1(\mu)$ such that $f_n\to f_0$ a.e. and $\int|f_n|d\mu\to\int|f_0|d\mu$. Prove that $\{f_n\}_{n=0}^\infty$ is uniformly integrable. Hint: Consider some $\phi_M$, a continuous bounded function on $[0,\infty)$, equal to $0$ on $[M,\infty)$, for which $|t|\mathbf{1}\{|t|>M\}\le|t|-\phi_M(|t|).$
+\end{enumerate}
+\end{problem}
+
+
+\begin{solution}$\,$
+\begin{enumerate}[label=(\alph*)]
+    \item Since $f\in L^1$, $\{x\,|\,f(x)=\infty\}$ is $\mu$-null and so $\mu(\{x\,|\,|f(x)|>M\})\to0$ as $M\to\infty$. Thus, if $\int|f|d\mu=N$
+    
+    $$\lim_{M\to\infty}\int_{\{x\,|\,f(x)>M\}}|f(x)|d\mu\le\lim_{M\to\infty}N\mu(\{x\,|\,|f(x)|>M\})=0.$$
+    \item \begin{align*}
+        \lim_{M\to\infty}\sup_{\alpha\in\mathscr{A}\cup\mathscr{B}}\int_{\{x\,|\,f_\alpha(x)>M\}}|f_\alpha|&=\lim_{M\to\infty}\max\left\{\sup_{\alpha\in\mathscr{A}}\int_{\{x\,|\,f_\alpha(x)>M\}}|f_\alpha|,\sup_{\beta\in\mathscr{B}}\int_{\{x\,|\,f_\beta(x)>M\}}|f_\beta|\right\}\\
+        &=\lim_{M\to\infty}\sup_{\alpha\in\mathscr{A}}\int_{\{x\,|\,f_\alpha(x)>M\}}|f_\alpha|\qquad\text{ WLOG take }\sup_{\alpha\in\mathscr{A}}\ge\sup_{\beta\in\mathscr{B}}\\
+        &=0\qquad\text{ since }\{f_\alpha\}\text{ are uniformly integrable}.
+    \end{align*}
+    
+    \item \begin{align*}
+        \sup_{\alpha\in\mathscr{A}}\int|f_\alpha|d\mu&=\sup_{\alpha\in\mathscr{A}}\left[\int_{\{x\,|\,f_\alpha(x)>M\}}|f_\alpha|d\mu+\int_{\{x\,|\,f_\alpha(x)\le M\}}|f_\alpha|d\mu\right]\\
+        &\le\sup_{\alpha\in\mathscr{A}}\left[\int_{\{x\,|\,f_\alpha(x)>M\}}|f_\alpha|d\mu+M\mu(X)\right]<\infty
+    \end{align*}
+    
+    Now, let $f_n(x)=\frac{1}{nx}$ on $[0,\infty)$ with the Lebesgue measure. Then $\{x\,|\,f_n(x)>M\}$ is $m$-null for $M\ge1$ so $$\lim_{M\to\infty}\sup_{n\in\mathbb{N}}\int_{\{x\,|\,f_n(x)>M\}}|f_n|dm=0$$ but $\frac{1}{nx}$ diverges as an integral for all $n$, so $$\sup_{n\in\mathbb{N}}\int_1^\infty\frac{1}{nx}dx=\infty.$$
+    \item From (c), $$\infty>\sup_{n\in\mathbb{N}}\int|f_n|d\mu\ge\limsup_{n\in\mathbb{N}}\int|f_n|d\mu=\lim_{n\to\infty}\int|f_n|d\mu=\int|f_0|d\mu.$$ So $f_0\in L^1(\mu)$.
+    
+    Again using (c), we note that since $f_n\in L^1$, for all $n$ and for all $\varepsilon>0$, there exists some $M_n$ such that $$\int_{\{x\,|\,|f_n(x)|>M_n\}}|f_n(x)|d\mu<\varepsilon$$
+    
+    and $$\infty>\sup_{n\in\mathbb{N}}\int|f_n|d\mu\ge\sup_{n\in\mathbb{N}}\int_{\{x\,|\,|f_n(x)|>M_n\}}|f_n(x)|d\mu.$$
+    
+    So, because the $\sup$ is finite, and since each $f_n\in L^1$, for all $\varepsilon>0$ there exists some $M>0$ such that
+    
+    \begin{equation}\tag{1}
+        \sup_n\int_{\{x\,|\,|f_n(x)|>M\}}|f_n(x)|d\mu<\varepsilon
+    \end{equation}
+    
+    Finally, this implies that $$\lim_{M\to\infty}\sup_n\int_{\{x\,|\,|f_n(x)|>M\}}|f_n(x)|d\mu=0$$ and so $\{f_n\}$ are uniformly integrable.
+    
+    \hhline
+    
+    (1) Note that if no such $M$ exists, then for all $M$ $$\sup_n\int_{\{x\,|\,|f_n(x)|>M\}}|f_n(x)|d\mu\ge\varepsilon$$ and so there is some $\int|f_n|d\mu$ such that $$\int_{\{x\,|\,|f_n(x)|>M\}}|f_n(x)|d\mu+\frac{\varepsilon}{2}\ge\sup_n\int_{\{x\,|\,|f_n(x)|>M\}}|f_n(x)|d\mu\ge\varepsilon$$ which implies that for all $M$ $$\int_{\{x\,|\,|f_n(x)|>M\}}|f_n(x)|d\mu\ge\frac{\varepsilon}{2}$$ which is a contradiction OF $|f_n(x)|\in L^1$.
+    
+    \hhline
+\end{enumerate}
+\end{solution}
+\newpage
+
+\begin{problem} $\,$
+Let $\mathbb{M}$ be the collection of all finte measures on the measure space $(X,\mathscr{M})$.
+\begin{enumerate}[label=(\alph*)]
+    \item Show that $$d(\nu,\lambda)=2\sup_{E\in\mathscr{M}}|\nu(E)-\lambda(E)|$$ defines a metric on $\mathbb{M}$.
+    \item For any $\mu\in\mathbb{M}$, that dominates measures $\nu$ and $\lambda$ with $\nu(X)=\lambda(X)=1$, let $$p=\frac{d\nu}{d\mu}\qquad\text{ and }\qquad q=\frac{d\lambda}{d\mu}.$$ Prove that $$d(\nu,\lambda)=\int|p(x)-q(x)|d\mu=2\left(1-\int(\min\{p(x),q(x)\})d\mu\right).$$
+    Hint: notice that $\mu(E)-\lambda(E)=\lambda(E^c)-\nu(E^c)$.
+\end{enumerate}
+\end{problem}
+
+
+\begin{solution}$\,$
+\begin{enumerate}[label=(\alph*)]
+    \item \begin{itemize}
+        \item $d(\nu,\lambda)\ge0$ for all $\lambda,\nu\in\mathbb{M}$.
+        \item $d(\nu,\lambda)=0\iff \nu=\lambda$ for all $\lambda,\nu\in\mathbb{M}$ is immediate from the definition.
+        \item $\displaystyle d(\nu,\lambda)=2\sup_E|\nu(E)-\lambda(E)|=2\sup_E|\lambda(E)-\nu(E)|=d(\lambda,\nu)$ for all $\lambda,\nu\in\mathbb{M}$.
+        \item \begin{align*}
+            d(\nu,\mu)+d(\mu,\lambda)&=2\sup_E|\nu(E)-\mu(E)|+2\sup_E|\mu(E)-\lambda(E)|\\
+            &\ge2\sup_E(|\nu(E)-\mu(E)|+|\mu(E)-\lambda(E)|)\qquad\sup A+\sup B\ge \sup(A+B)\\
+            &\ge2\sup_E|\nu(E)-\lambda(E)|\qquad\text{ Triangle Inequality}\\
+            &=d(\nu,\lambda)
+        \end{align*}
+    \end{itemize} 
+    
+    So $d$ is a metric on $\mathbb{M}$.
+    \item Note that since $\nu(E)=\lambda(E)=1$, for all $E$, we have that $$\nu(E)+\nu(E^c)=\lambda(E)+\lambda(E^c)\implies \nu(E)-\lambda(E)=\lambda(E^c)-\nu(E^c).$$ 
+
+    \begin{claim} $\displaystyle 2\sup_E\left|\int_E(p-q)d\mu\right|=\int|p-q|d\mu$
+    \begin{proof} \boxed{\le} \begin{align*}
+        2\sup_E|\nu(E)-\lambda(E)|&=\sup_E|2(\nu(E)-\lambda(E))|\\
+        &=\sup_E|\nu(E)-\lambda(E)+\lambda(E^c)-\nu(E^c)|\\
+        &\le\sup_E(|\nu(E)-\lambda(E)|+|\nu(E^c)-\lambda(E^c)|)\\
+        &=\sup_E\left(\left|\int_E(p-q)d\mu\right|+\left|\int_{E^c}(p-q)d\mu\right|\right)\\
+        &\le\int|p-q|d\mu
+    \end{align*}
+    
+    \boxed{\ge} Let $E=\{x\,|\,p(x)-q(x)\ge0\}$. Then \begin{align*}
+        \int_X|p-q|d\mu&=\int_E(p-q)d\mu+\int_{E^c}(q-p)d\mu\\
+        &=\nu(E)-\lambda(E)+\lambda(E^c)-\nu(E^c)\\
+        &=2(\nu(E)-\lambda(E))\\
+        &\le2\sup|\nu(E)-\lambda(E)|\\
+        &=2\sup_E\left|\int_E(p-q)d\mu\right|
+    \end{align*}
+    \end{proof}
+    \end{claim}
+    
+    Now, assuming that "dominates" implies that $\nu<<\mu$ and $\lambda<<\mu$, we have that $$\nu(X)=\int pd\mu=1\quad\text{ and }\quad\lambda(X)=\int qd\mu=1.$$
+    
+    Finally, this gives
+    \begin{align*}
+        d(\nu,\lambda)&=2\sup_{E\in\mathscr{M}}|\nu(E)-\lambda(E)|\\
+        &=2\sup_{E\in\mathscr{M}}\left|\int_Epd\mu-\int_Eqd\mu\right|\\
+        &=2\sup_E\left|\int_E(p-q)d\mu\right|\\
+        &=\int|p-q|d\mu\qquad\text{ from the claim}\\
+        &=\int_E(p-q)d\mu+\int_{E^c}(q-p)d\mu\\
+        &=\int_X(p-\min\{p,q\})d\mu+\int_X(q-\min\{p,q\})d\mu\\
+        &=2\left(1-\int\min\{q,p\})d\mu\right)
+    \end{align*}
+\end{enumerate}
+\end{solution}
+\vspace{0.5cm}
+
+\end{document}
+ 

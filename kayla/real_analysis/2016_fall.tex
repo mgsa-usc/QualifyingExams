@@ -1,0 +1,169 @@
+\documentclass[12pt]{Homework}
+
+% Changed from \usepackage{prelude}
+\usepackage{preamble}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{enumitem}
+\usepackage{mathrsfs}
+\usepackage[mathscr]{euscript}
+\usepackage{comment}
+%\usepackage{MnSymbol}
+\usepackage{tikz,float}
+\usepackage{tikz-cd}
+\usepackage{graphicx}
+\usepackage{bbding}
+\renewcommand\qedsymbol{\Peace}
+\newcommand\placeqed{\nobreak\enspace\Peace}
+\usepackage{caption, threeparttable}
+%\captionsetup{labelfont = sc, textfont = it}
+\usepackage{halloweenmath}
+\newcommand{\contradiction}{\null\hfill\large{$\mathghost$}\normalsize}
+\usepackage[skins]{tcolorbox}
+\newtcolorbox{mybox}{enhanced,sharp corners=all,colback=white,colframe=gray,toprule=0pt,bottomrule=0pt,leftrule=1pt,rightrule=1pt,overlay={
+    \draw[gray,line width=1pt] (frame.north west) -- ++(2cm,0pt);
+    \draw[gray,line width=1pt] (frame.south east) -- ++(-2cm,0pt);
+}}
+\newcommand{\im}{\mathscr{I}\text{m}}
+\newcommand{\re}{\mathscr{R}\text{e}}
+\newcommand{\res}{\text{Res}}
+
+\name{Kayla Orlinsky}
+\course{Real Analysis Exam}
+\term{Fall 2016}
+\hwnum{Fall 2016}
+
+\begin{document}
+
+\begin{problem} $\,$
+Let $(X,\mathscr{F},\mu)$ be a \textit{finite} measure space, and let $\{f_n\}_{n=1}^\infty$ be a sequence of \textit{nonnegative} measurable functions. Prove that $f_n\to0$ in measure if and only if $$\lim_{n\to\infty}\int\frac{f_n}{f_n+1}d\mu=0.$$
+\end{problem}
+
+
+\begin{solution}$\,$
+
+\boxed{\implies} Assume $f_n\to0$ in measure. Let $\delta>0$ and $\varepsilon=\frac{\delta}{2\mu(X)}$, and $N$ large enough that such that $$\mu(\{x\,|\,f_n(x)\ge\varepsilon\})<\frac{\delta}{2}\qquad \forall n\ge N.$$
+
+
+Let $E_n=\{x\,|\,f_n(x)\ge\varepsilon\}$. Then since $f_n\ge0$ for all $n,$ $\frac{f_n}{f_n+1}\le1$.
+
+Thus, for all $n\ge N$, \begin{align*}
+    \int\frac{f_n}{f_n+1}d\mu&=\int_{E_n}\frac{f_n}{f_n+1}d\mu+\int_{E_n^c}\frac{f_n}{f_n+1}d\mu\\
+    &\le\int_{E_n}1d\mu+\int_{E_n^c}\frac{\varepsilon}{f_n+1}d\mu\\
+    &\le\mu(E_n)+\int_{E_n^c}\varepsilon d\mu\\
+     &=\mu(E_n)+\varepsilon\mu(E_n^c)\\
+     &<\frac{\delta}{2}+\varepsilon\mu(E_n^c)\\
+     &\le\delta.
+\end{align*}
+
+Therefore, $$\lim_{n\to\infty}\int\frac{f_n}{f_n+1}d\mu=0.$$
+
+\boxed{\impliedby} Assume $$\lim_{n\to\infty}\int\frac{f_n}{f_n+1}d\mu=0.$$
+
+Note that \begin{align*}
+    f_n(x)&\ge\varepsilon\\
+    f_n(x)+\varepsilon f_n(x)&\ge\varepsilon+\varepsilon f_n(x)\\
+    f_n(x)(1+\varepsilon)&\ge\varepsilon(1+f_n(x))\\
+    \frac{f_n(x)}{f_n(x)+1}&\ge \frac{\varepsilon}{\varepsilon+1}
+\end{align*} since of course $f_n\ge0$ so $f_n+1>0.$
+
+Therefore,
+
+Since $$\int\frac{f_n}{f_n+1}d\mu\ge\int_{E_n}\frac{f_n}{f_n+1}d\mu\ge\int_{E_n}\frac{\varepsilon}{\varepsilon+1}d\mu=\frac{\varepsilon}{\varepsilon+1}\mu(E_n)$$ and the left hand side goes $0$ as $n\to\infty,$ we have that $\mu(E_n)\to0$ as $n\to\infty.$
+
+Thus, $f_n\to0$ in measure.
+\end{solution}
+\newpage
+
+
+
+
+\begin{problem} $\,$
+Let $(X,\mathscr{F},\mu)$ be a \textit{finite} measure space, and let $\{A_n\}_{n=1}^\infty\subseteq\mathscr{F}$ be a sequence of sets. Assume that $\mu(A_n)\ge\delta$ for all $n\in\mathbb{N}$, where $\delta>0$. Prove that there exists a set $S\in\mathscr{F}$ of positive measure such that for every $x\in S$, is in $A_j$ for infinitely many $j.$
+\end{problem}
+
+
+\begin{solution}$\,$
+ We are looking for exactly the limit superior: the set of $x$ such that $x$ is in infinitely many $A_j.$
+ 
+ Let $$S=\bigcap_{n=1}^\infty\bigcup_{j=n}^\infty A_j.$$ The certainly, if $x\in S$, then $x$ is in infinitely many $A_j.$ Furthermore, $S\in\mathscr{F}$ since it is a countable intersection of countable unions  of elements of $\mathscr{F}$ which is a $\sigma$-algebra.
+ 
+ We would like to show that $\mu(S)>0.$
+ 
+ Now, we note that $$\int\sum_{n=1}^\infty\chi_{A_n}(x)d\mu=\sum_{n=1}^\infty\int\chi_{A_n}(x)d\mu=\sum_{n=1}^\infty\mu(A_n)\ge\sum_{n=1}^\infty\delta=\infty.$$
+ 
+ Therefore, since $\mu(X)<\infty,$ $$\left\{x\,|\,\sum_{n=1}^\infty\chi_{A_n}(x)=\infty\right\}$$ must have strictly positive measure. Namely, $\{x\,|\,x\in A_n$ for infinitely many $n\}$ has strictly positive measure and since this set is a subset of $S$, we have that $\mu(S)>0.$
+ 
+\end{solution}
+\newpage
+
+
+
+
+\begin{problem} $\,$
+Let $f_n:[0,1]\to[0,\infty)$ be Lebesgue measurable and such that $f_n(x)\to0$ for almost every $x.$ Assume that $$\sup_n\int_0^1\varphi(f_n(x))dx\le 1$$ for some continuous $\varphi:[0,\infty)\to[0,\infty)$ which satisfies $\varphi(t)/t\to\infty$ as $t\to\infty.$ Prove that $\int_0^1f_n(x)dx\to0$ as $n\to\infty.$ (Provide a detailed proof).
+\end{problem}
+
+
+\begin{solution}$\,$
+First, since $\varphi(t)/t\to\infty$, we have that for all $M>0$ there exists a $T$ such that $\varphi(x)/x\ge M$ for all $x\ge T.$
+
+Thus, $$\frac{x}{\varphi(x)}\le\frac{1}{M}\qquad x\ge T.$$
+
+Let $$E_n^T=\{x\in[0,1]\,:\,f_n(x)\ge T\}.$$ Then, \begin{align*}
+    \left|\int_0^1f_n(x)dx\right|&=\int_0^1f_n(x)dx\\
+    &=\int_{E_n^T}f_n(x)dx+\int_{(E_n^T)^c}f_n(x)dx\\
+    &=\int_{E_n^T}\frac{\varphi(f_n(x))}{\varphi(f_n(x))}f_n(x)dx+\int_{(E_n^T)^c}f_n(x)dx\\
+    &\le\int_{E_n^T}\varphi(f_n(x))\frac{1}{M}dx+\int_{(E_n^T)^c}f_n(x)dx\\
+    &\le\frac{1}{M}1+\int_{(E_n^T)^c}f_n(x)dx\to\frac{1}{M}\tag{1}
+\end{align*}
+
+with (1) by DCT. \begin{enumerate}
+    \item $f_n$ is measurable for all $n$.
+    \item $f_n\to0$ a.e. $x\in[0,1]$.
+    \item on $(E_n^T)^c$, $f_n\le T\in L^1([0,1])$.
+\end{enumerate} 
+
+Therefore, since $M$ was arbitrary, we have that $$\int_0^1f_n(x)dx\to0\qquad n\to\infty.$$
+\end{solution}
+\newpage
+
+
+
+\begin{problem} $\,$
+Let $h:[0,\infty)\to\mathbb{R}$ be continuous with compact support. Prove that $$\lim_{\varepsilon\to0^+}\int_\varepsilon^\infty\frac{h(\alpha x)-h(\beta x)}{x}dx=h(0)\log\frac{\alpha}{\beta}$$ for every $\alpha,\beta>0.$
+\end{problem}
+
+
+\begin{solution}$\,$
+WLOG, take $\beta>\alpha.$
+\begin{align*}
+    \lim_{\varepsilon\to0^+}\int_\varepsilon^\infty\frac{h(\alpha x)}{x}dx&=\lim_{\varepsilon\to0^+}\left[\int_\varepsilon^\infty\frac{h(\alpha x)}{x}dx-\int_\varepsilon^\infty\frac{h(\beta x)}{x}dx\right]\\
+    &=\lim_{\varepsilon\to0^+}\lim_{R\to\infty}\left[\int_\varepsilon^R\frac{\alpha h(\alpha x)}{\alpha x}dx-\int_\varepsilon^R\frac{\beta h(\beta x)}{\beta x}dx\right]\\
+    &=\lim_{\varepsilon\to0^+}\lim_{R\to\infty}\left[\int_{\alpha\varepsilon}^{\alpha R}\frac{h(u)}{u}du-\int_{\beta\varepsilon}^{\beta R}\frac{h(u)}{u}du\right]\qquad u=\alpha x,\beta x\tag{1}\\
+    &=\lim_{\varepsilon\to0^+}\lim_{R\to\infty}\left[\int_{\alpha\varepsilon}^{\beta\varepsilon}\frac{h(u)}{u}du+\int_{\beta\varepsilon}^{\alpha R}\frac{h(u)}{u}du-\int_{\beta\varepsilon}^{\alpha R}\frac{h(u)}{u}du-\int_{\alpha R}^{\beta R}\frac{h(u)}{u}du\right]\\
+    &=\lim_{\varepsilon\to0^+}\lim_{R\to\infty}\left[\int_{\alpha\varepsilon}^{\beta\varepsilon}\frac{h(u)}{u}du-\int_{\alpha R}^{\beta R}\frac{h(u)}{u}du\right]\\
+    &=\lim_{\varepsilon\to0^+}\lim_{R\to\infty}\left[\int_{\alpha\varepsilon}^{\beta\varepsilon}\frac{\frac{1}{\varepsilon}h(u)}{\frac{1}{\varepsilon}u}du-\int_{\alpha R}^{\beta R}\frac{\frac{1}{R}h(u)}{\frac{1}{R}u}du\right]\\
+    &=\lim_{\varepsilon\to0^+}\lim_{R\to\infty}\left[\int_\alpha^\beta\frac{h(x/\varepsilon)}{x}dx-\int_\alpha^\beta\frac{h(x/R)}{x}dx\right]\qquad x=u/\varepsilon,u/R\\
+    &=\lim_{\varepsilon\to0^+}\lim_{R\to\infty}\left[\int_\alpha^\beta\frac{h(x/\varepsilon)-h(x/R)}{x}dx\right]\\
+    &=\int_\alpha^\beta\lim_{\varepsilon\to0^+}\lim_{R\to\infty}\frac{h(x/\varepsilon)-h(x/R)}{x}dx\tag{2}\\
+     &=\int_\alpha^\beta\frac{-h(0)}{x}dx\\
+     &=-h(0)\log x\big|_\alpha^\beta\\
+     &=-h(0)\log\frac{\beta}{\alpha}\\
+     &=h(0)\log\frac{\alpha}{\beta}\\
+\end{align*}
+
+with (1) because $u$-sub is supported by Lebesgue integration because of the scaling and shifting properties of the Lebesgue measure, and (2) because of DCT.
+
+Namely, \begin{enumerate}
+    \item $\frac{h(x/\varepsilon)}{x}$ is measurable since $h$ is continuous and so measurable, and $\frac{1}{x}$ is continuous on $[\alpha,\beta]$ and so measurable.
+    \item The various limits exist, specifically, because $h$ is continuous $h(x/R)\to h(0)$ as $R\to\infty$ and since $h$ has compact support, $h(x/\varepsilon)=0$ for $\varepsilon$ small. Namely $$\lim_{\varepsilon\to0^+}\lim_{R\to\infty}\frac{h(x/\varepsilon)-h(x/R)}{x}=\frac{0-h(0)}{x}=\frac{-h(0)}{x}.$$
+    \item Because $h$ is continuous and has compact support, it has a maximum value on $[\alpha,\beta]$ which is a finite. Therefore, $$\frac{h(x/\varepsilon)-h(x/R)}{x}\le\frac{2M}{\alpha}\in L^1([\alpha,\beta])$$ for a.e. $x\in[\alpha,\beta]$ where $M$ is the maximum of $h$ on $[\alpha/R,\beta/\varepsilon].$ 
+\end{enumerate} 
+
+Therefore, by DCT, we can bring both limits inside the integral. 
+\end{solution}
+\vspace{0.5cm}
+
+\end{document}
+ 

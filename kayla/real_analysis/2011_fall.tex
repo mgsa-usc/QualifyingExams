@@ -1,0 +1,142 @@
+\documentclass[12pt]{Homework}
+
+% Changed from \usepackage{prelude}
+\usepackage{preamble}
+\usepackage{amssymb}
+\usepackage{enumitem}
+\usepackage{mathrsfs}
+\def\upint{\mathchoice%
+    {\mkern13mu\overline{\vphantom{\intop}\mkern7mu}\mkern-20mu}%
+    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+  \int}
+\def\lowint{\mkern3mu\underline{\vphantom{\intop}\mkern7mu}\mkern-10mu\int}
+\usepackage[mathscr]{euscript}
+\usepackage{comment}
+\usepackage{bbding}
+\renewcommand\qedsymbol{\Peace}
+\newcommand\placeqed{\nobreak\enspace\Peace}
+\usepackage{MnSymbol}
+\usepackage{tikz}
+\usepackage{halloweenmath}
+\newcommand{\contradiction}{\null\hfill\large{$\mathghost$}\normalsize}
+\renewenvironment{framed}[1][\hsize]
+   {\MakeFramed{\hsize#1\advance\hsize-\width \FrameRestore}}%
+   {\endMakeFramed}
+
+\name{Kayla Orlinsky}
+\course{Real Analysis Exam}
+\term{Fall 2011}
+\hwnum{Fall 2011}
+
+\begin{document}
+
+\begin{problem} $\,$
+Let $f\ge0$ and suppose $f\in L^1([0,\infty))$. Find $$\lim_n\frac{1}{n}\int_0^nxf(x)dx.$$
+\end{problem}
+
+
+\begin{solution}$\,$
+Let $f_n(x)=\frac{1}{n}\chi_{[0,n]}xf(x).$ Then $$\int_0^n\frac{1}{n}xf(x)dx=\int_0^\infty f_n(x)dx.$$
+Now, we would like to use Dominated Convergence Theorem. 
+\begin{enumerate}
+    \item $\displaystyle\lim_{n\to\infty}f_n(x)=\frac{xf(x)}{\infty}=0$ a.e.
+    \item $f_n(x)\le f(x)\in L^1$ since for $x\in[0,n]$, $x\le n$ so $\frac{x}{n}\le 1$. Thus $$\int f_n(x)dm\le\int f(x)dm<\infty$$ so $\{f_n\}\in L^1$ for all $n$.
+\end{enumerate}
+
+Thus, by the dominated convergence theorem, $$\lim_n\int f_ndx=\int\lim_{n\to\infty}f_n(x)dx=0.$$
+\end{solution}
+\newpage
+
+\begin{problem} $\,$
+Suppose $f\ge0$ is absolutely continuous on $[0,1]$ and $\alpha>1$. Show that $f^\alpha$ is absolutely continuous. 
+\end{problem}
+
+
+\begin{solution}$\,$
+We would like to use the Fundamental Theorem of Lebesgue Integrals.
+\begin{enumerate}
+    \item $f$ is absolutely continuous so $f'$ exists a.e. Thus, $$(f^\alpha)'=\alpha f^{\alpha-1}f'$$ exists a.e. (since $\alpha>1$). 
+    \item Since $f$ is absolutely continuous, by FTOLI, $f'\in L^1([0,1])$ and since $f$ is continuous on a closed interval it is bounded so there is some $\infty>M>0$ with $f(x)\le M$ for all $x\in[0,1]$. Thus, $$(f^\alpha)'=\alpha f^{\alpha-1}f'\le\alpha M^{\alpha-1}f'\in L^1.$$
+    \item $$\int_0^x\alpha f^{\alpha-1}f'dx=\int_{f(0)}^{f(x)}\alpha u^{\alpha-1}du=u^\alpha\bigg|_{f(0)}^{f(x)}=f^\alpha(x)-f^\alpha(0)$$ $$\begin{matrix}
+    u=f(x) & x:[0,1]  \\
+    du=f'(x)dx & u:[f(0),f(1)]
+\end{matrix}$$
+
+Thus, by FTOLI, $f^\alpha$ is absolutely continuous.
+\end{enumerate}
+
+\end{solution}
+\newpage
+
+\begin{problem}[part (b) is Folland, 3.5.30, p.107] $\,$
+\begin{enumerate}[label=(\alph*)]
+    \item Let $\{\mu_k\}$ be a sequence of finite signed measures. Find a finite positive measure $\mu$ such that $\mu_k<<\mu$ for all $k$.
+    \item Construct an increasing function whose set of discontinuities is $\mathbb{Q}$. (Prove that it is a valid example).
+\end{enumerate}
+\end{problem}
+
+
+\begin{solution}$\,$
+\begin{enumerate}[label=(\alph*)]
+    \item Let $$\mu=\sum_k\frac{|\mu_k|}{|\mu_k|(X)2^k}.$$
+    
+    Then, if $\mu(E)=0$, since $|\mu_k|\ge0$, $|\mu_k|(E)=0$ for all $k$. Since $$0=|\mu_k|(E)=\mu_k^+(E)+\mu_k^-(E)\implies \mu_k^+(E)=-\mu_k^-(E)\implies \mu_k^+(E)=\mu_k^-(E)=0\implies\mu_k(E)=0.$$
+    
+    Thus $\mu_k<<\mu$ for all $k$. Furthermore, $\mu\ge0$ and finally, $\mu<\infty$ since $$\mu(X)=\sum_k\frac{|\mu_k|(X)}{|\mu_k|(X)2^k}=\sum_k\frac{1}{2^k}<\infty.$$
+    \item Let $(r_i)_1^\infty$ be an enumeration of the rationals. Let $f(x)=\sum_{i=1}^\infty\frac{1}{2^i}\chi_{[r_i,\infty)}(x).$ Then clearly if $y>x$, $f(y)\ge f(x)$ since there are more $r_i\le y$  than $r_i\le x$ so $f(x)$ is increasing.
+    
+    Now, fix $x$.
+    \boxed{x\in\mathbb{Q}} Then $x=r_{i_0}$ for some $i_0$. Thus, for all $\delta>0$, there exists some $y$ such that $0<y-x<\delta$ (so $y>x$) but $$f(y)-f(x)=\sum_{\{i\,|\,x<r_i\le y\}}\frac{1}{2^i}\ge\frac{1}{2^i}.$$ Thus, $$\lim_{y\to x}f(y)\ge \lim_{y\to x}\left(f(x)+\frac{1}{2^i}\right)>f(x).$$ So $f$ is discontinuous at $x$. 
+    
+    \boxed{x\notin\mathbb{Q}} Fix $\varepsilon>0$ and pick $N$ such that $$\sum_{i=N+1}^\infty\frac{1}{2^i}\chi_{[r_i,\infty)}(x)<\varepsilon.$$ Now, let $$s=\max_{i\le N}r_i\in(x-\varepsilon,x)\quad\text{ and }\quad t=\min_{i\le N}r_i\in(x,x+\varepsilon).$$ Then $(x-s,x+t)$ contain no $r_i$ for $i\le N$.
+    
+    If no such $r_i$ exists we set $s=\varepsilon$ and/or $t=\varepsilon$.
+    
+    Then, let $\delta=\min\{s,t\}$ for all $|y-x|<\delta$ we have that $$|f(y)-f(x)|\le\sum_{i=N+1}^\infty\frac{1}{2^i}\chi_{[r_i,\infty)}<\varepsilon$$ so $f$ is continuous at $x.$
+\end{enumerate}
+\end{solution}
+\newpage
+
+\begin{problem}[Folland, part (a)  3.4.22, and part (b) 3.4.23, p.100] $\,$
+Let $m$ be the Lebesgue measure on $\mathbb{R}$. For $f\in L_{loc}^1$ and $x\in\mathbb{R}^n$, define the function $A_rf$ by $$A_rf(x)=\frac{1}{m(B(x,r))}\int_{B(x,r)}f(y)dy,$$ which is the average value of $f$ on the ball $B(x,r)$ of radius $r$ centered at $x,$ and define the function $Hf$ by $Hf(x)=A_r|f|(x),x\in\mathbb{R}^d.$
+\begin{enumerate}[label=(\alph*)]
+    \item Show that for $f\in L^1(\mathbb{R}^n),f\not=0$, there exist $C,C',R>0$ such that $Hf(x)\ge C|x|^{-n}$ for all $|x|>R$ and $$m\left(\{x\,|\,Hf(x)>\alpha\}\right)\ge\frac{C'}{\alpha}\qquad\text{ for all sufficiently small }\alpha.$$
+    \item Define the function $H^*f$ by $$H^*f(x)=\sup\left\{\frac{1}{m(B)}\int_B|f(y)|dy\,\bigg|\, B\text{ is a ball containing}x\right\}.$$
+
+Show that $Hf\le H^*f\le 2^nHf$. (Note that unlike $Hf$, in the definition of $H^*f$ the ball $B$ need not be centered at $x$.)
+\end{enumerate}
+\end{problem}
+
+
+\begin{solution}$\,$
+\begin{enumerate}[label=(\alph*)]
+    \item Let $f\in L^1$, $f\not0$. Let $$M=\int_{B(r,0)}|f(x)|dx<\infty.$$ Then there exists some $R>0$ such that $$\int_{B(R,0)}|f(x)|dx\ge\frac{M}{2}.$$ Since $|x|>R$, $B(R,0)\subset B(2|x|,x),$ \begin{align*}
+        \sup_{r>0}\frac{1}{m(B(r,x))}\int_{B(r,x)}|f(y)|dy&\ge\frac{1}{m(B(2|x|,x)}\int_{B(2|x|,x)}|f(y)|dy\\
+        &=\frac{1}{2^n|x|^n}\int_{B(2|x|,x)}|f(y)|dy\\
+        &\ge\frac{1}{2^n|x|^n}\int_{B(R,0)}|f(y)|dy\\
+        &\ge\frac{M}{2^{n+1}|x|^n}.
+    \end{align*}
+    Letting $C=\frac{M}{2^{n+1}}$ we are done. 
+    
+    Now, for all $\alpha\in(0,\frac{C}{2 R^n})$ and for all $x\in\mathbb{R}^n$ with $R<|x|<\left(\frac{C}{\alpha}\right)^{1/n}$, $$Hf(x)\ge C|x|^{-n}>C\frac{\alpha}{C}>\alpha.$$ Thus \begin{align*}
+        m(\{x\,|\,Hf(x)>\alpha\})&\ge m(\{x\,|\,C|x|^{-n}>\alpha\})\\
+        &=m(\{x\,|\,\frac{C}{\alpha}>|x|^n\})\\
+        &=m(\{x\,|\,\left(\frac{C}{\alpha}\right)^{1/n}>|x|>R\})\\
+        &m(B((C/\alpha)^{1/n},x))-m(B(R,x))\\
+        &=\left(\frac{C}{\alpha}-R^n\right)m(B(1,x))>\frac{Cm(B(1,x))}{2\alpha}
+    \end{align*}
+    
+    Letting $C'=\frac{Cm(B(1,x))}{2}$ we are done.
+    \item Let $B_r$ be a ball containing $x$ of radius $r$. Then certainly $B_r\subset B(2r,x)$ and so $$\frac{1}{m(B_r)}\int_{B_r}|f(y)|dy\le\frac{2^n}{m(B(2r,x))}\int_{B(2r,x)}|f(y)|dy\le2^nHf(x)$$ so $$H^*f\le 2^n Hf.$$
+    
+    It is immediate that $Hf\le H^*f$ since any ball centered at $x$ is also a ball containing $x$.
+    
+    Thus, $$Hf\le H^*f\le 2^nHf.$$
+\end{enumerate}
+\end{solution}
+\vspace{0.5cm}
+
+\end{document}
+ 

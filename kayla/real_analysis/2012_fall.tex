@@ -1,0 +1,151 @@
+\documentclass[12pt]{Homework}
+
+% Changed from \usepackage{prelude}
+\usepackage{preamble}
+\usepackage{amssymb}
+\usepackage{enumitem}
+\usepackage{mathrsfs}
+\def\upint{\mathchoice%
+    {\mkern13mu\overline{\vphantom{\intop}\mkern7mu}\mkern-20mu}%
+    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+  \int}
+\def\lowint{\mkern3mu\underline{\vphantom{\intop}\mkern7mu}\mkern-10mu\int}
+\usepackage[mathscr]{euscript}
+\usepackage{comment}
+\usepackage{MnSymbol}
+\usepackage{bbding}
+\renewcommand\qedsymbol{\Peace}
+\newcommand\placeqed{\nobreak\enspace\Peace}
+\usepackage{tikz}
+\usepackage{halloweenmath}
+\newcommand{\contradiction}{\null\hfill\large{$\mathghost$}\normalsize}
+\renewenvironment{framed}[1][\hsize]
+   {\MakeFramed{\hsize#1\advance\hsize-\width \FrameRestore}}%
+   {\endMakeFramed}
+
+\name{Kayla Orlinsky}
+\course{Real Analysis Exam}
+\term{Fall 2012}
+\hwnum{Fall 2012}
+
+\begin{document}
+
+\begin{problem} $\,$
+Let $m$ be the Lebesgue measure on $X=[0,1].$ If $$m(\limsup_{n\to\infty} A_n)=1,\quad m(\liminf_{n\to\infty} B_n)=1,$$ prove that $\displaystyle m\left(\limsup_{n\to\infty}(A_n\cap B_n)\right)=1$, where $$\limsup_{n\to\infty} A_n=\cap_{n=1}^\infty\cup_{k=n}^\infty A_k,\quad \liminf_{n\to\infty} B_n=\cup_{n=1}^\infty\cap_{k=n}^\infty B_k.$$
+\end{problem}
+
+
+\begin{solution}$\,$
+Let $A=\limsup A_n$ and $B=\limsup B_n$. Since $$1=m(\liminf B_n)\le m(\limsup B_n)\le m(X)=1\implies m(B)=1.$$ Futhermore, since $m(A)=m(B)=m(X)=1$, $m(A^c)=m(B^c)=0$.
+
+Now, $$\limsup A_n\cap B_n=\bigcap{n=1}^\infty\bigcup_{k=n}^\infty(A_k\cap B_k)=\bigcap_{n=1}^\infty\left(\bigcup_{k=n}^\infty A_k\cap\bigcup_{k=n}^\infty B_k\right)=\limsup A_n\bigcap \limsup B_n.$$
+
+Finally, $$1=m(A\cup B)=m(A)+m(B)-m(A\cap B)=2-m(A\cap B)\implies m(A\cap B)=1$$
+
+since $m(A\cup B)\ge m(A)=1.$
+
+Thus, $$m(A\cap B)=m\left(\limsup_{n\to\infty}(A_n\cap B_n)\right)=1.$$
+\end{solution}
+\newpage
+
+\begin{problem} $\,$
+Assume that $f:X\to[0,\infty)$ is measurable. Find $$\lim_n\int_X n\log\left[1+\frac{f(x)}{n}\right]d\mu.$$
+\end{problem}
+
+
+\begin{solution}$\,$
+$$(n+1)\log\left(1+\frac{f}{n+1}\right)-n\log\left(1+\frac{f}{n}\right)=n\log\left(\frac{1+\frac{f}{n+1}}{1+\frac{f}{n}}\right)-\log\left(1+\frac{f}{n+1}\right)\le0\quad\text{ for all }n$$ since $$\frac{1+\frac{f}{n+1}}{1+\frac{f}{n}}\le 1\qquad\text{ and }\qquad1+\frac{f}{n+1}\ge 1.$$
+
+Thus, we have that $f_n=n\log\left(1+\frac{f}{n}\right)$ is decreasing in terms of $n$ so $f_{n+1}\le f_n$. Now, because $f$ is measurable, $f_n$ is measurable since the natural log is continuous. 
+
+\begin{align*}
+    \lim_{n\to\infty}f_n(x)&=\lim_{n\to\infty}\frac{\log\left(1+\frac{f(x)}{n}\right)}{\frac{1}{n}}\\
+    &=\lim_{n\to\infty}\frac{\frac{1}{1+\frac{f(x)}{n}}\frac{-f(x)}{n^2}}{\frac{-1}{n^2}}\qquad\text{L'Hopital's Rule}\\
+    &=\lim_{n\to\infty}\frac{f(x)}{1+\frac{f(x)}{n}}\\
+    &=f(x)\qquad\text{ for all }x.
+\end{align*}
+
+Now, let $g_n(x)=f(x)-f_n(x).$ Then $$f(x)\ge \log(1+f(x))=f_1(x)$$ for all $f(x)\ge0$ and since $f_1(x)\ge f_n(x)$ for all $n\ge1$, we have that $g_n(x)\ge0$ for all $x$. We would like to use the Monotone Convergence Theorem on $g_n$.
+\begin{enumerate}
+    \item $\{g_n\}\in L^+$ since it is measurable and positive.
+    \item $f_n\ge f_{n+1}$ so $g_n\le g_{n+1}$ for all $n$.
+    \item $g_n\to 0$ for all $x$ since $f_n\to f(x)$.
+\end{enumerate}
+
+Thus, by MCT, $$\lim_n\int_X n\log\left[1+\frac{f(x)}{n}\right]d\mu=\int_Xf(x)dx.$$
+\end{solution}
+\newpage
+
+\begin{problem} $\,$
+Let $f\in L^1(m).$ For $k=1,2,...$ let $f_k$ be the step function defined by $$f_k(x)=k\int_{j/k}^{(j+1)/k}f(t)dt$$ $$\text{ for }\frac{j}{k}<x\le\frac{j+1}{k},j=0,\pm1,...$$
+Show that $f_k$ converge to $f$ in $L^1$ as $k\to\infty$.
+\end{problem}
+
+
+\begin{solution}$\,$
+First, since $f\in L^1$ $f\in L_{loc}^1$. For each $x$, there exists some $j$ such that $x\in(\frac{j}{k},\frac{j+1}{k}]$ and so $$f_k(x)=k\int_{j/k}^{(j+1)/k}f(t)dt=\frac{1}{m((j/k,(j+1)/k])}\int_{(j/k,(j+1)/k])}f(t)dt.$$
+
+Since $(j/k,(j+1)/k]$ shrinks nicely to $x$ as $k\to\infty$, by the Lebesgue Differentiation Theorem $$\lim_{k\to\infty}f_k(x)=f(x)\qquad\text{ a.e.}.$$
+
+Now, we would like to use Dominated Convergence Theorem.
+\begin{enumerate}
+    \item Let $g_k(x)=|f(x)-f_k(x)|$. Then, let $\int|f(x)|=M<\infty$ since $f\in L^1$. Then \begin{align*}
+        \int|g_k(x)|dx&=\int|f(x)-f_k(x)|dx\\
+        &\le\int|f(x)|dx+\int|f_k(x)|dx\\
+        &=M+\sum_jk\int_{j/k}^{(j+1)/k}\left|\int_{j/k}^{(j+1)/k}f(x)dx\right|dx\\
+        &=M+\sum_jk\,m\left((\frac{j}{k},\frac{j+1}{k})\right)\left|\int_{j/k}^{(j+1)/k}f(x)dx\right|\qquad\left|\int_{j/k}^{(j+1)/k} f(x)dx\right|\text{ is constant}\\
+        &=M+\sum_jk\frac{1}{k}\left|\int_{j/k}^{(j+1)/k}f(x)dx\right|\\
+        &\le M+\sum_j\int_{j/k}^{(j+1)/k}|f(x)|dx\\
+        &=M+M=2m
+    \end{align*}
+    Thus, $g_k(x)\in L^1$ for all $k$.
+    \item $g_k(x)\to0$ a.e. since $f_k\to f$ a.e.
+    \item For each $x>0$ and $k$ there exists some $j\ge0$ such that $x\in(j/k,(j+1)/k].$ Then $x\in(0,j+1]$. Similarly, if $x\le0,$ then $x\in(j,0]$. Thus, $$g_k(x)\le|f(x)|+|f_k(x)|\le |f(x)|+\begin{cases}
+    M\chi_{(0,j+1]}(x)\\
+    M\chi_{(j,0]}(x)
+    \end{cases}\in L^1.$$
+\end{enumerate}
+
+Thus, by the dominated convergence theorem, $$\lim_{k\to\infty}\int|f-f_k|dx=\lim_{k\to\infty}g_k(x)dx=\int\lim_{k\to\infty}g_k(x)dx=0.$$
+\end{solution}
+\newpage
+
+\begin{problem}[Folland, 3.4.25, p.100] $\,$
+If $E$ is Borel set in $\mathbb{R}^n$ the density $D_E(x)$ of $E$ at $x$ is defined as $$D_E(x)=\lim_{r\to 0}\frac{m(E\cap B(x,r))}{m(B(x,r))},$$ whenever the limit exists [Here $m$ denotes the Lebesgue measure and $B(x,r)$ is the open ball with center at $x$ and radius $r.$]
+\begin{enumerate}[label=(\alph*)]
+    \item Show that $D_E(x)=0$ for a.e. $x\in E$ and $D_E(x)=0$ for a.e. $x\notin E$.
+    \item For $\alpha\in (0,1)$ find an example of $E$ and $x$ such that $D_E(x)=\alpha$.
+    \item Find an example of $E$ and $x$ such that $D_E(x)$ does not exist.
+\end{enumerate}
+\end{problem}
+
+
+\begin{solution}$\,$
+\begin{enumerate}[label=(\alph*)]
+    \item $$m(E\cap B(x,r))=\int_{B(x,r)}\chi_E(x)dx$$ Since $\chi_E\in L_{loc}^1$ because $E$ is Borel measurable, and certainly $B(x,r)$ shrinks nicely to $x$, so by the Lebesgue Dominated Convergence Theorem $$\lim_{r\to0}\frac{m(E\cap B(x,r))}{m(B(x,r))}=\lim_{r\to0}\frac{1}{m(B(x,r))}\int_{B(x,r)}\chi_E(x)dx=\chi_E(x)\qquad\text{ a.e.}$$
+    
+    Thus, $D_E(x)=0$ for a.e. $x\in E$ and $D_E(x)=0$ for a.e. $x\notin E$.
+    \item We will work in $\mathbb{R}^2$. Fix $\alpha\in(0,1)$. For $x=0$ let $\theta=2\phi\alpha$. Let $E$ be the set of points in a $\theta$ sector of $x$. Specifically, $$E=\{(R\cos\gamma,R\sin\gamma)\,|\,R\ge0,0\le\gamma\le\theta\}.$$
+    
+    Then $$B(0,r)\cap E=\{(R\cos\gamma,R\sin\gamma)\,|\,r>R\ge0,0\le\gamma\le\theta\}.$$
+    
+    Thus, $$m(B(0,r)\cap E)=\frac{\theta}{2\pi}m(B(0,r)=\alpha m(B(0,r))$$ so $$\lim_{r\to 0}\frac{m(E\cap B(0,r))}{m(B(0,r))}=\lim_{r\to0}\alpha=\alpha.$$
+    \item We will work in $\mathbb{R}^1$. Let $B_n(-\frac{1}{n},\frac{1}{n})$. Fix $x=0$.
+    
+    Let $E=\bigcap_{n=1}^\infty(B_{(2n-1)!}\backslash B_{(2n)!}).$
+    
+    If $n$ is odd then we note that $B_{n!}\backslash B_{(n+1)!}\subset E$ so $$\frac{m(E\cap B_{n!})}{m(B_{n!})}\ge\frac{m(B_{n!}\backslash B_{(n+1)!})}{m(B_{n!})}=\frac{\frac{2}{n!}-\frac{2}{(n+1)!}}{\frac{2}{n!}}=1-\frac{1}{n}\to1.$$
+    
+    Thus $D_E(0)\ge1.$
+    
+    If $n$ is even, then $E\cap B_{n!}\subset B_{(n+1)!}$ so $$\frac{m(E\cap B_{n!})}{m(B_{n!})}\le\frac{m(B_{(n+1)!})}{m(B_{n!})}=\frac{\frac{2}{(n+1)!}}{\frac{2}{n!}}=\frac{1}{n+1}\to0.$$
+    
+    So $D_E(0)=0$. Thus, since there are infinitely many even and odd $n$, $D_E(0)$ does not exist.
+\end{enumerate}
+\end{solution}
+\vspace{0.5cm}
+
+\end{document}
+ 

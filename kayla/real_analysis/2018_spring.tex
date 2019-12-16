@@ -1,0 +1,124 @@
+\documentclass[12pt]{Homework}
+
+% Changed from \usepackage{prelude}
+\usepackage{preamble}
+\usepackage{amssymb}
+\usepackage{enumitem}
+\usepackage{mathrsfs}
+\def\upint{\mathchoice%
+    {\mkern13mu\overline{\vphantom{\intop}\mkern7mu}\mkern-20mu}%
+    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+  \int}
+\def\lowint{\mkern3mu\underline{\vphantom{\intop}\mkern7mu}\mkern-10mu\int}
+\usepackage{bbding}
+\renewcommand\qedsymbol{\Peace}
+\newcommand\placeqed{\nobreak\enspace\Peace}
+\usepackage[mathscr]{euscript}
+\usepackage{comment}
+\usepackage{MnSymbol}
+
+\name{Kayla Orlinsky}
+\course{Real Analysis Exam}
+\term{Spring 2018}
+\hwnum{Spring 2018}
+
+\begin{document}
+
+\begin{problem} $\,$
+Let $-\infty<a<b<\infty$ and suppose $\mathscr{B}$ is a countable collection of closed subintervals of $(a,b).$ Give the proof that there is a countable pairwise-disjoint subcollection $\mathscr{B}'\subset\mathscr{B}$ such that $$\bigcup_{I\in\mathscr{B}}I\subset\bigcup_{I\in\mathscr{B}'}\Tilde{I},$$ where $\Tilde{I}$ denotes the $5$-times enlargement of $I;$ thus if $I=[x-\rho,x+\rho]$ then $\Tilde{I}=[x-5\rho,x+5\rho].$
+\end{problem}
+
+
+\begin{solution}$\,$
+Let each $I\in\mathscr{B}$ be written as $I=[x-r,x+r]$ some $x\in (a,b)$ some $r<b-a$. Let $R=\sup_r[x-r,x+r]$. Then $m(I)<2R<\infty$ for all $I\in\mathscr{B}$, where $m$ is the Lebesgue measure.
+
+Now, let $F_n\subset\mathscr{B}$ be the collection of $I$ such that $$\text{Radius of }I=\frac{m(I)}{2}\in\left(\frac{R}{2^{n+1}},\frac{R}{2^n}\right].$$
+
+Now, we define $G_n$ as follows, let $H_0=F_0$ and $G_0$ be a maximal disjoint subcollection of $H_0$.
+
+Now, for each $n$ define $$H_{n+1}=\{I\in F_{n+1}\,|\,I\cap J=\varnothing,\forall J\in G_0\cup G_1\cup\cdots\cup G_n\}.$$ Let $G_{n+1}$ be a maximal disjoint subcollection of $H_{n+1}.$
+
+Let $$\mathscr{B}'=\bigcup_{n=1}^\infty G_n.$$
+
+First, $\mathscr{B}'$ is pairwise disjoint by construction. This is because if $I,J\in\mathscr{B}'$, then there exists $n,m$ so $I\in G_n$ and $J\in G_m$, namely, $I\in H_n$ and $J\in H_m$. If $n=m$ then $I,J\in G_n$ which is a disjoint collection, so $I\cap J=\varnothing.$ If, WLOG, $n>m$, $I$ cannot intersect $J$ since $J\in G_0\cup G_1\cup\cdots\cup G_m\cup\cdots\cup G_{n-1}$ and $I\in H_n$ implies it cannot intersect any elements of this set by definition.
+
+Second, $\mathscr{B}'$ is countable since it comes from $\mathscr{B}$ which is countable.
+
+Finally, let $I\in\mathscr{B}$. Then there exists $n$ so $I\in F_n$. 
+
+Now, if $I\notin H_n$, then $n>0$ since $H_0=F_0$. Also, $I$ must intersect some $J\in G_0\cup\cdots\cup G_{n-1}$. 
+
+In this case, the radius of $I$ is in $(\frac{R}{2^{n+1}},\frac{R}{2^n}]$ and since $J\in G_0\cup\cdots\cup G_{n-1}$, the radius of $J$ is in $(\frac{R}{2^n},R]$. Since $I$ intersects $J$, the worst possible case is that $I=[x-\frac{R}{2^n},x+\frac{R}{2^n}]$ intersects $J$ at an end point, $I$ has maximal length of $2\frac{R}{2^n}=\frac{R}{2^{n-1}}$ and $J$ has minimal length of $2\frac{R}{2^n}=\frac{R}{n^{n-1}}$. However, even in this case, $I\subset \Tilde{J}$. To see this, WLOG, take $$J=\left[\left(x+\frac{2R}{2^n}\right)-\frac{R}{2^n},\left(x+\frac{2R}{2^n}\right)+\frac{R}{2^n}\right]$$ so $J$ intersects $I$ at its right endpoint.
+
+Then $$\Tilde{J}=\left[\left(x+\frac{2R}{2^n}\right)-\frac{5R}{2^n},\left(x+\frac{2R}{2^n}\right)+\frac{5R}{2^n}\right]=\left[x-\frac{3R}{2^n},x+\frac{7R}{2^n}\right]$$ and since $x-\frac{3R}{2^n}<x-\frac{R}{2^n}$ and $x+\frac{7R}{2^n}>x+\frac{R}{2^n}$, we have that $I\subset\Tilde{J}$, and similarly for $J$ intersecting $I$ at the right end point.
+
+Now, if $I\in H_n$, then by maximality of $G_n$, we have that $I$ intersects some $J$ in $G_n$. Again, $I\in F_n$ so the radius of $I$ is in $(\frac{R}{2^{n+1}},\frac{R}{2^n}]$ and similarly for $J$.
+
+As in the previous case, even if $I\cap J$ is a single endpoint, so (in the case of the right end point of $I$ being the intersection point) $$I=\left[x-\frac{R}{2^n},x+\frac{R}{2^n}\right], J=\left[\left(x+\frac{3R}{2^{n+1}}\right)-\frac{R}{2^{n+1}},\left(x+\frac{3R}{2^{n+1}}\right)+\frac{R}{2^n}\right]$$ then $$\Tilde{J}=\left[\left(x+\frac{3R}{2^{n+1}}\right)-\frac{5R}{2^{n+1}},\left(x+\frac{3R}{2^{n+1}}\right)+\frac{5R}{2^n}\right]=\left[x-\frac{R}{2^n},x+\frac{4R}{2^n}\right]$$ so $I\subset\Tilde{J}$, and similarly for intersection at a left endpoint of $I.$
+
+Therefore, we have that $\mathscr{B}'$ is indeed a pair-wise disjoint countable subcollection of $\mathscr{B}$, with $$\bigcup_{I\in\mathscr{B}}I\subset\bigcup_{I\in\mathscr{B}'}\Tilde{I}.$$ 
+
+\end{solution}
+\newpage
+
+
+
+\begin{problem} $\,$
+Assume that $f$ is absolutely continuous on $[0,1]$, and assume that $f'=g$ a.e., where $g$ is a continuous function. Prove that $f$ is continuously differentiable on $[0,1].$
+\end{problem}
+
+
+\begin{solution}$\,$
+Because $f$ is absolutely continuous, by \textbf{Fundamental Theorem of Lebesgue Integration} $$f(x)=f(0)+\int_0^xf'(t)dt=f(0)+\int_0^xg(t)dt\qquad\text{ since }f'=g\text{ a.e.}.$$
+
+Since $g$ is continuous on $[0,1],$ by the Fundamental Theorem of Calculus part (II), $\displaystyle \int_0^xg(t)dt$ is differentiable on $[0,1]$ and $\displaystyle \frac{d}{dx}\int_0^xg(t)dt=g(x)$ is continuous. Therefore, since $$f(x)-f(0)=\int_0^xg(t)dt$$ and $$\frac{d}{dx}\int_0^xg(t)dt=\frac{d}{dx}(f(x)-f(0))=f'(x)$$ we have that $f$ is continuously differntiable.   
+\end{solution}
+\newpage
+
+
+\begin{problem} $\,$
+Let $(X,\mathscr{M},\mu)$ be a measure space such that $\mu(X)=1.$ Let $A_1, A_2,...,A_{50}\in\mathscr{M}$. Assume that almost every point in $X$ belongs to at least $10$ of these sets. Prove that at least one of the sets has measure greater than or equal to $1/5.$
+\end{problem}
+
+
+\begin{solution}$\,$
+Let $$f(x)=\sum_{i=1}^{50}\chi_{A_i}(x).$$ Then $f(x)$ counts the number of $A_i$ that $x$ is in. 
+
+Let $$B=\{x\,|\, f(x)<10\}.$$ 
+
+Since $\mu(B^c)=1$, $$\sum_{i=1}^n\mu(A_i)=\int_Xf(x)d\mu=\int_{B^c}f(x)d\mu\ge\int_{B^c}10d\mu=10.$$ Let $i$ be such that $\mu(A_i)$ is maximal (possible since $\mu(A_i)\le 1$ for $i=1,...,50$).
+
+Then $$50\mu(A_i)\ge\sum_{i=1}^n\mu(A_i)\ge10\implies \mu(A_i)\ge\frac{1}{5}.$$
+\end{solution}
+\newpage
+
+\begin{problem} $\,$
+Let $f:[0,\infty)\to\mathbb{R}$ be absolutely continuous on every closed subinterval of $[0,\infty)$ and $$f(x)=f(0)-\int_0^xg(t)dt,\qquad\text{ for }x\ge0,$$ where $g\in\mathscr{L}^1([0,\infty)).$ Show that $$\int_0^\infty\frac{f(2x)-f(x)}{x}dx=(\log 2)\int_0^\infty g(t)dt.$$ 
+\end{problem}
+
+
+\begin{solution}$\,$
+Because $f$ is absolutely continuous on ever closed subinterval, it is also integrable on every closed subinterval. 
+
+Thus, (because scaling does not affect Lebesgue integration) we may write \begin{align*}
+    \int_0^\infty\frac{f(2x)-f(x)}{x}dx&=\lim_{\varepsilon\to0}\lim_{R\to\infty}\left[\int_\varepsilon^R\frac{f(2x)}{x}dx-\int_\varepsilon^R\frac{f(x)}{x}dx\right]\\
+    &=\lim_{\varepsilon\to0}\lim_{R\to\infty}\left[\int_{2\varepsilon}^{2R}\frac{f(u)}{2u/2}du-\int_\varepsilon^R\frac{f(u)}{u}du\right]\qquad u=2x\\
+    &=\lim_{\varepsilon\to0}\lim_{R\to\infty}\left[\int_{2\varepsilon}^{R}\frac{f(u)}{u}du+\int_R^{2R}\frac{f(u)}{u}du-\int_\varepsilon^{2\varepsilon}\frac{f(u)}{u}du-\int_{2\varepsilon}^R\frac{f(u)}{u}du\right]\\
+    &=\lim_{\varepsilon\to0}\lim_{R\to\infty}\left[\int_R^{2R}\frac{f(u)}{u}du-\int_\varepsilon^{2\varepsilon}\frac{f(u)}{u}du\right]\\
+    &=\lim_{\varepsilon\to0}\lim_{R\to\infty}\left[\int_1^2\frac{Rf(Rx)}{Rx}dx-\int_1^2\frac{\varepsilon f(\varepsilon x)}{\varepsilon x}dx\right]\qquad x=\frac{u}{R},\frac{u}{\varepsilon} \\
+    &=\lim_{\varepsilon\to0}\lim_{R\to\infty}\left[\int_1^2\frac{f(Rx)-f(\varepsilon x)}{x}dx\right]\\
+    &=\lim_{\varepsilon\to0}\lim_{R\to\infty}\left[\int_1^2\frac{\int_{\varepsilon x}^{R x}g(t)dt}{x}dx\right]\\
+    &=\int_1^2\left(\int_0^\infty g(t)dt\right)\frac{1}{x}dx\tag{1}\\
+    &=\log(2)\int_0^\infty g(t)dt
+\end{align*}
+
+Now, we note that (1) follows by the dominated convergence theorem. 
+
+Namely, $g$ is in $L^1$ so $\displaystyle \int_{\varepsilon x}^{R x}g(t)dt<M\in L^1([1,2])$ with $M<\infty$ and real. Since both limits converge almost everywhere, by dominated convergence we may bring the limits in one at a time. 
+\end{solution}
+\vspace{0.5cm}
+
+\end{document}
+ 

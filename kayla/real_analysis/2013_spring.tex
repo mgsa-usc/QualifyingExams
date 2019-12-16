@@ -1,0 +1,168 @@
+\documentclass[12pt]{Homework}
+
+% Changed from \usepackage{prelude}
+\usepackage{preamble}
+\usepackage{amssymb}
+\usepackage{enumitem}
+\usepackage{mathrsfs}
+\def\upint{\mathchoice%
+    {\mkern13mu\overline{\vphantom{\intop}\mkern7mu}\mkern-20mu}%
+    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+  \int}
+\def\lowint{\mkern3mu\underline{\vphantom{\intop}\mkern7mu}\mkern-10mu\int}
+\usepackage[mathscr]{euscript}
+\usepackage{comment}
+\usepackage{bbding}
+\renewcommand\qedsymbol{\Peace}
+\newcommand\placeqed{\nobreak\enspace\Peace}
+\usepackage{MnSymbol}
+\usepackage{tikz}
+\usepackage{halloweenmath}
+\newcommand{\contradiction}{\null\hfill\large{$\mathghost$}\normalsize}
+\renewenvironment{framed}[1][\hsize]
+   {\MakeFramed{\hsize#1\advance\hsize-\width \FrameRestore}}%
+   {\endMakeFramed}
+
+\name{Kayla Orlinsky}
+\course{Real Analysis Exam}
+\term{Spring 2013}
+\hwnum{Spring 2013}
+
+\begin{document}
+
+\begin{problem} $\,$
+Suppose that $\{f_n\}$ is a sequence of real valued continuously differentiable functions on $[0,1]$ such that $$\lim_{n\to\infty}\int_0^1|f_n(x)|dx=0\text{ and }\lim_{n\to\infty}\int_0^1|f_n'(x)|dx=0.$$
+
+Show that $\{f_n\}$ converges to $0$ uniformly on $[0,1]$.
+\end{problem}
+
+
+\begin{solution}$\,$
+Since $f'(x)$ exists and is continuous on $[0,1]$, $$0=\lim_{n\to\infty}\int_0^1|f_n'(x)|dx\ge\lim_{n\to\infty}\left|\int_0^1f_n'(x)dx\right|=\lim_{n\to\infty}|f_n(1)-f_n(0)|.$$
+
+Similarly, since $|f_n(x)|\ge0$ for all $x,$ we have that $|f_n(b)-f_n(a)|\to0$ for all $(a,b)\subset[0,1]$ since $$\int_0^1|f_n(x)|dx\ge\int_a^b|f_n(x)|dx\qquad 0\le a< b\le 1.$$
+
+Thus, $f_n(x)\to c$ for some constant as $n\to\infty$. Now, we'd like to use the Dominated Convergence Theorem.
+\begin{enumerate}
+    \item $\{f_n\}\in L^1$ since each $f_n$ is continuous on $[0,1]$, it is bounded so $|f(x)|\le M<\infty$ on $[0,1]$.
+    \item $f_n\to c$ for all $x$.
+    \item $|f_n(x)|\le \sup_n M_n<\infty$ with $M_n$ the upper bound of $f_n$ on $[0,1]$. If $\sup_n M_n=\infty$ then the $M_n$ grow arbitrarily large which contradicts the continuity of $f_n$ on $[0,1]$.
+\end{enumerate}
+
+Thus, $$0=\lim_{n\to\infty}\int_0^1|f_n(x)|dx=\int_0^1\lim_{n\to\infty}|f_n(x)|dx=\int_0^1cdx=c.$$ Thus, $f_n\to 0$ for all $x$.
+
+Now, letting $$M_n=\sup_{x\in[0,1]}|f_n(x)|,$$ then there exists some $x\in[0,1]$ such that $|f_n(x)|\ge M_n-\varepsilon$ and so $$\lim_{n\to\infty}|f_n(x)|\ge\lim_{n\to\infty}M_n-\varepsilon\quad\implies\quad\varepsilon\ge\lim_{n\to\infty}M_n.$$ Thus, $M_n\to0$ as $n\to\infty$.
+
+Finally, for all $\varepsilon>0$, there exists some $N\in\mathbb{N}$ such that $M_n<\varepsilon$ for all $n>N$ and so, for all $n> N$, $$|f_n(x)|\le M_n<\varepsilon.$$ Thus, $f\to0$ uniformly on $[0,1]$.
+\end{solution}
+\newpage
+
+\begin{problem} $\,$
+Investigate the convergence of $\sum_{n=0}^\infty a_n$ where $$a_n=\int_0^1\frac{x^n}{1-x}\sin(\pi x)dx.$$
+\end{problem}
+
+
+\begin{solution}$\,$
+First, $\sin(\pi x)\ge 0$ for all $0\le x\le 1$. Now, using a quick sketch we see that $y=-2(x-1)$ seems to be below $\sin(\pi x)$. A quick check shows that $$\frac{d}{dx}(\sin(\pi x)+2(x-1))=\pi\cos(\pi x)+2\qquad\text{ changes sign once for }\frac{1}{2}\le x\le 1$$ which is verified since $$\frac{d}{dx}(\pi\cos(\pi x)+2)=-\pi^2\sin(\pi x)\le0\qquad\frac{1}{2}\le x\le 1.$$ Thus, since $$\sin(\pi x)+2x-2=0\qquad\text{ when }x=\frac{1}{2},1$$ and $$\frac{\sqrt{2}}{2}+\frac{3}{2}-2\ge 0\qquad\text{ for }x=\frac{3}{4}$$ so for all $\frac{1}{2}\le x\le 1$. Thus, $\sin(\pi x)\ge -2(x-1)$.
+
+Let $f_n(x)=\frac{x^n}{1-x}\sin(\pi x)$.
+Let $(\mathbb{N},\nu)$ be the counting measure. 
+Then, $([0,1],m)$ and $(\mathbb{N},\nu)$ are $\sigma$-finite and $f_n(x)\in L^+(m\times \nu)$. Then by Tonelli, we can swap the order of integration, so \begin{align*}
+    \sum_{n=0}^\infty a_n&=\int_0^1\sum_{n=0}^\infty\frac{x^n}{1-x}\sin(\pi x)dx\\
+    &=\int_0^1\sum_{n=0}^\infty\frac{x^n}{1-x}\sin(\pi x)dx\\
+    &=\int_0^1\frac{\sum_{n=0}^\infty x^n}{1-x}\sin(\pi x)dx\\
+    &=\int_0^1\frac{1}{(1-x)^2}\sin(\pi x)dx\qquad\text{ since }0\le x\le 1\implies \sum_{n=0}^\infty x^n=\frac{1}{1-x}\\
+    &\ge\int_{1/2}^1\frac{-1}{(1-x)^2}2(x-1)dx\\
+    &=\int_{1/2}^1\frac{1}{(1-x)^2}2(1-x)dx\\
+    &=\int_{1/2}^1\frac{1}{(1-x)}2dx\\
+    &=-\ln|1-x|\bigg|_{1/2}^1=\infty
+\end{align*}
+\end{solution}
+\newpage
+
+\begin{problem} $\,$
+Let $(X,\mathscr{M},\mu)$ be a measure space, $f_n,f\in L^1(\mu)$. Show that $\int_X|f_n-f|d\mu\to0$ as $n\to\infty$ if and only if $$\sup_{A\in\mathscr{M}}\left|\int_Af_nd\mu-\int_Afd\mu\right|\to0$$ as $n\to\infty.$
+\end{problem}
+
+
+\begin{solution}$\,$
+\boxed{\implies} \begin{align*}
+    0&=\lim_{n\to\infty}\int|f_n(x)-f(x)|d\mu\\
+    &\ge\lim_{n\to\infty}\sup_{A\in\mathscr{M}}\int_A|f_n(x)-f(x)|d\mu\qquad\text{ since }\int_X|f_n-f|\ge\int_A|f_n-f|\text{ for all }A\subset X\\
+    &\ge\lim_{n\to\infty}\sup_{A\in\mathscr{M}}\left|\int_Af_n(x)-f(x)d\mu\right|\qquad |f_n-f|\in L^1\text{ for sufficiently large }n\\
+    &=\lim_{n\to\infty}\sup_{A\in\mathscr{M}}\left|\int_A f_n(x)d\mu-\int_Af(x)d\mu\right|
+\end{align*}
+
+Thus, since we are taking the $\sup$ of positive values, the sup must then tend to $0$.
+
+\boxed{\impliedby} Let $g_n(x)=f_n(x)-f(x)$, then $g_n$ is measurable since $f$ and $f_n$ are and so $$A=\{x\,|\,g_n(x)\ge 0\}=g^{-1}([0,\infty))\in\mathscr{M}$$ and similarly, $$A^c=\{x\,|\, g_n(x)<0\}=g^{-1}((-\infty,0))\in\mathscr{M}.$$
+
+Then, \begin{align*}
+    0&=\lim_{n\to\infty}\sup_{E\in\mathscr{M}}\left|\int_Ef_n(x)d\mu-\int_Ef(x)d\mu\right|\\
+    &=\lim_{n\to\infty}\sup_{E\in\mathscr{M}}\left|\int_Ef_n(x)-f(x)d\mu\right|\\
+    &\ge\lim_{n\to\infty}\left|\int_Af_n(x)-f(x)d\mu\right|\\
+    &=\lim_{n\to\infty}\int_Af_n(x)-f(x)d\mu\qquad\text{ since }f_n-f\ge0\text{ on }A
+\end{align*}
+
+Similarly, $$0\ge\lim_{n\to\infty}\left|\int_{A^c}f_n(x)-f(x)d\mu\right|$$ so $$\lim_{n\to\infty}\int_X|f_n(x)-f(x)|d\mu=\lim_{n\to\infty}\left[\int_Af_n(x)-f(x)d\mu-\int_{A^c}f_n(x)-f(x)d\mu\right]=0-0=0.$$
+\end{solution}
+\newpage
+
+\begin{problem}[Similar to Folland, 3.2.16, p.92] $\,$
+Let $\mu$ and $\nu$ be $\sigma$-finite positive measures, $\mu\ge\nu$ and assume that $\nu<<\mu-\nu$ ($\nu$ is absolutely continuous with respect to $\mu-\nu$).
+
+Prove that $$\mu\left(\left\{\frac{d\nu}{d\mu}=1\right\}\right)=0.$$
+\end{problem}
+
+
+\begin{solution}$\,$
+We make several observations. Note, that in all facts used below, $\sigma$-finiteness as well as positivity of the measures is necessary. 
+\begin{enumerate}
+    \item From $\nu<<\mu-\nu$, $\displaystyle(\mu-\nu)(E)=0\implies\nu(E)=0\implies  \mu(E)-\nu(E)=0\implies \mu(E)=\nu(E)=0$. Thus, $\mu<<\nu$.
+    \item Since $\mu\ge\nu$, $\nu<<\mu$.
+    %\item From 2, $\mu-\nu<<\mu$.
+\end{enumerate}
+Now, we claim that $\mu=\nu$ only on null sets.
+
+\begin{claim} Since $\mu<<\nu$ and $\nu<<\mu$ and $\mu\ge\nu$, $\mu(E)=\nu(E)$ if and only if $\mu(E)=0$.
+\begin{proof} \boxed{\impliedby} Clearly if $\mu(E)=0$, then $\mu(E)=\nu(E)=0$ since $\mu<<\nu$ and $\nu<<\mu$.
+
+\boxed{\implies} Assume $\mu(E)\not=0$. Then $\nu(E)\not=0$, else, if $\nu(E)=0$ then $\mu(E)=0$ since $\mu<<\nu$.
+
+Now, if $\mu(E)=\nu(E)$ then $\mu(E)-\nu(E)=0$ and so $\nu(E)=0$ since $\nu<<\mu-\nu$. However, this is a contradiction. 
+
+Thus, $\mu(E)\not=\nu(E)$.
+
+Namely, $\mu$ and $\nu$ agree only on null sets.
+\end{proof}
+\end{claim}
+
+Now, let $f=\frac{d\nu}{d\mu}$. Then $\frac{1}{f}=\frac{d\mu}{d\nu}$ clearly. We will use the fact that $\displaystyle\mu(E)=\int_Efd\nu$. \begin{align*}
+    \mu\left(\left\{\frac{d\nu}{d\mu}=1\right\}\right)&=\mu\left(\{f=1\}\right)\\
+    &=\mu\left(\left\{\frac{1}{f}=1\right\}\right)\\
+    &=\mu\left(\left\{\frac{d\mu}{d\nu}=1\right\}\right)\\
+    &=\int_{\left\{\frac{d\mu}{d\nu}=1\right\}}fd\nu\\
+    &=\int_{\left\{\frac{d\mu}{d\nu}=1\right\}}f\frac{d\mu}{d\nu}d\nu\\
+    &=\int_{\left\{\frac{d\mu}{d\nu}=1\right\}}f\frac{1}{f}d\nu\\
+    &=\int_{\left\{\frac{d\mu}{d\nu}=1\right\}}d\nu\\
+    &=\nu\left(\left\{\frac{d\mu}{d\nu}=1\right\}\right)\\
+    &=\nu\left(\left\{\frac{d\nu}{d\mu}=1\right\}\right)
+\end{align*}
+
+From the claim, since $\mu$ and $\nu$ agree on $\left\{\frac{d\nu}{d\mu}=1\right\}$, it must be a null set for both and so  $$\mu\left(\left\{\frac{d\nu}{d\mu}=1\right\}\right)=0.$$
+
+\begin{comment}
+b/c $\nu<<\mu-\nu$ and $\mu-\nu<<\mu$, we have that $$f=\frac{d\nu}{d\mu}=\frac{d\nu}{d(\mu-\nu)}\frac{d(\mu-\nu)}{d\mu}=\frac{d\nu}{d(\mu-\nu)}\left(1-\frac{d\nu}{d\mu}\right)=\frac{d\nu}{d(\mu-\nu)}(1-f).$$
+
+Now, $$(\mu-\nu)(E)=\int_Ed(\mu-\nu)=\int_E\frac{d(\mu-\nu)}{d\mu}d\mu\implies \frac{d(\mu-\nu)}{d\mu}>0$$ since $\mu-\nu$ is a positive measure. Furthermore, $$\int_Ed(\mu-\nu)=(\mu-\nu)(E)\le\mu(E)=\int_Ed\mu\implies \frac{d(\mu-\nu)}{d\mu}\le 1.$$ Since we already used that $$\frac{d(\mu-\nu)}{d\mu}=\frac{d\mu}{d\mu}-\frac{d\nu}{d\mu}=1-f$$ we have then that $$0<1-f\le 1\implies -1<-f\le 0\implies 0\le f<1.$$
+
+Thus, $$\frac{d\nu}{d\mu}=f<1\qquad\mu\text{-a.e.}$$ and so  $$\mu\left(\left\{\frac{d\nu}{d\mu}=1\right\}\right)=0.$$
+\end{comment}
+
+\end{solution}
+\vspace{0.5cm}
+
+\end{document}
+ 

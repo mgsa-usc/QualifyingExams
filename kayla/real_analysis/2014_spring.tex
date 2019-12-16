@@ -1,0 +1,276 @@
+\documentclass[12pt]{Homework}
+
+% Changed from \usepackage{prelude}
+\usepackage{preamble}
+\usepackage{amssymb}
+\usepackage{enumitem}
+\usepackage{mathrsfs}
+\def\upint{\mathchoice%
+    {\mkern13mu\overline{\vphantom{\intop}\mkern7mu}\mkern-20mu}%
+    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+  \int}
+\def\lowint{\mkern3mu\underline{\vphantom{\intop}\mkern7mu}\mkern-10mu\int}
+\usepackage[mathscr]{euscript}
+\usepackage{comment}
+\usepackage{MnSymbol}
+\usepackage{bbding}
+\renewcommand\qedsymbol{\Peace}
+\newcommand\placeqed{\nobreak\enspace\Peace}
+\usepackage{tikz}
+\usepackage{halloweenmath}
+\newcommand{\contradiction}{\null\hfill\large{$\mathghost$}\normalsize}
+\renewenvironment{framed}[1][\hsize]
+   {\MakeFramed{\hsize#1\advance\hsize-\width \FrameRestore}}%
+   {\endMakeFramed}
+
+\name{Kayla Orlinsky}
+\course{Real Analysis Exam}
+\term{Spring 2014}
+\hwnum{Spring 2014}
+
+\begin{document}
+
+\begin{problem} $\,$
+Suppose that $(X,\mathscr{B},\mu)$ is a measure space with $\mu(X)<\infty$, and that $\{f_n\}_{n\ge1}$ and $f$ are measurable functions on $X$ such that $f_n\to f$ almost everywhere.
+\begin{enumerate}[label=(\alph*)]
+    \item Suppose that $\int f^2d\mu<\infty$. Show that $f$ is integrable.
+    \item Suppose that there exists $C<\infty$ such that $\int f_n^2d\mu\le C$ for all $n\ge1$. Show that $f_n\to f$ in $L^1$.
+    \item Give an example where $\int|f_n|d\mu\le 1$ for all $n\ge 1$ but $f_n\not\to f$ in $L^1$.
+\end{enumerate}
+\end{problem}
+
+
+\begin{solution}$\,$
+\begin{enumerate}[label=(\alph*)]
+    \item Suppose that $\int f^2d\mu<\infty$. Then let $$E=\{x\,|\,|f(x)|\ge1\}.$$
+    
+    Then we note that if $|f(x)|\ge 1$, $|f(x)|\le f^2(x)$.
+    
+    Thus, $$\int |f(x)|d\mu=\int_E |f(x)|d\mu+\int_{E^c}|f(x)|d\mu\le\int_Ef^2(x)d\mu+\int_{E^c}1d\mu<\infty$$ since $f^2\in L^1$ and since $\mu(E^c)\le\mu(X)<\infty.$
+    \item Suppose that there exists $C<\infty$ such that $\int f_n^2d\mu\le C$ for all $n\ge1$. From (a), $f_n\in L^1$ for all $n$. 
+    
+    Now, we note that if $f_n\to f$ a.e., then $f_n^2\to f^2$ a.e..
+    
+    This is immediate since $$|f_n^2(x)-f^2(x)|=|f_n(x)-f(x)||f_n(x)+f(x)|\to0\cdot 2|f(x)|.$$
+    
+    Therefore, $$\int|f^2|d\mu=\int\liminf|f_n^2|d\mu\le\liminf\int|f_n^2|d\mu\le\liminf C=C.$$
+    
+    Thus, $f^2\in L^1$ and so by (a), $f\in L^1.$
+    
+    We now can apply DCT to $f_n(x)-f(x).$
+    
+    \begin{itemize}
+        \item $f_n(x)-f(x)$ is measurable by assumption
+        \item $f_n(x)\to f(x)$ a.e. by assumption so $f_n-f\to0$ a.e.
+        \item $|f_n(x)-f(x)|\le 2|f(x)|$ a.e. which is in $L^1$
+    \end{itemize}
+    
+    Finally, by DCT, $$\lim_{n\to\infty}\int|f_n-f|d\mu=\int\lim_{n\to\infty}|f_n-f|d\mu=\int0d\mu=0$$ and so $f_n\to f$ in $L^1.$
+    
+    \begin{comment}
+    Now, let $\varepsilon>0$. By Egoroff, (since $\mu$ is a finite measure) there exists a set $A\subset X$ such that $\mu(X\backslash A)<\varepsilon$ and $f_n\to f$ uniformly on $A$.
+    
+    Thus, for all $x\in A$, there exists an $N$ such that $|f_n(x)-f(x)|<\varepsilon$ for all $n\ge N$.
+    
+    Therefore, \begin{align*}
+        \int|f_n-f|d\mu&=\int_{X\backslash A}|f_n-f|d\mu+\int_A|f_n-f|d\mu\\
+        &\le \int_{X\backslash A}|f_n-f|d\mu+\varepsilon\mu(A)\\
+        &
+    \end{align*}
+    
+    \begin{claim} $\displaystyle\int|f|^2d\mu<\infty$.
+    \begin{proof} \begin{align*}
+        \int|f|^2d\mu&=\int_{\{x\,|\,|f|^2\ge M\}}|f|^2d\mu+\int_{\{x\,|\,|f|^2< M\}}|f|^2d\mu\\
+        &\le\int_{\{x\,|\,|f|^2\ge M\}}|f|^2d\mu+\int_{\{x\,|\,|f|^2< M\}}M^2d\mu\\
+        &=\int_{\{x\,|\,|f|\ge \sqrt{M}\}}|f|^2d\mu+M\mu(X)\\
+        &\to M\mu(X)<\infty
+    \end{align*}
+    
+    since $\{x\,|\,|f|\ge \sqrt{M}\}\to\{x\,|\,|f|=\infty\}$ which is a null set because $f\in L^1$.
+    \end{proof}
+    \end{claim}
+    
+    
+    Now, we prove a small claim. 
+    \begin{claim} Since $\mu(X)<\infty$, and $f_n\to f$ a.e., we have that $f_n\to f$ in measure. 
+    \begin{proof} Let $\varepsilon>0$ be given and  $$E_i=\{x\,|\,\text{ there exists some }n>i\text{ with }|f_n(x)-f(x)|\ge\varepsilon\}.$$ 
+    
+    Then, $E_1\supset E_2\supset\cdots$.
+    
+    Since $\mu(X)<\infty$, $\mu(E_1)<\infty$ so by continuity of the measure, $$0=\mu(\{x\,|\,|f_n(x)-f(x)|\ge\varepsilon\text{ for all }n\})=\mu(\bigcap_{i=1}^\infty E_i)=\lim_{i\to\infty}\mu(E_i).$$
+    
+    Note that since $f_n(x)\to f(x)$ a.e., we have that for almost all $x$, there exists some $N\in\mathscr{N}$ such that $|f_n(x)-f(x)|<\varepsilon$ for all $n\ge N$. Thus, the left-hand set indeed has measure $0$. 
+    \end{proof}
+    \end{claim}
+    
+    Thus, $f_n\to f$ in measure. 
+    
+    Finally, \begin{align*}
+        \int|f_n-f|d\mu&=\int_{E_n}|f_n-f|d\mu+\int_{E_n^c}|f_n-f|d\mu\\
+        &\le \int_{E_n}|f_n-f|d\mu+\int_{E_n^c}\varepsilon d\mu\\
+        &=\int_{E_n}|f_n-f|d\mu+\varepsilon\mu(X)\\
+        \implies \lim_{n\to\infty}\int|f_n-f|d\mu&\le \varepsilon\mu(X)\qquad\text{ since }E_n\text{ tends to a null set}.
+    \end{align*}
+    
+    Finally, since $\varepsilon$ was arbitrary, the above limit is zero and we are done.
+\end{comment}
+    \item Let $f_n(x)=n\chi_{[0,\frac{1}{n}]}$ with the Lebesgue measure. Then $$\int |f_n(x)|dm=nm\left(\left[0,\frac{1}{n}\right]\right)=1\qquad\text{ for all }n.$$
+    
+    However, $\displaystyle\lim_{n\to\infty}f_n(x)=0$ a.e. and from the computation above, $\int f_n\to1\not=0$. Thus, $f_n\not\to f$ in $L^1$.
+\end{enumerate}
+\end{solution}
+\newpage
+
+\begin{problem} $\,$
+For what non-negative integer $n$ and positive real $c$ does the integral $$\int_1^\infty\ln\left(1+\frac{(\sin x)^n}{x^c}\right)dx$$
+\begin{enumerate}[label=(\alph*)]
+    \item exist as a (finite) Lebesgue integral?
+    \item converge as an improper Riemann integral?
+\end{enumerate}
+\end{problem}
+
+
+\begin{solution}$\,$
+\begin{enumerate}[label=(\alph*)]
+    \item First, $$\ln\left(1-\frac{1}{x^c}\right)\le \ln\left(1+\frac{(\sin x)^n}{x^c}\right)\le\ln\left(1+\frac{1}{x^c}\right)$$ for all $n$ since $\ln$ is an increasing function and $|\sin x|\le 1$.
+    
+    Now, we consider two cases. 
+    
+    \boxed{c\ge1} then $x\le x^c$ on $[1,\infty)$ and so $\frac{1}{x}\ge\frac{1}{x^c}$. Therefore, $\ln\left(1+\frac{1}{x^c}\right)\le\ln\left(1+\frac{1}{x}\right)$. \begin{align*}
+        \int_1^\infty\ln\left(1+\frac{(\sin x)^n}{x^c}\right)dx&\le\int_1^\infty\ln\left(\frac{x+1}{x}\right)dx\\
+        &=\int_1^\infty\ln(x+1)-\ln xdx\\
+        &=x\ln(x+1)-x-[x\ln x-x]\bigg|_1^\infty\\
+        &=x\ln\left(\frac{x+1}{x}\right)\bigg|_1^\infty\\
+        &=1-\ln(2)<\infty
+    \end{align*}
+    
+    Note that $$\lim_{x\to\infty}x\ln\left(1+\frac{1}{x}\right)=\lim_{n\to\infty}\frac{\ln\left(1+\frac{1}{x}\right)}{\frac{1}{x}}=\lim_{x\to\infty}\frac{\frac{1}{1+\frac{1}{x}}\frac{-1}{x^2}}{\frac{-1}{x^2}}=1$$ by L'Hopital's Rule.
+    
+    Thus, this integral exists for all $n$ and for all $c\ge1$.
+    
+    \boxed{0<c<1} Now, $x^c\le x$ for all $x\ge 1$ and so \begin{align*}
+        \int_1^\infty\ln\left(1+\frac{(\sin x)^n}{x^c}\right)dx&\ge\int_1^\infty\ln\left(\frac{x^c-1}{x^c}\right)dx\\
+        &=\int_1^\infty\ln(x^c-1)-c\ln xdx\\
+    \end{align*}
+    
+    Now, \begin{align*}
+        \int_1^\infty\ln(x^c-1)dx&=\int_1^\infty\frac{cx^{c-1}}{cx^{c-1}}\ln(x^c-1)dx\\
+        &=\int_1^\infty \frac{1}{c}u^{1/c-1}\ln(u-1)du\qquad \begin{matrix}
+    u=x^c &  u^{1/c}=x\\
+    du=cx^{c-1}dx & u^{1-1/c}=x^{c-1} 
+\end{matrix}\\
+        &\ge \int_1^\infty\frac{1}{c}\ln(u-1)du\qquad\text{ since }x^c\le x\implies 1\le x^{1-c}=u^{1/c-1}\\
+        &=\frac{1}{c}(u\ln(u-1)-u)\bigg|_1^\infty\\
+        &=\frac{1}{c}(x^c\ln(x^c-1)-x^c)\bigg|_1^\infty
+\end{align*}
+
+Now, since $1-c>1$, there exists $x$ sufficiently large such that $$\frac{1}{x^{1-c}}\le c^2<c\implies \frac{x^c}{c}\le cx$$ 
+
+Thus, even after subtracting the $\int_1^\infty c\ln xdx$ we still get 
+$$\frac{1}{c}(x^c\ln(x^c-1)-x^c)-[cx\ln x-cx]\bigg|_1^\infty=\text{ positive }\ln\text{ term }+(cx-\frac{x^c}{c})\to\infty.$$
+
+Thus, the integral diverges for all $0<c<1$ and all $n$.
+
+
+    
+\begin{comment}
+    Pick $m$ to be the smallest even integer such that $\frac{1}{m}\le c$. Then $x^{1/m}\le x^c$ and so $\frac{1}{x^{1/m}}\ge\frac{1}{x^c}$ for all $x\ge1$. Then $$\ln\left(1-\frac{1}{x^c}\right)\ge\ln\left(1-\frac{1}{x^{1/m}}\right)$$ so \begin{align*}
+        \int_1^\infty\ln\left(1+\frac{(\sin x)^n}{x^c}\right)dx&\ge\int_1^\infty\ln\left(\frac{x^{1/m}-1}{x^{1/m}}\right)dx\\
+        &=\int_1^\infty\ln(x^{1/m}-1)-\frac{1}{m}\ln xdx\\
+    \end{align*}
+    
+    Now, \begin{align*}
+        \int_1^\infty\ln(x^{1/m}-1)dx&=\int_1^\infty\frac{mx^{1/m-1}}{mx^{1/m-1}}\ln(x^{1/m}-1)dx\\
+        &=\int_1^\infty mu^{m-1}\ln(u-1)du\qquad \begin{matrix}
+    u=x^{1/m} &  u^m=x\\
+    du=\frac{1}{m}x^{1/m}dx & 
+\end{matrix}\\
+        &=u^m\ln(u-1)-\int\frac{u^m}{u-1}du\qquad\begin{matrix}
+    w=ln(u-1) &  dv=mu^{m-1}\\
+    dw=\frac{1}{u-1}dx & v=u^m
+\end{matrix}\\
+        &=u^m\ln(u-1)-\int u^{m-1}+u^{m-2}\cdots+1+\frac{1}{u-1}du\\
+        &=u^m\ln(u-1)-\frac{u^m}{m}-\cdots-u-\ln(u-1)\\
+        &=x\ln(x^{1/m}-1)-\frac{x}{m}-\cdots-x^{1/m}-\ln(x^{1/m}-1)
+    \end{align*}
+    Finally, even after subtracting the $\int\frac{1}{m}\ln xdx$, we still have at least an $\ln(x^{1/m}-1)$ term which diverges as $x\to\infty$.
+    
+    Thus, the integral does not exist for all $0<c<1$ and all $n$.
+\end{comment}
+    \item For all $c\ge1$, we showed that the Lebesgue integral existed by bounding a Riemann integrable function. Thus, the two integrals coinside. 
+    
+    For $c< 1$, the Riemann integral will not exist by the same computation as for the Lebesgue integral. 
+\end{enumerate}
+\end{solution}
+\newpage
+
+\begin{problem} $\,$
+Suppose $f$ is Lebesgue integrable on $\mathbb{R}$. Show that $$\lim_{t\to0}\int_{-\infty}^\infty|f(x+t)-f(x)|dx=0.$$
+\end{problem}
+
+
+\begin{solution}$\,$
+For all $\varepsilon>0$, there exists a continuous function $g$ which vanishes outside a bounded interval such that $\int|f-g|dx<\varepsilon$.
+
+Thus, \begin{align*}
+    \int|f(x+t)-f(x)|dx&=\int|f(x+t)-g(x+t)+g(x)-f(x)+g(x+t)-g(x)|dx\\
+    &\le\int|f(x+t)-g(x+t)|dx+\int|g(x)-f(x)|dx+\int|g(x+t)-g(x)|dx\\
+    &<2\varepsilon+\int|g(x+t)-g(x)|dx.
+\end{align*}
+
+Now, since $g$ is continuous and vanishes outside a bounded interval, $g\in L^1$. Thus, 
+\begin{enumerate}
+    \item $\{g(x+t)\}\in L^1$ 
+    \item $g(x+t)\to g(x)$ for all $x$ by continuity.
+    \item Since $g(x)$ is continuous and non-zero only on some interval $[a,b]$ (which we may take to be closed because we can always extend either end by $\varepsilon$), $g(x)$ is bounded and so $|g(x)|\le M\chi_{[a,b]}$ for some $M<\infty$.
+    
+    Thus, $g(x+t)\le M\chi{[a+t,b+t]}\in L^1$.
+\end{enumerate}
+
+Therefore, by the Dominated Convergence Theorem, and the calculation above, $$\lim_{t\to0}\int|f(x+t)-f(x)|dx< 2\varepsilon+\lim_{t\to0}\int|g(x+t)-g(x)|dx=2\varepsilon+\int\lim_{t\to0}|g(x+t)-g(x)|dx=2\varepsilon.$$
+
+Since $\varepsilon$ was arbitrary, it must be that $\lim_{t\to0}\int|f(x+t)-f(x)|dx=0$.
+\end{solution}
+\newpage
+
+\begin{problem} $\,$
+Let $(X,\mathscr{A},\mu)$ and $(Y,\mathscr{B},\nu)$ be measure spaces such that $\mu(X)>0$ and $\nu(Y)>0$. Let $f:X\to\mathbb{R}$ and $g:Y\to\mathbb{R}$ be measurable functions (with respect to $\mathscr{A}$ and $\mathscr{B}$ respectively) such that $$f(x)=g(x)\quad \mu\times\nu\text{ -almost everywhere on }X\times Y.$$
+Show that there exists a constant $\lambda$ such that $f(x)=\lambda$ for $\mu$-a.e. $x$ and $g(y)=\lambda$ for $\nu$-a.e.
+\end{problem}
+
+
+\begin{solution}$\,$
+Let $h(x,y)=f(x)-g(y)$. Then $h=0$ $\mu\times\nu$-a.e. and so $h\in L^1(\mu\times\nu)$. It is clear that $h$ is measurable since $h(x,y)=f\circ\pi_x-g\circ\pi_y$ with $\pi_x(x,y)=x$ and $\pi_y(x,y)=y$ which is a composition of measurable functions in $\mu\times\nu$.
+
+Now, let $X'$ and $Y'$ be any $\sigma$-finite subsets of $X$ and $Y$ respectively. 
+
+On these subsets, we may apply Tonelli's Theorem and so \begin{align*}
+    0&=\int|h|d(\mu\times\nu)\\
+    &=\int\int|f-g|d\mu d\nu\\
+    \implies &\int|f-g|d\mu=0\,\,\, \nu\text{-a.e.}\\
+    |f(x)-g(y)|=0\,\,\,\mu\text{-a.e.}
+\end{align*}
+However, then $f(x)=g(y)$ $\mu$-a.e. and since $g(y)$ is a constant with respect to $\mu$, this implies that $f(x)=\lambda=g(y_0)$ some fixed $y_0\in Y'$ $\mu$-a.e. on $X'$.
+
+Similarly, applying Tonelli again, \begin{align*}
+    0&=\int|h|d(\mu\times\nu)\\
+    &=\int\int|\lambda-g|d\nu d\mu\\
+    \implies &\int|\lambda-g|d\nu=0\,\,\, \mu\text{-a.e.}\\
+    |\lambda-g(y)|=0\,\,\,\nu\text{-a.e.}
+\end{align*}
+so $g(y)=\lambda$ $\nu$-a.e. on $Y'$.
+
+Now, since $h\in L^1$, $\{(x,y)\,|\,h(x,y)\not=0\}$ is $\sigma$-finite and is null with respect to $\mu\times\nu$.
+
+Thus, if $$E=\{x\,|\,f(x)=\lambda\}\qquad F=\{y\,|\, g(y)=\lambda\}$$ then $$(\mu\times\nu)(E^c\times F)=\mu(E^c)\nu(F)=0\qquad\text{ and }\qquad (\mu\times\nu)(E\times F^c)=\mu(E)\nu(F^c)=0$$ since if $f(x)=\lambda\not=g(y)\implies h(x,y)\not=0$.
+
+However, $E^c\times F$ is a subset of a $\sigma$-finite set and so it is $\sigma$-finite and since we have already showed that $f(x)=\lambda$ $\mu$-a.e. on all $\sigma$-finite sets, $E^c$ must be $\mu$-null. Then, since $\mu(X)>0$, $\mu(E)>0$ and so $\nu(F^c)=0$.
+
+Finally, this shows that $f(x)=\lambda=g(y)$ $\mu$-a.e. and $\nu$-a.e.
+\end{solution}
+\vspace{0.5cm}
+
+\end{document}
+ 

@@ -1,0 +1,197 @@
+\documentclass[12pt]{Homework}
+
+% Changed from \usepackage{prelude}
+\usepackage{preamble}
+\usepackage{amssymb}
+\usepackage{enumitem}
+\usepackage{mathrsfs}
+\def\upint{\mathchoice%
+    {\mkern13mu\overline{\vphantom{\intop}\mkern7mu}\mkern-20mu}%
+    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+  \int}
+\def\lowint{\mkern3mu\underline{\vphantom{\intop}\mkern7mu}\mkern-10mu\int}
+\usepackage[mathscr]{euscript}
+\usepackage{comment}
+\usepackage{bbding}
+\renewcommand\qedsymbol{\Peace}
+\newcommand\placeqed{\nobreak\enspace\Peace}
+\usepackage{MnSymbol}
+\usepackage{tikz}
+\usepackage{halloweenmath}
+\newcommand{\contradiction}{\null\hfill\large{$\mathghost$}\normalsize}
+\renewenvironment{framed}[1][\hsize]
+   {\MakeFramed{\hsize#1\advance\hsize-\width \FrameRestore}}%
+   {\endMakeFramed}
+
+\name{Kayla Orlinsky}
+\course{Real Analysis Exam}
+\term{Fall 2010}
+\hwnum{Fall 2010}
+
+\begin{document}
+
+\begin{problem} $\,$
+Let $\mathscr{A}$ be a collection of pairwise disjoint subsets of a $\sigma$-finite measure space, and suppose each set in $\mathscr{A}$ has strictly positive measure. Show that $\mathscr{A}$ is at most countable.
+\end{problem}
+
+
+\begin{solution}$\,$
+Because $X$ is $\sigma$-finite, let $X=\bigcup_{i=1}^\infty E_i$ with $\mu(E_i)<\infty$ for all $i.$ Furthermore, we can let $E_i$ be disjoint by letting $F_1=E_1$, $F_2=E_2\backslash E_1$, ... , $F_i=E_i\backslash \bigcup_{j=1}^{i-1}.$ %Then for each $x\in X$, $x\in E_i$ for some $i$. %Let $j=\min\{i\,|\,x\in E_i\}$, then $x\in F_j$.
+
+Now, let $\mathscr{A}=\{A_\alpha\}_{\alpha\in I}$ for some indexing set $I$.
+
+We now prove a claim:
+\begin{claim} The an uncountable sum of strictly positive numbers is infinite.
+\begin{proof} Let $\mathscr{K}=\{K_\kappa\}_{\kappa\in P}$ be an uncountable collection of strictly positive real numbers. Then $$\sum_{\kappa\in P}K_\kappa=\sup\left\{\sum_{i=1}^NK_{\kappa_i}\,|\,\text{ all finite subcollections of }P\right\}.$$
+
+Now, let $$S_n=\{\kappa_i\,|\,K_{\kappa_i}>\frac{1}{n}\}.$$ Then $$\sum_{\kappa\in P}K_\kappa\ge\sup_{\kappa_i\in S_n}K_{\kappa_i}>\sum_{\kappa_i\in S_n}\frac{1}{n}.$$
+
+Thus, if the sum is to be finite, it must be the case that $S_n$ is finite for all $n$ since $\frac{1}{n}$ is a positive constant.
+
+Therefore, for the sum to be finite $$S=\bigcup_{n\in\mathbb{N}}S_n=\{\kappa_i\,|\,K_{\kappa_i}>0\}$$ is at most countable.
+
+However, by assumption, all of the $K_\kappa>0$ and so it must be that the sum is infinite.
+\end{proof}
+\end{claim}
+
+Assume that $A$ is uncountable. Then since the $A_\alpha\in\mathscr{A}$ are uncountable and we can write $$\mu(A_\alpha)=\mu(\bigcup_{i=1}^\infty(A_\alpha\cap E_i))=\sum_{i=1}^\infty\mu(A_\alpha\cap E_i)>0,$$ it must be that there exist $i$ such that $\mu(A_\alpha\cap E_i)>0$ for an uncountable number of $\alpha$.
+
+Index this set of $\alpha$ as $\{A_\beta\}_{\beta\in J}$ with $J$ uncountable.
+
+Then, \begin{align*}
+    \sum_{\beta\in J}\mu(A_\beta\cap E_i)&=\sup_{\beta\in J}\left\{\sum_{j=1}^n\mu(A_{\beta_j}\cap E_i)\,|\,\text{ finite subcollections of }J\right\}\\
+    &\le\mu(E_i)\\
+    &<\infty\text{ since }A_{\beta_j}\text{ are disjoint}.
+\end{align*}
+
+However, from the claim and since $\mu(A_{\beta_j}\cap E_i)>0$ for all $\beta_j\in J$, this $\sup$ must be infinite, which contradicts that it is bounded by $\mu(E_i)$.
+
+Thus, $\mathscr{A}$ is at most countable.
+\end{solution}
+\newpage
+
+\begin{problem} $\,$
+\begin{enumerate}[label=(\alph*)]
+    \item Let $m$ denote the Lebesgue measure on $\mathbb{R}$ and let $f$ be an integrable function. Show that for $a>0$, $$\int f(ax)m(dx)=\frac{1}{a}\int f(x)m(dx).$$ HINT: Consider a restricted class of functions $f$ first.
+    \item Let $F$ be a measurable function on $\mathbb{R}$ satisfying $|F(x)|\le C|x|$ for all $x$, and suppose $F$ is differentiable at $0$. Show that $$\lim_{n\to\infty}\int_\mathbb{R}\frac{nF(x)}{x(1+n^2x^2)}m(dx)=\pi F'(0).$$ HINT: Use (a).
+\end{enumerate}
+\end{problem}
+
+
+\begin{solution}$\,$
+\begin{enumerate}[label=(\alph*)]
+    \item Let $f(x)=\chi_E(x)$ for $E$ measurable. Now, if $ax\in E$ then $x\in\frac{E}{a}\{\frac{e}{a}\,|\,e\in E\}$. Thus, $\chi_E(ax)=\chi_{E/a}(x)$ and so $$\int\chi_E(x)dm=\int\chi_{E/a}(x)dm=m(E/a)=\frac{1}{a}m(E)$$ since $a>0$ by the scaling property of Lebesgue measure.
+
+    Thus, by linearity, the above property holds for simple functions.
+
+    Now, for all $\varepsilon>0$ there exists some $\phi$ simple function such that $\int|f-\phi|dm<\varepsilon$. Thus,
+    \begin{align*}
+        \left|\int f(ax)dm-\int\frac{1}{a}f(x)dm\right|&=\left|\int f(ax)dm-\int\frac{1}{a}f(x)dm+\int\phi(ax)dm-\int\phi(ax)dm\right|\\
+        &\le\left|\int f(ax)-\phi(ax)dm\right|+\left|\frac{1}{a}\int\phi(x)-f(x)dm \right|\\
+        &\le\int|f(ax)-\phi(ax)|dm+\frac{1}{a}\int|f(x)-\phi(x)|dm\\
+        &<\varepsilon+\frac{\varepsilon}{a}
+    \end{align*}
+
+    and since $\phi$ and $\varepsilon$ were arbitrary, we are done.
+    \item Note that $$F'(0)=\lim_{x\to0}\frac{F(x)-F(0)}{x}=\lim_{x\to0}\frac{F(X)}{X}=\lim_{n\to\infty}\frac{F(u/n)}{u/n}=\lim_{n\to\infty}\frac{nF(u/n)}{u}$$ for fixed $u$ and $x=\frac{u}{n}$.
+
+    Note that $F(0)=0$ since $|F(0)|\le C|0|=0.$
+
+    Now, from (a), we use $u$-substitution $u=nx$, $du=ndx$.
+
+    Then $$\int\frac{nF(x)}{x(1+n^2x^2)}dx=\int\frac{F(u/n)}{(u/n)(1+u^2)}du=\int\frac{nF(u/n)}{u}\frac{1}{1+u^2}du.$$
+
+    Now, we apply Dominated Convergence Theorem.
+    \begin{enumerate}[label=(\roman*)]
+        \item $$\lim_{n\to\infty}\frac{nF(u/n)}{u}\frac{1}{1+u^2}=\frac{F'(0)}{1+u^2}$$ for a.e. $u$.
+        \item $$\left|\frac{nF(u/n)}{u}\frac{1}{1+u^2}\right|\le\frac{C|u/n||n/u|}{1+u^2}=\frac{C}{1+u^2}\in L^1$$ so $\frac{nF(u/n)}{u}\frac{1}{1+u^2}\in L^1$.
+    \end{enumerate}
+Thus, by DCT, $$\lim_{n\to\infty}\int\frac{nF(u/n)}{u}\frac{1}{1+u^2}du=\int_{-\infty}^\infty\frac{F'(0)}{1+u^2}du=F'(0)\tan^{-1}(u)\bigg|_{-\infty}^\infty=F'(0)(\frac{\pi}{2}-\frac{-\pi}{2})=\pi F'(0).$$
+\end{enumerate}
+\end{solution}
+\newpage
+
+\begin{problem} $\,$
+Let $(X,\mathscr{M},\mu)$ be a measure space with $\mu(X)<\infty$ and let $f$ be a measurable function with $|f|<1.$ Prove that $$\lim_{n\to\infty}\int_X(1+f+\cdots+f^n)d\mu$$ exists (it may be $\infty$). HINT: First consider $f\ge0$.
+\end{problem}
+
+
+\begin{solution}$\,$
+We note that $$1+f+\cdots+f^n=\frac{f^{n+1}-1}{f-1}\qquad\text{ for }|f|<1.$$
+
+Let $$f_n(x)=\frac{f^{n+1}-1}{f-1}.$$ Note that $f_n\to \frac{1}{1-f}$ a.e. since $|f|<1.$
+
+\boxed{f\ge0} Then $$\lim_{n\to\infty}\int_X\sum_{k=0}^nf^kd\mu=\lim_{n\to\infty}\sum_{k=0}^n\int_Xf^kd\mu=\sum_{k=0}^\infty\int_Xf^kd\mu=\int_X\sum_{k=0}^\infty f^kd\mu=\int_X\frac{1}{1-f}d\mu$$ since $f\in L^+$ and $|f|<1.$
+
+Alternatively, we could use monotone convergence theorem. Since $0\le f<1$ we have that $f^{n+1}\le f^n$ for all $n$ so $f_{n+1}(x)\le f_n(x)$ for all $x$.
+
+Let $$g_n(x)=\frac{1}{1-f}-f_n(x).$$
+
+\begin{enumerate}
+    \item $g_n$ is measurable since $f$ is and because $f^n-1\le 1$ for all $n$, $g_n(x)\ge0$ for all $n.$ Thus, $\{g_n\}\subset L^+.$
+    \item $g_n\to0$ a.e.
+    \item $g_n\le g_{n+1}$ for all $n$.
+\end{enumerate}
+
+Thus, by the Monotone Convergence Theorem, $$\lim_{n\to\infty}\int g_n(x)d\mu=0\implies \lim_{n\to\infty}\int f_nd\mu=\int\frac{1}{1-f}d\mu.$$
+
+
+\textbf{\textit{NOTE:}} This integral depends entirely on $f$. If $f(x)=0$ a.e., then the integral is $\int 1d\mu=\mu(X)<\infty.$
+
+If $\mu=m$, and $X=(0,1)$ and $f(x)=x$, then $x<1$ and $$\int_0^1\frac{1}{1-x}dm=-\log|1-x|\bigg|_0^1=\infty.$$
+
+\boxed{\text{ arbitrary }f} We let $f_n(x)$ be as before. now, by the geometric series test, $f_n\to\frac{1}{1-f}$ uniformly.
+
+Thus, for all $\varepsilon>0$ and a.e. $x$, there exists an $N\in\mathbb{N}$ such that $|f_n(x)-\frac{1}{1-f}|<\varepsilon$ for all $n\ge N$. Thus, $$\left|\int\frac{1}{1-f}-f_nd\mu\right|\le\int\left|\frac{1}{1-f}-f_n\right|d\mu\le\int\varepsilon d\mu=\varepsilon \mu(X).$$
+
+Therefore, $$\lim_{n\to\infty}\int f_nd\mu=\int\frac{1}{1-f}d\mu.$$
+\end{solution}
+\newpage
+
+\begin{problem} $\,$
+Let $\{F_j\}$ be a sequence of nonnegative nondecreasing right-continuous functions on $[a,b]$ and suppose $F(x)=\sum_{j=1}^\infty F_j(x)$ is finite for all $x\in[a,b]$. Show that $$F'(x)=\sum_{j=1}^\infty F'_j(x)\qquad\text{ for }m\text{-a.e. }x\in[a,b].$$ HINT: Consider the corresponding measures $\mu_F$ and $\mu_{F_j}$.
+\end{problem}
+
+
+\begin{solution}$\,$
+First, we let $\nu$ be the counting measure on $\mathbb{N}$.
+\begin{enumerate}
+    \item $F_i\in L^1(\nu)$ since $F(x)<\infty.$
+    \item $\displaystyle \lim_{x\to y^+}F_i(x)=F_i(y)$ by right continuity.
+    \item $F_i(x)\le F_i(b)\in L^1(\nu)$ since $F(b)<\infty$ and since $F_i$ are increasing on $[a,b].$
+\end{enumerate}
+
+Thus, by Dominated Convergence Theorem, $$\lim_{x\to y^+}F(x)=\lim_{x\to y^+}\sum_{i=1}^\infty F_i(x)=\sum_{i=1}^\infty F_i(y)=F(y)$$ so $F$ is also right continuous. Furthermore, clearly $F$ is also increasing and nonnegative since the $F_i$ are so $\mu_F$ makes sense.
+
+Therefore, \begin{align*}
+    \mu_F([a,b])&=F(b)-F(a)\\
+    &=\sum_{i=1}^\infty F_i(b)-\sum_{i=1}^\infty F_i(a)\\
+    &=\sum_{i=1}^\infty(F_i(b)-F_i(a))\\
+    &=\sum_{i=1}^\infty\mu_{F_i}([a,b]).
+\end{align*}
+
+Thus, clearly $\mu_{F_i}<<\mu_F$ for all $i$.
+
+Now, by Lebesgue-RN, there exists some $f\in L^1(m)$ and $\lambda$ complex measure with $\lambda\perp m$ and $d\mu_F=d\lambda+fdm.$
+
+We apply the same theorem to the $\mu_i$ with $\lambda_i$, $f_i$ such that $d\mu_{F_i}=d\lambda_i +f_idm$.
+
+Thus, $$\mu_F(E)=\lambda(E)+\int_Efdm$$ and similarly, $$\mu_{F_i}(E)=\lambda_i(E)+\int_Ef_idm.$$
+
+Now, since $[x,x+h]$ shrinks nicely to $x$ as $h\to0$ by the Lebesgue Differentiation Theorem $$\lim_{h\to0}\frac{\mu_F([x,x+h])}{m([x,x+h])}=\lim_{h\to0}\frac{F(x+h)-F(x)}{h}=f(x)\qquad m\text{-.a.e}.$$
+
+Thus, $f(x)=F'(x)$ a.e.. Similarly, $f_i=F_i'(x)$ $m$-a.e. for all $i.$
+
+Now, we have already used the Dominated Convergence Theorem to swap the integral with the sum and so using what we have so far, \begin{align*}
+    \lim_{h\to0}\frac{F(x+h)-F(x)}{h}&=\lim_{h\to0}\frac{\sum F_i(x+h)-\sum F_i(x)}{h}\\
+    &=\lim_{h\to0}\frac{\sum(F_i(x+h)-F_i(x))}{h}\\
+    &=\sum\lim_{h\to0}\frac{F_i(x+h)-F_i(x)}{h}\\
+    &=\sum f_i(x)\\
+    &=\sum_{i=1}^\infty F_i'(x)\qquad m\text{-a.e.}
+\end{align*}
+\end{solution}
+\vspace{0.5cm}
+
+\end{document}

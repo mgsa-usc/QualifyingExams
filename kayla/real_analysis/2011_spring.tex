@@ -1,0 +1,166 @@
+\documentclass[12pt]{Homework}
+
+% Changed from \usepackage{prelude}
+\usepackage{preamble}
+\usepackage{amssymb}
+\usepackage{enumitem}
+\usepackage{mathrsfs}
+\def\upint{\mathchoice%
+    {\mkern13mu\overline{\vphantom{\intop}\mkern7mu}\mkern-20mu}%
+    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+  \int}
+\def\lowint{\mkern3mu\underline{\vphantom{\intop}\mkern7mu}\mkern-10mu\int}
+\usepackage[mathscr]{euscript}
+\usepackage{comment}
+\usepackage{bbding}
+\renewcommand\qedsymbol{\Peace}
+\newcommand\placeqed{\nobreak\enspace\Peace}
+\usepackage{MnSymbol}
+\usepackage{tikz}
+\usepackage{halloweenmath}
+\newcommand{\contradiction}{\null\hfill\large{$\mathghost$}\normalsize}
+\renewenvironment{framed}[1][\hsize]
+   {\MakeFramed{\hsize#1\advance\hsize-\width \FrameRestore}}%
+   {\endMakeFramed}
+
+\name{Kayla Orlinsky}
+\course{Real Analysis Exam}
+\term{Spring 2011}
+\hwnum{Spring 2011}
+
+\begin{document}
+
+\begin{problem} $\,$
+Let $A\subset\mathbb{R}$ and suppose that for each $\varepsilon>0$ there are Lebesgue-measurable sets $E,F$ with $E\subset A\subset F$ and $m(F\backslash E)<\varepsilon.$ Show that $A$ is Lebesgue measurable.
+\end{problem}
+
+
+\begin{solution}$\,$
+First, $$A=E\cup(A\cap E^c\cap F)=E\cup(A\cap(F\backslash E)).$$
+
+Now, for all $n$, there exists $F_n$ and $E_n$ Lebesgue measurable with $m(F_n\backslash E_n)<\frac{1}{n}$ and $E_n\subset A\subset F_n.$
+
+Let $$E=\bigcup^\infty E_n\subset A\quad\text{ and }\quad F=\bigcap^\infty F_n\supset A.$$
+
+Then, let $$E_i'=\bigcup^i_{n=1}E_n$$ so $E_1'\subset E_2'\subset\cdots$ and so $$A\backslash E_1'\supset A\backslash E_2'\supset \cdots$$ Furthermore, since $$m(A\backslash E_1')\le m(F_1\backslash E_1')=m(F_1\backslash E_1)<1<\infty,$$ by continuity from below, \begin{align*}
+    m(\bigcap^\infty(A\backslash E_n'))&=m(A\backslash\bigcap E_n')\\
+    &=\lim_{n\to\infty}m(A\backslash E_n')\\
+    &\le\lim_{n\to\infty}m(F_n\backslash E_n')\\
+    &\le\lim_{n\to\infty}m(F_n\backslash E_n)\\
+    &\le\lim_{n\to\infty}\frac{1}{n}=0.
+\end{align*}
+
+Thus, since $m(A\backslash E)\le m(A\backslash E_n)$ for all $n$, we have that $m(A\backslash E)=0$.
+
+By a similar argument, $m(F\backslash A)=0$.
+
+Now, since $$m(F\backslash E)=m(F\backslash A)+m(A\backslash E)=0+0=0$$ we have that $$A=E\bigsqcup(A\cap (F\backslash E))$$ however, since $A\cap(F\backslash E)\subset F\backslash E$ which is null, we have that $A\cap (F\backslash E)\in\mathscr{L}$ since $m$ is complete and since $E\in\mathscr{L}$ by assumption, we have that $A\in\mathscr{L}$ since it is the union of two measurable sets.
+\end{solution}
+\newpage
+
+\begin{problem} $\,$
+Let $f>0$ be a Lebesgue-integrable function on $[0,1]$. Show that $$\lim_{\varepsilon\searrow0}\frac{1}{\varepsilon}\int_{[0,1]}(f^\varepsilon-1)dm=\int_{[0,1]}\log fdm.$$
+
+Here $m$ denotes Lebesgue measure. HINT: Decompose $f$ (or $\log f$) into two parts.
+\end{problem}
+
+
+\begin{solution}$\,$
+First, $$\lim_{\varepsilon\to0^+}\frac{f^\varepsilon-1}{\varepsilon}=\lim_{\varepsilon\to0^+}\frac{f^\varepsilon\log f}{1}=\log f$$ for all $x$ by L'Hopital's Rule.
+
+Now, let $$E=\{x\in[0,1]\,|\,f(x)>1\}.$$
+
+Then, $$\int_{[0,1]}\frac{f^\varepsilon-1}{\varepsilon}dm=\int_{E}\frac{f^\varepsilon-1}{\varepsilon}dm+\int_{E^c}\frac{f^\varepsilon-1}{\varepsilon}dm.$$
+
+Now, we let $\varepsilon=\frac{1}{n}$ and $$f_n(x)=\frac{f^{1/n}(x)-1}{\frac{1}{n}}=n(f^{1/n}(x)-1).$$
+
+\boxed{\text{ on }E} We would like to use Monotone Convergence Theorem. 
+\begin{enumerate}
+    \item $\{f_n\}\in L^+$. Since $f>1$ on $E$, $f^{1/n}>1$ and so $n(f^{1/n}-1)>0$ for all $n$. Furthermore, $f_n$ is measurable since $f$ is.
+    \item \begin{align*}
+        \frac{d}{dn}f_n(x)&=f^{1/n}-1+n(f^{1/n}\log f)(-1/n)\\
+        &=f^{1/n}-1-\frac{f^{1/n}\log f}{n}\\
+        &=\frac{n(f^{1/n}-1)-f^{1/n}\log f}{n}
+    \end{align*}
+    Since, $f>1$, $f^{1/n}>1$ for all $n$ and so for large enough $n$, the derivative is eventually positive and so, after perhaps removing the first $N$ terms, $f_n\le f_{n+1}$. 
+    \item $f_n\to\log f$ for all $x\in E$.
+\end{enumerate}
+
+Thus, by the monotone convergence theorem, we may bring the limit inside the integral on $E$.
+
+\boxed{\text{ on }E^c} Now, $f_n\le 0$. However, by the same argument as above, for sufficiently large $n$, $f_n'\le0$. Thus, $-f_n(x)\ge0$ and $-f_n'\ge 0$.
+\begin{enumerate}
+    \item for $f\le 1$, $f_n$ is negative, so $\{-f_n\}\in L^+$.
+    \item Using the same derivative as above, since $f^{1/n}-1<0$ and $f^{1/n}\log f<0$ for all $n$ on $E^c$ we have that $-f_n'\ge0$ for sufficently large $n$. So $-f_n$ is eventually increasing.
+    \item $-f_n\to -\log f$ for all $x\in E^c$
+\end{enumerate}
+
+Thus, by the monotone convergence theorem we can bring the limit inside the intergral on $E$.
+
+Finally, 
+\begin{align*}
+    \lim_{\varepsilon\to0^+}\int_{[0,1]}\frac{f^\varepsilon-1}{\varepsilon}dm&=\lim_{n\to\infty}\left[\int_Ef_n-\int_{E^c}-f_n\right]\\
+    &=\int_E\lim_{n\to\infty}f_ndm-\int_{E^c}\lim_{n\to\infty}-f_ndm\\
+    &=\int_E\log fdm-\int_{E^c}-\log fdm\\
+    &=\int\log fdm.
+\end{align*}
+
+\end{solution}
+\newpage
+
+\begin{problem} $\,$
+Suppose $f\in L^1$ is absolutely continuous, and $$\lim_{h\searrow0}\int_\mathbb{R}\left|\frac{f(x+h)-f(x)}{h}\right|dx=0.$$ Show that $f=0$ a.e.
+\end{problem}
+
+
+\begin{solution}$\,$
+Let $h=\frac{1}{n}$ and $f_n(x)=n(f(x+\frac{1}{n})-f(x))$.
+
+$$\lim_{n\to\infty}\int|f_n(x)|dx=0$$ implies that $|f_n(x)|\to0$ in $L^1$.
+
+Now, since $f$ is absolutely continuous, $f'$ exists a.e. and $f_n\to f'$ where it exists. 
+
+Thus, since $f_n\to0$ in $L^1$, there exists a subsequence $\{f_{n_k}\}$ which converges to $0$ a.e. However, since $f_{n_k}\to f'$ a.e., this implies that $f'=0$ a.e 
+
+Finally, since $f$ is absolutely continuous, by the Fundamental Theorem of Lebesgue Integrals, on any closed interval $[a,b]$, we have that $$f(x)-f(a)=\int_a^xf'(t)dt=0\implies f(x)=f(a)\text{ for all } x>a.$$
+
+Similarly, we have that $f(x)=f(a)$ for all $x<a$. Thus, $f(x)=c$ for some constant a.e.
+
+Since $f\in L^1$, and $$\int|c|dx=\infty\qquad\text{ for all }c\not=0$$ we have that $f=0$ a.e.
+\end{solution}
+\newpage
+
+\begin{problem} $\,$
+\begin{enumerate}[label=(\alph*)]
+    \item Let $(X,\mathscr{F},\mu)$ be a measure space with $\mu(X)=1$, and suppose $F_1,...,F_7$ are $7$ measurable sets with $\mu(F_j)\ge\frac{1}{2}$ for all $j$. Show that there exists indices $i_1<i_2<i_3<i_4$ for which $F_{i_1}\cap F_{i_2}\cap F_{i_3}\cap F_{i_4}\not=\varnothing.$
+    \item Let $m$ denote the Lebesgue measure on $[0,1]$ and let $f_n\in L^1(m)$ be nonnegative and measurable with $$\int_{[0,1/n]}f_ndm\ge1/2$$ for all $n\ge1.$ Show that $\int_{[0,1]}[\sup_nf_n(x)]m(dx)=\infty.$ HINT: Part (b) does not necessarily use part (a).
+\end{enumerate}
+\end{problem}
+
+
+\begin{solution}$\,$
+\begin{enumerate}[label=(\alph*)]
+    \item Assume not. Then $$\sum_{i=1}^7\chi_{F_i}(x)\le3$$ for all $x\in X$. (Else there exists $x\in F_i$ for at least $4$ of the $F_i$).
+    
+    Now, $$\int\sum_{i=1}^7\chi_{F_i}(x)d\mu\le\int 3=3\mu(X)=3$$ however, $$\int\sum_{i=1}^7\chi_{F_i}(x)d\mu=\sum_{i=1}^7\int_X\chi_{F_i}(x)d\mu=\sum_{i=1}^7\mu(F_i)\ge\sum_{i=1}^7\frac{1}{2}=\frac{7}{2}>3.$$
+    
+    Thus, there exists some $x$ such that for some indices $i_1<i_2<i_3<i_4$, $x\in F_{i_1}\cap F_{i_2}\cap F_{i_3}\cap F_{i_4}$.
+    \item Let $M>0$ be large and $$E=\left\{x\in\left[0,\frac{1}{n}\right]\,|\,f_n(x)>M\right\}.$$ Now, for all $n>2M$, we have that \begin{align*}
+        \frac{1}{2}\le\int_{[1,\frac{1}{n}]}f_n(x)dm\\
+        &=\int_Ef_n(x)dm+\int_{E^c}f_n(x)dm\\
+        &\le\int_E f_n(x)dm+\int_{E^c}Mdm\\
+        &\le \int_E f_n(x)dm+\frac{M}{n}\qquad m\left(\left[1,\frac{1}{n}\right]\right)=\frac{1}{n}\\
+        &<\int_E f_n(x)dm+\frac{1}{2}\\
+    \end{align*}
+    
+    Thus, $$\int_E f_n(x)dm>0$$ for all $n>2M$ so $f_n(x)>M$ on a set of positive measure for arbitrary $M$. 
+    
+    Thus, $$\int_{[0,1]}[\sup_nf_n(x)]m(dx)=\infty$$ since $f_n$ grow arbitrarily large near $0$.
+\end{enumerate}
+\end{solution}
+\vspace{0.5cm}
+
+\end{document}
+ 

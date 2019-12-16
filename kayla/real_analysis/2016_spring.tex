@@ -1,0 +1,170 @@
+\documentclass[12pt]{Homework}
+
+% Changed from \usepackage{prelude}
+\usepackage{preamble}
+\usepackage{amssymb}
+\usepackage{enumitem}
+\usepackage{mathrsfs}
+\def\upint{\mathchoice%
+    {\mkern13mu\overline{\vphantom{\intop}\mkern7mu}\mkern-20mu}%
+    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+  \int}
+\def\lowint{\mkern3mu\underline{\vphantom{\intop}\mkern7mu}\mkern-10mu\int}
+\usepackage{bbding}
+\renewcommand\qedsymbol{\Peace}
+\newcommand\placeqed{\nobreak\enspace\Peace}
+\usepackage[mathscr]{euscript}
+\usepackage{comment}
+\usepackage{MnSymbol}
+
+\name{Kayla Orlinsky}
+\course{Real Analysis Exam}
+\term{Spring 2016}
+\hwnum{Spring 2016}
+
+\begin{document}
+
+\begin{problem} $\,$
+Let $$f(y)=\sum_n\frac{x}{x^2+yn^2}.$$ Show that $g(y)=\lim_{x\to\infty}f(x,y)$ exists for all $y>0$. Find $g(y)$.
+\end{problem}
+
+
+\begin{solution}$\,$
+Let $(\mathbb{N},\nu)$ be the counting measure space. Fix $y>0$ and since we care to examine $x\to\infty$, we may take $x>0$ as well. 
+
+We would like to use \textbf{Dominated Convergence Theorem}. Let $f_n(x,y)=\frac{x}{x^2+yn^2}$.
+\begin{enumerate}
+    \item $\{f_n\}$ measurable for all $n.$
+    \item $\lim_{x\to\infty}f_n(x,y)= 0$ for all $y>0$.
+    \item Now, using calculus, $$\frac{\partial}{\partial x}f_n(x,y)=\frac{x^2+yn^2-x(2x)}{(x^2+yn^2)^2}=\frac{yn^2-x^2}{(x^2+yn^2)^2}=0\implies x=\sqrt{yn^2}=\sqrt{y}n.$$
+    
+    Clearly this is a maximum for $f_n(x,y)$, and so we see that $$f_n(x,y)\le \frac{\sqrt{y}n}{yn^2+yn^2}=\frac{1}{2\sqrt{y}n}.$$
+    
+    Now, for every fixed $y>0$, let \[
+    h(n)=\begin{cases}
+    \frac{1}{2y^{1/3}n^{4/3}} & \text{ if } yn^2\ge 1\\
+    \frac{1}{2\sqrt{y}n} & \text{ if } yn^2<1
+    \end{cases}
+    \]
+    
+    \textit{Note that since we are working over the counting measure on $\mathbb{N}$, our variable of integration is $n$ and so $h$ must be a function of $n$ independent of $x$ (the variable over which we are taking the limit).}
+    
+    Then, for all $y$, $$\sum_n h(n)=\sum_{n<1/\sqrt{y}}\frac{1}{2\sqrt{y}n}+\sum_{n\ge 1/\sqrt{y}}\frac{1}{2y^{1/3}n^{4/3}}<\infty$$ since $4/3>1$ and the first sum is over finitely many $n$. 
+    
+    Furthermore, for $yn^2\ge 1$, $1/\sqrt{y}n\le 1$ and so $$f_n(x,y)\le \frac{1}{2\sqrt{y}n}\le \left(\frac{1}{2\sqrt{y}n}\right)^{2/3}=h(n).$$ When $yn^2<1$, $h(n)$ is exactly the upper bound for $f_n(x,y)$ calculated previously.
+    
+    Thus, $f_n(x,y)\le h(n)\in L^1(\nu)$ for all $x>0$ and all $y>0$.
+\end{enumerate}
+Finally, by DCT, $$\lim_{x\to\infty} \sum_nf_n(x,y)=\sum_n\lim_{x\to\infty} f_n(x,y)=\sum_n0=0$$ for all $x,y>0$.
+\end{solution}
+\newpage
+
+\begin{problem} $\,$
+Let $A\subset\mathbb{R}$ be Lebesgue measurable. Show that $n(\chi_A\ast\chi_{[0,\frac{1}{n}]})\to\chi_A$ pointwise a.e. as $n\to\infty$. (Recall that $(f\ast g)(x)=\int f(x-y)g(y)dy$ for $x\in\mathbb{R}$).
+\end{problem}
+
+
+\begin{solution}$\,$
+First, $$n(\chi_A\ast\chi_{[0,\frac{1}{n}]})=n\int_\mathbb{R}\chi_A(x-y)\chi_{[0,1/n]}(y)dy=n\int_{[0,1/n]}\chi_A(x-y)dy=\frac{1}{m([0,1/n])}\int_{[0,1/n]}\chi_A(x-y)dy$$
+
+Now, we do the following changes, letting $r=\frac{1}{n}$ and noticing that if $x-y\in A$, then $x-y=a\in A$ and so $y=x-a\in x-A=\{x-a\,|\, a\in A\}$. Finally, since $0\le y\le 1/n$, $x-1/n\le x-y\le x$.
+
+Now, we would like to apply the Lebesgue Differntiation Theorem.
+\begin{enumerate}
+    \item $\chi_A\in L^1_{\text{loc}}$
+    \item $[x-r,x]$ shrinks nicely to $x$
+\end{enumerate}
+
+Thus, \begin{align*}
+    \lim_{n\to\infty}\frac{1}{m([0,1/n])}\int_{[0,1/n]}\chi_A(x-y)dy&=\lim_{r\to 0}\frac{1}{m([0,r])}\int_{[0,r]}\chi_A(x-y)dy\\
+    &=\lim_{r\to 0}\frac{1}{m([x-r,x])}\int_{[x-r,x]}\chi_{x-A}(y)dy\\
+    &=\lim_{r\to 0}\frac{1}{m([x-r,x])}\int_{[x-r,x]}\chi_A(y)dy\qquad m(A)=m(x-A)\\
+    &=\chi_A(x)\qquad\text{a.e. by LDT}.
+\end{align*}
+\end{solution}
+\newpage
+
+\begin{problem} $\,$
+\begin{enumerate}[label=(\alph*)]
+    \item Prove that if a sequence of integrable functions $f_n$ on $[0,1]$ satisfies $\int_0^1|f_n(x)|dx\le\frac{1}{n^2}$ for $n\in\mathbb{N}$, then $f_n\to 0$ a.e. on $[0,1]$ as $n\to\infty$.
+    \item Show that the above fact is not true if $1/n^2$ is replaced by $1/\sqrt{n}$.
+\end{enumerate}
+\end{problem}
+
+
+\begin{solution}$\,$
+\begin{enumerate}[label=(\alph*)]
+    \item First, let $(\mathbb{N},\nu)$ be the counting measure space. We would like to use Tonelli.
+    \begin{enumerate}
+        \item Both $(\mathbb{N},\nu)$ and $([0,1],m)$ are $\sigma$-finite.
+        \item Since any function is measurable with respect to the counting measure, and $|f_n|\in L^+([0,1])$, so $|f_n|\in L^+(\mathbb{N}\times[0,1])$. 
+    \end{enumerate}
+    Thus,
+    $$\sum_n^\infty\int_0^1|f_n(x)|dx=\int_0^1\sum_n^\infty|f_n(x)|dx\le\sum_n^\infty\frac{1}{n^2}<\infty.$$
+    
+    Therefore, $\sum_n^\infty|f_n(x)|<\infty$ $m$-a.e. which implies $|f_n(x)|\to 0$ a.e. and so $f_n\to0$ a.e. as $n\to\infty$.
+    
+    Note that Dominated Convergence would be difficult in this case since we do not know that the $f_n$ are bounded. 
+    
+    \item Let $f_n(x)$ be the moving box on $[0,1]$. Then, $f_n(x)=\chi_{[\frac{j-1}{2^k},\frac{j}{2^k}]}$ with $n=2^k+j$ and $0\le j< 2^k$.
+    
+    Then, $$\int_0^1|f_n(x)|dx=\frac{1}{2^k}\le\frac{1}{\sqrt{2^{k+1}}}=\frac{1}{\sqrt{2^k+2^k}}\le\frac{1}{\sqrt{n}}$$ for all $n$ since $j<2^k$ and so $n=2^k+j\le 2^k+2^k$.
+    
+    However, the moving box does not converge to anything a.e.. In fact, it does not converge for any $x$.
+\end{enumerate}
+\end{solution}
+\newpage
+
+\begin{problem}[Folland, 2.3.25, p.59] $\,$
+Let \[
+f(x)=\begin{cases}
+\frac{1}{\sqrt{x}} & 0<x<1\\
+0 & \text{ otherwise }
+\end{cases}
+\]
+Also, let $\{r_n\}_{n=1}^\infty$ be an enumeration of the rationals. Define $$g_n(x)=\frac{1}{2^n}f(x-r_n),\qquad x\in\mathbb{R}$$ and let $$g(x)=\sum_{n=1}^\infty g_n(x)\qquad x\in\mathbb{R}$$
+\begin{enumerate}[label=(\alph*)]
+    \item Prove that $g$ is integrable on $\mathbb{R}$
+    \item Prove that $g$ is discontinuous at every point in $\mathbb{R}$.
+\end{enumerate}
+\end{problem}
+
+
+\begin{solution}$\,$
+\begin{enumerate}[label=(\alph*)]
+    \item Let $(\mathbb{N},\nu)$ be the counting measure space. 
+    
+    Then \begin{enumerate}[label=(\roman*)]
+        \item Both $(\mathbb{N},\nu)$ and $(\mathbb{R},m)$ are $\sigma$-finite.
+        \item $f$ is continuous everywhere and so $g_n(x)$ is continuous everywhere, thus because the $\sigma$-algebra for $\nu$ is defined as the $\mathscr{P}(\mathbb{N})$, $_n$ is measurable and positive so $g_n\in L^+(\nu\times m)$.
+    \end{enumerate}
+    
+    Thus, by Tonelli, \begin{align*}
+        \int_\mathbb{R}\sum_n g_n(x)dx&=\sum_n\int_\mathbb{R}g_n(x)dx\\
+        &=\sum_n\int_{(r_n,1+r_n)}\frac{1}{2^n\sqrt{x-r_n}}dx\\
+        &=\sum_n\frac{1}{2^n}2\sqrt{x-r_n}\bigg|_{r_n}^{1+r_n}\\
+        &=\sum_n\frac{1}{2^{n-1}}<\infty
+    \end{align*}
+    
+    Thus, $g\in L^1(\mathbb{R})$.
+    \item For any $M>0$ and $x\in\mathbb{R}$, there exists some $N\in\mathbb{N}$ such that $1>x-r_N\ge\frac{1}{2^{2N}M^2}>0$.
+    
+    Then $$g(x)\ge \frac{1}{2^N}f(x-r_N)\ge \frac{1}{2^N}2^NM=M.$$
+    
+    Thus, on any interval containing $x$, $g(x)$ can be made arbitrarily large on that interval and so it cannot be continuous. 
+    
+\begin{comment}
+    Let $x\in\mathbb{R}$ and $\varepsilon>0$ be given. Then assume that $g$ is continuous at $x$.
+    
+    Then for all $y$ satisfying $|y-x|<\delta$, $|g(x)-g(y)|<\varepsilon$.
+    
+    However, for all $\delta>0$, there exists some $N\in\mathbb{N}$ such that $x<r_N<x+\delta$. Then, $|x-r_N|<\delta$, but since $f(r_N-r_N)=0$, $$|\sum_{n=1}^\infty g_n(x)-\sum_{n=1}^\infty g_n(r_N)|=|\sum_{n=1}^Ng_n(x)-\sum_{n=1}^Ng_n(r_N)|\ge \frac{1}{2^N}$$
+\end{comment}
+\end{enumerate}
+\end{solution}
+\vspace{0.5cm}
+
+\end{document}
+ 

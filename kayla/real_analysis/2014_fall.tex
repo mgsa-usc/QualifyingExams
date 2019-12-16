@@ -1,0 +1,163 @@
+\documentclass[12pt]{Homework}
+
+% Changed from \usepackage{prelude}
+\usepackage{preamble}
+\usepackage{amssymb}
+\usepackage{enumitem}
+\usepackage{mathrsfs}
+\def\upint{\mathchoice%
+    {\mkern13mu\overline{\vphantom{\intop}\mkern7mu}\mkern-20mu}%
+    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+  \int}
+\def\lowint{\mkern3mu\underline{\vphantom{\intop}\mkern7mu}\mkern-10mu\int}
+\usepackage[mathscr]{euscript}
+\usepackage{comment}
+\usepackage{MnSymbol}
+\usepackage{bbding}
+\renewcommand\qedsymbol{\Peace}
+\newcommand\placeqed{\nobreak\enspace\Peace}
+\usepackage{tikz}
+\usepackage{halloweenmath}
+\newcommand{\contradiction}{\null\hfill\large{$\mathghost$}\normalsize}
+\renewenvironment{framed}[1][\hsize]
+   {\MakeFramed{\hsize#1\advance\hsize-\width \FrameRestore}}%
+   {\endMakeFramed}
+
+\name{Kayla Orlinsky}
+\course{Real Analysis Exam}
+\term{Fall 2014}
+\hwnum{Fall 2014}
+
+\begin{document}
+
+\begin{problem} $\,$
+Assume that $f$ is integrable on $(0,1)$. Prove that $$\lim_{a\to\infty}\int_0^1f(x)x\sin(ax^2)dx=0.$$
+\end{problem}
+
+
+\begin{solution}$\,$
+First, let $f(x)=\chi_E(x)$ for some measurable set $E\subset[0,1]$. Then \begin{align*}
+    \int_0^1\chi_E(x)x\sin(ax^2)dx&=\int_Ex\sin(ax^2)dx\\
+    &\le\int_0^1x\sin(ax^2)dx\\
+    &=\int_0^a\frac{\sin(u)}{2a}du\qquad \begin{matrix}
+    u=ax^2 &  x:[0,1]\\
+    du=2axdx & u:[0,a]
+\end{matrix}
+&=\frac{-\cos(u)}{2a}\bigg|_0^a\\
+&=\frac{-\cos(a)}{2a}+\frac{1}{2a}\to0\qquad\text{ as }a\to\infty.
+\end{align*}
+
+Therefore, by linearity of the integral, the statement holds for simple functions.
+
+Now, since $f\in L^1$, there exists some $\phi$ simple function such that for all $\varepsilon>0$, $$\int_0^1|f-\phi|dx<\varepsilon.$$
+
+Thus, \begin{align*}
+    \left|\int_0^1f(x)x\sin(ax^2)dx-\int_0^1\phi(x)x\sin(ax^2)dx\right|&\le\int_0^1|(f(x)-\phi(x))x\sin(ax^2)|dx\\
+    &\le\int_0^1|f(x)-\phi(x)|dx<\varepsilon
+\end{align*} since $x\sin(ax^2)\le1$ for all $x\in(0,1)$ and all $a$.
+
+Thus, since we already showed that $$\int_0^1\phi(x)x\sin(ax^2)dx\to0$$ we are done.
+\end{solution}
+\newpage
+
+\begin{problem} $\,$
+Let $(X,\mathscr{M},\mu)$ be a measure space, and let $f$ and $f_1,f_2,f_3,...$ be real valued measurable functions on $X$. If $f_n\to f$ in measure and if $F:\mathbb{R}\to\mathbb{R}$ is uniformly continuous, prove that $F\circ f_n\to F\circ f$ in measure.
+\end{problem}
+
+
+\begin{solution}$\,$
+Let $\varepsilon>0$ be given. Then, since $F$ is uniformly continuous, there exists a $\delta>0$ such that whenever $|x-y|<\delta$, $|F(x)-F(y)|<\varepsilon.$
+
+Let $$E=\{x\,|\,|f_n(x)-f(x)|\ge\delta\}$$
+$$F=\{x\,|\,|(F\circ f_n)(x)-(F\circ f)(x)|\ge\varepsilon\}.$$
+
+Now, we note that if $x\in E^c$, then $|f_n(x)-f(x)|<\delta$ and so $|F(f_n(x))-F(f(x))|<\varepsilon$ which implies that $x\in F^c$.
+
+Thus, $E^c\subset F^c$ and so $F\subset E$.
+
+Finally, this implies that since $\mu(E)\to0$ as $n\to\infty$ (since $f_n\to f$ in measure, then $\mu(F)\to0$ as $n\to\infty$ as well.
+\end{solution}
+\newpage
+
+\begin{problem} $\,$
+Let $f_n$ be \textbf{nonnegative} measurable functions on a measure space $(X,\mathscr{M},\mu)$ which satisfy $\int f_nd\mu=1$ for all $n=1,2,... .$ Prove that $$\limsup_n(f_n(x))^{1/n}\le1$$ for $\mu$-a.e. $x.$
+\end{problem}
+
+
+\begin{solution}$\,$
+First, for all $n$, let $$E_n=\{x\,|\,f_n(x)>n\}.$$ Then \begin{align*}
+    1&=\int f_nd\mu\\
+    &=\int_{E_n}f_nd\mu+\int_{E_n^c}f_nd\mu\\
+    &\ge\int_{E_n}nd\mu+\int_{E_n^c}f_nd\mu\\
+    &\ge n\mu(E_n)+0\qquad\text{ since }f_n\ge0\\
+    \implies&\mu(E_n)\le\frac{1}{n} 
+\end{align*}
+
+Thus, except on a set of shrinking measure, $f_n(x)\le n$, and so (again except on a set of shrinking measure) $f_n(x)^{1/n}\le n^{1/n}$.
+
+Finally, since \begin{align*}
+    y&=\lim_{n\to\infty}n^{1/n}\\
+   \implies \ln y&=\lim_{n\to\infty}\frac{\ln n}{n}\\
+    &=\lim_{n\to\infty}\frac{1}{n}\\
+    &=0\\
+    \implies y&=e^0=1
+\end{align*}
+
+we have that $$\limsup_n(f_n(x))^{1/n}\le\limsup_n(n^{1/n})=\lim_{n\to\infty}n^{1/n}=1.$$
+
+\begin{comment}
+Let $$g_n=\sup_{k\ge n}(f_k(x))^{1/k}<\infty$$ a.e. since if $f_k(x)$ grows arbitrarily large, this growth must occur on sets of increasingly small measure (since $f_k$ are integrable).  Then, by definition of $\sup$, for all $\varepsilon>0$, there exists some $f_k(x)^{1/k}$ such that $$f_k(x)^{1/k}\ge g_n(x)-\frac{1}{n}.$$
+
+Let $\varepsilon=\frac{1}{n}$ and call $f_{k_n}(x)^{1/k_n}$ the function satisfying the above. 
+
+Now, $$\inf_{n}f_{k_n}(x)^{1/k_n}\ge\inf_n\left(g_n(x)-\frac{1}{n}\right)$$
+\end{comment}
+
+\end{solution}
+\newpage
+
+\begin{problem} $\,$
+Let $-\infty<a<b<\infty$. Suppose $F:[a,b]\to\mathbb{C}$. 
+\begin{enumerate}[label=(\alph*)]
+    \item Define what it means for $F$ to be absolutely continuous on $[a,b]$.
+    \item Give an example of a function which is uniformly continuous but not absolutely continuous. (Remember to justify your answer.)
+    \item Prove that if there exists $M$ such that $|F(x)-F(y)|\le M|x-y|$ for all $x,y\in[a,b]$, then $F$ is absolutely continuous. Is the converse true? (Again, remember to justify your answer).
+\end{enumerate}
+\end{problem}
+
+
+\begin{solution}$\,$
+\begin{enumerate}[label=(\alph*)]
+    \item $\,$
+    
+    \begin{framed}[.75\textwidth]
+    $F(x)$ is absolutely continuous on [a,b] if for all $\varepsilon>0$ there exists a $\delta>0$ such that for any finite collection $\{(a_i,b_i)\}_1^n$ of disjoint subintervals of $[a,b]$ satisfying $\displaystyle\sum_{i=1}^n|b_i-a_i|<\delta$ implies that $\displaystyle\sum_{i=1}^n|F(b_i)-F(a_i)|<\varepsilon$
+    \end{framed}
+    \item Let $f(x)$ be the Cantor Function on $[0,1]$. Since $f(x)$ is continuous on a closed interval, it is uniformly continuous.
+    
+    Now, assume that $f(x)$ is absolutely continuous. We already know that $f'(x)=0$ a.e. since it is only non-constant on the Cantor set (which has Lebesgue Measure $0$). 
+    
+    Thus, if $f(x)$ is absolutely continuous on $[0,1]$, then by the Fundamental Theorem of Lebesgue Integrals, $$1=f(1)-f(0)=\int_0^1f'(x)dx=\int_0^10dx=0.\qquad\qquad$$
+    
+    Thus, $f(x)$ cannot be absolutely continuous on $[0,1]$.
+    \item Clearly if such an $M$ exists, it must be nonnegative. If $M=0$, then $F$ is constant on $[a,b]$ and so it is clearly absolutely continuous. 
+    
+    If $M>0$, then for all $\varepsilon>0$, we can let $\delta=\frac{\varepsilon}{M}$. Then, for any finite collection of disjoint intervals $\{(a_i,b_i)\}_1^n$ satisfying $$\sum_{i=1}^n(b_i-a_i)<\delta,$$ we have that $$\sum_{i=1}^n|F(b_i)-F(a_i)|\le\sum_{i=1}^nM|b_i-a_i|=M\sum_{i=1}^n|b_i-a_i|<M\delta=M\frac{\varepsilon}{M}=\varepsilon.$$
+    
+    Thus, $F$ is absolutely continuous.
+    
+    Now, let $F(x)=\sqrt{x}$ on $[0,1]$. Then $F'(x)=\frac{1}{2\sqrt{x}}$ exists except at $0$ (a null set) and since $$\lim_{b\to0}\int_b^1\frac{1}{2\sqrt{x}}dx=\lim_{b\to0}\sqrt{x}\bigg|_b^1=\lim_{b\to0}(1-\sqrt{b})=1$$ so $F'(x)\in L^1$ and by the same computation $$F(x)-F(0)=\int_0^xF'(x)dx.$$
+    
+    Thus, again by the Fundamental Theorem of Lebesgue Integrals, $F$ is absolutely continuous on $[0,1]$.
+    
+    However, for all $y>x$, we have $$|F(y)-F(x)|=\sqrt{y}-\sqrt{x}=\frac{y-x}{\sqrt{y}+\sqrt{x}}.$$
+    
+    If there exists some $\infty>M>0$ such that $\frac{y-x}{\sqrt{y}+\sqrt{x}}\le M(y-x)$, then $M\ge\frac{1}{\sqrt{y}+\sqrt{x}}.$ However, for $x,y$ very small near $0$, we can force $M$ to grow as large as we like and so no such finite $M$ exists.
+\end{enumerate}
+\end{solution}
+\vspace{0.5cm}
+
+\end{document}
+ 

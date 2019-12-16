@@ -1,0 +1,134 @@
+\documentclass[12pt]{Homework}
+
+% Changed from \usepackage{prelude}
+\usepackage{preamble}
+\usepackage{amssymb}
+\usepackage{enumitem}
+\usepackage{mathrsfs}
+\def\upint{\mathchoice%
+    {\mkern13mu\overline{\vphantom{\intop}\mkern7mu}\mkern-20mu}%
+    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+  \int}
+\def\lowint{\mkern3mu\underline{\vphantom{\intop}\mkern7mu}\mkern-10mu\int}
+\usepackage[mathscr]{euscript}
+\usepackage{comment}
+\usepackage{MnSymbol}
+\usepackage{bbding}
+\renewcommand\qedsymbol{\Peace}
+\newcommand\placeqed{\nobreak\enspace\Peace}
+\usepackage{tikz}
+\usepackage{halloweenmath}
+\newcommand{\contradiction}{\null\hfill\large{$\mathghost$}\normalsize}
+\renewenvironment{framed}[1][\hsize]
+   {\MakeFramed{\hsize#1\advance\hsize-\width \FrameRestore}}%
+   {\endMakeFramed}
+
+\name{Kayla Orlinsky}
+\course{Real Analysis Exam}
+\term{Fall 2013}
+\hwnum{Fall 2013}
+
+\begin{document}
+
+\begin{problem} $\,$
+Let $\mu$ be a finite Borel Measure on $\mathbb{R}$, which is absolutely continuous with respect to the Lebesgue measure $m$. Prove that $x\mapsto\mu(A+x)$ is continuous for every Borel set $A\subset\mathbb{R}$.
+\end{problem}
+
+
+\begin{solution}$\,$
+First, we will denote $A+x=A_x$. Now, because $A$ is Borel and $\mu(A)<\infty$, for all $\varepsilon>0$ there exists some set $E$ which is a finite union of open intervals such that $\mu(A\Delta E)<\varepsilon$.
+
+Now, because $\mu<<m$, and \begin{align*}
+    m(A_x\Delta E_x)&=m(A_x\cup E_x)-m(A_x\cap E_x)\\
+    &=m((A\cup E)_x)-m((A\cap E)_x)\\
+    &=m(A\cup E))-m(A\cap E)\\
+    &=m(A\Delta E)
+\end{align*}
+we have that $\mu(A_x\Delta E_x)<\varepsilon$ for all $x$ (using the fact that we can ensure $E$ satisfies that $m(A_x\Delta E_x)<\delta$ and so $\mu(A_x\Delta E_x)<\varepsilon$ by absolute continuity).
+
+Thus, since $|\mu(A_x)-\mu(E_x)|<\varepsilon$ for all $x$, it suffices to show that \begin{align*}
+    f:&\mathbb{R}\to\mathbb{R}\\
+    &x\mapsto \mu(E_x)
+\end{align*} is continuous.
+
+WLOG, let $E=\bigcup_{i=1}^N(a_i,b_i)$.
+
+Let $\varepsilon>0$ be given and $x$ be fixed. Then let $\delta$ be such that $$m(F)<\delta\implies \mu(F)<\varepsilon$$ by absolute continuity. 
+
+Then, whenever $|x-y|<\frac{\delta}{N}$, we have that \begin{align*}
+    |f(x)-f(y)|&=|\mu(E_x)-\mu(E_y)|\\
+    &=|\mu(E_x)-(\mu(E_y\backslash E_x)+\mu(E_y\cap E_x))|\\
+    &=|\mu(E_x)-\mu(E_x\cap E_y)-\mu(E_y\backslash E_x))|\\
+    &=|\mu(E_x\backslash E_y)-\mu(E_y\backslash E_x)|\\
+    &\le \mu(E_x\backslash E_y).
+\end{align*}
+
+Now, since for each interval of $E_x\backslash E_y$ we have $(a_i+x,b_i+x)\backslash (a_i+y,b_i+y)=I_{{x\backslash y}_i}$ has length at most $\frac{\delta}{N}$, so $$m(E_x\backslash E_y)\le\sum_{i=1}^Nm(I_{{x\backslash y}_i})<N\frac{\delta}{N}=\delta$$ so $\mu(E_x\backslash E_y)<\varepsilon$.
+
+Thus, $f$ is continuous.
+\end{solution}
+\newpage
+
+\begin{problem} $\,$
+Let $f$ be a Lebesgue integrable function on $\mathbb{R}$, and assume that $$\sum_{n=1}^\infty\frac{1}{|a_n|}<\infty.$$
+Prove that $g(x)=\sum_{n=1}^\infty f(a_nx)$ converges almost everywhere and is integrable on $\mathbb{R}$. Also, find an example of a Lebesgue integrable function $f$ on $\mathbb{R}$ such that $g(x)=\sum_{n=1}^\infty f(nx)$ converges almost everywhere but is not integrable. 
+\end{problem}
+
+
+\begin{solution}$\,$
+Let $(\mathbb{N},\nu)$ be the counting measure. Then since the $\sigma$-algebra of $\nu$ is the powerset of $\mathbb{N}$, $f$ is $m\times\nu$ measurable. 
+
+Let $M=\int|f(x)|dx.$
+
+Furthermore, since $m$ and $\nu$ are $\sigma$-finite measure spaces, and $|f(a_nx)|\in L^+(m\times\nu)$, by Tonelli, \begin{align*}
+    \int|g(x)|dx&=\int\left|\sum_{n=1}^\infty f(a_nx)\right|dx\\
+    &\le\int\sum_{n=1}^\infty|f(a_nx)|dx\\
+    &=\sum_{n=1}^\infty\int|f(a_nx)|dx\\
+    &=\sum_{n=1}^\infty\int\frac{|f(u)|}{a_n}du\qquad \begin{matrix}
+    u=a_nx   \\
+    du=a_ndx
+\end{matrix}\\
+&=\sum_{n=1}^\infty\frac{M}{a_n}<\infty
+\end{align*}since $$\sum_{n=1}^\infty \frac{1}{a_n}\le\sum_{n=1}^\infty \frac{1}{|a_n|}<\infty.$$
+
+Now, let $f(x)=\chi_{[0,1]}(x)$. Then $f\in L^1$. Furthermore, $$f(nx)=\chi_{[0,1]}(nx)=\chi_{[0,\frac{1}{n}]}(x)\qquad\text{ since }0\le nx\le 1\implies 0\le x\le\frac{1}{n}.$$
+
+$$\sum_{n=1}^\infty\chi_{[0,\frac{1}{n}]}(x)<\infty$$ for all $x\not=0$ since for all $x\in[0,\frac{1}{n}]$, there exists some $N$ such that $\frac{1}{N}<x$ so $\sum_{n=N}^\infty f(nx)=0$. Thus, $g(x)$ converges a.e.. 
+
+Now, since $f(nx)\in L^+(m\times\nu)$ by the same reasoning as before, $$\int\sum_{n=1}^\infty \chi_{[0,\frac{1}{n}]}(x)dx=\sum_{n=1}^\infty\int\chi_{[0,\frac{1}{n}]}(x)dx=\sum_{n=1}^\infty m([0,\frac{1}{n}])=\sum_{n=1}^\infty\frac{1}{n}=\infty.$$
+\end{solution}
+\newpage
+
+\begin{problem} $\,$
+Assume $b>0$. Show that the Lebesgue Integral $$\int_1^\infty x^{-b}e^{\sin x}\sin(2x)dx$$ exists if and only if $b>1$.
+\end{problem}
+
+
+\begin{solution}$\,$
+\boxed{b>1} $$\int_1^\infty x^{-b}e^{\sin x}\sin(2x)dx\le\int_1^\infty ex^{-b}dx<\infty$$ by $p$-test and since $|\sin a|\le1$ for all $a$.
+
+\boxed{0<b\le 1} $$\int_1^\infty x^{-b}e^{\sin x}\sin(2x)dx\ge\sum_{n=1}^\infty\int_{n\pi/12}^{(4n+1)\pi/12} e^{-1}x^{-b}\frac{1}{2}dx=\infty.$$
+
+In other words, we restrict the domain to where $\sin(2x)\ge\frac{1}{2}$ and this integral is still infinite. This implies that $\int f^+dx=\infty$. Similarly, restricting to where $\sin(2x)\le-\frac{1}{2}$ gives that $\int f^-dx=\infty$. 
+
+Thus, the integral does not exist.
+\end{solution}
+\newpage
+
+\begin{problem} $\,$
+Suppose that $F$ is the distribution function of a Borel measure $\mu$ on $\mathbb{R}$ with $\mu(\mathbb{R})=1$. Prove that $$\int_{-\infty}^\infty(F(x+a)-F(x))dx=a$$ for all $a>0$.
+\end{problem}
+
+
+\begin{solution}$\,$
+First, since $x+a>x$ because $a>0$
+$$\int_\mathbb{R}(F(x+a)-F(x))dx=\int_\mathbb{R}\mu([x,x+a))dx=\int_\mathbb{R}\int_\mathbb{R}\chi_{[x,x+a)}d\mu dm$$
+
+Now, since $\mu$ is finite and $m$ is $\sigma$-finite, and $\chi_{[x,x+a)}\in L^+(m\times\mu)$ because $\mu$ is a Borel measure, the order of integration can be swapped and so we have $$\int_\mathbb{R}\int_\mathbb{R}\chi_{[x,x+a)}d\mu dm=\int_\mathbb{R}\int_\mathbb{R}\chi_{[x,x+a)}dmd\mu=\int_\mathbb{R} ad\mu=a\mu(\mathbb{R})=a.$$
+\end{solution}
+\vspace{0.5cm}
+
+\end{document}
+ 
