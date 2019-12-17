@@ -1,0 +1,950 @@
+\documentclass[12pt]{Qual}
+\usepackage{preamble}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{example}{Example}
+\newtheorem{formula}{Formula}
+\newtheorem{definition}{Definition}
+\newtheorem{lemma}{Lemma}
+
+\name{Kayla Orlinsky}
+\course{Algebra Exam}
+\term{Algebra}
+\hwnum{Cheat Sheet}
+
+\begin{document}
+\vspace{-0.5cm} \noindent\textcolor{red!60!black}{\rule{3cm}{1mm}} This color corresponds to Group and Field Theory
+
+\noindent\textcolor{blue!60!black}{\rule{3cm}{1mm}} This color corresponds to Ring and Module Theory
+%----------------------%
+%----------------------%
+\begin{center}
+\noindent\textcolor{red!60!black}{\rule{15cm}{1mm}}
+\Huge \faBug\faPuzzlePiece\faCoffee Group Classification Theory \faCoffee\faPuzzlePiece\faBug
+\vspace{-0.5cm}
+\noindent\textcolor{red!60!black}{\rule{15cm}{1mm}}
+\end{center}
+\vspace{0.5cm}
+%----------------------%
+%----------------------%
+\begin{theorem}{\Large\textit{Isomorphism Theorems}}
+
+\begin{minipage}{0.3\textwidth}
+$$\faktor{G}{\ker(\varphi)}\cong\im(\varphi)$$
+\end{minipage}\hspace{0.25cm}\begin{minipage}{0.3\textwidth}
+$$\faktor{H}{N\cap H}\cong \faktor{NH}{N}$$
+\end{minipage}\hspace{0.35cm}\begin{minipage}{0.3\textwidth}
+$$\faktor{(G/K)}{(H/K)}\cong \faktor{G}{H}$$
+\end{minipage}
+
+\end{theorem}
+\vspace{0.5cm}
+%----------------------%
+%----------------------%
+\begin{theorem}{\Large\textit{Sylow Theorems}}
+
+\boxed{\text{\large If:}} $|G|<\infty$
+
+\boxed{\text{\large Then:}}
+
+\begin{enumerate}[label=(\arabic*),leftmargin=3cm]
+    \item Sylow $p$-subgroups exist for all $p$
+    \item For fixed $p$, Sylow $p$-subgroups are conjugates
+    \item The number of Sylow $p$-subgroups $n_p$ satisfies the following:
+    \begin{itemize}
+\renewcommand\labelitemi{\faPuzzlePiece}
+    \item $n_p\equiv 1\mod p$
+    \item If $G=p^nm$ where gcd$(p,m)=1$, then $n_p$ divides $m$
+    \item $n_p=[G:N_G(P)]$
+\end{itemize}
+\end{enumerate}
+\end{theorem}
+\vspace{0.5cm}
+%----------------------%
+%----------------------%
+\begin{theorem}{\Large\textit{Recognizing Direct Products}}
+
+\vspace{0.25cm}
+\begin{minipage}{0.3\textwidth}
+$$G\cong H\times K$$
+\end{minipage}\hspace{-0.65cm}\boxed{\iff}\hspace{0.5cm}\begin{minipage}{0.7\textwidth}
+\begin{itemize}
+\renewcommand\labelitemi{\faPuzzlePiece}
+    \item
+    \item $G$ has two normal subgroups $H,K$
+    \item $HK=G$
+    \item $H\cap K=\{e\}$
+\end{itemize}
+\end{minipage}
+
+\end{theorem}
+%----------------------%
+%----------------------%
+\vspace{-1cm}
+\begin{theorem}{\Large\textit{Recognizing Semi-Direct Products}}
+
+\boxed{\text{\large If:}}
+\vspace{-0.5cm}
+
+\begin{itemize}[leftmargin=2.5cm]
+\renewcommand\labelitemi{\faPuzzlePiece}
+    \item $G$ has a subgroup $H$ and a normal subgroups $N$
+    \item $HN=G$
+    \item $H\cap N=\{e\}$
+\end{itemize}
+
+\boxed{\text{\large Then:}}  \begin{minipage}{0.85\textwidth}
+\vspace{0.45cm}
+$G\cong N\rtimes_\varphi H$ assuming there exists a non-trivial homomorphism $\varphi:H\to\aut(N)$.
+\end{minipage}
+
+\begin{mybox}
+***Note that if a semi-direct product exists, then its multiplication is given by $nhn^{-1}=\varphi(h)(n)$ for $h\in H$, $n\in N$.
+\end{mybox}
+
+\end{theorem}
+\vspace{-0.25cm}
+%----------------------%
+%----------------------%
+\begin{theorem}{\Large\textit{Isomoprhic Semi-Direct Products}}
+
+Given $N\rtimes_{\varphi_1}H$ and $N\rtimes_{\varphi_2}H$ with $\varphi_1,\varphi_2:H\to\aut(N)$
+
+\boxed{\text{\large If:}}
+\vspace{-0.5cm}
+
+\begin{itemize}[leftmargin=2.5cm]
+\renewcommand\labelitemi{\faPuzzlePiece}
+    \item there exists an automorphism $\sigma:H\to H$ such that $\varphi_1\circ\sigma=\varphi_2$
+    \item \textit{OR} there exists an automorphism $\alpha:N\to N$ so
+
+    $\varphi_1(h)=\alpha\circ\varphi_2(h)\circ \alpha^{-1}$ for all $h\in H$
+    \item \textit{OR} a there exists both $\sigma$ and $\alpha$ so $(\varphi_1\circ\sigma)(h)=\alpha\circ\varphi_2(h)\circ \alpha^{-1}$ for all $h\in H$
+\end{itemize}
+
+\boxed{\text{\large Then:}} $$N\rtimes_{\varphi_1}H\cong N\rtimes_{\varphi_2}H$$
+
+\end{theorem}
+\vspace{-0.25cm}
+%----------------------%
+%----------------------%
+\begin{example}
+$\,$
+
+\begin{framed}
+Determine all semi-direct products up to isomorphism of $\mathbb{Z}_{15}\rtimes\mathbb{Z}_{67}$
+\end{framed}
+
+First, let $\mathbb{Z}_3\cong\langle a\rangle$, $\mathbb{Z}_5\cong\langle b\rangle$, and $\mathbb{Z}_{67}\cong\langle c\rangle$.
+
+Then since $\aut(\mathbb{Z}_{67})\cong\mathbb{Z}_{66}$ we have that $\varphi(b)=$id since $5$ does not divide the order of $\mathbb{Z}_{66}$ and $\varphi(a)=\alpha$ where $\alpha$ has order $3.$
+
+Since $\mathbb{Z}_{66}$ is abelian, there are exactly two non-trivial options for $\alpha$ and one will be the square of the other. Namely, if $\varphi_1(a)=\alpha$ and $\varphi_2(a)=\alpha^2$, then $\varphi_1(a^2)=\varphi_2(a)$ and since $a\mapsto a^2$ is an automorphism of $\mathbb{Z}_3$, these will generate isomorphic semi-direct products.
+
+One can check that $\alpha^3(c)=\alpha^2(c^{29})=\alpha(c^{37})=c$ has order $3$ and defines multiplication for $G$ given by $bcb^{-1}=\varphi(b)(c)=c$ and $aca^{-1}=\varphi(a)(c)=c^{29}.$
+
+Thus, $\mathbb{Z}_{15}\rtimes\mathbb{Z}_{67}\cong\langle a,b,c\,|\, a^3=b^5=c^{67}=1,ab=ba,bc=cb,ac=c^{29}a\rangle.$
+\end{example}
+%----------------------%
+%----------------------%
+\begin{theorem}{\Large\textit{Classification of Finitely Generated Abelian Groups}}
+
+\boxed{\text{\large If:}} $G$ is a finitely generated abelian group
+
+\boxed{\text{\large Then:}} $$G\cong\mathbb{Z}^m\oplus\mathbb{Z}_{n_1}\oplus\mathbb{Z}_{n_2}\oplus\cdots\oplus\mathbb{Z}_{n_m}\qquad n_i|n_{i+1} \forall i.$$
+
+\begin{mybox}
+***Note that it is possible to break each of the $\mathbb{Z}_{n_i}$ into its prime power divisors and reorder, however, the primes may not be distinct.
+
+For example, $\mathbb{Z}_{12}\times\mathbb{Z}_2=\mathbb{Z}_2\times\mathbb{Z}_{2^2}\times\mathbb{Z}_3$ which is of course different from $\mathbb{Z}_2\times\mathbb{Z}_2\times\mathbb{Z}_2\times\mathbb{Z}_3$.
+\end{mybox}
+
+\end{theorem}
+\vspace{0.5cm}
+%----------------------%
+%----------------------%
+\begin{definition}{\Large\textit{Solvable Groups}}
+
+A group $G$ is solvable if there exists a subnormal series $$\{e\}\trianglelefteq G_n\trianglelefteq G_{n-1}\trianglelefteq\cdots\trianglelefteq G_0=G\qquad G_{i-1}/G_i\text{ abelain }\forall i$$
+
+\end{definition}
+\vspace{0.5cm}
+%----------------------%
+%----------------------%
+\begin{lemma}{\Large\textit{Facts about Solvable Groups}}
+
+\begin{itemize}
+\renewcommand\labelitemi{\faCoffee}
+    \item Subgroups and quotients of solvable groups are solvable
+    \item If $N$ is normal in $G$ and solvable, and $G/N$ is solvable, then $G$ is solvable
+    \item $S_n$ is not solvable for $n\ge 5$ ($S_3$ and $S_4$ are solvable)
+\end{itemize}
+
+\end{lemma}
+\vspace{0.5cm}
+%----------------------%
+%----------------------%
+\begin{lemma}{\Large\textit{Useful Results that Should be Reproved}}
+
+For $|G|<\infty$
+
+\begin{itemize}
+\renewcommand\labelitemi{\faCoffee}
+    \item If $P$ is a Sylow $p$-subgroup of a normal subgroup $N\trianglelefteq G$ and $P\trianglelefteq N$, then $P$ is normal in $G.$
+    \item If $p$ is the smallest prime dividing $|G|,$ then any subgroup of index $p$ is normal in $G$.
+\end{itemize}
+
+\end{lemma}
+\vspace{0.5cm}
+%----------------------%
+%----------------------%
+\begin{lemma}{\Large\textit{Crucial (and Citeable) Results}}
+
+For $|G|<\infty$
+
+\begin{itemize}
+\renewcommand\labelitemi{\faCoffee}
+    \item The product of a subgroup and a normal subgroup is again a subgroup
+    \item If $|HK|=\frac{|H||K|}{|H\cap K|}=|G|$ then $HK=G$ even if neither $H$ nor $K$ is normal
+    \item From the class equation: $p$-groups (groups of order $p^n$ for $p$ prime) have non-trivial centers.
+    \item Inductively on the previous result: $p$-groups are solvable
+    \item Groups of order $p^2$ are abelian
+    \item Groups of order $pq$ where $p$ does not divide $q-1$ are abelian
+    \item If all of the Sylow subgroups of $G$ are normal, then $G$ is a direct product of its Sylow subgroups.
+\end{itemize}
+
+\end{lemma}
+\vspace{0.5cm}
+%----------------------%
+%----------------------%
+\begin{lemma}{\Large\textit{Facts about the Symmetric Group}}
+
+In $S_n$:
+
+\begin{itemize}
+\renewcommand\labelitemi{\faCoffee}
+    \item Any cycle $\sigma$ can be written as a product of transpositions: an even number of transpositions means $\sigma$ is even, an odd number of transpositions means $\sigma$ is odd
+    \item A $k$-cycle is even when $k$ is odd, and odd when $k$ is even
+    \item A product of two even permutations is even
+    \item A product of two odd permutations is odd
+    \item A product of an even permutation and an odd permutation is odd
+    \item Any cycle can be written as a product of disjoint cycles and the order of a cycle is the lcm of its disjoint cycle lengths.
+    \item $S_n$ is not solvable for all $n\ge5$, $S_4$ is solvable and $S_3$
+\end{itemize}
+
+\end{lemma}
+\vspace{0.5cm}
+%----------------------%
+%----------------------%
+\begin{formula}{\Large\textit{Automorphism Groups}}
+
+\begin{itemize}
+\renewcommand\labelitemi{\faBug}
+    \item $\aut(H\times K)\cong\aut(H)\times\aut(K)$ if $|H|$ and $|K|$ are coprime.
+    \item $\aut(\mathbb{Z}_m)\cong\mathbb{Z}_{\varphi(m)}$ where $\varphi$ is the Euler totient function, $$\varphi(p_1^{e_1}\cdots p_n^{e_n})=\varphi(p_1^{e_1})\cdots\varphi(p_n^{e_n})=(p_1^{e_1}-p_1^{e_1-1})\cdots(p_n^{e_n}-p_n^{e_n-1})$$
+    \item $\aut(\mathbb{Z}_p^n)\cong GL_n(\mathbb{F}_p)$
+    \item for $q=p^k$ $|GL_n(\mathbb{F}_q)|=(q^n-1)(q^n-q)(q^n-q^2)\cdots(q^n-q^{n-1})$ (because each matrix is invertible so the columns must be linearly independnet, namely, $q^n$ choices for first column, minus $0$ vector; $q^n$ choices for second column minus a linear combination of the first, so minus $q$; $q^n$ choices for third minus $q^2$ for all the linear combinations of the previous two; etc.
+    \item $|SL_n(\mathbb{F}_q)|=\frac{1}{q-1}|GL_n(\mathbb{F}_q)|$ because we quotient by the determinant.
+\end{itemize}
+
+\end{formula}
+\vspace{0.5cm}
+%----------------------%
+%----------------------%
+\begin{definition}{\Large\textit{Group Action}}
+
+A group action of a group $G$ on a set $X$ defines a homomorphism $\varphi:G\to S_{|X|}$ defined by $\varphi(g)=\sigma_g$ where \begin{align*}
+    \sigma_g:X&\to X\\
+    x&\mapsto g\cdot x
+\end{align*}
+
+\begin{mybox}
+***The two most useful group actions for qualifiying exams are:
+\begin{itemize}
+\renewcommand\labelitemi{\faCoffee}
+    \item Conjugation action on a set of Sylow $p$-subgroups to help determine if they are normal
+    \item Left multiplication on cosets of a subgroups to help determine if the subgroup is normal
+\end{itemize}
+\end{mybox}
+
+\end{definition}
+\vspace{0.25cm}
+%----------------------%
+%----------------------%
+\begin{example}
+$\,$
+\begin{framed}
+Prove that there are no simple groups of order $600.$
+\end{framed}
+Let $G$ be a group of order $600=10\cdot 10\cdot 6=2^3\cdot 3\cdot 5^2$.
+
+By the Sylow Theorems, $n_5\equiv 1\mod5$ and $n_5|2^3\cdot 3$ so $n_5=1,6$.
+
+If $G$ is simple, then $n_5=6$ and we can let $G$ act on its Sylow $5$ subgroups by conjugation (since Sylow $5$-subgroups are conjugates).
+
+This action defines a homomorphism $\varphi:G\to S_6$ where \begin{align*}
+    \varphi(g)=\sigma_g:\syl_5(G)&\to\syl_5(G)\\
+    P_5&\mapsto gP_5g^{-1}
+\end{align*} with $P_5$ a Sylow $5$-subgroup of $G$.
+
+Since kernels of homomorphisms are normal subgroups in the domain, if $G$ is simple $\ker\varphi=\{e\}$. Namely, $\varphi$ must be an embedding.
+
+However, $|S_6|=6!=720$, and since $|G|=600$ which does not divide $720$, there cannot be any isomorphic copies of $G$ inside $S_6$.
+
+This is a contradiction and so $n_5=1$ and $G$ cannot be simple.
+\end{example}
+%----------------------%
+%----------------------%
+\begin{example}
+$\,$
+\begin{framed}
+For $n\ge 5$, there are no subgroups of $S_n$ with $2<[S_n:H]<n$.
+\end{framed}
+
+Let $H$ be a subgroup of $S_n$ such that $2<[S_n:H]=k<n$. Let $S_n$ act on $X=S_n/H$ the set of left cosets of $H$ by left-multiplication.
+
+Then because $2<|X|<n$, this induces a homomorphism from $S_n$ to $S_k$ where $k=|X|.$
+
+Specifically, this defines a map
+\vspace{-0.35cm}
+\begin{center}
+\begin{minipage}{0.4\textwidth}
+\begin{align*}
+    \varphi:S_n&\to S_{|X|}=S_k\\
+    a&\mapsto \sigma_a
+\end{align*}
+\end{minipage}\begin{minipage}{0.4\textwidth}
+\begin{align*}
+    \sigma_a:X&\to X\\
+    bH&\mapsto abH
+\end{align*}
+\end{minipage}
+\end{center}
+\vspace{0.15cm}
+
+Now, we note that if $a\in\ker\varphi$, then $abH=bH$ for all $b\in S_n$ and so namely, $abh=bh'$ for $h,h'\in H$ so $a=bh'h^{-1}b^{-1}\in bHb^{-1}$ for all $b\in S_n$ and so namely, $\ker(\varphi)\subset H$.
+
+Finally, we note that for $n\ge 5$, the only normal subgroups of $S_n$ are the trivial subgroup, $S_n$ itself, and $A_n$. Since $[S_n:A_n]=2<[S_n:H]<n$, $\ker(\varphi)\not=S_n$ and not $A_n$.
+
+Namely, the kernel is trivial and so we have an embedding of $S_n$ into a symmetric group of strictly smaller degree, which is of course, nonsense.
+
+Thus, $H$ cannot exist.
+\end{example}
+\vspace{0.5cm}
+%----------------------%
+%----------------------%
+\newpage
+
+
+
+
+
+
+
+
+
+
+\begin{center}
+\noindent\textcolor{red!60!black}{\rule{15cm}{1mm}}
+\Huge \faBug\faPuzzlePiece\faCoffee Galois and Field Theory \faCoffee\faPuzzlePiece\faBug
+\vspace{-0.5cm}
+\noindent\textcolor{red!60!black}{\rule{15cm}{1mm}}
+\end{center}
+\vspace{0.5cm}
+%----------------------%
+%----------------------%
+\begin{definition}{\Large\textit{Galois Field Extension}}
+$\,$
+
+If $E/F$ is finite then $E/F$ is Galois if $E$ is the splitting field of a separable (all roots are distinct) polynomial $f\in F[x]$
+
+\end{definition}
+\vspace{0.5cm}
+%----------------------%
+%----------------------%
+\begin{theorem}{\Large\textit{Fundamental Theorem of Galois Theory}}
+
+\boxed{\text{\large If:}} $E/F$ is Galois
+\vspace{-0.8cm}
+
+\boxed{\text{\large Then:}}\hspace{0.15cm}\begin{minipage}{0.85\textwidth}
+\vspace{1cm}
+ $E$ is the splitting field of a separable polynomial $f(x)\in F[x]$ of degree $n$, and $G=\gal(E/F)$ is the set of automorphisms of $E$ which fix $F$. Additionally,
+\end{minipage}
+
+\begin{itemize}[leftmargin=3.5cm]
+\renewcommand\labelitemi{\faPuzzlePiece}
+    \item Every automorphism in $G$ permutes the roots of each irreducible factor of $f$
+    \item $|G|=[E:F]\le n!$
+    \item There is a $\oto$ correspondence between subgroups of $G$ and subfields of $E$ containing $F$
+    \item If $H$ is a subgroup of $G$ then there exists $K\subset E$ with $F\subset K$ so $H=\gal(E/K)$. Namely, $|H|=[E:K]$, $[G:H]=[K:F]$
+    \item And $H$ is normal in $G$ if and only if $K$ is Galois over $F$, and in this case $\gal(K/F)\cong G/H$
+\end{itemize}
+
+\end{theorem}
+\vspace{0.5cm}
+%----------------------%
+%----------------------%
+\begin{theorem}{\Large\textit{Eisenstein's Criterion}}
+
+\boxed{\text{\large If:}} \begin{minipage}{0.85\textwidth}
+\vspace{1cm}
+$f(x)=a_nx^n+a_{n-1}x^{n-1}+\cdots+a_1x+a_0$ where $a_i$ are an a UFD $D$, and there exists a prime element $p$ such that $p\nmid|a_n$, $p|a_i$ for all $i\not=n$ and $p^2\nmid|a_0$,
+\end{minipage}
+
+\boxed{\text{\large Then:}} \begin{minipage}{0.85\textwidth}
+\vspace{0.45cm}
+$f(x)$ is irreducible in $D[x]$ and in $F[x]$ where $F$ is the field of fractions of $D.$
+\end{minipage}
+
+\end{theorem}
+\vspace{0.5cm}
+%----------------------%
+%----------------------%
+\begin{lemma}{\Large\textit{Facts about Galois Extensions}}
+
+\begin{itemize}
+\renewcommand\labelitemi{\faCoffee}
+    \item If $\xi_n$ is a primitive $n\thh$ root of unity, then $[\mathbb{Q}(\xi_n):\mathbb{Q}]=\varphi(n)$ where $\varphi$ is the Euler totient function. Additionally, $\varphi(n)$ is the number of primitive $n\thh$ roots of unity.
+    \item If $\xi_n$ is a primitive $n\thh$ root of unity, then the splitting field $K$ of $x^n-1$ over $\mathbb{F}_q$ for $q=p^t$ some $t$, $p$ prime, is a finite extension of $\mathbb{F}_q$. Namely, $K=\mathbb{F}_{q^k}$ some $k$. Now, to find $k$, we note that $\xi_n^{n+1}=\xi_n$ and $\xi_n^{q^k}=\xi_n$ because $\xi_n\in K$. Since $\xi_n^n=1$, and $n$ is minimal, we have that $n$ divides $q^k-1$. The smallest such $k$ is the degree of the extension. Namely, $$[\mathbb{F}_q(\xi_n):\mathbb{F}_q]=k\qquad q^k\equiv 1\mod n\text{ for }k\text{ minimal}.$$
+    \item In fields of characteristic $0$, irreducible implies separable
+\end{itemize}
+
+\end{lemma}
+\vspace{0.5cm}
+%----------------------%
+%----------------------%
+\begin{example}
+$\,$
+
+\begin{framed}
+Let $L$ be a Galois extension of a field $F$ with $\gal(L/F)\cong D_{10}$, the dihedral group of order $10$. How many subfields $F\subset M\subset L$ are there, what are their dimensions over $F,$ and how many are Galois over $F?$
+\end{framed}
+
+$|D_{10}|=10=2\cdot 5$. Thus, by Sylow, $n_5\equiv 1\mod 5$ and $n_5|2$ so $n_5=1$. Thus, $D_{10}$ has one Sylow $5$-subgroup which is normal. Since $D_{10}$ is not abelian, $n_2\not=1$. Thus, $n_2\equiv 1\mod 2$ and $n_2|5$ so $n_2=5$.
+
+There is the trivial subgroup $\{e\}$ which corresponds to the basefield $F$ which is trivially Galois over itself.
+
+There are $5$ subgroups $P_i$ $i=1,...,5$ of order $2$, which are not normal in $G$. Thus, there are $5$ intermediate fields $F\subset M_i\subset L$ $i=1,...,5$, such that $|P_i|=[L:M_i]=2$ so $[M_i:F]=5$ and $M_i/F$ is not a Galois extension for $i=1,...,5$.
+
+There is $1$ normal subgroup of order $5$ $Q$. Thus, there is one intermediate field $F\subset K\subset L$ with $|Q|=5=[L:K]$ and $[K:F]=2$ and $K/F$ is a Galois extension.
+
+Finally, there is the top field $L$ which corresponds to $D_{10}=\gal(L/F)$ which is Galois over $F$ and $[L:F]=10$.
+\end{example}
+\vspace{0.5cm}
+%----------------------%
+%----------------------%
+\begin{definition}{\Large\textit{Solvable Field Extension}}
+$\,$
+
+If $E/F$ is a solvable extension if there exists a chain $$F\subset F(\alpha_1)\subset F(\alpha_1,\alpha_2)\subset\cdots\subset F(\alpha_1,\alpha_2,...,\alpha_n)=E$$ and for all $i$ there exists an $r_i$ such that $\alpha_{i+1}^{r_i}\in F(\alpha_1,...,\alpha_i)$.
+
+\end{definition}
+\vspace{0.5cm}
+%----------------------%
+%----------------------%
+\begin{theorem}{\Large\textit{Solvable by Radicals}}
+
+\boxed{\text{\large If:}} \begin{minipage}{0.85\textwidth}
+\vspace{0.45cm}
+ $E$ and $F$ are characteristic $0$ and $E$ is the splitting field of $f(x)\in F[x]$ ($f$ separable)
+\end{minipage}
+
+\boxed{\text{\large Then:}}
+
+\begin{minipage}{0.2\textwidth}
+$f$ is solvable by radicals
+\end{minipage}\hspace{0.35cm}\boxed{\iff}\hspace{0.35cm}\begin{minipage}{0.2\textwidth}
+$E/F$ is a radical extension
+\end{minipage}\hspace{0.35cm}\boxed{\iff}\hspace{0.45cm}\begin{minipage}{0.2\textwidth}
+$\gal(E/F)$ is a solvable group
+\end{minipage}
+
+\end{theorem}
+\vspace{0.5cm}
+%----------------------%
+%----------------------%
+\begin{theorem}{\Large\textit{Finite Fields}}
+
+\boxed{\text{\large If:}} $\mathbb{F}_q$ is the field of $q$ elements where $p$ is prime
+
+\boxed{\text{\large Then:}}
+
+\begin{itemize}[leftmargin=3cm]
+\renewcommand\labelitemi{\faPuzzlePiece}
+    \item $q=p^n$ for some prime $p$
+    \item $\mathbb{F}_q$ is the splitting field (and set of roots) of $x^q-x$
+    \item Any other field of $q$ elements will be isomorphic to $\mathbb{F}_q$
+\end{itemize}
+
+\end{theorem}
+\vspace{0.5cm}
+%----------------------%
+%----------------------%
+\newpage
+
+
+
+
+
+
+
+
+
+\begin{center}
+\noindent\textcolor{blue!60!black}{\rule{15cm}{1mm}}
+\Huge \faBug\faPuzzlePiece\faCoffee Rings and Nullstellensatz \faCoffee\faPuzzlePiece\faBug
+\vspace{-0.5cm}
+\noindent\textcolor{blue!60!black}{\rule{15cm}{1mm}}
+\end{center}
+\vspace{0.5cm}
+%----------------------%
+%----------------------%
+\begin{theorem}{\Large\textit{Isomorphism Theorems}}
+
+If $R$ is a ring (or a module) and $I,J$ are ideals (or submodules)
+
+\begin{minipage}{0.3\textwidth}
+$$\faktor{R}{\ker(\varphi)}\cong\im(\varphi)$$
+\end{minipage}\hspace{0.25cm}\begin{minipage}{0.3\textwidth}
+$$\faktor{I+J}{I}\cong \faktor{J}{I\cap J}$$
+\end{minipage}\hspace{0.35cm}\begin{minipage}{0.3\textwidth}
+$$\faktor{(R/J)}{(I/J)}\cong \faktor{R}{I}$$
+\end{minipage}
+
+\end{theorem}
+\vspace{0.5cm}
+%----------------------%
+%----------------------%
+\begin{definition}{\Large\textit{General Info about Ideals}}
+$\,$
+
+\begin{itemize}
+\renewcommand\labelitemi{\faCoffee}
+    \item $I$ is an ideal of $R$ if $x,y\in I$ implies $x-y\in I$, and if $rx\in I$ for all $r\in R$.
+    \item $I+J=\{x+y\,|\,x\in I,y\in J\}$ is an ideal
+    \item $IJ=\{\sum_{i=1}^nx_iy_i\,|\,x_i\in I,y_i\in J\}$ is an ideal
+    \item Prime ideal $P$ is such that $ab\in P$ implies $a\in P$ or $b\in P$ (if $R$ is commutative then $R/P$ is a domain)
+    \item If $R$ is commutative and $M$ is a maximal ideal, then $R/M$ is a field.
+    \item $\sqrt{I}=\{r\in R\,|\, $ there exists $m$ so $r^m\in I\}$.
+\end{itemize}
+
+\end{definition}
+\vspace{0.5cm}
+%----------------------%
+%----------------------%
+\begin{definition}{\Large\textit{General Info about Rings}}
+$\,$
+
+\begin{itemize}
+\renewcommand\labelitemi{\faCoffee}
+    \item $D$ is integrally closed if for every $k\in K$ the field of fractions of $D$, if $k$ is algebraic over $D$ (there exists $f\in D[x]$ so $f(k)=0$) then $k\in D$
+    \item $R$ is Noetherian if it has ACC
+    \item $R$ is artinian if it has DCC
+\end{itemize}
+
+\end{definition}
+\vspace{0.5cm}
+%----------------------%
+%----------------------%
+\begin{theorem}{\Large\textit{Cayley Hamilton}}
+
+Any matrix satisfies its characteristic polynomial.
+
+\end{theorem}
+\vspace{0.5cm}
+%----------------------%
+%----------------------%
+\begin{theorem}{\Large\textit{Chinese Remainder Theorem}}
+
+\boxed{\text{\large If:}} \begin{minipage}{0.85\textwidth}
+\vspace{0.45cm}
+$I_1,I_2,...,I_n$ are pairwise coprime ($1\in I_l+I_k$ for all $k\not=l$) $2$-sided ideals of $R$
+\end{minipage}
+
+\boxed{\text{\large Then:}} $$\faktor{R}{\bigcap_{k=1}^nI_k}\cong R/I_1\times R/I_2\times\cdots\times R/I_n$$
+
+\begin{mybox}
+***Note that if $R$ is commutative then $\bigcap_{k=1}^nI_k=\prod_{k=1}^nI_k$.
+\end{mybox}
+
+\end{theorem}
+\vspace{0.5cm}
+%----------------------%
+%----------------------%
+\begin{theorem}{\Large\textit{Gauss' Lemma}}
+
+\boxed{\text{\large If:}} $D$ is a domain, and $K$ its field of fractions
+
+\boxed{\text{\large Then:}} $f$ is irreducible in $D[x] \iff f$ is irreducible in $K[x]$
+
+\end{theorem}
+\vspace{0.5cm}
+%----------------------%
+%----------------------%
+\begin{theorem}{\Large\textit{Correspondence Theorem}}
+
+There is a $\oto$ correspondence between: $$\{\text{ maximal ideals of } R/I\} \Longleftrightarrow \{\text{ maximal ideals of }R\text{ containing } I\}.$$
+
+\end{theorem}
+\vspace{0.5cm}
+%----------------------%
+%----------------------%
+\begin{example}
+$\,$
+
+\begin{framed}
+Prove that a power of the polynomial $(x+y)(x^2+y^4-2)$ belongs to the ideal $(x^3+y^2,x^3+xy)$ in $\mathbb{C}[x,y]$.
+\end{framed}
+
+It suffices to show that $(x+y)(x^2+y^4-2)$ is satisfied by all zeros in $V(x^3+y^2,x^3+xy)$ since by Nullstellenzatz, if $g(x,y)$ is a polynomial such that $g(a,b)=0$ for all $(a,b)\in V(I)$, then there exists an $n$ such that $g^n(x,y)\in I$.
+
+Let $g(x,y)=(x+y)(x^2+y^4-2)$. Clearly $(0,0)\in V(x^3+y^2,x^3+xy)$. If $x^3+y^2=0$ and $x^3+xy=0$ then $y^2-xy=0$, so $y(y-x)=0$. If $y=0$ then $x=0$, and if $y=x$, then $x^2(x+1)=0$, so $x=-1$.
+
+Thus, the only elements of $V(x^3+y^2,x^3+xy)$ are $(0,0),(-1,-1)$.
+
+Since $g(0,0)=0$ and $g(-1,-1)=0$, we have that there exists an $n$ such that $g^n(x,y)\in(x^3+y^2,x^3+xy).$
+\end{example}
+\vspace{0.5cm}
+%----------------------%
+%----------------------%
+\begin{theorem}{\Large\textit{Nullstellensatz}}
+
+\begin{itemize}
+\renewcommand\labelitemi{\faPuzzlePiece}
+    \item
+    \item Maximal ideals of $\mathbb{C}[x_1,...,x_n]$ are of the form $(x_1-a_1,x_2-a_2,...,x_n-a_n)$ for $(a_1,...,a_n)\in\mathbb{C}^n$
+    \item $\sqrt{I}$ is the intersection of all maximal ideals of $\mathbb{C}[x_1,...,x_n]$ containing $I$
+    \item There is a $\oto$ correspondence between $V(I)$ and $\sqrt{I}$
+    \item $V(I)=\varnothing$ $\iff$ $1\in I$ (proper ideals have nonempty variety)
+    \item If $g(a)=0$ for all $a\in V(I)$ $\iff$ $g\in\sqrt{I}$ (there exists $m$ such that $g^m\in I$)
+\end{itemize}
+
+\end{theorem}
+\vspace{0.5cm}
+%----------------------%
+%----------------------%
+\begin{theorem}{\Large\textit{Generalized Nullstellensatz}}
+
+\boxed{\text{\large If:}} $k$ is a field and $K$ is its algebraic closure,
+
+\boxed{\text{\large Then:}}
+\begin{itemize}[leftmargin=3cm]
+\renewcommand\labelitemi{\faPuzzlePiece}
+    \item  for $I\subset k[x_1,...,x_n]$ and $V(I)\subset K^n$, $V(I)=\varnothing$ $\iff$ $1\in I$ (proper ideals have nonempty variety)
+    \item If $g(a)=0$ for all $a\in V(I)\subset K^n$ $\iff$ there exists $m$ such that $g^m\in I\subset k[x_1,...,x_n]$
+\end{itemize}
+
+\end{theorem}
+\vspace{0.5cm}
+%----------------------%
+%----------------------%
+\begin{theorem}{\Large\textit{Hilbert Basis Theorem}}
+
+\boxed{\text{\large If:}} $R$ is Noetherian
+
+\boxed{\text{\large Then:}} $R[x]$ is Noetherian
+
+\begin{mybox}
+***Note that $R$ is Noetherian $\iff$ every ideal of $R$ is finitely generated
+\end{mybox}
+
+\end{theorem}
+\vspace{0.5cm}
+%----------------------%
+%----------------------%
+\begin{lemma}{\Large\textit{Facts about Rings and Ideals}}
+
+\begin{itemize}
+\renewcommand\labelitemi{\faCoffee}
+    \item If $R$ is a ring with $1$, then for any ideal $I$ there exists a maximal ideal $M$ so $I\subset M$
+    \item If $D$ is a UFD, then $D[x]$ is UFD
+    \item If $F$ is a field, $F[x]$ is a PID
+    \item UFDs are integerally closed in their field of fractions (by Gauss' Lemma)
+    \item If $R$ is Noetherian and $I$ is a $2$-sided ideal, then $R/I$ is Noetherian
+    \item If $R$ is artinian, $R/I$ is artinian for any ideal (including one-sided) of $R.$
+\end{itemize}
+
+\end{lemma}
+\vspace{0.5cm}
+%----------------------%
+%----------------------%
+\begin{example}
+$\,$
+
+\begin{framed}
+If $F$ and $L=F[x_1,...,x_n]/M$ are fields, then $L$ is a finite field extension of $F$.
+\end{framed}
+
+We proceed by induction on $n.$ Basecase: let $L=F[a_1]$ be a field. Then for $f(a_1)\in L$ there exists $g(a_1)\in L$ such that $f(a_1)g(a_1)=1\in L$ and so $a_1$ satisfies $h(x)=f(x)g(x)-1$. Namely, $a_1$ is algebraic over $F$ and so $L$ is a finite field extension of $F.$
+\vspace{0.25cm}
+
+Assume $L=F[a_1,...,a_k]$ is a finite field extension of $F$ for all $k\le n$.
+\vspace{0.25cm}
+
+Then let $L=F[a_1,...,a_n][a_{n+1}]$. Since $L$ is a field, by the same reasoning as the basecase, $L$ is algebraic over $F[a_1,...,a_n]$. However, by the inductive hypothesis, $F[a_1,...,a_n]$ is a finite field extension of $F$ and so $[L:F]=[L:F[a_1,...,a_n]][F[a_1,...,a_n]:F]<\infty.$
+\end{example}
+%----------------------%
+%----------------------%
+\begin{example}
+$\,$
+
+\begin{framed}
+If $L$ is a finite field extension of $F$, then there exists only finitely many embeddings of $L$ into $K$ the algebraic closure of $F.$
+\end{framed}
+We proceed by induction. Basecase: let $L=F(a_1)$ be a finite extension of $F$. Because $a_1$ is algebraic over $F$, it has minimal (irreducible) polynomial $$f(x)=x^n+\alpha_{n-1}x^{n-1}+\cdots+\alpha_1x+\alpha_0\in F[x].$$
+
+Now, if $\varphi:L\hookrightarrow K$, because $\varphi(1)=1$, $\varphi$ is $F$-linear and so $$\varphi(f(a_1))=\varphi(a_1)^n+\alpha_{n-1}\varphi(a_1)^{n-1}+\cdots+\alpha_1\varphi(a_1)+\alpha_0=0$$ so $\varphi$ permutes the roots of $f(x).$ Note that $K$ is the algebraic closure of $F$ and so contains all such roots.
+
+Thus, there are only finitely many possible choices of $\varphi$ since there are only finitely many roots of $f(x).$
+
+\vspace{0.25cm}
+Now, assume there are only finitely many injections of $L=F(a_1,...,a_k)$ to $K$ for $k\le n$.
+\vspace{0.15cm}
+
+Then we examine $L=F(a_1,...,a_n,a_{n+1})=F(a_1,...,a_n)(a_{n+1}).$ Then there are only finitely many $F(a_1,...,a_n)$-linear injections from $L\hookrightarrow K$ by the same reasoning as the basecase, and by the induction hypothesis, only finitely many $F$-linear injections from $F(a_1,...,a_n)\hookrightarrow K$.
+
+Since any injection $L\hookrightarrow K$ will be defined by where it sends the $a_i,$ and since there are only finitely many choices for where to send $a_1,...,a_n$ and only finitely many choices for where to send $a_{n+1}$, we have only finitely many possible injections of $L$ into $K.$
+\end{example}
+\vspace{0.5cm}
+%----------------------%
+%----------------------%
+\newpage
+
+
+
+
+
+
+
+
+\begin{center}
+\noindent\textcolor{blue!60!black}{\rule{15cm}{1mm}}
+\Huge \faBug\faPuzzlePiece\faCoffee Modules and Algebras \faCoffee\faPuzzlePiece\faBug
+\vspace{-0.5cm}
+\noindent\textcolor{blue!60!black}{\rule{15cm}{1mm}}
+\end{center}
+\vspace{0.25cm}
+%----------------------%
+%----------------------%
+\begin{definition}{\Large\textit{Module}}
+$\,$
+
+A module (left or right, rarely $2$-sided) over a ring is the generalization of a vector space over a field.
+
+There is no notion of multiplication in a module other than multiplication by scalars in the base ring.
+
+\end{definition}
+\vspace{0.5cm}
+%----------------------%
+%----------------------%
+\begin{theorem}{\Large\textit{Classification of Finitely Generated Modules}}
+
+\boxed{\text{\large If:}} $R$ is a PID and $M$ is finitely generated over $R$
+
+\boxed{\text{\large Then:}} \begin{minipage}{0.85\textwidth}
+\vspace{0.8cm}
+$M\cong R^n\oplus T(M)$ where $R^n\cong R\oplus R\oplus\cdots\oplus R$ is the free part of $M$ and $T(M)=\{m\in M\,|\, $ there exists $0\not=r\in R$ so $ rm=0\}$ is the torsion submodule of $M$.
+\end{minipage}
+
+\begin{mybox}
+*** We can write $T(M)\cong R/(a_1)\oplus\cdots\oplus R/(a_n)$ for $$(a_1)\supset (a_2)\supset \cdots \supset (a_n)$$ all ideals.
+\end{mybox}
+
+\end{theorem}
+\vspace{0.5cm}
+%----------------------%
+%----------------------%
+\begin{definition}{\Large\textit{Projective Module}}
+$\,$
+
+An $R$-module $P$ is projective if there exists an $R$-module $N$ so $P\oplus N$ is free (so for some $n$, $P\oplus N\cong R^n$).
+
+\end{definition}
+\vspace{0.5cm}
+%----------------------%
+%----------------------%
+\begin{lemma}{\Large\textit{Facts about Modules}}
+
+\begin{itemize}
+\renewcommand\labelitemi{\faCoffee}
+    \item $M$ is simple if $M\cong R/M$ for some maximal (left or right) ideal $M$.
+    \item If $P$ is projective and \begin{tikzcd}
+    0\arrow[r] & N\arrow[r] & M\arrow[r] & P\arrow[r] &0
+    \end{tikzcd} is a short exact sequence, then $M\cong P\oplus N$
+\end{itemize}
+
+\end{lemma}
+\vspace{0.5cm}
+%----------------------%
+%----------------------%
+\begin{lemma}{\Large\textit{Facts about Jacobson Radical}}
+
+\begin{itemize}
+\renewcommand\labelitemi{\faCoffee}
+    \item $J(R)$ is the intersection of all maximal (right) ideals of $R$
+    \item $J(R)$ is quasi-regular, so for all $r\in J(R)$, $1-r$ is invertible in $R$.
+    \item If $R$ is artinian, then $J(R)$ is nilpotent
+    \item If $R$ is commutative, then $J(R)$ contains all the nilpotent elements of $R$.
+    \item $J(R/J(R))=0$
+\end{itemize}
+
+\end{lemma}
+\vspace{0.5cm}
+%----------------------%
+%----------------------%
+\begin{theorem}{\Large\textit{Schur's Lemma}}
+
+\boxed{\text{\large If:}} $M$ and $N$ are simple $R$-modules
+
+\boxed{\text{\large Then:}} \begin{minipage}{0.85\textwidth}
+\vspace{0.45cm}
+any module homomorphism $f:M\to N$ is either identically $0$ or an isomorphism.
+\end{minipage}
+
+\end{theorem}
+\vspace{0.5cm}
+%----------------------%
+%----------------------%
+\begin{definition}{\Large\textit{Algebra over a field}}
+$\,$
+
+An algebra over a field is a vector space with a multiplication action which has $F$ in its center (it is a ring and a vector space at the same time).
+
+\end{definition}
+\vspace{0.5cm}
+%----------------------%
+%----------------------%
+\begin{lemma}{\Large\textit{Fact about Algebras}}
+
+ If $A$ is a finite dimensional $F$-algebra for $F$ a field, then $A$ is artinian and Noetherian
+
+\end{lemma}
+\vspace{0.5cm}
+%----------------------%
+%----------------------%
+\begin{theorem}{\Large\textit{Frobenius Theorem}}
+
+\boxed{\text{\large If:}} $D$ is a division ring which is finite dimensional over $\mathbb{R}$
+
+\boxed{\text{\large Then:}} $D\cong\mathbb{R},\mathbb{C},\mathbb{H}$.
+
+\end{theorem}
+\newpage
+%----------------------%
+%----------------------%
+\begin{theorem}{\Large\textit{Artin-Wedderburn}}
+
+TFAE:
+
+\begin{itemize}[leftmargin=2.5cm]
+\renewcommand\labelitemi{\faPuzzlePiece}
+    \item $R$ is artinian and $J(R)=0$
+    \item $R$ is semi-simple ($R$ is a finite direct sum of minimal left ideals)
+    \item $R\cong M_{n_1}(D_1)\oplus\cdots\oplus M_{n_k}(D_k)$ for $D_i$ division rings over $R$.
+\end{itemize}
+
+\begin{mybox}
+***Note that a finite division ring is a finite field by Wedderburn's Little Theorem
+\end{mybox}
+
+\end{theorem}
+\vspace{0.5cm}
+%----------------------%
+%----------------------%
+\begin{definition}{\Large\textit{Group Algebra}}
+$\,$
+
+If $G$ is a finite group and $F$ is a field with char$(F)$ coprime to $|G|$, then $F[G]$ is the set of sums of elements of the form $ag$ where $a\in F$ and $g\in G$.
+
+\end{definition}
+\vspace{0.5cm}
+%----------------------%
+%----------------------%
+\begin{lemma}{\Large\textit{Facts about Group Algebras}}
+
+\begin{itemize}
+\renewcommand\labelitemi{\faCoffee}
+    \item Maschke's Theorem: $F[G]$ as from the previous definition is semi-simple
+    \item If $F[G]=M_{n_1}(D_1)\oplus\cdots\oplus M_{n_k}(D_k)$, then $D_i$ are division rings over $F$.
+    \item By Frobenius, $n_i||G|$ for all $i$ and $|G|=\sum_{i=1}^nn_i^2$
+\end{itemize}
+
+\end{lemma}
+\vspace{0.5cm}
+%----------------------%
+%----------------------%
+\begin{example}
+$\,$
+
+\begin{framed}
+Determine up to isomorphism the algebra structure of $\mathbb{C}[G]$ where $G=S_3$ is the symmetric group of degree $3.$
+\end{framed}
+
+By Artin Wedderburn, $\mathbb{C}[S_3]$ is semi-simple of dimension $6$ so $$\mathbb{C}[S_3]\cong\mathbb{C}^a\oplus (M_2(D))^b$$ where $D$ is a division ring over $\mathbb{C}$.
+
+Note that $M_n(D)$ cannot appear for $n>2$ since the dimension of the algebra is $6$ and $M_3(D)$ has dimension $3^2=9$. For the same reason, there can be only one copy of $M_2(D)$. Namely, $b=0,1$.
+
+Furthermore, by Frobenius, the only division ring over $\mathbb{C}$ is $\mathbb{H}$, and since $\mathbb{C}\subset Z(\mathbb{C}[S_3])$ is contained in the center of the algebra (definition of algebra), we have that $\mathbb{H}$ cannot appear in the decomposition. Also, $D=\mathbb{C}$ since any central division ring over an algebraically closed field is the base field.
+
+Finally, since $S_3$ is non commutative, $b=1$ and so $$\mathbb{C}[S_3]\cong\mathbb{C}^2\oplus M_2(D).$$
+\end{example}
+\vspace{0.5cm}
+%----------------------%
+%----------------------%
+\begin{definition}{\Large\textit{Tensor Product}}
+$\,$
+
+Tensor product of $R$-modules is an $R$-modules with a universal property, that for all abelian groups $G$, and homomorphism $f:A\times B\to G$, and $i:A\times B\to A\otimes_R B$ defined by $i(a,b)=a\otimes b$, there exists a unique $g$ such that the diagram commutes, namely $f=g\circ i$.
+
+\begin{center}
+    \begin{tikzcd}
+    A\times B \arrow[r,"f"]\arrow[d,"i",swap] & G\arrow[dl,"g"]\\
+    A\times_R B &
+    \end{tikzcd}
+\end{center}
+
+Facts of tensor sums:
+
+\begin{itemize}
+\renewcommand\labelitemi{\faCoffee}
+    \item If $r\in R$, $r(a\otimes b)=ra\otimes b=a\otimes rb$.
+    \item $(a+b)\otimes c=a\otimes c+b\otimes c$.
+    \item $0\otimes b=a\otimes 0=0$.
+\end{itemize}
+
+
+\end{definition}
+\vspace{0.5cm}
+%----------------------%
+%----------------------%
+\begin{lemma}{\Large\textit{Facts about Tensor Products}}
+
+\begin{itemize}
+\renewcommand\labelitemi{\faCoffee}
+    \item $R\otimes_R M\cong M\cong M\otimes_R R$
+    \item $$(M\oplus N)\otimes_R Q\cong (M\otimes_R Q)\oplus (N\otimes_R Q),$$ $$Q \otimes_R (M\oplus N)\cong (Q\otimes_R M)\oplus (Q\otimes_R N)$$
+    \item Tensor is right exact, namely given a sequence
+
+    \begin{tikzcd}
+    0\arrow[r] & N\arrow[r] & M\arrow[r] & Q\arrow[r] &0
+    \end{tikzcd}
+
+    we have that
+
+    \begin{tikzcd}
+     N\otimes_R P\arrow[r] & M\otimes_R P\arrow[r] & Q\otimes_RP\arrow[r] &0
+    \end{tikzcd}
+\end{itemize}
+
+\end{lemma}
+\vspace{0.5cm}
+%----------------------%
+%----------------------%
+
+
+
+
+
+
+\end{document}
