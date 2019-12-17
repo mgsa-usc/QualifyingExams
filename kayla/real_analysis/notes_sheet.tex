@@ -1,0 +1,995 @@
+\documentclass[12pt]{Qual}
+\usepackage{preamble}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{example}{Example}
+% \newtheorem{formula}{Formula}
+\newtheorem{definition}{Definition}
+\newtheorem{lemma}{Lemma}
+
+\name{Kayla Orlinsky}
+\course{Real Analysis Exam}
+\term{Real Analysis}
+\hwnum{Cheat Sheet}
+
+\begin{document}
+\begin{center}
+\noindent\textcolor{blue!60!black}{\rule{15cm}{1mm}}
+\Huge \faBug\faPuzzlePiece\faCoffee Basic Review \faCoffee\faPuzzlePiece\faBug
+\vspace{-0.5cm}
+\noindent\textcolor{blue!60!black}{\rule{15cm}{1mm}}
+\end{center}
+\vspace{0.5cm}
+%----------------------%
+%----------------------%
+\begin{definition}{\Large\textit{Compact Support}}
+
+A function has compact support if it vanishes outside of some compact set.
+
+\end{definition}
+\vspace{0.5cm}
+%----------------------%
+%----------------------%
+\begin{definition}{\Large\textit{Semi-Continous}}
+
+\begin{itemize}
+\renewcommand\labelitemi{\faCoffee}
+    \item $f$ is upper semi-continuous if for all $x$ and all $\varepsilon>0$, there exists a $\delta>0$ such that $f(y)<f(x)+\varepsilon$ for all $|y-x|<\delta$
+    \item $f$ is lower semi-continuous if for all $x$ and all $\varepsilon>0$, there exists a $\delta>0$ such that $f(x)<f(y)+\varepsilon$ for all $|y-x|<\delta$
+\end{itemize}
+
+\end{definition}
+\vspace{0.5cm}
+%----------------------%
+%----------------------%
+\begin{lemma}{\Large\textit{Facts about USC and LSC}}
+
+Immediately from the definitions:
+\begin{itemize}
+\renewcommand\labelitemi{\faCoffee}
+    \item $f$ is upper semi-continuous $\iff$ $\limsup_{y\to x}f(y)\le f(x)$ for all $x$.
+    \item $f$ is lower semi-continuous $\iff$ $f(x)\le\liminf_{y\to x}f(y)$
+ for all $x$.
+ \end{itemize}
+
+\end{lemma}
+\vspace{0.5cm}
+%----------------------%
+%----------------------%
+\begin{theorem}{\Large\textit{Weierstrass Approximation Theorem}}
+
+\boxed{\text{\large If:}}
+$f$ is continuous and real valued on $[a,b]$ a closed interval
+
+\boxed{\text{\large Then:}} \begin{minipage}{0.85\textwidth}
+\vspace{0.45cm}
+$f$ can be uniformly approximated by polynomials. (For all $\varepsilon>0$ There exists $p(x)$ so $|f(x)-p(x)|<\varepsilon$ for all $x.)$
+\end{minipage}
+
+\end{theorem}
+\vspace{0.5cm}
+%----------------------%
+%----------------------%
+\begin{lemma}{\Large\textit{Monotone Convergence of a Sequence}}
+
+\boxed{\text{\large If:}}
+$\{a_n\}_{n=1}^\infty$ is a bounded sequence with $a_n\le a_{n+1}$ for all $n$
+
+\boxed{\text{\large Then:}} $\displaystyle\lim_{n\to\infty}a_n=\sup_na_n$ and so namely, the limit exists.
+
+\end{lemma}
+\vspace{0.5cm}
+%----------------------%
+%----------------------%
+\begin{example}{\Large\textit{Understanding Limsups and Liminfs}}
+
+\begin{itemize}
+\renewcommand\labelitemi{\faBug}
+    \item Let $\{A_n\}_{n=1}^\infty$ be sets. Then $\displaystyle\liminf_{n\to\infty}A_n=\bigcup_{n=1}^\infty\bigcap_{k=n}^\infty A_k$ is the set where each element belongs to all but finitely many of the $A_n$.
+    \item  Let $\{A_n\}_{n=1}^\infty$ be sets. Then $\displaystyle\limsup_{n\to\infty}A_n=\bigcap_{n=1}^\infty\bigcup_{k=n}^\infty A_k$ is the set where each element belongs to infinitely many of the $A_k$ (but could also not belong in infinitely many).
+    \item Let $\{f_n\}_{n=1}^\infty$ be functions. Then $\displaystyle\liminf_{n\to\infty}f_n(x)=\lim_{n\to\infty}\inf_{k\ge n}f_k(x)$.
+    \item Let $\{f_n\}_{n=1}^\infty$ be functions. Then $\displaystyle\limsup_{n\to\infty}f_n(x)=\lim_{n\to\infty}\sup_{k\ge n}f_k(x)$.
+    \item Let $f$ be a function. Then $\displaystyle\liminf_{y\to x}f(y)=\sup_{\varepsilon>0}\inf_{|y-x|<\varepsilon}f(y)$.
+    \item Let $f$ be a function. Then $\displaystyle\limsup_{y\to x}f(y)=\inf_{\varepsilon>0}\sup_{|y-x|<\varepsilon}f(y)$.
+\end{itemize}
+\end{example}
+\vspace{0.5cm}
+%----------------------%
+%----------------------%
+\begin{lemma}{\Large\textit{Facts from Topology}}
+
+\begin{itemize}
+\renewcommand\labelitemi{\faCoffee}
+    \item A union of open sets (countable or uncountable) is open
+    \item An intersection of closed sets (countable or uncountable) is closed
+    \item In $\mathbb{C}$ a set is compact $\iff$ it is closed and bounded
+    \item The Cantor set $C$ is compact and has the cardinality of $\mathbb{R}$.
+\end{itemize}
+
+\end{lemma}
+\vspace{0.5cm}
+%----------------------%
+%----------------------%
+\newpage
+
+
+
+
+
+
+
+
+
+
+
+
+
+%----------------------%
+%----------------------%
+\begin{center}
+\noindent\textcolor{blue!60!black}{\rule{15cm}{1mm}}
+\Huge \faBug\faPuzzlePiece\faCoffee Algebras and $\sigma$-Algebras \faCoffee\faPuzzlePiece\faBug
+\vspace{-0.5cm}
+\noindent\textcolor{blue!60!black}{\rule{15cm}{1mm}}
+\end{center}
+%----------------------%
+%----------------------%
+\begin{definition}{\Large\textit{Algebras and $\sigma$-Algebras}}
+
+\begin{itemize}
+\renewcommand\labelitemi{\faCoffee}
+    \item An \textit{algebra} $\mathscr{A}\subset\mathscr{P}(X)$ on a set $X$ is a subset of the powerset of $X$ which contains $X$ and is closed under compliments and \textit{finite} unions and \textit{finite} intersections.
+    \item A $\sigma$-algebra  $\mathscr{A}\subset\mathscr{P}(X)$ on a set $X$ is a subset of the powerset of $X$ which contains $X$ and is closed under compliments and \textit{countable} unions and \textit{countable} intersections.
+\end{itemize}
+
+\end{definition}
+\vspace{0.25cm}
+%----------------------%
+%----------------------%
+\begin{example}
+$\,$
+\begin{itemize}
+\renewcommand\labelitemi{\faBug}
+    \item $\mathscr{P}(X)$ and $\{\varnothing,X\}$ are always $\sigma$-algebras (and algebras)
+    \item Borel $\sigma$-algebra $\mathscr{B}_X$ is the $\sigma$-algebra generated by all open subsets of $X.$
+    \item $\mathscr{B}_\mathbb{R}$ is generated by sets of any of the following forms: $$\begin{matrix}
+    (a,b) & (a,\infty)\\
+    [a,b) & [a,\infty)\\
+    (a,b] & (-\infty,b)\\
+    [a,b] & (-\infty,b]
+    \end{matrix}$$
+    \item If $X$ is infinite, $\mathscr{A}=\{E\subset X\,|\, E$ is finite or $E^c$ is finite$\}$ is an algebra but \textit{not} a $\sigma$-aglebra.
+    \item If $X$ is infinite, $\mathscr{A}=\{E\subset X\,|\, E$ is countable or $E^c$ is countable$\}$ \textit{is} a $\sigma$-algebra.
+\end{itemize}
+\end{example}
+\vspace{0.25cm}
+%----------------------%
+%----------------------%
+\begin{definition}{\Large\textit{Types of Sets in a $\sigma$-Algebra}}
+
+\begin{itemize}
+\renewcommand\labelitemi{\faCoffee}
+    \item $G_\delta$-sets are intersections of open sets ($\bigcap\{$open$\}$)
+    \item $F_\sigma$-sets are unions of closed sets ($\bigcup\{$closed$\}$)
+    \item $G_{\delta\sigma}$-sets are unions of $G_\delta$-sets, ($\bigcup\bigcap\{$open$\}$)
+    \item $F_{\sigma\delta}$-sets are intersections of $F_\sigma$ sets ($\bigcap\bigcup\{$closed$\}$)
+\end{itemize}
+
+Mnumonic: $\sigma$ is sum, and $F$ is closed.
+
+\end{definition}
+\vspace{0.5cm}
+%----------------------%
+%----------------------%
+\newpage
+
+
+
+
+
+
+
+
+
+
+\begin{center}
+\noindent\textcolor{blue!60!black}{\rule{15cm}{1mm}}
+\Huge \faBug\faPuzzlePiece\faCoffee Measures \faCoffee\faPuzzlePiece\faBug
+\vspace{-0.5cm}
+\noindent\textcolor{blue!60!black}{\rule{15cm}{1mm}}
+\end{center}
+\vspace{0.5cm}
+%----------------------%
+%----------------------%
+\begin{definition}{\Large\textit{Measure}}
+$\,$
+
+$\mu:\mathscr{A}\to[0,\infty]$ from a $\sigma$-algebra is a measure if
+\begin{itemize}
+\setlength\itemsep{-0.4cm}
+\renewcommand\labelitemi{\faCoffee}
+    \item $\mu(\varnothing)=0$\\
+    \item $\mu$ is countably additive: for all disjoint collections $\{E_i\}_{i=1}^\infty\subset\mathscr{A}$ $$\mu\left(\bigcup_{i=1}^\infty E_i\right)=\sum_{i=1}^\infty\mu(E_i)$$
+\end{itemize}
+
+\end{definition}
+\vspace{0.5cm}
+%----------------------%
+%----------------------%
+\begin{lemma}{\Large\textit{Facts about Measures}}
+
+Immediately from the definitions:
+\begin{itemize}
+\setlength\itemsep{-0.35cm}
+\renewcommand\labelitemi{\faCoffee}
+    \item if $E\subset F$ then $\mu(E)\le\mu(F)$ \\[0.1cm]
+    \item $\displaystyle \mu\left(\bigcup_{i=1}^\infty E_i\right)\le\sum_{i=1}^\infty\mu(E_i)$ for any collection $\{E_i\}_{i=1}^\infty\subset\mathscr{A}$
+    \item continuity from below: if $E_1\subset E_2\subset\cdots$ then $\displaystyle\lim_{n\to\infty}\mu(E_n)= \mu\left(\bigcup_{n=1}^\infty E_n\right)$
+    \item continuity from above: if $E_1\supset E_2\supset\cdots$ \textit{and} $\mu(E_1)<\infty$, then $\displaystyle\lim_{n\to\infty}\mu(E_n)= \mu\left(\bigcap_{n=1}^\infty E_n\right)$
+\end{itemize}
+
+\end{lemma}
+\vspace{0.5cm}
+%----------------------%
+%----------------------%
+\begin{example}{\Large\textit{Disjointification}}
+
+Let $\{E_i\}_{i=1}^\infty\subset\mathscr{A}$. Then let \begin{align*}
+    F_1&=E_1\\
+    F_2&=E_2\backslash E_1\\
+    F_2&=E_3\backslash (E_2\cup E_1)\\
+    &\vdots\\
+    F_n&=E_n\backslash\left(\bigcup_{i=1}^{n-1}E_i\right)
+\end{align*} Then $\bigcup_{i=1}^\infty F_i=\bigcup_{i=1}^\infty E_i$ but the $F_i$ are disjoint.
+\end{example}
+\vspace{0.5cm}
+%----------------------%
+%----------------------%
+\begin{example}{\Large\textit{Examples of Measures}}
+
+\begin{itemize}
+\renewcommand\labelitemi{\faBug}
+    \item The counting measure on a set $\mu(E)=|E|$, often defined on the $\sigma$-algebra $\mathbb{N}$
+    \item The durac or pointmass measure at some point $x_0$, $$\mu_{x_0}(E)=\begin{cases}
+    1 & \text{ if }x_0 \in E\\
+    0 & \text{ if }x_0\notin E\\
+    \end{cases}$$
+    \item The Lebesgue measure
+\end{itemize}
+\end{example}
+\vspace{0.5cm}
+%----------------------%
+%----------------------%
+\begin{lemma}{\Large\textit{Facts about the Lebesgue Measure}}
+
+\begin{itemize}
+\renewcommand\labelitemi{\faCoffee}
+    \item $m$ is outer regular: $\displaystyle m(E)=\inf\{m(U)\,|\, E\subset U$ open$\}$.
+    \item $m$ is inner regular: $\displaystyle m(E)=\sup\{m(K)\,|\, K\text{ compact }\subset E\}$.
+    \item $m(Q)=0$ for any countable set $Q$, namely, $m(\mathbb{Q})=0$
+    \item $m(C)=0$ where $C$ is the Cantor-set.
+    \item $m(E+s)=m(E)$ where $E+s=\{x+s\,|\,x\in E\}$
+    \item $m(rE)=|r|m(E)$ where $rE=\{rx\,|\,x\in E\}$
+    \item $\mathscr{L}$ is the completion of $\mathscr{B}_\mathbb{R}$ (the Borel $\sigma$-algebra for $\mathbb{R}$) and it is the domain of $m$. Namely, $m$ is complete measure.
+\end{itemize}
+
+\end{lemma}
+\vspace{0.5cm}
+%----------------------%
+%----------------------%
+\begin{definition}{\Large\textit{Premeasure}}
+$\,$
+
+$\mu_0:\mathscr{A}\to[0,\infty]$ from an \textit{algebra} (not $\sigma$-algebra) satisfies
+\begin{itemize}
+\renewcommand\labelitemi{\faCoffee}
+    \item $\mu_0(\varnothing)=0$
+    \item $\displaystyle \mu_0\left(\bigcup_{i=1}^\infty E_i\right)=\sum_{i=1}^\infty\mu^*(E_i)$ for all disjoint collections $\{E_i\}_{i=1}^\infty$ where $\bigcup E_i\subset\mathscr{A}$ (which does not always happen in algebras).
+\end{itemize}
+
+\end{definition}
+\vspace{0.5cm}
+%----------------------%
+%----------------------%
+\begin{definition}{\Large\textit{Outer Measure}}
+$\,$
+
+$\mu^*:\mathscr{P}(X)\to[0,\infty]$ from the power set satisfies
+\begin{itemize}
+\setlength\itemsep{-0.1em}
+\renewcommand\labelitemi{\faCoffee}
+    \item $\mu^*(\varnothing)=0$
+    \item if $A\subset B$ $\mu^*(A)\le\mu^*(B)$
+    \item $\displaystyle \mu^*\left(\bigcup_{i=1}^\infty E_i\right)\le\sum_{i=1}^\infty\mu^*(E_i)$ for all collections $\{E_i\}_{i=1}^\infty$
+\end{itemize}
+
+Sets $A$ satisfying $$\mu^*(E)=\mu^*(E\cap A)+\mu^*(E\cap A^c)\qquad\forall E\subset X$$ are called $\mu^*$-measurable.
+
+\end{definition}
+\vspace{0.5cm}
+%----------------------%
+%----------------------%
+\begin{theorem}{\Large\textit{Caratheodory's}}
+
+\boxed{\text{\large If:}} $\mu^*$ is an outer measure
+
+\boxed{\text{\large Then:}} \begin{minipage}{0.85\textwidth}
+\vspace{0.45cm}
+$\mathscr{M}$, the set of all $\mu^*$-measurable sets, is a $\sigma$-algebra and $\mu^*|_\mathscr{M}$ is a complete measure.
+\end{minipage}
+
+\end{theorem}
+\vspace{0.25cm}
+%----------------------%
+%----------------------%
+\begin{definition}{\Large\textit{Other Types of Measures}}
+$\,$
+
+$\mu:\mathscr{A}\to[0,\infty]$
+\begin{itemize}
+\setlength\itemsep{-0.1em}
+\renewcommand\labelitemi{\faCoffee}
+    \item Finite measure: $\mu(X)<\infty$
+    \item $\sigma$-Finite measure: There exists a disjoint collection $\{E_i\}_{i=1}^\infty\subset\mathscr{A}$ such that $\displaystyle X=\bigcup_{i=1}^\infty E_i$ and $\mu(E_i)<\infty$ for all $i.$
+    \item Semi-finite: for all $E$ where $\mu(E)=\infty$, there exists $F\subset E$ so $0<\mu(F)<\mu(E)=\infty$.
+\end{itemize}
+
+\end{definition}
+\vspace{0.5cm}
+%----------------------%
+%----------------------%
+\begin{lemma}{\Large\textit{Trick for Borel Measures}}
+
+\boxed{\text{\large If:}} $E$ is measurable and $\mu(E)<\infty$,
+
+\boxed{\text{\large Then:}}\hspace{0.1cm}\begin{minipage}{0.85\textwidth}
+\vspace{0.45cm}
+for every $\varepsilon>0$, there exists $A$ which is a finite union of disjoint open intervals such that $\mu(E\Delta A)<\varepsilon$.
+\end{minipage}
+
+\end{lemma}
+\vspace{0.5cm}
+%----------------------%
+%----------------------%
+\begin{example}{\Large\textit{The Construction of a Measure}}
+
+\begin{enumerate}[label=(\arabic*)]
+\setlength\itemsep{-0.1em}
+    \item Start with an algebra $\mathscr{A}$ and a premeasure $\mu_0$ on that algebra.
+    \item Let $\mu^*:\mathscr{P}(X)\to[0,\infty]$ be defined by $$\mu^*(E)=\inf\left\{\sum_{i=1}^\infty\mu_0(A_i)\,|\, A_i\in\mathscr{A}, E\subset\bigcup_{i=1}^\infty A_i\right\}.$$ Then $\mu^*$ defines an outer measure.
+    \item Apply Caratheodory to obtain $\mu=\mu^*|_{\mathscr{M}}$ the outer measure restricted to the $\sigma$-algebra of $\mu^*$-measurable sets.
+    \item $\mu$ is now a complete measure.
+\end{enumerate}
+
+A shortcut to this process: if $f:X\to[0\infty]$, then defining $$\mu(E)=\sum_{x\in E}f(x)=\sup\left\{\sum_{x\in F}f(x)\,|\, F\text{ finite}\subset E\right\}$$ defines a measure.
+
+\end{example}
+\vspace{0.5cm}
+%----------------------%
+%----------------------%
+\begin{example}{\Large\textit{Construction of Measures from Functions}}
+
+We utilize the outline the previous example to adapt functions into measures.
+
+Let $F:\mathbb{R}\to\mathbb{R}$ be any increasing right continuous function. Let $\mathscr{A}$ be the algebra generated by half-open invervals of the real line $\{(a,b]\}$. Then $$\mu_0\left(\bigcup_{i=1}^n(a_i,b_i]\right)=\sum_{i=1}^n[F(b_i)-F(a_i)]$$ defines a premeasure on $\mathscr{A}$.
+
+Going through the process described in the previous example, we finally obtain a \textit{unique} regular Borel measure $\mu_F$ which is defined on $\mathscr{B}_\mathbb{R}$ by $$\mu_F((a,b])=F(b)-F(a)$$
+
+***The function $F(x)=x$ defines the Lebesgue Measure.
+
+Conversely, any finite Borel measure $\mu$ can be used to define an increasing and right continuous function by the formula $$F(x)=\begin{cases}
+\mu((0,x]) & \text{ if } x>0\\
+0 & \text{ if } x=0\\
+-\mu((x,0]) & \text{ if } x<0
+\end{cases}$$
+\end{example}
+\vspace{0.5cm}
+%----------------------%
+%----------------------%
+
+\newpage
+
+
+
+
+
+
+
+
+
+\begin{center}
+\noindent\textcolor{blue!60!black}{\rule{15cm}{1mm}}
+\Huge \faBug\faPuzzlePiece\faCoffee Measurable Functions \faCoffee\faPuzzlePiece\faBug
+\vspace{-0.5cm}
+\noindent\textcolor{blue!60!black}{\rule{15cm}{1mm}}
+\end{center}
+\vspace{0.5cm}
+%----------------------%
+%----------------------%
+\begin{definition}{\Large\textit{Measurable Functions}}
+$\,$
+
+A function $f:(X,\mathscr{M})\to (Y,\mathscr{N})$ is called $(\mathscr{M},\mathscr{N})$-measurable if $f^{-1}(E)\in\mathscr{M}$ for all $E\in \mathscr{N}$.
+\vspace{0.25cm}
+
+***Continuous functions are Borel measurable by definition.
+
+***To check if $f:(X,\mathscr{M})\to(\mathbb{R},\mathscr{B}_\mathbb{R})$ is measurable, it suffices to check that $f^{-1}(E)\in\mathscr{M}$ for $E=(a,\infty),[a,\infty),(-\infty,b),(-\infty,b]$.
+
+\end{definition}
+\vspace{0.5cm}
+%----------------------%
+%----------------------%
+\begin{example}
+$\,$
+
+Borel measurable implies Lebesgue measurable, since if $f:\mathbb{R}\to\mathbb{R}$, then $f^{-1}(E)\in\mathscr{B}_\mathbb{R}\subset\mathscr{L}$ for all $E\in\mathscr{B}_\mathbb{R}$.
+
+\vspace{0.5cm}
+
+However, the converse is not true.
+
+Take a null set $N\in\mathscr{L}$ such that $N\notin\mathscr{B}_\mathbb{R}$. Then $\chi_N$ be characteristic function of $N$. Then $\{-1\}\in\mathscr{B}_\mathbb{R}\subset\mathscr{L}$ but $\chi_N^{-1}(\{1\})=N\notin\mathscr{B}_\mathbb{R}$. So $\chi_N$ is not Borel measurable.
+
+However, $N\in\mathscr{L}$ so $\chi_N$ \textit{is} Lebesgue measurable.
+\end{example}
+\vspace{0.5cm}
+%----------------------%
+%----------------------%
+\begin{lemma}{\Large\textit{Combining Measurable Functions}}
+
+\begin{itemize}
+\setlength\itemsep{-0.1em}
+\renewcommand\labelitemi{\faCoffee}
+    \item If $f,g$ are measurable, then $f+g$, $f-g,$ $fg$, $\max\{f,g\}$, $\min\{f,g\}$ are measurable.
+    \item If $\{f_i\}_{i=1}^\infty$ is a sequence of measurable functions, $\sup f_i$, $\inf f_i$, $\limsup f_i$, $\liminf f_i$ are all measurable.
+    \item If $\displaystyle\lim_{i\to\infty}f_i(x)$ exists for every $x\in X$, then the limit is measurable.
+\end{itemize}
+
+\end{lemma}
+\vspace{0.5cm}
+%----------------------%
+%----------------------%
+\begin{definition}{\Large\textit{Simple Functions}}
+$\,$
+
+A simple function is a finite sum of characteristic functions $$\varphi(x)=\sum_{i=1}^na_i\chi_{E_i}(x).$$
+
+\end{definition}
+\vspace{0.5cm}
+%----------------------%
+%----------------------%
+\begin{theorem}{\Large\textit{Approximating Measurable Functions}}
+
+\boxed{\text{\large If:}} $f\in L^+$
+\vspace{-1.5cm}
+
+\boxed{\text{\large Then:}} \hspace{0.1cm}\begin{minipage}{0.85\textwidth}
+\vspace{2cm}
+there exists a sequence of $\{\varphi_n\}_{n=1}^\infty$ approximating $f$ pointwise from below, namely, $$0\le\varphi_1\le\varphi_2\le\cdots\le f$$ $\varphi_n\to f$ pointwise and $\varphi_n\to f$ uniformly from below on any set which $f$ is bounded.
+\end{minipage}
+
+\begin{mybox}
+***If $f:X\to\mathbb{C}$ is measurable, then there exists $\{\varphi_n\}_{n=1}^\infty$ so $$0\le|\varphi_1|\le|\varphi_2|\le\cdots\le|f|$$ with $\varphi_n\to f$ pointwise and $\varphi_n\to f$ uniformly on any set where $f$ is bounded.
+\end{mybox}
+
+\end{theorem}
+%----------------------%
+%----------------------%
+\begin{definition}{\Large\textit{Absolute Continuity}}
+$\,$
+
+A function $f$ is absolutely continuous on $[a,b]$ if for all $\varepsilon>0$, there exists a $\delta>0$ such that, for any finite collection $\{[a_i,b_i]\}_{i=1}^n$ of subintervals of $[a,b]$, $$\sum_{i=1}^n|b_i-a_i|<\delta\implies \sum_{i=1}^n|f(b_i)-f(a_i)|<\varepsilon.$$
+
+\end{definition}
+\vspace{0.25cm}
+%----------------------%
+%----------------------%
+\begin{example}
+$\,$
+
+\begin{itemize}
+\setlength\itemsep{-0.1em}
+\renewcommand\labelitemi{\faBug}
+    \item Uniform Continuity $\not\implies$ Absolute Continuity: Let $f(x)$ be the Cantor-Lebesgue function on $[0,1]$. Then $f$ is continuous on a compact set so it is uniformly continuous. Assume $f$ is absolutely continuous, then by \textbf{FTOLI}, \vspace{-0.25cm} $$1=f(1)=f(1)-f(0)=\int_0^1f'(x)dm=0 \qquad \mathghost$$
+    \vspace{-0.5cm}
+    \item Absolute Continuity $\not\implies$ Lipschitz Continuity: Let $f(x)=\sqrt{x}$ on $[0,1]$. Then $f$ is discontinuous only at $0$, so by the comparison theorem, $f$ is Riemmann integrable, and its Riemann and Lebesgue integerals coincide. Namely, $$f(x)=\int_0^xf'(x)dx\qquad \int_0^1|f'(x)|dx=1<\infty$$ by techniques of Riemann integration, so $f$ is absolutely continuous by FTOLI.
+
+    However, $\displaystyle\frac{|\sqrt{x}-\sqrt{y}|}{|x-y|}=\frac{1}{\sqrt{x}+\sqrt{y}}$ which can grow arbitrarily large for $x,y$ near $0$. Namely, there is no $M$ so $|f(x)-f(y)|\le M|x-y|$ so $f$ is not Lipschitz continuous.
+\end{itemize}
+\end{example}
+\vspace{0.5cm}
+%----------------------%
+%----------------------%
+\newpage
+
+
+
+
+
+
+
+\begin{center}
+\noindent\textcolor{blue!60!black}{\rule{15cm}{1mm}}
+\Huge \faBug\faPuzzlePiece\faCoffee Integration \faCoffee\faPuzzlePiece\faBug
+\vspace{-0.5cm}
+\noindent\textcolor{blue!60!black}{\rule{15cm}{1mm}}
+\end{center}
+\vspace{0.25cm}
+%----------------------%
+%----------------------%
+\begin{definition}{\Large\textit{Integral}}
+$\,$
+
+For measurable, non-negative functions $(f\in L^+)$, $$\int_Xfd\mu=\sup\left\{\int_X\varphi d\mu\,|\,0\le\varphi\le f,\varphi\text{ simple }\right\}$$
+
+where $$\int_X\varphi d\mu=\sum_{i=1}^na_i\mu(E_i).$$
+
+For measurable, functions, $$\int_Xfd\mu=\int_Xf^+d\mu-\int_Xf^-d\mu$$ where $f=f^+-f^-$ its positive and negative parts (which are both non-negative measurable functions).
+
+A function $f\in L^1$ if its measurable and $$\int|f|d\mu<\infty.$$
+
+\end{definition}
+\vspace{0.5cm}
+%----------------------%
+%----------------------%
+\begin{lemma}{\Large\textit{Facts about Integration}}
+
+\begin{itemize}
+\setlength\itemsep{-0.1em}
+\renewcommand\labelitemi{\faCoffee}
+    \item If $a\in\mathbb{R}$, $\displaystyle\int afd\mu=a\int fd\mu$
+    \item $f,g\in L^1$, $\displaystyle\int f\pm gd\mu=\int fd\mu\pm\int gd\mu$
+    \item $f\le g$, then $\displaystyle\int fd\mu\le\int gd\mu$
+    \item $f\in L^+$, then $\displaystyle\int fd\mu=0$ if and only if $f=0$ a.e.
+    \item $f\in L^1$, then $|f(x)|<\infty$ a.e. and $\{x:f(x)\not=0\}$ is $\sigma$-finite.
+    \item $|\int fd\mu|\le\int|f|d\mu$
+    \item $f_n\in L^+$ for all $n$ then $\displaystyle\sum_{n=0}^\infty\int f_nd\mu=\int \sum_{n=0}^\infty f_nd\mu$
+\end{itemize}
+
+\end{lemma}
+\vspace{0.5cm}
+%----------------------%
+%----------------------%
+\begin{theorem}{\Large\textit{Monotone Convergence Theorem}}
+
+\boxed{\text{\large If:}}
+\vspace{-0.25cm}
+\begin{itemize}[leftmargin=2.5cm]
+\setlength\itemsep{-0.1em}
+\renewcommand\labelitemi{\faPuzzlePiece}
+    \item $f_n\in L^+$ for all $n$
+    \item $f_n\le f_{n+1}$ for all $n$ (and all $x$)
+\end{itemize}
+
+\boxed{\text{\large Then:}} $$\int\lim_{n\to\infty}f_nd\mu=\lim_{n\to\infty}\int f_nd\mu.$$
+
+\end{theorem}
+\vspace{0.5cm}
+%----------------------%
+%----------------------%
+\begin{theorem}{\Large\textit{Fatou's Lemma}}
+
+\boxed{\text{\large If:}} $f_n\in L^+$ for all $n$,
+
+\boxed{\text{\large Then:}} $$\int\liminf f_nd\mu\le\liminf\int f_nd\mu.$$
+
+\end{theorem}
+\vspace{0.5cm}
+%----------------------%
+%----------------------%
+\begin{theorem}{\Large\textit{Dominated Convergence Theorem}}
+
+\boxed{\text{\large If:}}
+\vspace{-0.25cm}
+\begin{itemize}[leftmargin=2.5cm]
+\setlength\itemsep{-0.1em}
+\renewcommand\labelitemi{\faPuzzlePiece}
+    \item $f_n$ measurable for all $n$
+    \item $\displaystyle\lim_{n\to\infty}f_n(x)$ exists for a.e. $x$ (pointwise convergence)
+    \item there exists $g\in L^1$ such that $|f_n(x)|\le g(x)$ for all $n$ and a.e. $x$.
+\end{itemize}
+
+\boxed{\text{\large Then:}} the limit in in $L^1$ and $$\int\lim_{n\to\infty}f_nd\mu=\lim_{n\to\infty}\int f_nd\mu.$$
+
+\end{theorem}
+\vspace{0.5cm}
+%----------------------%
+%----------------------%
+\begin{theorem}{\Large\textit{Integral Approximation Theorem}}
+
+\boxed{\text{\large If:}} $f\in L^1$
+
+\boxed{\text{\large Then:}} for all $\varepsilon>0$, there exists a simple function such that $\displaystyle\int|f-\varphi|d\mu<\varepsilon$.
+
+\begin{mybox}
+***If $f\in L^1(m)$ (where $m$ is the Lebesgue measure) then there exists a continuous function with compact support such that $\displaystyle\int|f-g|dm<\varepsilon.$
+\end{mybox}
+
+\end{theorem}
+\vspace{0.5cm}
+%----------------------%
+%----------------------%
+\begin{lemma}{\Large\textit{Tricks for Integrating Functions}}
+
+\begin{itemize}
+\setlength\itemsep{-0.1em}
+\renewcommand\labelitemi{\faCoffee}
+    \item Show the result holds for a characteristic function. By linearity, it holds for all simple functions. If $f$ is measurable, it can be uniformly approximated by simple functions (Theorem 3).
+    \item If $f$ is $L^1$, the integral of $f$ can be approximated by the integral of some simple function (Theorem 7).
+    \item If $f$ is $L^1(m)$, the integral of $f$ can be approximated by the integral of some continuous function with compact support (Theorem 7).
+\end{itemize}
+
+\end{lemma}
+\vspace{0.5cm}
+%----------------------%
+%----------------------%
+\begin{theorem}{\Large\textit{Comparing Riemann and Lebesgue Integerals}}
+
+\begin{itemize}
+\renewcommand\labelitemi{\faPuzzlePiece}
+    \item
+    \item
+\boxed{\text{\large If:}} $f$ is bounded and real valued on a bounded interval $[a,b]$
+
+\boxed{\text{\large Then:}}\hspace{0.1cm}\begin{minipage}{0.85\textwidth}
+\vspace{1cm}
+if $f$ is Riemann integrable, $f$ is Lebesgue measurable (and hence integrable) and the two integrals agree $\displaystyle\int_a^bf(x)dx=\int_{[a,b]}fdm$
+\end{minipage}
+\vspace{0.5cm}
+    \item \boxed{\text{\large If:}} $f$ is bounded on $[a,b]$
+
+\boxed{\text{\large Then:}} \begin{minipage}{0.4\textwidth}
+$f$ is Riemann integrable
+\end{minipage}\hspace{-1cm}\boxed{\iff}\hspace{0.25cm}\begin{minipage}{0.45\textwidth}
+$\{x\in[a,b]\,:\,f$ is discontinuous at $x\}$ is Lebesgue null.
+\end{minipage}
+    \item \boxed{\text{\large If:}}\hspace{0.1cm}\begin{minipage}{0.85\textwidth}
+\vspace{1cm}
+ $f:(a,b]\to[0,\infty)$ is a nonnegative continuous function (where $\displaystyle\lim_{\alpha\to a}f(\alpha)=\infty$ which has a finite (although perhaps improper) Riemann integral
+\end{minipage}
+\vspace{0.5cm}
+
+\boxed{\text{\large Then:}}
+$f\in L^1(a,b]$ and the Riemann and Lebesgue integrals agree.
+\vspace{0.5cm}
+
+\end{itemize}
+
+
+\begin{mybox}
+***The last bullet is because on $[\alpha,b]$ for $\alpha>a$, $f$ is bounded and so by the first part of this theorem,  $$\int_{(a,b]}f(x)dm(x)=\lim_{\alpha\to a}\int_{[\alpha,b]}f(x)dm(x)=\lim_{\alpha\to a}\int_\alpha^bf(x)dx<\infty.$$
+\end{mybox}
+
+\end{theorem}
+\vspace{0.5cm}
+%----------------------%
+%----------------------%
+\begin{theorem}{\Large\textit{Fundamental Theorem of (Riemann) Integerals}}
+
+\boxed{\text{\large If:}} $f$ is continuous on $[a,b]$ and $\displaystyle F(x)=\int_a^xf(t)dt$
+\vspace{-0.25cm}
+
+\boxed{\text{\large Then:}}\hspace{0.1cm}\begin{minipage}{0.85\textwidth}
+\vspace{0.5cm}
+$F$ is well defined and continuous for all $x\in[a,b]$, (so $F$ is uniformly continuous) and $F'(x)=f(x)$ for all $x\in(a,b)$.
+\end{minipage}
+\vspace{0.5cm}
+
+\begin{mybox}
+***Conversely, if $f$ is Riemann integrable on $[a,b]$ and has an antiderivative $F$ on $[a,b]$, then $\displaystyle\int_a^bf(x)dx=F(b)-F(a)$.
+\end{mybox}
+
+\end{theorem}
+\vspace{0.25cm}
+%----------------------%
+%----------------------%
+\begin{theorem}{\Large\textit{Fundamental Theorem of (Lebesgue) Integerals}}
+
+$F:[a,b]\to\mathbb{C}$, TFAE:
+\begin{itemize}
+\renewcommand\labelitemi{\faPuzzlePiece}
+    \item $F$ is absolutely continuous on $[a,b]$
+    \item $\displaystyle F(x)-F(a)=\int_a^xf(t)dt$ for some $f\in L^1([a,b],m)$.
+    \item $F$ is differentiable a.e. on $[a,b]$, $F'\in L^1([a,b],m)$, and $\displaystyle F(x)-F(a)=\int_a^xF'(t)dt.$
+\end{itemize}
+
+\end{theorem}
+\vspace{0.25cm}
+%----------------------%
+%----------------------%
+\begin{theorem}{\Large\textit{Tonelli}}
+
+\boxed{\text{\large If:}}
+\vspace{-0.25cm}
+\begin{itemize}[leftmargin=2.5cm]
+\renewcommand\labelitemi{\faPuzzlePiece}
+    \item If $(X,\mathscr{M},\mu)$ and $(Y,\mathscr{N},\nu)$ are $\sigma$-finite
+    \item $f\in L^+(X\times Y)$ (positive and measurable)
+\end{itemize}
+
+\boxed{\text{\large Then:}} $$\int fd(\mu\times\nu)=\int\int fd\mu d\nu=\int\int fd\nu d\mu.$$
+
+\end{theorem}
+\vspace{0.25cm}
+%----------------------%
+%----------------------%
+\begin{theorem}{\Large\textit{Fubini}}
+
+\boxed{\text{\large If:}}
+\vspace{-0.25cm}
+\begin{itemize}[leftmargin=2.5cm]
+\setlength\itemsep{-0.1em}
+\renewcommand\labelitemi{\faPuzzlePiece}
+    \item If $(X,\mathscr{M},\mu)$ and $(Y,\mathscr{N},\nu)$ are $\sigma$-finite
+    \item $f\in L^1(\mu\times\nu)$ (which can be checked by looking at $|f|$ and using Tonelli)
+\end{itemize}
+
+\boxed{\text{\large Then:}} $$\int fd(\mu\times\nu)=\int\int fd\mu d\nu=\int\int fd\nu d\mu.$$
+
+\end{theorem}
+\vspace{0.25cm}
+%----------------------%
+%----------------------%
+
+\newpage
+
+
+
+
+
+
+
+
+
+
+\begin{center}
+\noindent\textcolor{blue!60!black}{\rule{15cm}{1mm}}
+\Huge \faBug\faPuzzlePiece\faCoffee Modes of Convergence \faCoffee\faPuzzlePiece\faBug
+\vspace{-0.5cm}
+\noindent\textcolor{blue!60!black}{\rule{15cm}{1mm}}
+\end{center}
+\vspace{0.5cm}
+%----------------------%
+%----------------------%
+\begin{definition}{\Large\textit{Modes of Convergence}}
+$\,$
+
+\begin{itemize}
+\setlength\itemsep{-0.1em}
+\renewcommand\labelitemi{\faCoffee}
+    \item Convergence in Measure: $\mu(\{x:|f_n(x)-f(x)|\ge\varepsilon\})\to0$ as $n\to\infty$
+    \item Convergence in $L^1$: $\displaystyle\int|f_n(x)-f(x)|d\mu\to0$ as $n\to\infty.$
+    \item Almost Uniform (AU): If $\mu(X)<\infty,$ for every $\varepsilon>0$, there exists a set $E_\varepsilon$ such that $\mu(E_\varepsilon)<\varepsilon$ and $f_n\to f$ uniformly on $E_\varepsilon^c$.
+\end{itemize}
+
+\end{definition}
+\vspace{0.5cm}
+%----------------------%
+%----------------------%
+\begin{theorem}{\Large\textit{Implication Diagrams for Convergence}}
+
+\begin{tikzcd}
+\,\arrow[r] &\,
+\end{tikzcd} \hspace{0.1cm}\begin{minipage}{0.85\textwidth}
+\vspace{0.45cm}
+Represents implication (e.g. almost uniform convergence implies a.e. convergence).
+\end{minipage}
+
+\begin{tikzcd}
+\,\arrow[r,dashed] &\,
+\end{tikzcd} \hspace{0.1cm}\begin{minipage}{0.85\textwidth}
+\vspace{0.45cm}
+Represents existence of subsequence which converges (e.g. convergence in $L^1$ implies existence of a subsequence which converges a.e.).
+\end{minipage}
+\vspace{0.25cm}
+
+
+\begin{center}
+\begin{minipage}{0.4\textwidth}
+\hspace{0.75cm} General Case:
+
+\adjustbox{scale=1.5}{
+\begin{tikzcd}
+AE \arrow[r,<-]\arrow[rd,<-,dashed]\arrow[d,<-,dashed] & AU \arrow[d,shift right]\arrow[d,<-,dashed,shift left]\arrow[ld,<-,dashed]\\
+L^1 \arrow[r] & M
+\end{tikzcd}
+}
+
+\end{minipage}\hspace{0.25cm}\begin{minipage}{0.4\textwidth}
+\hspace{0.25cm} Finite measure space:
+
+\adjustbox{scale=1.5}{
+\begin{tikzcd}
+AE \arrow[r,<-,shift right]\arrow[r,->,shift left]\arrow[rd,<-,dashed, shift right]\arrow[rd,->,shift left]\arrow[d,<-,dashed] & AU \arrow[d,shift right]\arrow[d,<-,dashed,shift left]\arrow[ld,<-,dashed]\\
+L^1 \arrow[r] & M
+\end{tikzcd}
+}
+
+\end{minipage}
+\end{center}
+
+\begin{mybox}
+***Almost uniform convergence being equivalent to a.e. convergence in a finite measure space is a result of \textit{Egoroff's Theorem}.
+\end{mybox}
+\end{theorem}
+\vspace{0.5cm}
+%----------------------%
+%----------------------%
+\begin{example}{\Large\textit{Classic Counter Examples}}
+
+\begin{enumerate}[label=(\arabic*)]
+\setlength\itemsep{-0.1em}
+    \item Uniform Convergence $\not\implies$ Convergence in $L^1$: Let $f_n(x)=\frac{1}{n}\chi_{(0,n)}(x)$. Then $f_n\to0$ uniformly since $f_n$ is clearly bounded everywhere. However, $$\int |f_n-0|=\frac{1}{n}m((0,n))=1\qquad \forall n$$ so this clealry does not converge to $0$ in $L^1$.
+    \item Convergence in $L^1$ $\not\implies$ Convergence a.e.: Let $f_n$ be the moving box example. Namely, for each $n,$ there exists $k$ so $2^k\le n<2^{k+1}$, let $$f_n(x)=\chi_{[\frac{n}{2^k}-1,\frac{n+1}{2^k}-1]}(x).$$ Namely, \begin{align*}
+        f_1(x)&=\chi_{[0,1]}\qquad 2^0=1\le 1\\
+        f_2(x)&=\chi_{[0,\frac{1}{2}]}\qquad 2^1=2\le 2\\
+        f_3(x)&=\chi_{[\frac{1}{2},1]}\qquad 2^1=2\le 3\\
+        &\vdots
+    \end{align*} then $$\int|f_n|=\frac{1}{2^k}\to0$$ but $f_n(x)$ doesn't converge for any $x$ since there are an infinite number of $n$ where $f_n(x)=1$ and an infinite number of $n$ where $f_n(x)=0$.
+    \item Convergence in Measure $\not\implies$ Convergence in $L^1$: Let $f_n(x)=n\chi_{[0,\frac{1}{n}]}(x)$. Then $f_n\to0$ in measure, since the measure of the set where $f_n$ is large shrinks to nothing as $n\to\infty$.
+
+    However, $$\int|f_n|=1\qquad\forall n$$ so $f_n\not\to0$ in $L^1.$
+    \item Convergence a.e. $\not\implies$ Convergence in measure: Let $f_n(x)=\frac{x}{n}$. Then $f_n(x)\to0$ for all $x\in\mathbb{R}$, however, $$m(\{x\,:\,|f_n(x)|\ge\varepsilon\})=m(\{x\,:\,x\ge n\varepsilon\})=m([n\varepsilon,\infty))=\infty$$ for all $n$.
+\end{enumerate}
+
+\end{example}
+\vspace{0.5cm}
+%----------------------%
+%----------------------%
+\newpage
+
+
+
+
+
+
+
+\begin{center}
+\noindent\textcolor{blue!60!black}{\rule{15cm}{1mm}}
+\Huge \faBug\faPuzzlePiece\faCoffee Signed Measures \faCoffee\faPuzzlePiece\faBug
+\vspace{-0.5cm}
+\noindent\textcolor{blue!60!black}{\rule{15cm}{1mm}}
+\end{center}
+\vspace{0.5cm}
+%----------------------%
+%----------------------%
+\begin{definition}{\Large\textit{Signed Measure}}
+$\,$
+
+$\nu:\mathscr{M}\to[-\infty,\infty]$
+\begin{itemize}
+\setlength\itemsep{-0.1em}
+\renewcommand\labelitemi{\faCoffee}
+    \item $\nu(\varnothing)=0$
+    \item $\nu$ assumes at most one of the $\pm\infty$
+    \item $\displaystyle \nu\left(\bigcup_{i=1}^\infty E_i\right)\le\sum_{i=1}^\infty\nu(E_i)$ for all disjoint collections $\{E_i\}_{i=1}^\infty\subset\mathscr{M}$ (where the sum converges absolutely if $\displaystyle\nu\left(\bigcup_{i=1}^\infty E_i\right)<\infty$)
+\end{itemize}
+
+***Signed measures are also continuous from above and below, just like positive measures.
+
+\end{definition}
+\vspace{0.5cm}
+%----------------------%
+%----------------------%
+\begin{definition}{\Large\textit{Singular and Absolutely Continuous}}
+$\,$
+
+\begin{itemize}
+\setlength\itemsep{-0.1em}
+\renewcommand\labelitemi{\faCoffee}
+    \item If $\mu$ and $\nu$ are measures (signed or otherwise) on $(X,\mathscr{M})$, then $\mu$ and $\nu$  are mutually singular (write $\mu\perp\nu$) if there exists $E,F\in\mathscr{M}$ such that $E\cap F=\varnothing$, $E\cup F=X$, $\mu(E)=0$ and $\nu(F)=0$.
+    \item If $\mu$ and $\nu$ are measures (where at most $\nu$ is singed) on $(X,\mathscr{M})$, then $\nu$ is absolutely continuous with respect to $\mu$ (write $\nu<<\mu$) if $\mu(E)=0$ implies $\nu(E)=0$ for all $E\in\mathscr{M}$.
+    \item $\nu<<\mu$ if and only if $\nu(E)=\int_Efd\mu$ for some $f\in L^1(\mu)$ (write $d\nu=fd\mu$).
+\end{itemize}
+
+
+\end{definition}
+\vspace{0.5cm}
+%----------------------%
+%----------------------%
+\begin{theorem}{\Large\textit{Hahn Decomposition}}
+
+\boxed{\text{\large If:}} $\nu$ is a signed measure on $(X,\mathscr{M})$,
+
+\boxed{\text{\large Then:}}\hspace{0.1cm}\begin{minipage}{0.85\textwidth}
+\vspace{0.45cm}
+there exists a positive set $P$ and neative set $N$ for $\nu$ such that $P\cup U=X$, $P\cap U=\varnothing$, and these choices are unique up to null set.
+\end{minipage}
+
+
+
+\end{theorem}
+\vspace{0.5cm}
+%----------------------%
+%----------------------%
+\begin{definition}{\Large\textit{Locally Integrable}}
+$\,$
+
+$f\in L_{loc}^1$ if $\int_K|f(x)|d\mu<\infty$ for all bounded measurable sets $K$.
+
+\end{definition}
+\vspace{0.5cm}
+%----------------------%
+%----------------------%
+\begin{definition}{\Large\textit{Shrinks Nicely}}
+$\,$
+
+$\{E_r\}_{r\ge0}\subset\mathscr{B}_{\mathbb{R}^n}$ is said to shrink nicely to a point $x$ if \begin{itemize}
+\setlength\itemsep{-0.1em}
+\renewcommand\labelitemi{\faCoffee}
+    \item $E_r\subset B_r(x)$ for all $r$
+    \item there exists a constant $\alpha>0$ (independent of $r$) so $m(E_r)>\alpha m(B(r,x))$ for all $r.$
+\end{itemize}
+
+
+\end{definition}
+\vspace{0.5cm}
+%----------------------%
+%----------------------%
+\begin{theorem}{\Large\textit{Lebesgue-Radon-Nikodym}}
+
+\boxed{\text{\large If:}}
+\vspace{-0.25cm}
+\begin{itemize}[leftmargin=2.5cm]
+\setlength\itemsep{-0.1em}
+\renewcommand\labelitemi{\faPuzzlePiece}
+    \item $\nu$ is a signed and $\sigma$-finite measure
+    \item $m$ is a $\sigma$-finite measure (usually taken to be the Lebesgue measure)
+\end{itemize}
+
+\boxed{\text{\large Then:}} \hspace{0.1cm}\begin{minipage}{0.85\textwidth}
+\vspace{0.45cm}
+there exists a measure $\lambda$ and function $f\in L^1(m)$ such that $\lambda\perp m$ and $d\nu=d\lambda+fdm$.
+\end{minipage}
+
+\begin{mybox}
+***Furthermore, when $m$ is the Lebesgue measure, for $m$-a.e. $x$, and for every family $\{E_r\}_{r\ge0}$ that shrinks nicely to $x$, $$\lim_{r\to0}\frac{\nu(E_r)}{m(E_r)}=f(x).$$
+\end{mybox}
+
+\end{theorem}
+\vspace{0.5cm}
+%----------------------%
+%----------------------%
+\begin{theorem}{\Large\textit{Generalized Lebesgue-Radon-Nikodym}}
+
+\boxed{\text{\large If:}}
+\vspace{-0.25cm}
+\begin{itemize}[leftmargin=2.5cm]
+\setlength\itemsep{-0.1em}
+\renewcommand\labelitemi{\faPuzzlePiece}
+    \item $\nu$ is a complex measure
+    \item $\mu$ is a $\sigma$-finite measure
+\end{itemize}
+
+\boxed{\text{\large Then:}} \hspace{0.1cm}\begin{minipage}{0.85\textwidth}
+\vspace{0.45cm}
+there exists a measure $\lambda$ and function $f\in L^1(m)$ such that $\lambda\perp \mu$ and $d\nu=d\lambda+fd\mu$.
+\end{minipage}
+
+\end{theorem}
+\vspace{0.5cm}
+%----------------------%
+%----------------------%
+\begin{theorem}{\Large\textit{Lebesgue Differentiation Theorem}}
+
+\boxed{\text{\large If:}} $f\in L_{loc}^1$,
+
+\boxed{\text{\large Then:}} for a.e. $x$, and for every family $\{E_r\}_{r\ge0}$ that shrinks nicely to $x$. $$\lim_{r\to0}\frac{1}{m(E_r)}\int_{E_r}f(y)dy=f(x).$$
+
+\end{theorem}
+\vspace{0.5cm}
+%----------------------%
+%----------------------%
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
