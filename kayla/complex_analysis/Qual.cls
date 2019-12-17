@@ -1,7 +1,7 @@
  %LaTeX class for typesetting homework
 % By Artem Mavrin
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{Homework}[2015/08/26 LaTeX class for typesetting homework]
+\ProvidesClass{Qual}[2015/08/26 LaTeX class for typesetting homework]
 
 %%%%%%%%%%%%%%%%%%%%%
 %%% Class Options %%%
@@ -179,15 +179,15 @@
   \vspace{1ex}
   \begin{center}
      \textbf{\LARGE\@name}
-     
-     
+
+
      \vspace{0.25cm}
     \textbf{\Large\@hwtitle}
     \vspace{0.25cm}
-    
-    
+
+
     \textbf{\large\@PID}
-    
+
   \end{center}
   \vspace{1ex}
   \pagestyle{runningpage}
@@ -328,7 +328,7 @@
 \newenvironment{solution}
 {
   \begin{proof}[\normalfont\bfseries\solution@marker]%
-  
+
 }
 {
   \end{proof}
