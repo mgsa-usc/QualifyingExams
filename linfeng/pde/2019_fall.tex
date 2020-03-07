@@ -1,0 +1,214 @@
+\documentclass[11pt,reqno]{amsart}
+\usepackage{amsmath,amssymb,multicol,enumitem,amsthm, esint,tcolorbox}
+\usepackage{fullpage}
+\setlength{\parskip}{1em}
+\allowdisplaybreaks
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\def\M{M}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\D}{\mathbb{D}}
+\newcommand{\<}{\langle}
+\renewcommand{\>}{\rangle}
+\renewcommand{\Re}[1]{\mathrm{Re}\ #1}
+\renewcommand{\Im}[1]{\mathrm{Im}\ #1}
+\renewcommand{\mod}[1]{(\operatorname{mod}#1)}
+\newcommand{\norm}[1]{\vert#1\vert}
+\newcommand{\nnorm}[1]{\Vert#1\Vert}
+\newcommand{\pa}{\partial}
+
+
+\begin{document}
+\title{\Large{PDE QUALIFYING EXAM-Fall 2019\\ }}
+\author{Linfeng Li}
+\maketitle
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                 		    Document                                 %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{enumerate}[label={\arabic*.}]
+\begin{tcolorbox}
+\item Suppose $f$ is a compactly supported smooth function on $\R^3$. Prove that there is a unique smooth function $u$ on $\R^3$, such that 
+\begin{align*}
+-\Delta u =f,\ \ \text{and}\ \ \lim_{\norm{x}\rightarrow \infty} u(x) = 0.
+\end{align*}
+For this $u$, find the value of 
+\begin{align*}
+\lim_{\norm{x}\rightarrow \infty } \norm{x} u(x).
+\end{align*}
+\end{tcolorbox}
+\bigskip
+
+
+\begin{proof}[\bf{Solution}]
+First of all, suppose there are two smooth functions $u_1$ and $u_2$ satisfying both conditions, let $v= u_1 - u_2$ then
+\begin{align*}
+-\Delta v & =0,\\
+\lim_{\norm{x} \rightarrow \infty } v(x) & =0.
+\end{align*}
+We have that $v$ is harmonic and bounded on $R^3$, by Liouville's theorem $v$ is a constant function. $\lim_{\norm{x} \rightarrow \infty} v(x) = 0$ implies $v\equiv 0$, uniqueness follows. To show existence, define 
+\begin{align*}
+u(x) = \Phi \ast f = \frac{1}{n(n-2) \alpha(n)} \int_{\R^3} \frac{f(y)}{\norm{x-y}} dy,
+\end{align*} 
+where $\Phi (x) = \frac{1}{n(n-2) \alpha (n)} \frac{1}{\norm{x}} $ is locally integrable, since $f$ is a compactly supported smooth function, we have that $\Phi \ast f$ is smooth. Now suppose $f$ is compactly supported in $B_{R}(0)$, then for $\norm{x}>2R$ we have
+\begin{align*}
+\norm{u(x)} 
+&\leq 
+C \int_{B_R (0)} \frac{\norm{f(y)}}{\norm{x-y}}dy \leq C \int_{B_R (0)} \frac{\norm{f(y)}}{\norm{x}-\norm{y}}dy\\
+& \leq CM \int_0^R \int_{\pa_B(0,r)} \frac{1}{\norm{x} - \norm{y}} dS dr\\
+& =
+CM \int_0^R \frac{1}{\norm{x} -r} r^2 dr \leq CM \int_0^R \frac{r^2}{\norm{x} /2} dr\\
+& = CM \frac{1}{\norm{x}} \int_0^R r^2 dr \rightarrow 0 \ \text{as}\ \norm{x}\rightarrow \infty,
+\end{align*}
+ where constants above are absorbed into $C$.
+ Furthermore,
+\begin{align*}
+ \Delta u (x) 
+ &= \int_{B(0, \epsilon)} \Phi (y) \Delta_x f(x-y) dy + \int_{\ R^3 \setminus B(0, \epsilon)} \Phi (y) \Delta_x f(x-y) dy\\
+ &:=
+ I_1 + I_2,
+\end{align*}
+where 
+\begin{align}
+\norm{I_1} \leq \int_{B(0, \epsilon)} \nnorm{D^2 f}_{L^\infty} \norm{\Phi (y)}  dy \leq C\epsilon^2  \rightarrow 0  \ \text{as}\ \epsilon \rightarrow 0.
+\label{eq3}
+\end{align}
+Also, 
+\begin{align*}
+I_2 = -\int_{\R^3 \setminus B(0,\epsilon)} D\Phi(y) D_y f(x-y) dy + \int_{\pa B(0,\epsilon)} \Phi (y) \frac{\pa f}{\pa \nu}(x-y) dy := J_1 + J_2,
+\end{align*}
+where
+\begin{align}
+\begin{split}
+J_1 
+&= \int_{\R^3 \setminus B(0,\epsilon)} \Delta \Phi(y) f(x-y) dy -\int_{\pa B(0,\epsilon)} \frac{\pa \Phi}{\pa \nu}(y) f(x-y) dS(y) \\
+&=
+-\int_{\pa B(0,\epsilon)} \frac{\pa \Phi}{\pa \nu}(y) f(x-y) dS(y)\\
+&=
+-\frac{1}{n\alpha(n) \epsilon^{n-1}} \int_{\pa B(0,\epsilon)} f(x-y)dS(y)\\
+&=
+-\fint_{\pa B(x,\epsilon)} f(y) dS(y)\rightarrow -f(x), \ \text{as} \ \epsilon \rightarrow 0.
+\label{eq1}
+\end{split}
+\end{align}
+and
+\begin{align}
+\norm{J_2} \leq \nnorm{Df}_{L^\infty} \int_{\pa B(0,\epsilon)} \norm{\Phi(y)}  dS(y) \leq C\epsilon.
+\label{eq2}
+\end{align}
+Combining \eqref{eq3}--\eqref{eq2}, and letting $\epsilon \rightarrow 0$, we have that $-\Delta u = f$. In addition, for $\norm{x}$ sufficiently large, $\norm{\frac{x}{x-y}} f(y) \rightarrow f(y)$ pointwise since $f$ is compactly supported smooth function, by dominated convergence theorem
+\begin{align*}
+\norm{x} u(x) 
+&= \frac{1}{n(n-2) \alpha(n)} \int_{B(0,R)}  \norm{\frac{x}{x-y}} f(y) dy \rightarrow \frac{1}{n(n-2) \alpha (n)} \int_{B(0,R)} f(y) dy\\
+& = \frac{1}{n(n-2) \alpha (n)} \int_{\R^3} f(y) dy, \ \text{as} \ \norm{x} \rightarrow \infty.
+\end{align*}
+\end{proof}
+
+
+
+
+
+\newpage
+\begin{tcolorbox}
+\item Consider the following one-dimensional heat equation:
+\[
+\left\{
+\begin{aligned}
+\partial_t u & = \partial_x^2 u,  && (t,x) \in (0, +\infty) \times (0,1),\\
+u & = 0,  && (t,x) \in (0, +\infty)\times \{0,1\}.
+\end{aligned}
+\right.
+\]
+Find all solutions that have factorized form $u(t,x) = \alpha (t) \beta (x)$.
+\end{tcolorbox}
+\bigskip
+
+
+\begin{proof}[\bf{Solution}]
+From the first equation, if we have the solution of the form $u(t,x) =\alpha (t) \beta (x)$, then we have 
+\begin{align*}
+ \alpha'(t) \beta (x) = \alpha (t) \beta'' (x),
+\end{align*}
+suppose $\alpha (t)$ and $\beta (x)$ are not zero, then
+\begin{align*}
+\dfrac{\alpha'(t)}{\alpha (t)} = \dfrac{\beta''(x)}{\beta (x)} =C
+\end{align*}
+since the identity is independent of $t$ and $x$. To solve the $\alpha$, we have $\alpha (t) = \alpha (0) e^{Ct}$, and for $\beta$ we need to solve second order ODE, and the solution $\beta ''  = C \beta$:
+
+
+\textit{case1:} If $C >0$, then $\beta (x) =c_1 e^{\sqrt{C}x} + c_2 e^{-\sqrt{C}x}$, plug in the boundary condition we have $u(t,x) \equiv 0$.  
+
+
+\textit{case2:} If $C=0$, then $\alpha (t) =0$ and $\beta(x) =c_1 x + c_2$, plugging in boundary condition we have $\beta \equiv 0$ so $u \equiv 0$.
+
+
+\textit{case3:} If $C<0$, then $\beta (x) = c_1 \cos (\sqrt{-C} x) + c_2 \sin (\sqrt{-C} x)$, plugging in boundary condition, we have 
+\begin{align*}
+u(t,x) = C e^{-k^2 \pi^2 t} \sin(k\pi x), \ \text{where $C$ is any real number and $k$ is any integer}.
+\end{align*}
+\end{proof}
+
+
+
+
+
+
+\newpage
+\begin{tcolorbox}
+\item Suppose $u$ solves the following initial-boundary value problem:
+\[
+\left\{
+\begin{aligned}
+\partial_t^2 u & =  \partial_x^2 u - u^3, && (t,x) \in (0,+\infty) \times (0,1),\\
+u & =  0,  && (t,x)\in (0, +\infty) \times \{0,1\},\\
+u(0,x) &=   u_0(x), \qquad x\in (0,1),\\
+\partial_t u (0,x) &= u_1 (x),  \qquad x\in (0,1),\\
+\end{aligned}
+\right.
+\]
+where $u_0$, $u_1$ are smooth functions.
+\begin{enumerate}[leftmargin=*]
+\item Find an energy $E(t)$ which is independent of $t$.
+\item Show that $u$ is bounded for all $(t,x)$, namely $\norm{u(t,x)} < C$ for some constant $C$ for all $(t,x) \in (0, \infty) \times (0,1)$.
+\end{enumerate}
+\end{tcolorbox}
+\bigskip
+
+
+\begin{proof}[\bf{Solution}]
+\leavevmode
+\begin{enumerate}
+\item Let 
+\begin{align*}
+E(t) =\frac{1}{2} \int_0^1 u^4 (x) dx + \int_0^1 \norm{\pa_x u(x)}^2 dx + \int_0^1 \norm{\pa_t u(x)}^2 dx,
+\end{align*}
+then we have 
+\begin{align*}
+\dot{E}(t) 
+&= 
+2\int_0^1 u^3 \pa_t u dx + 2\int_0^1 \pa_x u \pa_t \pa_x u dx + 2\int_0^1 \pa_t u \pa_{tt}u dx\\
+&=
+2\int_0^1 \pa_t u (u^3 -\pa_x^2 u + \pa_t^2 u) dx = 0
+\end{align*}
+\item From part (a) we have $E(t) = E(0) =\frac{1}{2} \int_0^1 \norm{u_0(x)}^4 dx + \int_0^1 \norm{\pa_x u_0(x)}^2dx + \int_0^1 \norm{u_1(x)}^2 dx \leq C$ since $u_0$ and $u_1$ are smooth functions on compact set $[0,1]$. For any $t>0$, by fundamental theorem of calculus,
+\begin{align*}
+u(t,x) = u(t,0) + \int_0^x \pa_x u(t, y) dy, 
+\end{align*}
+therefore, using Cauchy-Schwartz inequality we have
+\begin{align*}
+\norm{u(t,x)} \leq \int_0^1 \norm{\pa_x u(t,y)} dy \leq (\int_0^1 1^2 dy) (\int_0^1 \norm{\pa_x u (t,y)}^2 dy) \leq C,
+\end{align*}
+where the last inequality follows from $E(t) \leq C$.
+\end{enumerate}
+\end{proof}
+
+
+
+\end{enumerate}
+\end{document}

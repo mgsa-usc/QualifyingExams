@@ -1,0 +1,182 @@
+\documentclass[11pt,reqno]{amsart}
+\usepackage{amsmath,amssymb,multicol,enumitem,amsthm, esint,tcolorbox}
+\usepackage{fullpage}
+\setlength{\parskip}{1em}
+\allowdisplaybreaks
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\D}{\mathbb{D}}
+\newcommand{\<}{\langle}
+\newcommand{\pa}{\partial}
+\renewcommand{\>}{\rangle}
+\renewcommand{\Re}[1]{\mathrm{Re}\ #1}
+\renewcommand{\Im}[1]{\mathrm{Im}\ #1}
+\renewcommand{\mod}[1]{(\operatorname{mod}#1)}
+\newcommand{\norm}[1]{\vert#1\vert}
+\newcommand{\nnorm}[1]{\Vert#1\Vert}
+
+
+\begin{document}
+\title{\Large{PDE QUALIFYING EXAM-Spring 2019\\ }}
+\author{Linfeng Li}
+\maketitle
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                 		    Document                                 %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{enumerate}[label={\arabic*.}]
+\begin{tcolorbox}
+\item Let $\Omega$ be a bounded domain (open, connected) in $\R^n$. Suppose that $u\in C^2(\Omega) \cap C(\bar{\Omega})$ is a solution of 
+\begin{align*}
+\Delta u + \sum_{k=1}^n a_k(x) \pa_{x_k} u + c(x) u = 0
+\end{align*}
+where $a_k$, $c \in C(\bar{\Omega})$ and $c<0$ in $\Omega$. Show that if $u=0$ on $\pa \Omega$, then $u=0$ in all of $\Omega$.
+\end{tcolorbox}
+\bigskip
+
+
+\begin{proof}[\bf{Solution}]
+Assume $u \not \equiv 0$ in all of $\Omega$, since $u=0$ on $\pa \Omega$, there exist some point $x_0 \in \Omega$ such that $u(x_0)$ attains maximum or minimum in $\bar{\Omega}$. Without loss of generality, $u(x_0)$ is a maximum, then $Du(x_0) = 0$ and $D^2 u (x_0)$ is negative definite. From the equation,
+\begin{align*}
+\Delta u(x_0) + c(x_0) u(x_0) = 0
+\end{align*}
+but $\Delta u (x_0) \leq 0$ and $c(x) <0$ and $u(x_0) > 0$, we have a contradiction.
+\end{proof}
+
+
+
+
+
+
+\newpage
+\begin{tcolorbox}
+\item Solve the equation
+\begin{align*}
+\pa_t u + x \pa_x u + u = 0
+\end{align*}
+with initial data $u(0,x) = f(x)$, where $f$ is a compactly supported smooth function on $\R$. Sketch the graph of $u(t,x)$ as a function of $x$ for a non-trivial compactly supported initial datum of your choice for $t = 0$, $t = R$ and $t = -R$ for $R$ large (what happens to the support and amplitude)?
+\end{tcolorbox}
+\bigskip
+
+
+\begin{proof}[\bf{Solution}]
+This PDE is linear and has the form
+\begin{align*}
+F(Du, u , x) = \mathbf{b}(x) \cdot Du(x) + c(x) u(x) = 0,
+\end{align*}
+where $\mathbf{b}(x) = (1, x)$, $Du(x) = (\pa_t u, \pa_x u)$ and $c(x) \equiv 1 $. Then the characteristics are
+\begin{align*}
+& \dot{\mathbf{x}}(s) = (\dot{t}(s), \dot{x}(s)) = (1, x(s)),\\
+& \dot{z}(s) = -c(\mathbf{x}(s))z(s) = -z(s),
+\end{align*}
+therefore, we have the characteristics emanating from $(0, x_0)$ is
+\begin{equation*}
+\begin{cases}
+t(s) = s + t(0) = s\\
+x(s) = x(0) e^{s} = x_0 e^s
+\end{cases}
+\end{equation*}
+on which we have $u(t(s), x(s)) = z(s) = z(0) e^{-s} = f(x_0) e^{-s}$.
+
+
+Consider the bump function 
+\begin{equation*}
+f (x)=
+\begin{cases}
+e^{-\frac{1}{1-x^2}}, & \norm{x} < 1\\
+0, & \text{otherwise}
+\end{cases}
+\end{equation*}
+which is a smooth function with compact support. Then for $t=0$, $u(0, x) = f(x)$ and for $t= R$ for $R$ large, we have 
+\begin{equation*}
+u(R,x)= 
+\begin{cases}
+\exp(-R - \frac{1}{1-x^2 e^{-2R}}), & \norm{x} < e^R\\
+0, & \text{otherwise}
+\end{cases}
+\end{equation*}
+which has bigger support than $\norm{x} < 1$ and smaller amplitude. Similarly, 
+\begin{equation*}
+u(-R, x) =
+\begin{cases}
+ \exp(R - \frac{1}{1-x^2 e^{2R}}), & \norm{x} <e^{-R}, \\
+ 0, & \text{otherwise}
+ \end{cases}
+\end{equation*}
+has smaller support and bigger amplitude than initial datum.
+\end{proof}
+
+
+
+
+
+\newpage
+\begin{tcolorbox}
+\item Suppose $u(t,x)$ is a function on $\R \times \R^3$ that satisfies the nonlinear wave equation
+\begin{align*}
+(\pa_t^2 - \Delta) u = u^3.
+\end{align*}
+Assume that $u\in C^2(\R \times \R^3)$ and that $u(t,x)$ is compactly supported in $x$ for each $t$. \\
+Define the energy
+\begin{align*}
+E(t) = \frac{1}{2} \int_{\R^3} (\norm{\nabla u(t,x)}^2 + (\pa_t u(t,x))^2 )dx.
+\end{align*}
+\begin{enumerate}[leftmargin=*]
+\item Prove that 
+\begin{align*}
+\pa_t E(t) = \int_{\R^3} u(t,x)^3 \pa_t u(t,x) dx, \ \text{and that}\ \pa_t E(t) \leq \nnorm{\pa_t u (t)}_{L^2(\R^3)} \cdot \nnorm{u(t)}_{L^6(\R^3)}^3.
+\end{align*}
+\item Prove that there exists a universal constant $C$ independent of $u$ such that 
+\begin{align*}
+\pa_t E(t) \leq C E(t)^2.
+\end{align*}
+\end{enumerate}
+\end{tcolorbox}
+\bigskip
+
+
+\begin{proof}[\bf{Solution}]
+\leavevmode
+\begin{enumerate}
+\item Since $u$ is compactly supported in $x$ for each $t$, then $u(t,x)$ vanishes outside some $B_R(0)$ for each $t$, and
+\begin{align*}
+\dot{E}(t) 
+&= \int_{\R^3} \nabla u \cdot \pa_t \nabla u + \pa_t u \pa_t^2 u dx\\
+&=
+\int_{\R^3} \pa_t u (-\Delta u + \pa_t^2 u) dx = \int_{\R^3}  u(t,x)^3 \pa_t u(t,x) dx.
+\end{align*}
+By Cauchy-Schwartz inequality, we have 
+\begin{align*}
+\dot{E}(t) \leq \nnorm{\pa_t u(t)}_{L^2(\R^3)} \cdot \nnorm{u(t)}_{L^6(\R^3)}^3
+\end{align*}
+\item By Sobolev inequality, there exists constant $C$ such that 
+\begin{align*}
+\nnorm{u}_{L^6} \leq C\nnorm{Du}_{L^2},
+\end{align*}
+so by discrete Young's inequality,
+\begin{align*}
+\dot{E}(t) 
+&\leq 
+\nnorm{\pa_t u(t)}_{L^2} \nnorm{u(t)}_{L^6}^3 \leq C \nnorm{\pa_t u(t)}_{L^2} \nnorm{Du(t)}_{L^2}^3\\
+& \leq
+C (\frac{\nnorm{\pa_t u}_{L^2}^4}{4}+ \frac{\nnorm{Du(t)}_{L^2}^4}{4/3}) \leq C E(t)^2.
+\end{align*}
+\end{enumerate}
+\end{proof}
+
+
+
+
+
+\end{enumerate}
+\end{document}

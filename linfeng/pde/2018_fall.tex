@@ -1,0 +1,157 @@
+\documentclass[11pt,reqno]{amsart}
+\usepackage{amsmath,amssymb,multicol,enumitem,amsthm, esint,tcolorbox}
+\usepackage{fullpage}
+\setlength{\parskip}{1em}
+\allowdisplaybreaks
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\def\M{M}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\D}{\mathbb{D}}
+\newcommand{\<}{\langle}
+\renewcommand{\>}{\rangle}
+\renewcommand{\Re}[1]{\mathrm{Re}\ #1}
+\renewcommand{\Im}[1]{\mathrm{Im}\ #1}
+\renewcommand{\mod}[1]{(\operatorname{mod}#1)}
+\newcommand{\norm}[1]{\vert#1\vert}
+\newcommand{\nnorm}[1]{\Vert#1\Vert}
+
+
+
+\begin{document}
+\title{\Large{PDE QUALIFYING EXAM-Fall 2018\\ }}
+\author{Linfeng Li}
+\maketitle
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                 		    Document                                 %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{enumerate}[label={\arabic*.}]
+\begin{tcolorbox}
+\item Let $\Omega$ be open and bounded and let $g_j \in C(\partial \Omega)$ converge uniformly to $g \in C(\partial \Omega)$ (recall that this means that $\displaystyle \lim_{j \rightarrow \infty} \sup_{x\in \partial \Omega} \norm{g_j(x) - g(x)} \rightarrow 0$). Let $u_j \in C^2(\Omega) \cap C(\bar{\Omega})$ be the solution of 
+\begin{align*}
+\Delta u_j & = 0\ \text{in}\ \Omega,\\
+u_j & = g_j \ \text{on}\ \partial \Omega.
+\end{align*} 
+Show that $u_j$ converges uniformly to a function $u\in C^2(\Omega) \cap C(\bar{\Omega})$ and that $u$ solves
+\begin{align*}
+\Delta u & =0 \ \text{in}\ \Omega,\\
+u & = g \ \text{on}\ \partial \Omega. 
+\end{align*}
+\end{tcolorbox}
+\bigskip
+
+
+\begin{proof}[\bf{Solution}]
+First we claim $u_j$ converges uniformly to some function $u\in C(\bar{\Omega})$. For $m, n$ sufficiently large, let $v= u_m - u_n$ then we have
+\begin{align*}
+\Delta v &= 0\ \text{in}\ \Omega,\\
+v &=g_m - g_n\ \text{on} \ \partial \Omega.
+\end{align*}
+Since we have $\displaystyle \sup_{x\in \partial \Omega} \norm{g_m(x) - g_n(x)} \rightarrow 0$ for $m, n$ sufficiently large, and by maximal principal, 
+\begin{align*}
+\max_{x\in\bar{\Omega}} v(x) = \max_{x\in \partial \Omega} g_m(x) - g_n(x) \rightarrow 0, \ \text{as} \ m,n\rightarrow \infty
+\end{align*}
+Similarly we have 
+\begin{align*}
+\min_{x\in\bar{\Omega}} v(x) = \min_{x\in \partial \Omega} g_m(x) - g_n(x) \rightarrow 0, \ \text{as} \ m,n\rightarrow \infty
+\end{align*}
+Consequently, $v(x)$ converges uniformly to $0$ in $\bar{\Omega}$ as $m, n \rightarrow \infty$, and we have $\{u_m\}_{m=1}^\infty$ is a Cauchy sequence in $(C(\bar{\Omega}), \nnorm{\cdot}_{C^0} )$. Since $(C(\bar{\Omega}), \nnorm{\cdot}_{C^0} )$ is complete, there exists $u \in C(\bar{\Omega})$ such that $u_m$ converges uniformly to $u$ in $\bar{\Omega}$. Now we claim $u(x)$ satisfies the mean value property and therefore $u$ is harmonic in $\Omega$, it's clear that $u=g$ on $\partial \Omega$.
+For given $x \in \Omega$,
+\begin{align*}
+u_m(x) = \fint_{\partial B(x,r)} u_m (y) dS(y), \ \text{for any} \ r>0 \ \text{with} \ B(x,r) \subset \Omega
+\end{align*}
+For sufficiently large $m$, we have $u_m(x)\rightarrow u(x)$, and $ \sup_{y\in \bar{\Omega}} \norm{u_m(y) -u(y)} \rightarrow 0$, therefore
+$u(x) = \fint_{\partial B(x,r)} u(y) dS(y)$ for all $r>0$ with $B(x,r)\subset \Omega$, therefore $u(x)$ satisfies mean value property so $\Delta u = 0$ in $\Omega$.
+\end{proof}
+
+
+
+
+
+
+\newpage
+\begin{tcolorbox}
+\item Let $u_0 \in C^2(B_1(0))$, $u_1 \in C^1(B_1(0))$, $f\in C((0,T)\times B_1(0))$. Show that the problem 
+\begin{align*}
+\partial_{tt} u -\Delta u + u &= f \ \text{in} \ (0,T)\times B_1(0),\\
+u(0,x) &= u_0(x),\\
+\partial_t u(0,x) &=u_1(x),\\
+u(t,x) &= 0 \ \text{on}\ (0,T)\times \partial B_1(0),
+\end{align*} 
+has at most one solution $u\in C^2([0,T]\times \overline{B_1(0)})$.
+\end{tcolorbox}
+\bigskip
+
+
+\begin{proof}[\bf{Solution}]
+Suppose there are two solutions, and we can do the subtraction and claim that the equation with $u\in C^2([0,T]\times \overline{B_1(0)})$
+\begin{align}
+\partial_{tt} u -\Delta u + u &= 0 \label{eq1} \ \text{in} \ (0,T)\times B_1(0),\\
+u(0,x) &= 0 \label{eq2},\\
+\partial_t u(0,x) &=0 \label{eq3},\\
+u(t,x) &= 0 \label{eq4} \ \text{on}\ (0,T)\times \partial B_1(0),
+\end{align} 
+has only trivial solution $u\equiv 0$.
+Define energy 
+\begin{equation*}
+E(t) = \nnorm{\partial_t u (t)}_{L^2}^2 + \nnorm{Du}_{L^2}^2 + \nnorm{u}_{L^2}^2
+\end{equation*}
+Then we have 
+\begin{align*}
+\dot{E}(t) 
+&= 2 
+\langle \partial_t u , \partial_{tt} u \rangle + 2 \langle Du, D \partial_t u \rangle + 2 \langle u, u_t \rangle\\
+&=
+2\langle \partial_t u , \partial_{tt} u -\Delta u + u_t \rangle + \int_{\partial B_1(0)}Du \partial_t u dS\\
+&=
+0
+\end{align*}
+where the last equality follows from \eqref{eq1} and \eqref{eq4}. Thus, $E(t)$ is conserved for this equation and we have $E(t) = E(0) =0$, therefore $u(t) \equiv 0$ for any $t\geq 0$, and claim is proved.
+\end{proof}
+
+
+
+
+\newpage
+\begin{tcolorbox}
+\item Consider the equation 
+\begin{align*}
+\partial_t u + u\partial_x u = 0
+\end{align*}
+on $(0,T)\times \R$. Show that a classical solution with initial data $u(0,x) =\frac{\pi}{2} - \arctan(x)$ can exist at most for a finite time.
+\end{tcolorbox}
+\bigskip
+
+
+\begin{proof}[\bf{Solution}]
+This equation has the form 
+\begin{align*}
+F(Du, u, x) = \mathbf{b}(x, u(x))\cdot Du(x) = (1, u(x))\cdot (u_t, u_x) = 0
+\end{align*}
+We have $D_p F= (1,z)$ and characteristics are 
+\begin{align*}
+& \mathbf{\dot{x}(s)} = (1,z),\\
+& \dot{z}(s) =D_p F\cdot \mathbf{p}(s)
+\end{align*}
+For any given $(x_0, 0) \in \R \times \{t=0\}$, the characteristics emanating from it is $x=x_0 +  (\frac{\pi}{2} -\arctan x_0) t $, on which we have $u(t,x) = \frac{\pi}{2} - \arctan x_0$. Suppose there is global solution, since we can find $x_0$ and $x_1$ such that $x_0 \neq x_1$ and for some $t_0>0$ we have
+\begin{align*}
+&x_0 +  (\frac{\pi}{2} -\arctan x_0) t_0  = x_1 +  (\frac{\pi}{2} -\arctan x_1) t_0 \\
+& \iff \frac{\arctan x_0 - \arctan x_1}{x_0 - x_1}  = \frac{1}{t_0}
+\end{align*}
+which follows from mean value theorem. Then we have two characteristics intersecting at some $t=t_0$, with two different values $\frac{\pi}{2} -\arctan x_0$ and $\frac{\pi}{2} - \arctan x_1$, contradiction! Therefore, solution can only exist at most for a finite time.
+\end{proof}
+
+
+
+\end{enumerate}
+\end{document}

@@ -1,0 +1,200 @@
+\documentclass[11pt,reqno]{amsart}
+\usepackage{amsmath,amssymb,multicol,enumitem,amsthm, esint,tcolorbox}
+\usepackage{fullpage}
+\setlength{\parskip}{1em}
+\allowdisplaybreaks
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\def\M{M}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\D}{\mathbb{D}}
+\newcommand{\<}{\langle}
+\renewcommand{\>}{\rangle}
+\renewcommand{\Re}[1]{\mathrm{Re}\ #1}
+\renewcommand{\Im}[1]{\mathrm{Im}\ #1}
+\renewcommand{\mod}[1]{(\operatorname{mod}#1)}
+\newcommand{\norm}[1]{\vert#1\vert}
+\newcommand{\nnorm}[1]{\Vert#1\Vert}
+
+
+\begin{document}
+\title{\Large{PDE QUALIFYING EXAM-Spring 2018\\ }}
+\author{Linfeng Li}
+\maketitle
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                 		    Document                                 %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{enumerate}[label={\arabic*.}]
+\begin{tcolorbox}
+\item Let $\Omega \subset \R^n$ be open and bounded with normal vector field $\nu$ and let $u_0 \in C_b (\Omega)$ with $u_0\geq 0$ be non-trivial. Show that the problem
+\begin{align}
+\partial_t u -\Delta u = u^2 \label{eq1} \ \ & \text{in}\ \ \Omega \times (0,T),\\
+\partial_{\nu} u = 0 \label{eq2}\ \ & \text{on} \ \ \partial\Omega \times (0,T),\\
+u(x, 0) = u_0(x) \label{eq3}\ \ & \text{for} \ \ x\in \Omega,
+\end{align}
+exists for at most a finite time $T$.\\
+Hint: Show that the mean $m(t) = \frac{1}{\norm{\Omega}} \int_\Omega u(t,x) dx$ satisfies $\partial_t m(t) \geq m^2(t)$.
+\end{tcolorbox}
+\bigskip
+
+
+\begin{proof}[\bf{Solution}]
+Let $m(t) = \frac{1}{\norm{\Omega}}\int_{\Omega} u(t,x) dx$, using equation $\eqref{eq1}$--$\eqref{eq2}$ and Holder's inequality
+\begin{align*}
+\partial_t m(t) 
+&
+= \frac{1}{\norm{\Omega}} \int_{\Omega} \partial_t u dx = \frac{1}{\norm{\Omega}} \int_{\Omega} \Delta u + u^2 dx\\
+&
+= \frac{1}{\norm{\Omega}} \int_{\partial \Omega} \partial_\nu u dS + \frac{1}{\norm{\Omega}} \int_{\Omega} u^2 dx = \frac{1}{\norm{\Omega}^2} \int_{\Omega} 1 dx \int_{\Omega} u^2 dx\\ 
+&
+\geq \frac{1}{\norm{\Omega}^2} (\int_{\Omega} u dx)^2 =m^2(t)
+\end{align*}
+Then we can solve the ODE for $v(t)$ which satisfies
+\begin{align*}
+&\partial_t v = v^2,\\
+& v(0) = m(0) > 0.
+\end{align*}
+The solution is $v(t) = \frac{1}{1/v(0) -t}$, which blows up in finite time. By the proof of Gronwall's lemma, we know $m(t) \geq v(t)$ for $t\geq 0$, therefore the solution exists at most a finite time.
+\end{proof}
+
+
+
+\newpage
+\begin{tcolorbox}
+\item Let $\Omega \subset \R^n$ be open, connected and bounded and let $R>0$ such that $\Omega \subset B_R(0)$.
+\begin{enumerate}[leftmargin=*]
+\item Let $v \in C^2(\Omega) \cap C^0 (\bar{\Omega})$ with $\Delta v
+ = 0$ in $\Omega$. Show that 
+\begin{align*}
+\max\limits_{x\in \bar{\Omega}} v(x) = \max\limits_{x\in \partial \Omega} v(x)
+\end{align*} 
+\item Let $u \in C^2(\Omega) \cap C^0(\bar{\Omega})$ be a solution of 
+\begin{align*}
+-\Delta u = 1 \ \ & \text{in}\ \ \Omega,\\
+u=0 \ \ &\text{on}\ \ \partial \Omega. 
+\end{align*}
+ Show that 
+ \begin{align*}
+ 0\leq u(x) \leq \dfrac{R^2 - \norm{x}^2}{2n}
+ \end{align*}
+for all $x\in \bar{\Omega}$. 
+\end{enumerate}
+\end{tcolorbox}
+\bigskip
+
+
+\begin{proof}[\bf{Solution}]
+\leavevmode
+\begin{enumerate}
+\item Suppose there exists a point $x_0 \in U$ with $u(x_0) = \M =\max_{\bar{\Omega}} u$, since $v$ is harmonic in $\Omega$ we can apply the mean value theorem for $B(x_0, r)$ within $\Omega$
+\begin{align*}
+\M = v(x_0) = \fint_{B(x_0, r)} v dy \leq M,
+\end{align*}
+equality holds if and only if $v\equiv M$ within $B(x_0, r)$. Hence the set $\{x\in \Omega | v(x) = M\}$ is open, it's also closed because it's the preimage of singleton by a continuous function $v$. It has to be either $\emptyset$ or $\Omega$ since $\Omega$ is connected, it's not empty because we assumed at least $x_0$ is in this set, then it has to be $\Omega$. By continuity of $v$ up to the boundary we have $\max_{x\in \partial \Omega} = M$. On the other hand, if there is no such $x_0$ then maximum is obtained on the boundary.
+
+\item Let $v=u+\frac{\norm{x}^2}{2n}$, then $\Delta v = \Delta u + \frac{2n}{2n} = \Delta u +1 =0 $ in $\Omega$, with boundary condition $v\leq 0+\frac{R^2}{2n}$ on $\partial \Omega$. Part (a) applies, and we have 
+\begin{align*}
+\max\limits_{x\in\bar{\Omega} }v(x) =\max\limits_{x\in \partial \Omega} v(x) \leq \frac{R^2}{2n}
+\end{align*}
+therefore, $\forall x \in \bar{\Omega}$, $u(x) + \frac{\norm{x}^2}{2n} \leq \frac{R^2}{2n}$.
+On the other hand, let 
+$$f(r) := \fint_{\partial B(x,r)} u(y) dS(y) = \fint_{\partial B(0,1)} u(x+rz) dS(z)$$
+then we have 
+\begin{align*}
+f'(r) 
+&= 
+\fint_{\partial B(0,1)} Du(x+rz) \cdot z dS(z) = \fint_{\partial B(0,1)} Du(y) \cdot \frac{y-x}{r} dS(z) \\
+&=
+\fint_{\partial B(x,r)} \frac{\partial u}{\partial \nu} dS(y) = \frac{r}{n} \fint_{B(x,r)} \Delta u(y) dy \leq 0
+\end{align*}
+which implies $f(r)$ is decreasing and we also have
+\begin{align*}
+u(x) = \lim_{s\rightarrow 0} f(s) = \lim_{s\rightarrow 0} \fint_{\partial B(x,s)} u(y) dS(y) \geq \fint_{\partial B(x,r)} u(y) dS(y)
+\end{align*}
+therefore, 
+\begin{align*}
+\int_0^r n\alpha(n)s^{n-1} u(x) ds \geq \int_0^r \int_{\partial B(x,s)} u(y) dS(y)ds = \int_{B(x,r)} u(y) dy
+\end{align*}
+consequently, 
+\begin{align*}
+u(x) \geq \fint_{B(x,r)} u(y)dy,\ \text{for\ all} \ B(x,r) \subset \Omega
+\end{align*}
+Now we assume there exists $x_0 \in \Omega$ such that $u(x_0) \leq u(x)$, $\forall x\in \bar{\Omega}$ and $u(x_0) <0$, by the above inequality we have 
+\begin{align*}
+u(x_0)\geq \fint_{B(x_0,r)} u(y) dy \geq \fint_{B(x_0,r)} u(x_0) dy = u(x_0)
+\end{align*}
+equality holds when $u(x_0) = u(y)$ for all $y\in B(x_0, r)$, and we choose $r$ such that $\partial \Omega \cap B(x_0, r) = \{x_1\}$, therefore by continuity $u(x_1) <0$ and we have a contradiction. And we proved $u(x) \geq 0$ for all $x\in \Omega$, combining it with boundary condition we have $u(x) \geq 0$, for all $x\ in \bar{\Omega}$.
+
+
+
+\end{enumerate}
+
+\end{proof}
+
+
+
+
+\newpage
+\begin{tcolorbox}
+\item Let $u$ be a classical solution of the following initial boundary value problem:
+\begin{align}
+&
+u_t = u_{xx}, \label{eq4} \ \ \text{in} \ \ (a,b)\times (0,T)\\
+&
+u(a,t) = u(b,t) = 0 \label{eq5 }\\
+&
+u(x,0) = u_0(x) \label{eq6}
+\end{align}
+where $u_0$ is a continuous function.
+\begin{enumerate}[leftmargin=*]
+\item Show that the solutions are unique.
+\item Show that there exists a constant $\alpha >0$ such that 
+\begin{align*}
+\nnorm{u(\cdot, t)}_{L^2}^2 \leq e^{-\alpha t} \nnorm{u_0}_{L^2}^2.
+\end{align*}
+\end{enumerate}
+\end{tcolorbox}
+\bigskip
+
+
+\begin{proof}[\bf{Solution}]
+\leavevmode
+\begin{enumerate}
+\item Suppose there are two solutions $v_1$ and $v_2$, let $u=v_1 -v_2$ and let $m(t)=\int_a^b \norm{u(t,x)}^2 dx$, then $m'(t)=2\int_a^b u u_{xx} dx = -\int_a^b \norm{u_x}^2 dx \leq 0$, $m(0) = 0$ but $m(t) \geq 0$, therefore $m(t) = 0$ for any $t$, and we have $v_1 \equiv v_2$.
+\item Multiply equation $\eqref{eq4}$ by $u$ and integrate over $(a,b)$, we have
+\begin{align*}
+\frac{1}{2} \frac{d}{dt} \int_a^b \norm{u}^2 dx = -\int_a^b \norm{u_x}^2 dx
+\end{align*}
+Since the domain is bounded and $u$ vanishes on the boundary, we can apply Poincare's inequality, there exists constant $C$ such that
+\begin{align*}
+\int_a^b \norm{u}^2 dx \leq C\int_a^b \norm{u_x}^2 dx 
+\end{align*}
+Combining above two, we arrive at 
+\begin{align*}
+m'(t) \leq -C m(t).
+\end{align*}
+Using Gronwall's lemma, we have 
+\begin{align*}
+m(t) \leq m(0) e^{-Ct}
+\end{align*}
+as desired.
+
+
+
+\end{enumerate}
+\end{proof}
+
+
+
+\end{enumerate}
+
+\end{document}

@@ -1,0 +1,223 @@
+\documentclass[11pt,reqno]{amsart}
+\usepackage{amsmath,amssymb,multicol,enumitem,amsthm, esint,tcolorbox}
+\usepackage{fullpage}
+\setlength{\parskip}{1em}
+\allowdisplaybreaks
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\D}{\mathbb{D}}
+\newcommand{\<}{\langle}
+\renewcommand{\>}{\rangle}
+\renewcommand{\Re}[1]{\mathrm{Re}\ #1}
+\renewcommand{\Im}[1]{\mathrm{Im}\ #1}
+\renewcommand{\mod}[1]{(\operatorname{mod}#1)}
+\newcommand{\norm}[1]{\vert#1\vert}
+
+
+\begin{document}
+\title{\Large{PDE QUALIFYING EXAM-Fall 2017\\ }}
+\author{Linfeng Li}
+\maketitle
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                 		    Document                                 %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+\begin{enumerate}[label={\arabic*.}]
+\begin{tcolorbox}
+\item Consider the Burger's equation
+\begin{align*}
+&
+u_t + uu_x = 0,\ \ x\in \R,\ t>0,\\
+&
+u(x,0)=g(x), \ \ x\in \R.
+\end{align*}
+where $g(x)$ is a given piecewise continuous function.
+\begin{enumerate}[leftmargin=*]
+\item Show that the characteristics are straight lines.
+\item Give an example of $g(x)$ so that the characteristics do not  cover the entire $(x, t)$ space.
+\item Give an example of $g(x)$ so that the characteristics intersect.
+\end{enumerate}
+\end{tcolorbox}
+\bigskip
+
+
+\begin{proof}[\bf{Solution}]
+\leavevmode
+\begin{enumerate}
+\item This equation is quasilinear and has the form
+\begin{align*}
+F(Du, u, x) = \mathbf{b}(x, u(x)) \cdot Du(x) = (1, u(x)) \cdot (u_t, u_x)= 0
+\end{align*}
+In this case $D_p F = (1, z)$ and characteristics are
+\begin{align*}
+& \mathbf{\dot{x}}(s) = (1, z),\\
+& \dot{z}(s) = D_p F \cdot \mathbf{p}(s) = 0,
+\end{align*}
+For any $(x_0, 0)\in \R\times \{t=0\}$, the characteristics emanating from it is $x = x_0 + g(x_0) t$, which is a straight line.
+\item For $g(x) = -x$ we have characteristics $x= x_0 -x_0 t$, which are straight lines passing through (1,0), they do not cover entire $(t,x)$ space because they do not cover points such as $(1,1)$.
+\item For $g(x) = \sin x$, choose $x_0 = \pi$ and $x_0 =\omega$, for some $\omega \in (\pi, 2\pi)$. Then we have two characteristics $x= \pi$ and $x = \omega + t\sin \omega$, by intermediate value theorem we can find some $t_0>0$ such that these two lines intersect.
+\end{enumerate}
+\end{proof}
+
+
+
+
+
+\newpage
+\begin{tcolorbox}
+\item Let $U \subset \R^n$ be an open set.
+\begin{enumerate}[leftmargin=*]
+\item Let $u\in C^2(U)$. Show that for any ball $\bar{B}(x_0, r) \subset U$ it holds
+\begin{equation*}
+\frac{d}{dr}  \fint_{\partial B(0,1)} u(x_0 + rz)dS(z) = \frac{r}{n} \fint_{B(0,1)} (\Delta u)(x_0 +rz) dz
+\end{equation*}
+Here we have used the notation $\fint_A f = \frac{1}{\norm{A}} \int_A f$.
+\item Let $u\in C^2(U)$ be such that for any ball $\bar{B}(x_0, r)\subset U$ it holds
+\begin{equation*}
+u(x_0) = \fint_{\partial B (x_0, r)} u dS.
+\end{equation*}
+Show that then $\Delta u = 0$ in $U$.
+\item Does the implication of part (b) still hold if you just assume $u \in C(U)$? Briefly explain your answer.
+\end{enumerate}
+\end{tcolorbox}
+\bigskip
+
+
+\begin{proof}[\bf{Solution}]
+\leavevmode
+\begin{enumerate}
+\item
+\begin{align*}
+\dfrac{d}{dr}  \fint_{\partial B(0,1)} u(x_0 + rz)dS(z) &= \fint_{\partial B(0,1)} Du(x_0 + rz) \cdot z dS(z)\\
+&=
+\fint_{\partial B(x_0,r)} Du(y) \cdot \dfrac{y-x_0}{r} dS(y)\\
+&=
+\fint_{\partial B(x_0, r)}Du(y) \cdot \nu dS(y)\\
+&=
+\fint_{\partial B(x_0, r)} \dfrac{\partial u}{\partial \nu}(y) dS(y)\\
+&=
+\fint_{\partial B(x_0, r)} \Delta u(y) dS(y)\\
+&=
+\dfrac{r}{n} \fint_{B(0,1)} \Delta u (x_0 + rz) dz
+\end{align*}
+\item Assume there exist $x_0 \in U$ such that $\Delta u(x_0) >0$. Since $u\in C^2(U)$, there exists $r>0$ such that $\Delta u(x) >0$ for all $x\in B(x_0, r)$.  Define $\phi(r)= \fint_{\partial B(x_0, r)} u(y)dS(y)$, then from part (a) we know $\phi' (r) = \dfrac{r}{n} \fint_{B(x_0,r)} \Delta u (y) dy >0$, but $u(x_0)=\phi (r)$ for all $r>0$, therefore $\phi'(r) = 0$. Contradiction! By symmetry we can similarly prove there is no $x_0 \in U$ such that $\Delta u(x_0) <0$.
+\item It still hold if we only assume $u \in C(U)$. In fact we can use standard mollifier to prove that $u\in C^\infty (U_\epsilon)$ for every $\epsilon$, and then we proceed as in part (b).
+\end{enumerate}
+\end{proof}
+
+
+
+
+
+
+\newpage
+\begin{tcolorbox}
+\item Let $U$ be the unit ball in $R^n$.
+\begin{enumerate}[leftmargin=*]
+\item For $u(x) = \norm{x}^{-a}$ for $x\in U$, determine the values of $a$, $n$, $p$ for which $u$ belongs to the Sobolev space $W^{1,p}(U)$.
+\item Let $n\geq 2$. If $u(x) = \ln \ln (1+\frac{1}{\norm{x}})$ for $x\in U$, show that $u\in W^{1,n}(U)$ but not in $L^{\infty}(U)$.
+\end{enumerate}
+\end{tcolorbox}
+\bigskip
+
+
+\begin{proof}[\bf{Solution}]
+\leavevmode
+\begin{enumerate}
+\item  $u(x) = \norm{x}^{-a}$ is in  $L^p(U)$ if and only if $ap\leq n$, $Du(x) = -a \norm{x}^{-a-2}x$ is in $L^p(U)$ if and only if $(a+1)p \leq n$. Therefore $u \in W^{1,p}(U)$ if and only if $(a+1)p \leq n$.
+\item For $x \in B(0,1)$, we have
+\begin{equation*}
+\norm{\ln \ln (1+\dfrac{1}{\norm{x}})} \leq C (1+\dfrac{1}{\norm{x}}),
+\end{equation*}
+and by part (a)
+\begin{align*}
+&
+\int_{B(0,1)} \norm{u(x)}^n dx = \int_{B(0,1)} \norm{\ln \ln(1+\dfrac{1}{\norm{x}})}^n dx
+\leq
+C\int_{B(0,1)} (1+\dfrac{1}{\norm{x}})^n dx \\
+&=
+C\int_0^1 \int_{\partial B(0,r)} (1+\dfrac{1}{\norm{x}})^n dS dr
+=C \int_0^1 (1+\dfrac{1}{r})^n r^{n-1} dr < \infty
+\end{align*}
+which shows $u\in L^n$.
+Furthermore,
+\begin{equation*}
+Du(x) = \dfrac{1}{\ln (1+\dfrac{1}{\norm{x}})} \dfrac{1}{1+\dfrac{1}{\norm{x}}}(-1) \norm{x}^{-3} x,
+\end{equation*}
+so
+\begin{equation*}
+\norm{Du(x)} = \dfrac{1}{\ln (1+\dfrac{1}{\norm{x}})} \dfrac{1}{\norm{x}+1}  \norm{x}^{-1} \leq C \norm{x}^{-1},
+\end{equation*}
+By part (a) we know $Du \in L^n$, therefore $u \in W^{1,n}$. $u(x)$ is not in $L^\infty$ since we can take $\norm{x}$ sufficiently small so that $u(x)$ is arbitrarily large.
+\end{enumerate}
+\end{proof}
+
+
+
+
+
+\newpage
+\item
+\begin{tcolorbox}
+\begin{enumerate}[leftmargin=*]
+\item Let $U\subset \R^n$ be a bounded open set, let $T>0$ be fixed and define $U_T = U \times (0, T)$. Assume $u\in C_1^2(\bar{U_T})$ solves the following initial boundary value problem
+\begin{align}
+u_t - \Delta u = f\ \  & \text{in} \ \ U_T,\\
+\dfrac{\partial u}{\partial \nu} + u = h \ \ & \text{on}\ \  \partial U \times (0, T),\\
+u=g \ \ & \text{on}\ \ U\times \{t=0\},
+\end{align}
+where $f, g$ and $h$ are given smooth functions, and $\nu$ is the outward pointing unit normal field of $\partial U$. Prove that there exists at most one such solution.
+\item Let $U\subset \R^2$ be a bounded open set and let $a>0$, $b,c\in \R$ be given constants. Show that any solution $u\in C^2(\bar{U})$ of
+\begin{equation*}
+\Delta u -au + b\partial_x u + c\partial_y u = 0 \ \ \text{in} \ U,
+\end{equation*}
+cannot attain a positive maximum or negative minimum inside $U$.
+\end{enumerate}
+\end{tcolorbox}
+\bigskip
+
+
+\begin{proof}[\bf{Solution}]
+\leavevmode
+\begin{enumerate}
+\item Suppose there are two solutions $v_1(t,x)$ and $v_2(t,x)$ satisfying $(3)$--$(5)$, we define $u(t,x) = v_1(t,x) - v_2(t,x)$, then
+\begin{align}
+u_t - \Delta u = 0\ \  & \text{in} \ \ U_T,
+\label{eq6}\\
+\dfrac{\partial u}{\partial \nu} + u = 0
+\label{eq7}\ \ & \text{on}\ \  \partial U \times (0, T),\\
+u=0 \ \ & \text{on}\ \ U\times \{t=0\},
+\label{eq8}
+\end{align}
+multiply $\eqref{eq6}$ by $u$ and integrate over $U$, we have
+$\langle u_t, t \rangle -\langle \Delta u, u \rangle = 0$. Integrate by part to the second term and use the boundary condition $\eqref{eq7}$, we arrive at
+\begin{align*}
+\dfrac{1}{2} \dfrac{d}{dt}\int_U \norm{u}^2 = -\int_{\partial U} \norm{u}^2 -\int_U \norm{Du}^2,
+\end{align*}
+integrating from $0$ to $t$, we have
+\begin{align*}
+\dfrac{1}{2} \int_U \norm{u(t)}^2 - \dfrac{1}{2} \int_U \norm{u(0)}^2= -\int_0^t \int_{\partial U} \norm{u(s)}^2 dS ds - \int_0^t \int_U \norm{Du(s)}^2 dxds
+\end{align*}
+By the initial condition $\eqref{eq8}$, the second term on the left side of above equality vanishes, and thus we have $u=0$ on $\partial U$ and $\norm{Du} = 0$ since $u\in C_1^2(\bar{U_T})$, and we have $v_1 \equiv v_2$.
+\item Suppose there is a solution $u$ that attains a positive maximum at some $x_0 \in U$, then $u(x_0) >0$, $Du(x_0) = 0$ and $\Delta u(x_0) \leq 0$, but we have
+\begin{align*}
+\Delta u (x_0) = au(x_0)
+\end{align*}
+Contradiction! By symmetry we can prove there is no negative minimum inside $U$.
+\end{enumerate}
+\end{proof}
+
+\end{enumerate}
+\end{document}
